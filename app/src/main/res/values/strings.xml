@@ -1,0 +1,288 @@
+<resources>
+    <string name="app_name">PABDIS</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_profile">Profile</string>
+    <string name="menu_survey">Survey/Vaccination</string>
+    <string name="menu_map">Map / Location</string>
+    <string name="menu_list_owner">List of Owners</string>
+    <string name="menu_list_pet">List of Pet</string>
+    <string name="menu_logout">Logout</string>
+    <string name="start_survey">Start survey!</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="municipality">Municipality</string>
+
+    <string name="brgy_prompty">Choose Municipality</string>
+    <string name="muni_prompt">Choos Barangay</string>
+    <string name="house_no">House No.</string>
+    <string name="get_geolocation">Get geolocation</string>
+    <string name="add">PROCEED SURVEY</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="household_head_last_name">Household Head Last Name</string>
+    <string name="household_head_first_name">Household Head First Name</string>
+    <string name="respondent_lastname">Respondent LastName</string>
+    <string name="respondent_first_name">Respondent First Name</string>
+    <string name="respondent">Respondent</string>
+    <string name="swine">SWINE</string>
+    <string name="other_animals_birds">Other Animals / Birds</string>
+    <string name="apiary">Apiary</string>
+    <string name="carabao">Carabao</string>
+    <string name="cattle">Cattle</string>
+    <string name="fishery">Fishery &amp; Apiary</string>
+    <string name="goat">Goat</string>
+    <string name="household_consumption">Household Consumption</string>
+
+    <string name="production">Production (in Dozens) Egg</string>
+
+
+    <string name="boar_native">Boar (Native)</string>
+    <string name="boar_upgrade">Boar (Upgrade)</string>
+    <string name="git_native">Sow/Git (Native)</string>
+    <string name="git_upgrade">Sow/Git (Upgrade)</string>
+    <string name="grower_native">Growers and Finishers (Native)</string>
+    <string name="grower_upgrade">Growers and Finishers (Upgrade)</string>
+    <string name="pig_native">Piglets and Weanlings (Native)</string>
+    <string name="pig_upgrade">Piglets and Weanlings (Upgrade)</string>
+    <string name="sl_farm">Slaughtered on Farm</string>
+    <string name="sl_abb">Slaughtered in Abattoir</string>
+
+    <string name="broilers">Broilers</string>
+    <string name="layers">Layers</string>
+    <string name="local">Native/Improved/Local Breed</string>
+
+
+    <string name="bull_d">Bull (Dairy)</string>
+    <string name="cow_d">Cow/Heifer (Dairy)</string>
+    <string name="calf_d">Calf (Dairy)</string>
+    <string name="bull_m">Bull (Meat)</string>
+    <string name="cow_m">Cow/Heifer (Meat)</string>
+    <string name="calf_m">Calf (Meat)</string>
+
+    <string name="carabull_c">Carabull (Crossbreed)</string>
+    <string name="caracow_c">Caracow/Caraheifer (Crossbreed)</string>
+    <string name="caracalf_c">Caracalf (Crossbreed)</string>
+    <string name="carabull_n">Carabull (Native)</string>
+    <string name="caracow_n">Caracow/Caraheifer (Meat)</string>
+    <string name="caracalf_n">Caracalf (Meat)</string>
+
+    <string name="buck_d">Buck (Dairy)</string>
+    <string name="doe_d">Doe (Dairy)</string>
+    <string name="kids_d">Kids (Dairy)</string>
+    <string name="buck_m">Buck (Meat)</string>
+    <string name="doe_m">Doe (Meat)</string>
+    <string name="kids_m">Kids (Meat)</string>
+
+    <string name="total">TOTAL</string>
+    <string name="total_area">Total Area (sqm)</string>
+    <string name="total_income">Total Income</string>
+
+    <string name="sheep">Sheep</string>
+    <string name="horse">Horse</string>
+    <string name="rabbit">Rabbit</string>
+    <string name="duck">Duck</string>
+    <string name="pigeon">Pigeon</string>
+    <string name="quail">Quail</string>
+    <string name="turkey">Turkey</string>
+    <string name="others">Others</string>
+
+
+    <string name="beef">Beef</string>
+    <string name="carabeef">Carabeef</string>
+    <string name="pork">Pork</string>
+    <string name="chicken">Chicken</string>
+    <string name="fish">Fish</string>
+    <string name="egg">Egg</string>
+    <string name="other_pls_specify">Other (pls. specify)</string>
+    <string name="done">DONE</string>
+
+    <string-array name="muni">
+        <item>La Trinidad</item>
+        <item>Itogon</item>
+        <item>Buguias</item>
+        <item>Kabayan</item>
+        <item>Sablan</item>
+        <item>Mankayan</item>
+        <item>Kapangan</item>
+        <item>Bokod</item>
+        <item>Atok</item>
+        <item>Kibungan</item>
+        <item>Tublay</item>
+        <item>Tuba</item>
+        <item>Bakun</item>
+    </string-array>
+    <string-array name="brgy_lt">
+        <item>Alapang</item>
+        <item>Alno</item>
+        <item>Ambiong</item>
+        <item>Bahong</item>
+        <item>Balili</item>
+        <item>Beckel</item>
+        <item>Bineng</item>
+        <item>Betag</item>
+        <item>Cruz</item>
+        <item>Lubas</item>
+        <item>Pico</item>
+        <item>Poblacion</item>
+        <item>Puguis</item>
+        <item>Shilan</item>
+        <item>Tawang</item>
+        <item>Wangal</item>
+    </string-array>
+    <string-array name="brgy_kib">
+        <item>Badeo</item>
+        <item>Lubo</item>
+        <item>Madaymen</item>
+        <item>Palina</item>
+        <item>Poblacion</item>
+        <item>Sagpat</item>
+        <item>Tacadang</item>
+    </string-array>
+    <string-array name="brgy_it">
+        <item>Ampucao</item>
+        <item>Dalupirip</item>
+        <item>Gumatdang</item>
+        <item>Loacan</item>
+        <item>Poblacion (Central)</item>
+        <item>Tinongdan</item>
+        <item>Tuding</item>
+        <item>Ucab</item>
+        <item>Virac</item>
+    </string-array>
+    <string-array name="brgy_bug">
+        <item>Abatan</item>
+        <item>Amgaleyguey</item>
+        <item>Amlimay</item>
+        <item>Baculongan Norte</item>
+        <item>Bangao</item>
+        <item>Buyacaoan</item>
+        <item>Calamagan</item>
+        <item>Catlubong</item>
+        <item>Loo</item>
+        <item>Natubleng</item>
+        <item>Poblacion (Central)</item>
+        <item>Baculongan Sur</item>
+        <item>Lengaoan</item>
+        <item>Sebang</item>
+    </string-array>
+    <string-array name="brgy_kab">
+        <item>Adaoay</item>
+        <item>Anchukey</item>
+        <item>Ballay</item>
+        <item>Bashoy</item>
+        <item>Batan</item>
+        <item>Duacan</item>
+        <item>Eddet</item>
+        <item>Gusaran</item>
+        <item>Kabayan Barrio</item>
+        <item>Lusod</item>
+        <item>Pacso</item>
+        <item>Poblacion (Central)</item>
+        <item>Tawangan</item>
+    </string-array>
+    <string-array name="brgy_sab">
+        <item>Bagong</item>
+        <item>Balluay</item>
+        <item>Banangan</item>
+        <item>Banengbeng</item>
+        <item>Bayabas</item>
+        <item>Kamog</item>
+        <item>Pappa</item>
+        <item>Poblacion</item>
+    </string-array>
+    <string-array name="brgy_man">
+        <item>Balili</item>
+        <item>Bedbed</item>
+        <item>Bulalacao</item>
+        <item>Cabiten</item>
+        <item>Colalo</item>
+        <item>Guinaoang</item>
+        <item>Paco</item>
+        <item>Palasaan</item>
+        <item>Poblacion</item>
+        <item>Sapid</item>
+        <item>Tabio</item>
+        <item>Taneg</item>
+    </string-array>
+    <string-array name="brgy_bak">
+        <item>Ampusongan</item>
+        <item>Bagu</item>
+        <item>Dalipey</item>
+        <item>Gambang</item>
+        <item>Kayapa</item>
+        <item>Poblacion (Central)</item>
+        <item>Sinacbat</item>
+    </string-array>
+    <string-array name="brgy_tba">
+        <item>Ansagan</item>
+        <item>Camp One</item>
+        <item>Camp 3</item>
+        <item>Camp 4</item>
+        <item>Nangalisan</item>
+        <item>Poblacion</item>
+        <item>San Pascual</item>
+        <item>Tabaan Norte</item>
+        <item>Tabaan Sur</item>
+        <item>Tadiangan</item>
+        <item>Taloy Norte</item>
+        <item>Taloy Sur</item>
+        <item>Twin Peaks</item>
+    </string-array>
+    <string-array name="brgy_tbl">
+        <item>Ambassador</item>
+        <item>Ambongdolan</item>
+        <item>Ba-ayan</item>
+        <item>Basil</item>
+        <item>Dadlan</item>
+        <item>Caponga (Poblacion)</item>
+        <item>Tublay Central</item>
+        <item>Tuel</item>
+    </string-array>
+    <string-array name="brgy_at">
+        <item>Abiang</item>
+        <item>Caliking</item>
+        <item>Cattubo</item>
+        <item>Naguey</item>
+        <item>Paoay</item>
+        <item>Pasdong</item>
+        <item>Poblacion</item>
+        <item>Topdac</item>
+    </string-array>
+    <string-array name="brgy_bok">
+        <item>Ambuclao</item>
+        <item>Bila</item>
+        <item>Bobok-Bisal</item>
+        <item>Daclan</item>
+        <item>Ekip</item>
+        <item>Karao</item>
+        <item>Nawal</item>
+        <item>Pito</item>
+        <item>Poblacion</item>
+        <item>Tikey</item>
+    </string-array>
+    <string-array name="brgy_kap">
+        <item>Balakbak</item>
+        <item>Beleng-Belis</item>
+        <item>Boklaoan</item>
+        <item>Cayapes</item>
+        <item>Cuba</item>
+        <item>Datakan</item>
+        <item>Gadang</item>
+        <item>Gasweling</item>
+        <item>Labueg</item>
+        <item>Paykek</item>
+        <item>Poblacion Central</item>
+        <item>Pudong</item>
+        <item>Pongayan</item>
+        <item>Sagubo</item>
+        <item>Taba-oa</item>
+    </string-array>
+
+
+
+</resources>
