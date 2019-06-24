@@ -65,8 +65,6 @@ public class MainActivity extends AppCompatActivity
         firstname = findViewById(R.id.edtFirstName);
         lastname2 = findViewById(R.id.edtLastName1);
         firstname2 = findViewById(R.id.edtFirstName1);
-
-
         contact = findViewById(R.id.edtContact);
         houseno = findViewById(R.id.edtHouseNo);
 
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity
 //        btndate = findViewById(R.id.btnDate);
         proceedSurvey = findViewById(R.id.btnProceedSurvey);
 //        dateSurvey.setEnabled(false);
-
 
 
         muni = findViewById(R.id.muni);
@@ -94,9 +91,6 @@ public class MainActivity extends AppCompatActivity
         brgy_sab = ArrayAdapter.createFromResource(this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
         brgy_tba = ArrayAdapter.createFromResource(this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
         brgy_tbl = ArrayAdapter.createFromResource(this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
-
-
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -149,8 +143,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-
-
 //        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 //
 //            @Override
@@ -177,7 +169,6 @@ public class MainActivity extends AppCompatActivity
 //        });
 
 
-
         proceedSurvey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -191,7 +182,6 @@ public class MainActivity extends AppCompatActivity
                 final String house = houseno.getText().toString();
                 final String mun = muni.getSelectedItem().toString();
                 final String brg = brgy.getSelectedItem().toString();
-
 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
@@ -207,8 +197,6 @@ public class MainActivity extends AppCompatActivity
                 }
 
 
-
-
                 position = brgy.getSelectedItemPosition();
                 position++;
                 year = Calendar.getInstance().get(Calendar.YEAR);
@@ -217,14 +205,6 @@ public class MainActivity extends AppCompatActivity
                 ctr++;
                 first = mun.charAt(0);
                 ownerid = first.toString() + position.toString() + year.toString() + ctr.toString();
-
-
-
-
-
-
-
-
 
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -252,8 +232,8 @@ public class MainActivity extends AppCompatActivity
 
 
                                         myDB.addOwner(ownerid.trim(),hfname.trim(),hlname.trim(),rfname.trim(),rlname.trim(),num.trim(), house.trim(), mun.trim(), brg.trim(),created_at);
-                                        showDebugDBAddressLogToast(MainActivity.this);
-
+                                        Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+//                                        showDebugDBAddressLogToast(MainActivity.this);
                                         Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
                                         startActivity(intent);
                                     } catch (Exception e) {
