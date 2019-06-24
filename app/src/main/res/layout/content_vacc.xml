@@ -1,6 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.ui.VaccinationActivity"
+    tools:showIn="@layout/activity_vacc">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="4dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="VACCINATION"
+                android:textColor="#fff"
+                android:textSize="18dp" />
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imgPet"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter"
+                            />
+
+                        <Button
+                            android:id="@+id/btnChoose"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/imgPet"
+                            android:text="Choose an image" />
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <EditText
+                                android:id="@+id/txtpetname"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:hint="Pet Name"
+                                android:inputType="text"
+                                android:maxLines="1"
+                                android:padding="10dp"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <Spinner
+                                android:id="@+id/txtspecies"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:entries="@array/species"
+                                style="@style/spinner_style"
+                                android:padding="10dp" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Spinner
+                                android:id="@+id/txtbreed"
+                                style="@style/spinner_style"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:entries="@array/breed_cat"
+                                android:padding="10dp"/>
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Spinner
+                                android:id="@+id/txtgender"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:entries="@array/gender"
+                                style="@style/spinner_style"
+                                android:padding="10dp"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/age">
+
+
+                            <EditText
+                                android:id="@+id/txtage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:inputType="number"
+                                android:maxLines="1" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Spinner
+                                android:id="@+id/txtcolormark"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:entries="@array/gender"
+                                style="@style/spinner_style"
+                                android:padding="10dp"
+                                />
+                        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+        </RelativeLayout>
+
+
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>

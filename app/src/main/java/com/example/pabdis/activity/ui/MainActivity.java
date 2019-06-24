@@ -225,7 +225,8 @@ public class MainActivity extends AppCompatActivity
 
                                 if (hfname.equals("") || hlname.equals("") || rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
                                     Toast.makeText(MainActivity.this, ""+ctr , Toast.LENGTH_SHORT).show();
-
+                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                    startActivity(intent);
                                 }else{
 
                                     try {

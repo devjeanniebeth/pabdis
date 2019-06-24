@@ -73,7 +73,7 @@ public class Pet {
         return petname;
     }
 
-    public String setPetname(String petname){
+    public void setPetname(String petname){
 
         this.petname = petname;
     }
@@ -144,7 +144,7 @@ public class Pet {
 
     public void  setPet_ID(String pet_ID){
 
-        this.Pet_id = Pet_ID;
+        this.Pet_ID = Pet_ID;
 
     }
 
