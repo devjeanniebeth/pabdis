@@ -122,7 +122,7 @@ public class OwnerActivity extends AppCompatActivity
             do {
 
                 String id =  ("ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_1)));
-                String ownerid =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_3));
+                String ownerid = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_3)));
                 String r_full = ("Owner Name: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_7)) );
                 String h_full = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
                 String contact = ("Contact: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
