@@ -19,7 +19,7 @@ public class Owner {
 
         super();
 
-        this.id = id;
+            this.id = id;
         this.ownerid = ownerid;
         this.h_full = h_full;
         this.r_full = r_full;
