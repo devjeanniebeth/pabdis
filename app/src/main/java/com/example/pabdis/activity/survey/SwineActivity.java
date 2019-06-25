@@ -19,8 +19,7 @@ import com.example.pabdis.R;
 public class SwineActivity extends AppCompatActivity {
 
     Button btnNext;
-    EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU;
-
+    EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,edtSwineTotal,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +31,32 @@ public class SwineActivity extends AppCompatActivity {
         edtGrowU = findViewById(R.id.edtGrowU);
         edtSowN = findViewById(R.id.edtSowN);
         edtSowU = findViewById(R.id.edtSowU);
-
-
-
-
-
+        edtPigN = findViewById(R.id.edtPigN);
+        edtPigU = findViewById(R.id.edtPigU);
+        edtSwineTotal = findViewById(R.id.edtSwineTotal);
+        edtSF_sw = findViewById(R.id.edtSF_sw);
+        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
+        edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final String boarn = edtboarn.getText().toString();
+                final String boaru = edtboaru.getText().toString();
+                final String grown = edtGrowN.getText().toString();
+                final String growu = edtGrowU.getText().toString();
+                final String sown = edtSowN.getText().toString();
+                final String sowu = edtSowU.getText().toString();
+                final String pign = edtPigN.getText().toString();
+                final String pigu = edtPigU.getText().toString();
+                final String swntotal = edtSwineTotal.getText().toString();
+                final String swn_sf = edtSF_sw.getText().toString();
+                final String swn_sa = edtSA_sw.getText().toString();
+                final String swn_totala = edtSwineTotalArea.getText().toString();
+                final String swn_totali = edtSwineTotalIncome.getText().toString();
+
 
 
                 // Build an AlertDialog
