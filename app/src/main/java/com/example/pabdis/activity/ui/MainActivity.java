@@ -230,12 +230,11 @@ public class MainActivity extends AppCompatActivity
                                 }else{
 
                                     try {
-
-
                                         myDB.addOwner(ownerid.trim(),hfname.trim(),hlname.trim(),rfname.trim(),rlname.trim(),num.trim(), house.trim(), mun.trim(), brg.trim(),created_at);
                                         Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
                                         Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
+                                        intent.putExtra("ownerid", ownerid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

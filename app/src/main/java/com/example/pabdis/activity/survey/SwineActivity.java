@@ -14,12 +14,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.ui.MainActivity;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class SwineActivity extends AppCompatActivity {
 
     Button btnNext;
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,edtSwineTotal,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
+    String ownerid;
+    DatabaseHelper myDB;
+    final Calendar myCalendar = Calendar.getInstance();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +49,17 @@ public class SwineActivity extends AppCompatActivity {
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+            } else {
+                ownerid= extras.getString("ownerid");
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+        }
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +78,10 @@ public class SwineActivity extends AppCompatActivity {
                 final String swn_totala = edtSwineTotalArea.getText().toString();
                 final String swn_totali = edtSwineTotalIncome.getText().toString();
 
-
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, 1);
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                final String created_at = format1.format(cal.getTime());
 
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(SwineActivity.this);
@@ -75,9 +99,18 @@ public class SwineActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
-//                intent.putExtra("owner_id",ownerid);
-                                startActivity(intent);
+
+
+
+                                try {
+                                    myDB.addSwine(ownerid,boarn, boaru,sown,sowu,grown,growu,pign, pigu, swntotal, swn_sf, swn_sa,swn_totala,swn_totali, created_at );
+                                    Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
+                                    intent.putExtra("owner_id",ownerid);
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+
+                                }
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
