@@ -459,9 +459,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public boolean addFishery(String owner_id, String total_area_f, String total_prod_f, String total_income_f,
-                               String total_area_a, String total_prod_a,
-                           String total_income_a, String createdAt)
+    public boolean addFishery(String owner_id, String total_area_f, String total_prod_f, String total_income_f, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

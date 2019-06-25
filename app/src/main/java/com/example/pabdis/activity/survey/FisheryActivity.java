@@ -7,23 +7,35 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class FisheryActivity extends AppCompatActivity {
 
     Button btnNext;
     String ownerid;
     DatabaseHelper myDB;
+    EditText edtTotalArea,edtProd,edtIncome,edtColonyNum,edtProdH,edtTotalIncome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_fishery);
         btnNext = findViewById(R.id.btnProceedSurvey);
+        edtTotalArea = findViewById(R.id.edtTotalArea);
+        edtProd = findViewById(R.id.edtProd);
+        edtIncome = findViewById(R.id.edtIncome);
+        edtColonyNum = findViewById(R.id.edtColonyNum);
+        edtProdH = findViewById(R.id.edtProdH);
+        edtTotalIncome = findViewById(R.id.edtTotalIncome);
+
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -39,6 +51,21 @@ public class FisheryActivity extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                final String f_area = edtTotalArea.getText().toString();
+                final String f_prod = edtProd.getText().toString();
+                final String f_inc = edtIncome.getText().toString();
+                final String a_col = edtColonyNum.getText().toString();
+                final String a_prod = edtProdH.getText().toString();
+                final String a_inc = edtTotalIncome.getText().toString();
+
+
+
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, 1);
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                final String created_at = format1.format(cal.getTime());
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(FisheryActivity.this);
 
@@ -55,9 +82,21 @@ public class FisheryActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
-//                                intent.putExtra("owner_id",ownerid);
-                                startActivity(intent);
+                                if (f_area.equals("") || f_prod.equals("") || f_inc.equals("") ||
+                                        a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
+                                    Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                }else {
+                                    try {
+                                        myDB.addFishery(ownerid, f_area, f_prod, f_inc,created_at);
+                                        myDB.addApiary(ownerid,a_col, a_prod, a_inc, created_at);
+                                        Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                        intent.putExtra("owner_id", ownerid);
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+
+                                    }
+                                }
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
