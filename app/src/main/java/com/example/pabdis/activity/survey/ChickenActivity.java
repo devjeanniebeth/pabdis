@@ -7,20 +7,49 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.DatabaseHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class ChickenActivity extends AppCompatActivity {
 
     Button btnNext;
-
+    EditText edtBroiler,edtLayers,edtNative,edtTotal,edtProd,edtSF_sw,edtSA_sw,edtTotalArea,edtTotalIncome;
+    String ownerid;
+    DatabaseHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_chicken);
 
         btnNext = findViewById(R.id.btnProceedSurvey);
+        edtBroiler = findViewById(R.id.edtBroiler);
+        edtLayers = findViewById(R.id.edtLayers);
+        edtNative = findViewById(R.id.edtNative);
+        edtTotal = findViewById(R.id.edtTotal);
+        edtProd = findViewById(R.id.edtProd);
+        edtSF_sw = findViewById(R.id.edtSF_sw);
+        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtTotalArea = findViewById(R.id.edtTotalArea);
+        edtTotalIncome = findViewById(R.id.edtTotalIncome);
+
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+            } else {
+                ownerid= extras.getString("ownerid");
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+        }
+
 
 
 
@@ -28,6 +57,21 @@ public class ChickenActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                final String broiler = edtBroiler.getText().toString();
+                final String layer = edtLayers.getText().toString();
+                final String snative = edtNative.getText().toString();
+                final String total = edtTotal.getText().toString();
+                final String prod = edtProd.getText().toString();
+                final String ch_sf = edtSF_sw.getText().toString();
+                final String ch_sa = edtSA_sw.getText().toString();
+                final String ch_totala = edtTotalArea.getText().toString();
+                final String ch_totali = edtTotalIncome.getText().toString();
+
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, 1);
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                final String created_at = format1.format(cal.getTime());
 
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(ChickenActivity.this);
@@ -45,9 +89,15 @@ public class ChickenActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
-//                intent.putExtra("owner_id",ownerid);
-                                startActivity(intent);
+                                try {
+                                    myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,ch_totala,ch_totali, created_at );
+                                    Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
+                                    intent.putExtra("owner_id",ownerid);
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+
+                                }
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:

@@ -22,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:elevation="4dp"
             android:paddingBottom="24dp">
 
             <TextView
@@ -31,9 +30,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:text="VACCINATION"
+                android:text="@string/vaccination"
                 android:textColor="#fff"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
         </RelativeLayout>
 
 
@@ -48,14 +47,14 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:adjustViewBounds="true"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"
+                    android:contentDescription="@string/pet_image" />
 
                 <Button
                     android:id="@+id/btnChoose"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imgPet"
-                    android:text="Choose an image" />
+                    android:text="@string/choose_an_image" />
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -66,10 +65,11 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:hint="Pet Name"
+                        android:hint="@string/pet_name"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:padding="10dp" />
+                        android:padding="10dp"
+                        android:autofillHints="type your pet's name" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -79,9 +79,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="SPECIE"
+                        android:text="@string/specie"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -103,9 +103,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="BREED"
+                        android:text="@string/breed"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -125,7 +125,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="GENDER"
+                        android:text="@string/gender"
                         android:textAlignment="center"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -140,18 +140,23 @@
                         android:padding="10dp" />
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/birthday">
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark" />
+
                     <EditText
                         android:id="@+id/txtbirthday"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="date"
                         android:maxLines="1" />
-
-                </android.support.design.widget.TextInputLayout>
+                </TableRow>
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -173,9 +178,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="COLOR MARKINGS"
+                        android:text="@string/color_markings"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -191,7 +196,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Distinct Color">
+                    android:hint="@string/distinct_color">
 
 
                     <EditText
@@ -202,6 +207,8 @@
                         android:maxLines="1" />
 
                 </android.support.design.widget.TextInputLayout>
+
+
             </LinearLayout>
         </RelativeLayout>
 

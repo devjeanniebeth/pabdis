@@ -99,9 +99,6 @@ public class SwineActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-
-
-
                                 try {
                                     myDB.addSwine(ownerid,boarn, boaru,sown,sowu,grown,growu,pign, pigu, swntotal, swn_sf, swn_sa,swn_totala,swn_totali, created_at );
                                     Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);

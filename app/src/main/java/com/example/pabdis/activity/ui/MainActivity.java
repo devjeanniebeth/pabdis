@@ -108,32 +108,47 @@ public class MainActivity extends AppCompatActivity
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
 
 
-                if(selectedItem.equals("La Trinidad")) {
-                    brgy.setAdapter(brgylt);}
-                else if(selectedItem.equals("Itogon")) {
-                    brgy.setAdapter(brgy_it);}
-                else if(selectedItem.equals("Buguias")) {
-                    brgy.setAdapter(brgy_bug);}
-                else if(selectedItem.equals("Kabayan")) {
-                    brgy.setAdapter(brgy_kab);}
-                else if(selectedItem.equals("Sablan")) {
-                    brgy.setAdapter(brgy_sab);}
-                else if(selectedItem.equals("Mankayan")) {
-                    brgy.setAdapter(brgy_man);}
-                else if(selectedItem.equals("Kapangan")) {
-                    brgy.setAdapter(brgy_kap);}
-                else if(selectedItem.equals("Bokod")) {
-                    brgy.setAdapter(brgy_bok);}
-                else if(selectedItem.equals("Atok")) {
-                    brgy.setAdapter(brgy_at);}
-                else if(selectedItem.equals("Kibungan")) {
-                    brgy.setAdapter(brgy_kib);}
-                else if(selectedItem.equals("Tublay")) {
-                    brgy.setAdapter(brgy_tbl);}
-                else if(selectedItem.equals("Tuba")) {
-                    brgy.setAdapter(brgy_tba);}
-                else if(selectedItem.equals("Bakun")) {
-                    brgy.setAdapter(brgy_bak);}
+                switch (selectedItem) {
+                    case "La Trinidad":
+                        brgy.setAdapter(brgylt);
+                        break;
+                    case "Itogon":
+                        brgy.setAdapter(brgy_it);
+                        break;
+                    case "Buguias":
+                        brgy.setAdapter(brgy_bug);
+                        break;
+                    case "Kabayan":
+                        brgy.setAdapter(brgy_kab);
+                        break;
+                    case "Sablan":
+                        brgy.setAdapter(brgy_sab);
+                        break;
+                    case "Mankayan":
+                        brgy.setAdapter(brgy_man);
+                        break;
+                    case "Kapangan":
+                        brgy.setAdapter(brgy_kap);
+                        break;
+                    case "Bokod":
+                        brgy.setAdapter(brgy_bok);
+                        break;
+                    case "Atok":
+                        brgy.setAdapter(brgy_at);
+                        break;
+                    case "Kibungan":
+                        brgy.setAdapter(brgy_kib);
+                        break;
+                    case "Tublay":
+                        brgy.setAdapter(brgy_tbl);
+                        break;
+                    case "Tuba":
+                        brgy.setAdapter(brgy_tba);
+                        break;
+                    case "Bakun":
+                        brgy.setAdapter(brgy_bak);
+                        break;
+                }
                 }
 
             @Override
@@ -143,30 +158,6 @@ public class MainActivity extends AppCompatActivity
         });
 
 
-//        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-//
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear,
-//                                  int dayOfMonth) {
-//                // TODO Auto-generated method stub
-//                myCalendar.set(Calendar.YEAR, year);
-//                myCalendar.set(Calendar.MONTH, monthOfYear);
-//                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//                updateLabel();
-//            }
-//
-//        };
-//
-//        btndate.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                // TODO Auto-generated method stub
-//                new DatePickerDialog(MainActivity.this, date, myCalendar
-//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-//            }
-//        });
 
 
         proceedSurvey.setOnClickListener(new View.OnClickListener() {
