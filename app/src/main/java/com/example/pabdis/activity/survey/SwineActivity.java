@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
@@ -18,16 +19,19 @@ import com.example.pabdis.R;
 public class SwineActivity extends AppCompatActivity {
 
     Button btnNext;
+    EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_swine);
-
-
-
         btnNext = findViewById(R.id.btnProceedSurvey);
-
+        edtboarn = findViewById(R.id.edtBoarN);
+        edtboaru = findViewById(R.id.edtBoarU);
+        edtGrowN = findViewById(R.id.edtGrowN);
+        edtGrowU = findViewById(R.id.edtGrowU);
+        edtSowN = findViewById(R.id.edtSowN);
+        edtSowU = findViewById(R.id.edtSowU);
 
 
 
