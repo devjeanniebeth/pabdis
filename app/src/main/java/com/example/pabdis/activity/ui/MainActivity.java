@@ -284,12 +284,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void updateLabel() {
-        String myFormat = "MM/dd/yyyy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-        dateSurvey.setText(sdf.format(myCalendar.getTime()));
-    }
 
 
 

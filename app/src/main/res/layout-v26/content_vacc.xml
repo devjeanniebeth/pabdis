@@ -148,7 +148,7 @@
                         android:id="@+id/btnDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimaryDark" />
+                        android:text="Button" />
 
                     <EditText
                         android:id="@+id/edtDateSurveyed"
@@ -178,9 +178,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/color_markings"
+                        android:text="COLOR MARKINGS"
                         android:textAlignment="center"
-                        android:textSize="16sp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -196,7 +196,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/distinct_color">
+                    android:hint="Distinct Color">
 
 
                     <EditText
