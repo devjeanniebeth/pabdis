@@ -17,23 +17,23 @@
             android:layout_height="wrap_content">
 
 
-        <RelativeLayout
-            android:id="@+id/profile_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:paddingBottom="24dp">
-
-            <TextView
-                android:id="@+id/user"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/profile_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="12dp"
-                android:text="@string/vaccination"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-        </RelativeLayout>
+                android:background="@color/colorPrimaryDark"
+                android:paddingBottom="24dp">
+
+                <TextView
+                    android:id="@+id/user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/vaccination"
+                    android:textColor="#fff"
+                    android:textSize="18sp" />
+            </RelativeLayout>
 
 
             <LinearLayout
@@ -116,6 +116,24 @@
                         android:layout_marginTop="16dp"
                         android:entries="@array/breed_cat"
                         android:padding="10dp" />
+
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/other_breed">
+
+                    <EditText
+                        android:id="@+id/txtbreedother"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="10dp"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -148,7 +166,7 @@
                         android:id="@+id/btnDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button" />
+                        android:background="@color/colorPrimaryDark" />
 
                     <EditText
                         android:id="@+id/edtDateSurveyed"
@@ -178,9 +196,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="COLOR MARKINGS"
+                        android:text="@string/color_markings"
                         android:textAlignment="center"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -196,7 +214,22 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Distinct Color">
+                    android:hint="@string/other_color_marking">
+
+                    <EditText
+                        android:id="@+id/txtcolorother"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="10dp"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/distinct_color">
 
 
                     <EditText

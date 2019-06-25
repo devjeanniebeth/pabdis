@@ -116,6 +116,24 @@
                         android:layout_marginTop="16dp"
                         android:entries="@array/breed_cat"
                         android:padding="10dp" />
+
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/other_breed">
+
+                    <EditText
+                        android:id="@+id/txtbreedother"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="10dp"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -153,9 +171,7 @@
                     <EditText
                         android:id="@+id/edtDateSurveyed"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="date"
-                        android:maxLines="1" />
+                        android:layout_height="wrap_content" />
                 </TableRow>
 
                 <android.support.design.widget.TextInputLayout
@@ -191,6 +207,21 @@
                         android:layout_marginTop="16dp"
                         android:entries="@array/gender"
                         android:padding="10dp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/other_color_marking">
+
+                    <EditText
+                        android:id="@+id/txtcolorother"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="10dp"/>
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
