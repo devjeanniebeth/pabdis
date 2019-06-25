@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.survey.ChickenActivity;
@@ -14,10 +16,17 @@ import com.example.pabdis.activity.survey.SwineActivity;
 public class VaccinationActivity extends AppCompatActivity {
 
 
+    EditText dateSurvey;
+    Button btndate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacc);
+
+
+//        dateSurvey = findViewById(R.id.edtDateSurveyed);
+//        btndate = findViewById(R.id.btnDate);
 
 
 

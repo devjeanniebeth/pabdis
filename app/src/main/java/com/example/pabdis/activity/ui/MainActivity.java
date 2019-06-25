@@ -68,8 +68,6 @@ public class MainActivity extends AppCompatActivity
         contact = findViewById(R.id.edtContact);
         houseno = findViewById(R.id.edtHouseNo);
 
-//        dateSurvey = findViewById(R.id.edtDateSurveyed);
-//        btndate = findViewById(R.id.btnDate);
         proceedSurvey = findViewById(R.id.btnProceedSurvey);
 //        dateSurvey.setEnabled(false);
 
