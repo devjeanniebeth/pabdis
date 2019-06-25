@@ -7,27 +7,70 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.DatabaseHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CattleActivity extends AppCompatActivity {
 
     Button btnNext;
-
+    EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
+    String ownerid;
+    DatabaseHelper myDB;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_cattle);
-
-
-
         btnNext = findViewById(R.id.btnProceedSurvey);
+        edtBullD = findViewById(R.id.edtBullD);
+        edtBullM = findViewById(R.id.edtBullM);
+        edtCowD = findViewById(R.id.edtCowD);
+        edtCowM = findViewById(R.id.edtCowM);
+        edtCalfD = findViewById(R.id.edtCalfD);
+        edtCalfM = findViewById(R.id.edtCalfM);
+        edtSF_sw = findViewById(R.id.edtSF_sw);
+        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
+        edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+            } else {
+                ownerid= extras.getString("ownerid");
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+        }
 
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                final String bulld = edtBullD.getText().toString();
+                final String bullm = edtBullM.getText().toString();
+                final String cowd = edtCowD.getText().toString();
+                final String cowm = edtCowM.getText().toString();
+                final String calfd = edtCalfD.getText().toString();
+                final String calfm = edtCalfM.getText().toString();
+                final String ca_sf = edtSF_sw.getText().toString();
+                final String ca_sa = edtSA_sw.getText().toString();
+                final String ca_totala = edtSwineTotalArea.getText().toString();
+                final String ca_totali = edtSwineTotalIncome.getText().toString();
+
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, 1);
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                final String created_at = format1.format(cal.getTime());
+
+
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(CattleActivity.this);
 
@@ -44,9 +87,16 @@ public class CattleActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
-//                intent.putExtra("owner_id",ownerid);
-                                startActivity(intent);
+
+                                try {
+                                    myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf,ca_sa,ca_totala,ca_totali ,created_at );
+                                    Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
+                                    intent.putExtra("owner_id",ownerid);
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+
+                                }
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:

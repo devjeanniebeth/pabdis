@@ -17,12 +17,23 @@ public class HouseholdActivity extends AppCompatActivity {
 
 
     Button btnDone;
-
+    String ownerid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_household);
         btnDone = findViewById(R.id.btnProceedSurvey);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+            } else {
+                ownerid= extras.getString("ownerid");
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+        }
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override

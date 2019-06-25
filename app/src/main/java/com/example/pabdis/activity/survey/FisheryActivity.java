@@ -10,17 +10,31 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
 
 public class FisheryActivity extends AppCompatActivity {
 
     Button btnNext;
+    String ownerid;
+    DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_fishery);
         btnNext = findViewById(R.id.btnProceedSurvey);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+            } else {
+                ownerid= extras.getString("ownerid");
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+        }
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

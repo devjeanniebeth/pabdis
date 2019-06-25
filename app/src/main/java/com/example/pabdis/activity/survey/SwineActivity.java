@@ -99,14 +99,22 @@ public class SwineActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                try {
-                                    myDB.addSwine(ownerid,boarn, boaru,sown,sowu,grown,growu,pign, pigu, swntotal, swn_sf, swn_sa,swn_totala,swn_totali, created_at );
-                                    Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
-                                    intent.putExtra("owner_id",ownerid);
-                                    startActivity(intent);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                                if (boarn.equals("") || boaru.equals("") || grown.equals("") ||
+                                        growu.equals("") || sown.equals("") || sowu.equals("") ||
+                                        pign.equals("") || pigu.equals("") || swntotal.equals("") ||
+                                        swn_sf.equals("") || swn_sa.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
+                                    Toast.makeText(SwineActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
 
+                                }else {
+                                    try {
+                                        myDB.addSwine(ownerid, boarn, boaru, sown, sowu, grown, growu, pign, pigu, swntotal, swn_sf, swn_sa, swn_totala, swn_totali, created_at);
+                                        Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
+                                        intent.putExtra("owner_id", ownerid);
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+
+                                    }
                                 }
                                 break;
 

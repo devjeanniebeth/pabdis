@@ -7,24 +7,69 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.DatabaseHelper;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CarabaoActivity extends AppCompatActivity {
 
     Button btnNext;
+    String ownerid;
+    DatabaseHelper myDB;
+    EditText edtCarabullC,edtCarabullN,edtCaracowC,edtCaracowN,edtCaracalfC,edtCaracalfN,
+            edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_carabao);
-
-
+        edtCarabullC = findViewById(R.id.edtCarabullC);
+        edtCarabullN = findViewById(R.id.edtCarabullN);
+        edtCaracowC = findViewById(R.id.edtCaracowC);
+        edtCaracowN = findViewById(R.id.edtCaracowN);
+        edtCaracalfC = findViewById(R.id.edtCaracalfC);
+        edtCaracalfN = findViewById(R.id.edtCaracalfN);
+        edtSF_sw = findViewById(R.id.edtSF_sw);
+        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
+        edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
         btnNext = findViewById(R.id.btnProceedSurvey);
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+            } else {
+                ownerid= extras.getString("ownerid");
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+        }
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+                final String carabullc = edtCarabullC.getText().toString();
+                final String carabulln = edtCarabullN.getText().toString();
+                final String caracowc = edtCaracowC.getText().toString();
+                final String caracown = edtCaracowN.getText().toString();
+                final String caracalfc = edtCaracalfC.getText().toString();
+                final String caracalfn = edtCaracalfN.getText().toString();
+                final String car_sf = edtSF_sw.getText().toString();
+                final String car_sa = edtSA_sw.getText().toString();
+                final String car_totala = edtSwineTotalArea.getText().toString();
+                final String car_totali = edtSwineTotalIncome.getText().toString();
+
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, 1);
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                final String created_at = format1.format(cal.getTime());
+
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(CarabaoActivity.this);
 
@@ -41,9 +86,16 @@ public class CarabaoActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
-//                intent.putExtra("owner_id",ownerid);
-                                startActivity(intent);
+                                try {
+                                    myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf,car_sa,
+                                            car_totala,car_totali ,created_at );
+                                    Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
+                                    intent.putExtra("owner_id",ownerid);
+                                    startActivity(intent);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+
+                                }
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:

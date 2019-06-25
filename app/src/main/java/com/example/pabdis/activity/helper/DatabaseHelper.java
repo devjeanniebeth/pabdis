@@ -432,10 +432,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addOther(String owner_id, String sheep, String horse, String rabbit, String duck, String pigeon,
-                            String quail, String turkey, String[] arr, String other_name, String other_count, String total,String createdAt)
+                            String quail, String turkey,  String other, String total,String createdAt)
     {
-        arr[0] = other_count;
-        arr[1]= other_name;
+
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -447,7 +446,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY6COL_8,pigeon);
         contentValues.put(SURVEY6COL_9,quail);
         contentValues.put(SURVEY6COL_10,turkey);
-        contentValues.put(SURVEY6COL_11, convertArrayToString(arr));
+        contentValues.put(SURVEY6COL_11, other);
         contentValues.put(SURVEY6COL_12,total);
         contentValues.put(SURVEY6COL_13,createdAt);
         long result = db.insert(TABLE_SURVEY6,null ,contentValues);
