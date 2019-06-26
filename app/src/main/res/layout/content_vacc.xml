@@ -166,26 +166,27 @@
                         android:id="@+id/btnDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/colorPrimaryDark" />
+                        android:background="@color/colorPrimaryDark"
+                        android:text="Choose date"
+                        android:textColor="@color/white" />
 
-                    <EditText
-                        android:id="@+id/edtDateSurveyed"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </TableRow>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/age">
-                    <EditText
-                        android:id="@+id/txtage"
+                    <TextView
+                        android:id="@+id/txtdatesurvey"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
-                        android:maxLines="1" />
+                        />
+                </TableRow>
 
-                </android.support.design.widget.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/txtAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        />
+
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -239,7 +240,18 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-
+                <Button
+                    android:id="@+id/btnVacc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/finish"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </LinearLayout>
         </RelativeLayout>
 

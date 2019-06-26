@@ -20,28 +20,29 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
-import com.example.pabdis.activity.survey.ChickenActivity;
-import com.example.pabdis.activity.survey.SwineActivity;
+import com.example.pabdis.activity.helper.DatabaseHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class VaccinationActivity extends AppCompatActivity {
 
 
-    EditText dateSurvey, otherbreed, othercolormark, txtAge;
-    Button btndate, chooseImg;
+    EditText otherbreed, othercolormark, txtpetname, txtcolor;
+    TextView dateSurvey,txtAge;
+    Button btndate, chooseImg, btnVacc;
     final Calendar myCalendar = Calendar.getInstance();
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark;
+    DatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +50,23 @@ public class VaccinationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_vacc);
 
 
-        dateSurvey = findViewById(R.id.edtDateSurveyed);
+        dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
+        btnVacc = findViewById(R.id.btnVacc);
 
 
         chooseImg = findViewById(R.id.btnChoose);
         imgView = findViewById(R.id.imgPet);
+        txtpetname = findViewById(R.id.txtpetname);
         txtbreed = findViewById(R.id.txtbreed);
         txtGender = findViewById(R.id.txtgender);
         txtSpecie = findViewById(R.id.txtspecies);
         txtColorMark = findViewById(R.id.txtcolormark);
         otherbreed = findViewById(R.id.txtbreedother);
         othercolormark = findViewById(R.id.txtcolorother);
-        txtAge = findViewById(R.id.txtage);
+        txtAge = findViewById(R.id.txtAge);
+        txtcolor = findViewById(R.id.txtcolor);
+
 
         otherbreed.setVisibility(View.GONE);
         othercolormark.setVisibility(View.GONE);
@@ -85,7 +90,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
-                txtAge.setText(Integer.toString(calculateAge(myCalendar.getTimeInMillis())));
+                txtAge.setText("Age is: "+Integer.toString(calculateAge(myCalendar.getTimeInMillis())));
             }
 
         };
@@ -99,6 +104,59 @@ public class VaccinationActivity extends AppCompatActivity {
                 new DatePickerDialog(VaccinationActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+        btnVacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                final String petname = txtpetname.getText().toString();
+
+
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("There's no going back.");
+
+                // Ask the final question
+                builder.setMessage("Do you have another pet to be registered?");
+
+                // Set click listener for alert dialog buttons
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+                                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                startActivity(intent);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                // User clicked the No button
+                                intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
+                                break;
+                        }
+                    }
+                };
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Yes", dialogClickListener);
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("No",dialogClickListener);
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
+
             }
         });
 
@@ -152,12 +210,8 @@ public class VaccinationActivity extends AppCompatActivity {
             }
         });
 
-        chooseImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dispatchTakePictureIntent();
-            }
-        });
+
+
 
     }
 

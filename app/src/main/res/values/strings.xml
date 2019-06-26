@@ -191,6 +191,7 @@
     <string name="calf_male_female_below_2_years_old">CALF (male/female, below 2 years old)</string>
     <string name="other_breed">Other Breed</string>
     <string name="other_color_marking">Other Color Marking</string>
+    <string name="finish">FINISH VACCINATION</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>
