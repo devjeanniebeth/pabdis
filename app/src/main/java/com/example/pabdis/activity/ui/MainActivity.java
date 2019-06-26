@@ -166,7 +166,6 @@ public class MainActivity extends AppCompatActivity
                 final String hlname = lastname.getText().toString();
                 final String rfname = firstname2.getText().toString();
                 final String rlname = lastname2.getText().toString();
-
                 final String num = contact.getText().toString();
                 final String house = houseno.getText().toString();
                 final String mun = muni.getSelectedItem().toString();

@@ -43,6 +43,7 @@ public class VaccinationActivity extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark;
     DatabaseHelper myDB;
+    String age;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,6 @@ public class VaccinationActivity extends AppCompatActivity {
         othercolormark = findViewById(R.id.txtcolorother);
         txtAge = findViewById(R.id.txtAge);
         txtcolor = findViewById(R.id.txtcolor);
-
-
         otherbreed.setVisibility(View.GONE);
         othercolormark.setVisibility(View.GONE);
 
@@ -90,7 +89,8 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
-                txtAge.setText("Age is: "+Integer.toString(calculateAge(myCalendar.getTimeInMillis())));
+                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
+                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
             }
 
         };
@@ -112,9 +112,16 @@ public class VaccinationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 final String petname = txtpetname.getText().toString();
+                final String specie = txtSpecie.getSelectedItem().toString();
+                final String breed = txtbreed.getSelectedItem().toString();
+                final String other_breed = otherbreed.getText().toString();
+                final String gender = txtGender.getSelectedItem().toString();
+                final String birthdate = dateSurvey.getText().toString();
+                final String agepet = age;
+                final String colormark = txtColorMark.getSelectedItem().toString();
+                final String othercolor = othercolormark.getText().toString();
+
 
 
 
