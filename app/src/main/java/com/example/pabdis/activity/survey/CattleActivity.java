@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
@@ -20,8 +23,11 @@ public class CattleActivity extends AppCompatActivity {
 
     Button btnNext;
     EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
-    String ownerid;
+    String ownerid, vaccstat, vacctype, deworm;
     DatabaseHelper myDB;
+    RadioButton rbyes, rbno;
+    Spinner vacc;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +44,14 @@ public class CattleActivity extends AppCompatActivity {
         edtSA_sw = findViewById(R.id.edtSA_sw);
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
+        rbno = findViewById(R.id.rb2);
+        rbyes = findViewById(R.id.rb1);
+        vacc = findViewById(R.id.vaccination);
+        textView = findViewById(R.id.textView);
+
+
+        vacc.setVisibility(View.VISIBLE);
+        rbyes.setChecked(true);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -90,7 +104,8 @@ public class CattleActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 try {
-                                    myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf,ca_sa,ca_totala,ca_totali ,created_at );
+                                    myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf,ca_sa,ca_totala,
+                                            ca_totali ,vaccstat.trim(), vacctype.trim(),deworm.trim(),created_at );
                                     Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                     intent.putExtra("owner_id",ownerid);
                                     startActivity(intent);
@@ -120,6 +135,50 @@ public class CattleActivity extends AppCompatActivity {
 });
 
 
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rb1:
+                if (checked)
+                    // Pirates are the best
+                    vacc.setVisibility(View.VISIBLE);
+                vaccstat = "1";
+                textView.setVisibility(View.VISIBLE);
+                vacctype = vacc.getSelectedItem().toString();
+                break;
+            case R.id.rb2:
+                if (checked)
+                    vacc.setVisibility(View.GONE);
+                textView.setVisibility(View.GONE);
+                vaccstat = "2";
+                vacctype = "";
+                // Ninjas rule
+                break;
+        }
+    }
+
+    public void onRadioButtonClicked2(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rby:
+                if (checked)
+                    // Pirates are the best
+                    deworm = "1";
+                break;
+            case R.id.rbn:
+                if (checked)
+                    deworm = "2";
+                // Ninjas rule
+                break;
+        }
     }
     @Override
     public void onBackPressed() {

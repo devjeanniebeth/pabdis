@@ -11,6 +11,10 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
@@ -27,6 +31,10 @@ public class SwineActivity extends AppCompatActivity {
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,edtSwineTotal,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid;
     DatabaseHelper myDB;
+    RadioButton rbyes, rbno;
+    Spinner vacc;
+    String vaccstat, vacctype, deworm;
+    TextView textView;
     final Calendar myCalendar = Calendar.getInstance();
 
 
@@ -49,6 +57,15 @@ public class SwineActivity extends AppCompatActivity {
         edtSA_sw = findViewById(R.id.edtSA_sw);
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
+        rbno = findViewById(R.id.rb2);
+        rbyes = findViewById(R.id.rb1);
+        vacc = findViewById(R.id.vaccination);
+        textView = findViewById(R.id.textView);
+
+
+        vacc.setVisibility(View.VISIBLE);
+        rbyes.setChecked(true);
+
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -60,6 +77,8 @@ public class SwineActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
         }
+
+
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,7 +128,10 @@ public class SwineActivity extends AppCompatActivity {
 
                                 }else {
                                     try {
-                                        myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(), sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(), swntotal.trim(), swn_sf.trim(), swn_sa.trim(), swn_totala.trim(), swn_totali.trim(), created_at.trim());
+                                        myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(),
+                                                sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
+                                                swntotal.trim(), swn_sf.trim(), swn_sa.trim(), swn_totala.trim(),
+                                                swn_totali.trim(),vaccstat.trim(), vacctype.trim(), deworm.trim(),created_at.trim());
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);
@@ -147,6 +169,53 @@ public class SwineActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rb1:
+                if (checked)
+                    // Pirates are the best
+                    vacc.setVisibility(View.VISIBLE);
+                    vaccstat = "1";
+                    textView.setVisibility(View.VISIBLE);
+                    vacctype = vacc.getSelectedItem().toString();
+                    Toast.makeText(SwineActivity.this, "YES!" , Toast.LENGTH_SHORT).show();
+                    break;
+            case R.id.rb2:
+                if (checked)
+                    vacc.setVisibility(View.GONE);
+                    textView.setVisibility(View.GONE);
+                    vaccstat = "2";
+                    vacctype = "";
+                    Toast.makeText(SwineActivity.this, "NOOOOOOOOOOOO!" , Toast.LENGTH_SHORT).show();
+                    // Ninjas rule
+                    break;
+        }
+    }
+
+
+    public void onRadioButtonClicked2(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rby:
+                if (checked)
+                    // Pirates are the best
+                deworm = "1";
+                break;
+            case R.id.rbn:
+                if (checked)
+                deworm = "2";
+                // Ninjas rule
+                break;
+        }
     }
 
     @Override

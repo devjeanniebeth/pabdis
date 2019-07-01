@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
@@ -22,6 +25,10 @@ public class ChickenActivity extends AppCompatActivity {
     EditText edtBroiler,edtLayers,edtNative,edtTotal,edtProd,edtSF_sw,edtSA_sw,edtTotalArea,edtTotalIncome;
     String ownerid;
     DatabaseHelper myDB;
+    RadioButton rbyes, rbno;
+    Spinner vacc;
+    String vaccstat, vacctype, deworm;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +44,15 @@ public class ChickenActivity extends AppCompatActivity {
         edtSA_sw = findViewById(R.id.edtSA_sw);
         edtTotalArea = findViewById(R.id.edtTotalArea);
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
+        rbno = findViewById(R.id.rb2);
+        rbyes = findViewById(R.id.rb1);
+        vacc = findViewById(R.id.vaccination);
+        textView = findViewById(R.id.textView);
+
+
+        vacc.setVisibility(View.VISIBLE);
+        rbyes.setChecked(true);
+
 
 
         if (savedInstanceState == null) {
@@ -90,7 +106,8 @@ public class ChickenActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 try {
-                                    myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,ch_totala,ch_totali, created_at );
+                                    myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,
+                                            ch_totala,ch_totali,vaccstat.trim(), vacctype.trim(), deworm.trim(),created_at );
                                     Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                     intent.putExtra("owner_id",ownerid);
                                     startActivity(intent);
@@ -121,6 +138,49 @@ public class ChickenActivity extends AppCompatActivity {
 
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rb1:
+                if (checked)
+                    // Pirates are the best
+                    vacc.setVisibility(View.VISIBLE);
+                vaccstat = "1";
+                textView.setVisibility(View.VISIBLE);
+                vacctype = vacc.getSelectedItem().toString();
+                break;
+            case R.id.rb2:
+                if (checked)
+                    vacc.setVisibility(View.GONE);
+                textView.setVisibility(View.GONE);
+                vaccstat = "2";
+                vacctype = "";
+                // Ninjas rule
+                break;
+        }
+    }
+
+    public void onRadioButtonClicked2(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rby:
+                if (checked)
+                    // Pirates are the best
+                    deworm = "1";
+                break;
+            case R.id.rbn:
+                if (checked)
+                    deworm = "2";
+                // Ninjas rule
+                break;
+        }
+    }
     @Override
     public void onBackPressed() {
 //        DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -67,6 +67,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textCapSentences|textMultiLine"
                         android:padding="15dp"
+                        android:maxLines="1"
                         android:textColor="@color/textColor"
                         android:textColorHighlight="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimaryDark" />
@@ -115,6 +116,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="textCapSentences|textMultiLine"
                         android:padding="15dp"
+                        android:maxLines="1"
                         android:textColor="@color/textColor"
                         android:textColorHighlight="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimaryDark" />
@@ -132,6 +134,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="15dp"
+                        android:maxLines="1"
                         android:inputType="textCapSentences|textMultiLine"
                         android:textColor="@color/textColor"
                         android:textColorHighlight="@color/colorPrimaryDark"
@@ -153,7 +156,7 @@
                         android:textColor="@color/textColor"
                         android:textColorHighlight="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimaryDark"
-                        android:autofillHints=""
+                        android:maxLines="1"
                         android:maxLength="11"
                         android:inputType="number" />
 
@@ -231,8 +234,6 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-
-
                 <Button
                     android:id="@+id/btnProceedSurvey"
                     android:layout_width="match_parent"
@@ -245,15 +246,6 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
-
-
-
-
-
 
 
             </LinearLayout>

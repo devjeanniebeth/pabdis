@@ -17,7 +17,7 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="municipality">Municipality</string>
-
+    <string name="vacc_prompt">Vaccination</string>
     <string name="brgy_prompty">Choose Municipality</string>
     <string name="muni_prompt">Choos Barangay</string>
     <string name="house_no">House No.</string>
@@ -115,6 +115,23 @@
         <item>Others</item>
     </string-array>
 
+    <string-array name="chicken">
+        <item>Hog Cholera</item>
+        <item>New Castle Disease</item>
+        <item>Fowl Pox</item>
+        <item>Infectious Bronchitis</item>
+        <item>Black Leg</item>
+    </string-array>
+
+    <string-array name="vaccination">
+        <item>Black Leg</item>
+    </string-array>
+
+    <string-array name="swine">
+        <item>Black Leg</item>
+    </string-array>
+
+
 
 
 
@@ -193,6 +210,9 @@
     <string name="other_color_marking">Other Color Marking</string>
     <string name="finish">FINISH VACCINATION</string>
     <string name="choose_date">Choose date</string>
+    <string name="with_vaccination">WITH VACCINATION?</string>
+    <string name="is_vaccinated">VACCINATED?</string>
+    <string name="dewormed">DEWORMED?</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

@@ -36,6 +36,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OWNERCOL_10 = "barangay";
     public static final String OWNERCOL_11 = "created_at";
     public static final String OWNERCOL_12 = "house";
+    public static final String OWNERCOL_13 = "latitude";
+    public static final String OWNERCOL_14 = "latitude";
 
 
 //   FOR SURVEY
@@ -57,6 +59,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEYCOL_14 = "slaughtered_abattoir";
     public static final String SURVEYCOL_15 = "total_area";
     public static final String SURVEYCOL_16 = "total_income";
+    public static final String SURVEYCOL_18 = "IsVaccinated";
+    public static final String SURVEYCOL_19 = "vaccination";
+    public static final String SURVEYCOL_20 = "IsDewormed";
     public static final String SURVEYCOL_17 = "created_at";
 
     public static final String TABLE_SURVEY2 = "pvet_survey_chicken";
@@ -72,6 +77,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY2COL_10 = "slaughtered_abattoir";
     public static final String SURVEY2COL_11 = "total_area";
     public static final String SURVEY2COL_12 = "total_income";
+    public static final String SURVEY2COL_14 = "IsVaccinated";
+    public static final String SURVEY2COL_15 = "vaccination";
+    public static final String SURVEY2COL_16 = "IsDewormed";
     public static final String SURVEY2COL_13 = "created_at";
 
     public static final String TABLE_SURVEY3 = "pvet_survey_cattle";
@@ -88,6 +96,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY3COL_11 = "slaughtered_abattoir";
     public static final String SURVEY3COL_12 = "total_area";
     public static final String SURVEY3COL_13 = "total_income";
+    public static final String SURVEY3COL_15 = "IsVaccinated";
+    public static final String SURVEY3COL_16 = "vaccination";
+    public static final String SURVEY3COL_17 = "IsDewormed";
     public static final String SURVEY3COL_14 = "created_at";
 
     public static final String TABLE_SURVEY4 = "pvet_survey_carabao";
@@ -104,6 +115,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY4COL_11 = "slaughtered_abattoir";
     public static final String SURVEY4COL_12 = "total_area";
     public static final String SURVEY4COL_13 = "total_income";
+    public static final String SURVEY4COL_15 = "IsVaccinated";
+    public static final String SURVEY4COL_16 = "vaccination";
+    public static final String SURVEY4COL_17 = "IsDewormed";
     public static final String SURVEY4COL_14 = "created_at";
 
     public static final String TABLE_SURVEY5 = "pvet_survey_goat";
@@ -120,6 +134,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY5COL_11 = "slaughtered_abattoir";
     public static final String SURVEY5COL_12 = "total_area";
     public static final String SURVEY5COL_13 = "total_income";
+    public static final String SURVEY5COL_15 = "IsVaccinated";
+    public static final String SURVEY5COL_16 = "vaccination";
+    public static final String SURVEY5COL_17 = "IsDewormed";
     public static final String SURVEY5COL_14 = "created_at";
 
     public static final String TABLE_SURVEY6 = "pvet_survey_goat";
@@ -135,6 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY6COL_10 = "turkey";
     public static final String SURVEY6COL_11 = "others";
     public static final String SURVEY6COL_12 = "total_income";
+    public static final String SURVEY6COL_14 = "IsDewormed";
     public static final String SURVEY6COL_13 = "created_at";
 
     public static final String TABLE_SURVEY7= "pvet_survey_fishery";
@@ -207,38 +225,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_LOGIN_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_USER + "("
                 + USERCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + USERCOL_2 + " TEXT,"  + USERCOL_3 + " TEXT,"  + USERCOL_4 + " TEXT,"
                 + USERCOL_5 + " TEXT UNIQUE " + ")";
+
         String CREATE_OWNER_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_OWNER + "("
                 + OWNERCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + OWNERCOL_3 + " TEXT,"  + OWNERCOL_4 + " TEXT,"
-                + OWNERCOL_5 + " TEXT," + OWNERCOL_6 + " TEXT," + OWNERCOL_7 + " TEXT," + OWNERCOL_8 + " TEXT," + OWNERCOL_12 + " TEXT," + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT," + OWNERCOL_11 + " TEXT " +  ")";
-
+                + OWNERCOL_5 + " TEXT," + OWNERCOL_6 + " TEXT," + OWNERCOL_7 + " TEXT," + OWNERCOL_8 + " TEXT,"
+                + OWNERCOL_12 + " TEXT," + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT," + OWNERCOL_13 + " TEXT,"+ OWNERCOL_14 + " TEXT,"+ OWNERCOL_11 + " TEXT " +  ")";
 
         String CREATE_SURVEY1_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY1 + "("
                 + SURVEYCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEYCOL_3 + " TEXT,"  + SURVEYCOL_4 + " TEXT,"
-                + SURVEYCOL_5 + " TEXT, " + SURVEYCOL_6 + " TEXT, " + SURVEYCOL_7 + " TEXT, " + SURVEYCOL_8 + " TEXT, " + SURVEYCOL_9 + " TEXT , " + SURVEYCOL_10 + " TEXT ," + SURVEYCOL_11 + " TEXT , " +SURVEYCOL_12 + " TEXT, " +SURVEYCOL_13 + " TEXT, " + SURVEYCOL_14 + " TEXT , " + SURVEYCOL_15 + " TEXT , " + SURVEYCOL_16 + " TEXT , " + SURVEYCOL_17 + " TEXT" +")";
+                + SURVEYCOL_5 + " TEXT, " + SURVEYCOL_6 + " TEXT, " + SURVEYCOL_7 + " TEXT, " + SURVEYCOL_8 + " TEXT, " + SURVEYCOL_9 + " TEXT , "
+                + SURVEYCOL_10 + " TEXT ," + SURVEYCOL_11 + " TEXT , " +SURVEYCOL_12 + " TEXT, " +SURVEYCOL_13 + " TEXT, " + SURVEYCOL_14 + " TEXT , "
+                + SURVEYCOL_15 + " TEXT , " + SURVEYCOL_16 + " TEXT , " +  SURVEYCOL_18 + " TEXT , " + SURVEYCOL_19 + " TEXT , " + SURVEYCOL_20 + " TEXT , " +SURVEYCOL_17 + " TEXT" +")";
 
 
         String CREATE_SURVEY2_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY2 + "("
                 + SURVEY2COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEY2COL_3 + " TEXT,"  + SURVEY2COL_4 + " TEXT,"
                 + SURVEY2COL_5 + " TEXT, " + SURVEY2COL_6 + " TEXT, " + SURVEY2COL_7 + " TEXT, " + SURVEY2COL_8 + " TEXT, " + SURVEY2COL_9 + " TEXT, "
-                + SURVEY2COL_10 + " TEXT, " +  SURVEY2COL_11 + " TEXT, " +  SURVEY2COL_12 + " TEXT, " +  SURVEY2COL_13 + " TEXT " +  ")";
+                + SURVEY2COL_10 + " TEXT, " +  SURVEY2COL_11 + " TEXT, " +  SURVEY2COL_12 + " TEXT, " +  SURVEY2COL_14 + " TEXT , " + SURVEY2COL_15
+                + " TEXT , " + SURVEY2COL_16 + " TEXT , "  +  SURVEY2COL_13 + " TEXT " +  ")";
+
         String CREATE_SURVEY3_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY3 + "("
                 + SURVEY3COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY3COL_3 + " TEXT,"  + SURVEY3COL_4 + " TEXT,"
                 + SURVEY3COL_5 + " TEXT," +  SURVEY3COL_6 + " TEXT," +  SURVEY3COL_7 + " TEXT," +  SURVEY3COL_8 + " TEXT," +  SURVEY3COL_9 + " TEXT,"
-                + SURVEY3COL_10 + " TEXT," +  SURVEY3COL_11 + " TEXT," +  SURVEY3COL_12 + " TEXT," + SURVEY3COL_13 + " TEXT," + SURVEY3COL_14 + " TEXT" +  ")";
+                + SURVEY3COL_10 + " TEXT," +  SURVEY3COL_11 + " TEXT," +  SURVEY3COL_12 + " TEXT," + SURVEY3COL_13
+                + " TEXT," + SURVEY3COL_15  + " TEXT,"  + SURVEY3COL_16 + " TEXT," + SURVEY3COL_17 + " TEXT , " +  SURVEY3COL_14 + " TEXT" +  ")";
+
         String CREATE_SURVEY4_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY4 + "("
                 + SURVEY4COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY4COL_3 + " TEXT,"  + SURVEY4COL_4 + " TEXT,"
                 + SURVEY4COL_5 + " TEXT, " + SURVEY4COL_6 + " TEXT, " +  SURVEY4COL_7 + " TEXT, " +  SURVEY4COL_8 + " TEXT, " +  SURVEY4COL_9 + " TEXT, "
-                + SURVEY4COL_10 + " TEXT, " +  SURVEY4COL_11 + " TEXT, " +  SURVEY4COL_12 + " TEXT, " +  SURVEY4COL_13 + " TEXT, " +  SURVEY4COL_14 + " TEXT " + ")";
+                + SURVEY4COL_10 + " TEXT, " +  SURVEY4COL_11 + " TEXT, " +  SURVEY4COL_12 + " TEXT, " +  SURVEY4COL_13 + " TEXT, "
+                + SURVEY4COL_15  + " TEXT,"  + SURVEY4COL_16 + " TEXT," + SURVEY4COL_17 + " TEXT , " +  SURVEY4COL_14 + " TEXT " + ")";
 
         String CREATE_SURVEY5_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY5 + "("
                 + SURVEY5COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY5COL_3 + " TEXT,"  + SURVEY5COL_4 + " TEXT,"
                 + SURVEY5COL_5 + " TEXT, " + SURVEY5COL_6 + " TEXT, " +  SURVEY5COL_7 + " TEXT, " +  SURVEY5COL_8 + " TEXT, " +  SURVEY5COL_9 + " TEXT, "
-                + SURVEY5COL_10 + " TEXT, " +  SURVEY5COL_11 + " TEXT, " +  SURVEY5COL_12 + " TEXT, " +  SURVEY5COL_13 + " TEXT, " + SURVEY5COL_14 + " TEXT "
-                + ")";
+                + SURVEY5COL_10 + " TEXT, " +  SURVEY5COL_11 + " TEXT, " +  SURVEY5COL_12 + " TEXT, " +  SURVEY5COL_13 + " TEXT, "
+                + SURVEY5COL_15  + " TEXT,"  + SURVEY5COL_16 + " TEXT," + SURVEY5COL_17 + " TEXT , " + SURVEY5COL_14 + " TEXT " + ")";
+
         String CREATE_SURVEY6_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY6 + "("
                 + SURVEY6COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY6COL_3 + " TEXT,"  + SURVEY6COL_4 + " TEXT,"
                 + SURVEY6COL_5 + " TEXT, " + SURVEY6COL_6 + " TEXT, " + SURVEY6COL_7 + " TEXT, " + SURVEY6COL_8 + " TEXT, " + SURVEY6COL_9 + " TEXT, "
-                + SURVEY6COL_10 + " TEXT, " + SURVEY6COL_11 + " TEXT, " + SURVEY6COL_12 + " TEXT, " + SURVEY6COL_13 + " TEXT " +" )";
+                + SURVEY6COL_10 + " TEXT, " + SURVEY6COL_11 + " TEXT, " + SURVEY6COL_12 + " TEXT, " + SURVEY6COL_14 + " TEXT , " + SURVEY6COL_13 + " TEXT " +" )";
 
         String CREATE_SURVEY7_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY7 + "("
                 + SURVEY7COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY7COL_3 + " TEXT,"  + SURVEY7COL_4 + " TEXT,"
@@ -322,7 +349,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean addSwine(String owner_id, String boar_n, String boar_u, String sow_n, String sow_u, String grow_n,
                              String grow_u, String wean_n, String wean_u, String total, String sl_f, String sl_a,
-                             String total_area, String totl_inc,String createdAt)
+                             String total_area, String totl_inc,String vaccstatus,String vacctype,String deworm,String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -340,7 +367,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEYCOL_14,sl_a);
         contentValues.put(SURVEYCOL_15,total_area);
         contentValues.put(SURVEYCOL_16,totl_inc);
-        contentValues.put(SURVEYCOL_16,createdAt);
+        contentValues.put(SURVEYCOL_18,vaccstatus);
+        contentValues.put(SURVEYCOL_19,vacctype);
+        contentValues.put(SURVEYCOL_20,deworm);
+        contentValues.put(SURVEYCOL_17,createdAt);
         long result = db.insert(TABLE_SURVEY1,null ,contentValues);
         if(result == -1)
             return false;
@@ -349,7 +379,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addChicken(String owner_id, String broilers, String layers, String local, String total, String prod,
-                              String sl_f, String sl_a, String total_area, String totl_inc,String createdAt)
+                              String sl_f, String sl_a, String total_area, String totl_inc,String vaccstatus,String vacctype,String deworm,String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -363,6 +393,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY2COL_10,sl_a);
         contentValues.put(SURVEY2COL_11,total_area);
         contentValues.put(SURVEY2COL_12,totl_inc);
+        contentValues.put(SURVEY2COL_14,vaccstatus);
+        contentValues.put(SURVEY2COL_15,vacctype);
+        contentValues.put(SURVEY2COL_16,deworm);
         contentValues.put(SURVEY2COL_13,createdAt);
         long result = db.insert(TABLE_SURVEY2,null ,contentValues);
         if(result == -1)
@@ -373,7 +406,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addCattle(String owner_id, String bull_d, String bull_m, String cow_d, String cow_m, String calf_d,
-                              String calf_m, String sl_f, String sl_a, String total_area, String totl_inc,String createdAt)
+                              String calf_m, String sl_f, String sl_a, String total_area, String totl_inc,
+                             String vaccstatus,String vacctype,String deworm, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -388,6 +422,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY3COL_11,sl_a);
         contentValues.put(SURVEY3COL_12,total_area);
         contentValues.put(SURVEY3COL_13,totl_inc);
+        contentValues.put(SURVEY3COL_15,vaccstatus);
+        contentValues.put(SURVEY3COL_16,vacctype);
+        contentValues.put(SURVEY3COL_17,deworm);
         contentValues.put(SURVEY3COL_14,createdAt);
         long result = db.insert(TABLE_SURVEY3,null ,contentValues);
         if(result == -1)
@@ -399,7 +436,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean addCarabao(String owner_id, String carabull_c, String carabull_n, String caracow_c, String caracow_n,
                                String caracalf_c,
-                               String caracalf_n, String sl_f, String sl_a, String total_area, String totl_inc,String createdAt)
+                               String caracalf_n, String sl_f, String sl_a, String total_area,
+                              String totl_inc,String vaccstatus,String vacctype,String deworm, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -414,6 +452,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY4COL_11,sl_a);
         contentValues.put(SURVEY4COL_12,total_area);
         contentValues.put(SURVEY4COL_13,totl_inc);
+        contentValues.put(SURVEY4COL_15,vaccstatus);
+        contentValues.put(SURVEY4COL_16,vacctype);
+        contentValues.put(SURVEY4COL_17,deworm);
         contentValues.put(SURVEY4COL_14,createdAt);
         long result = db.insert(TABLE_SURVEY4,null ,contentValues);
         if(result == -1)
@@ -424,7 +465,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addGoat(String owner_id, String buck_d, String buck_m, String doe_d, String doe_m, String kids_d,
-                             String kids_m, String sl_f, String sl_a, String total_area, String totl_inc,String createdAt)
+                             String kids_m, String sl_f, String sl_a, String total_area, String totl_inc,
+                           String vaccstatus,String vacctype,String deworm, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -439,6 +481,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY5COL_11,sl_a);
         contentValues.put(SURVEY5COL_12,total_area);
         contentValues.put(SURVEY5COL_13,totl_inc);
+        contentValues.put(SURVEY5COL_15,vaccstatus);
+        contentValues.put(SURVEY5COL_16,vacctype);
+        contentValues.put(SURVEY5COL_17,deworm);
         contentValues.put(SURVEY5COL_14,createdAt);
         long result = db.insert(TABLE_SURVEY5,null ,contentValues);
         if(result == -1)
