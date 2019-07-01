@@ -234,6 +234,30 @@
                 </android.support.design.widget.TextInputLayout>
 
 
+
+                <EditText
+                    android:id="@+id/tv_longitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:maxLines="1"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:textColor="@color/textColor"
+                    android:textColorHighlight="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorPrimaryDark" />
+
+                <EditText
+                    android:id="@+id/tv_latitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:maxLines="1"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:textColor="@color/textColor"
+                    android:textColorHighlight="@color/colorPrimaryDark"
+                    android:textColorHint="@color/colorPrimaryDark" />
+
+
                 <Button
                     android:id="@+id/btnProceedSurvey"
                     android:layout_width="match_parent"

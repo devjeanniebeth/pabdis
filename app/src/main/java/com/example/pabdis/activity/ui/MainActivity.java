@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.BuildConfig;
@@ -46,9 +47,9 @@ import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, LocationListener {
+        implements LocationListener,NavigationView.OnNavigationItemSelectedListener {
 
-    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact;
+    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact,tvLongi, tvLati;
     Spinner muni, brgy;
     Integer position, year, ctr;
     DatabaseHelper myDB;
@@ -56,10 +57,10 @@ public class MainActivity extends AppCompatActivity
     String ownerid, petid;
     Button btndate, proceedSurvey;
     LocationManager locationManager;
+    TextView tvLatitude,tvLongitude;
     ArrayAdapter<CharSequence> munici, brgylt, brgy_kib, brgy_it,brgy_bug,brgy_kab,brgy_sab,brgy_man,brgy_bak,brgy_tba,brgy_tbl,brgy_at,brgy_bok,brgy_kap;
     final Calendar myCalendar = Calendar.getInstance();
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -387,6 +388,18 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLocationChanged(Location location) {
 
+
+        // Getting reference to TextView tv_longitude
+        tvLongitude = findViewById(R.id.tv_longitude);
+        // Getting reference to TextView tv_latitude
+        tvLatitude = findViewById(R.id.tv_latitude);
+
+        tvLongi.setText(String.valueOf(location.getLongitude()));
+        tvLati.setText(String.valueOf(location.getLatitude()));
+
+
+
+
     }
 
     @Override
@@ -396,11 +409,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onProviderEnabled(String provider) {
-
+        Toast.makeText(this, "Enabled new provider!" + provider,
+                Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onProviderDisabled(String provider) {
+        Toast.makeText(MainActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
 
     }
 }
