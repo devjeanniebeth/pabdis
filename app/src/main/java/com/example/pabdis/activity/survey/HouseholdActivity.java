@@ -28,6 +28,7 @@ public class HouseholdActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_household);
         btnDone = findViewById(R.id.btnProceedSurvey);
         edtBeef = findViewById(R.id.edtBeef);

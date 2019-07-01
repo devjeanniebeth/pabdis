@@ -27,6 +27,7 @@ public class CarabaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_carabao);
+        myDB = new DatabaseHelper(getApplicationContext());
         edtCarabullC = findViewById(R.id.edtCarabullC);
         edtCarabullN = findViewById(R.id.edtCarabullN);
         edtCaracowC = findViewById(R.id.edtCaracowC);

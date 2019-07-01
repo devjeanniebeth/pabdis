@@ -27,6 +27,7 @@ public class FisheryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_fishery);
         btnNext = findViewById(R.id.btnProceedSurvey);
         edtTotalArea = findViewById(R.id.edtTotalArea);

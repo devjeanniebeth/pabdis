@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtViewID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="UserID"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/txtPetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="UserID"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPetGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewID"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="Owner Name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPetSpecie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="Date of Survey"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPetBreed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPetBirthdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPetColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPetDistinct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtCreatedat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

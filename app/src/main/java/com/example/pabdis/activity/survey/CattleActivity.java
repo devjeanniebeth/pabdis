@@ -25,6 +25,7 @@ public class CattleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_cattle);
         btnNext = findViewById(R.id.btnProceedSurvey);
         edtBullD = findViewById(R.id.edtBullD);

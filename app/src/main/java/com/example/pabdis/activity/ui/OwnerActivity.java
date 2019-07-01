@@ -44,12 +44,9 @@ public class OwnerActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-
         myDB = new DatabaseHelper(getApplicationContext());
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

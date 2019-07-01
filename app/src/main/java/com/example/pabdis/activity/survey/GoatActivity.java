@@ -29,6 +29,7 @@ public class GoatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_goat);
+        myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         edtBuckD = findViewById(R.id.edtBuckD);
         edtBuckM = findViewById(R.id.edtBuckM);

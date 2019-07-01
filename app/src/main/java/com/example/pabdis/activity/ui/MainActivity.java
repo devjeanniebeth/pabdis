@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     Integer position, year, ctr;
     DatabaseHelper myDB;
     Character first;
-    String ownerid;
+    String ownerid, petid;
     Button btndate, proceedSurvey;
     ArrayAdapter<CharSequence> munici, brgylt, brgy_kib, brgy_it,brgy_bug,brgy_kab,brgy_sab,brgy_man,brgy_bak,brgy_tba,brgy_tbl,brgy_at,brgy_bok,brgy_kap;
     final Calendar myCalendar = Calendar.getInstance();
@@ -193,6 +193,7 @@ public class MainActivity extends AppCompatActivity
                 ctr++;
                 first = mun.charAt(0);
                 ownerid = first.toString() + position.toString() + year.toString() + ctr.toString();
+                petid = first.toString() + position.toString() + year.toString();
 
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -213,7 +214,7 @@ public class MainActivity extends AppCompatActivity
 
                                 if (hfname.equals("") || hlname.equals("") || rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
                                     Toast.makeText(MainActivity.this, ""+ctr , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
                                     startActivity(intent);
                                 }else{
 
@@ -223,6 +224,7 @@ public class MainActivity extends AppCompatActivity
 //                                        showDebugDBAddressLogToast(MainActivity.this);
                                         Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
                                         intent.putExtra("ownerid", ownerid.trim());
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

@@ -45,6 +45,7 @@ public class OtherActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
         }
+        myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         edtSheep = findViewById(R.id.edtSheep);
         edtHorse = findViewById(R.id.edtHorse);

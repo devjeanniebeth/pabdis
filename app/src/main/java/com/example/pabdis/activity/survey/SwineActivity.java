@@ -34,6 +34,7 @@ public class SwineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_swine);
+        myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         edtboarn = findViewById(R.id.edtBoarN);
         edtboaru = findViewById(R.id.edtBoarU);
@@ -103,11 +104,12 @@ public class SwineActivity extends AppCompatActivity {
                                         growu.equals("") || sown.equals("") || sowu.equals("") ||
                                         pign.equals("") || pigu.equals("") || swntotal.equals("") ||
                                         swn_sf.equals("") || swn_sa.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
-                                    Toast.makeText(SwineActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SwineActivity.this, "Check your input!"+ boaru + boaru + grown + growu + sown + sowu + pign +pigu
+                                            +swntotal +swn_sf+ swn_sa + swn_totala +swn_totali , Toast.LENGTH_SHORT).show();
 
                                 }else {
                                     try {
-                                        myDB.addSwine(ownerid, boarn, boaru, sown, sowu, grown, growu, pign, pigu, swntotal, swn_sf, swn_sa, swn_totala, swn_totali, created_at);
+                                        myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(), sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(), swntotal.trim(), swn_sf.trim(), swn_sa.trim(), swn_totala.trim(), swn_totali.trim(), created_at.trim());
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);
@@ -147,14 +149,14 @@ public class SwineActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public void onBackPressed() {
-////        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-////        if (drawer.isDrawerOpen(GravityCompat.START)) {
-////            drawer.closeDrawer(GravityCompat.START);
-////        } else {
-////            super.onBackPressed();
-////        }
-//        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
-//    }
+    @Override
+    public void onBackPressed() {
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+    }
 }

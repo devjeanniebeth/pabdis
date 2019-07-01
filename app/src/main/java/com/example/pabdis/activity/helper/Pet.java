@@ -36,7 +36,6 @@ public class Pet {
     public String getId(){
 
         return id;
-
     }
 
     public void setId(String id2){

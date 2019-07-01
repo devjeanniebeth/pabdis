@@ -26,7 +26,7 @@ public class ChickenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_chicken);
-
+        myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         edtBroiler = findViewById(R.id.edtBroiler);
         edtLayers = findViewById(R.id.edtLayers);

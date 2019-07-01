@@ -163,6 +163,30 @@
                     android:layout_height="match_parent">
 
                     <Button
+                        android:id="@+id/btnDateVacc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimaryDark"
+                        android:text="Choose date"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/txtxDateVacc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="20dp"
+                        android:textAlignment="center"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
                         android:id="@+id/btnDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
