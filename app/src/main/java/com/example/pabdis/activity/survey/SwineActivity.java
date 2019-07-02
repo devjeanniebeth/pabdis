@@ -97,6 +97,10 @@ public class SwineActivity extends AppCompatActivity {
                 final String swn_sa = edtSA_sw.getText().toString();
                 final String swn_totala = edtSwineTotalArea.getText().toString();
                 final String swn_totali = edtSwineTotalIncome.getText().toString();
+                final String vacc = vaccstat;
+                final String vacct = vacctype;
+                final String dewormed = deworm;
+
 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
@@ -123,15 +127,17 @@ public class SwineActivity extends AppCompatActivity {
                                         growu.equals("") || sown.equals("") || sowu.equals("") ||
                                         pign.equals("") || pigu.equals("") || swntotal.equals("") ||
                                         swn_sf.equals("") || swn_sa.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
-                                    Toast.makeText(SwineActivity.this, "Check your input!"+ boaru + boaru + grown + growu + sown + sowu + pign +pigu
-                                            +swntotal +swn_sf+ swn_sa + swn_totala +swn_totali , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SwineActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+
 
                                 }else {
                                     try {
+
+                                        Toast.makeText(SwineActivity.this, "Check your input!"+deworm , Toast.LENGTH_SHORT).show();
                                         myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(),
                                                 sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
                                                 swntotal.trim(), swn_sf.trim(), swn_sa.trim(), swn_totala.trim(),
-                                                swn_totali.trim(),vaccstat.trim(), vacctype.trim(), deworm.trim(),created_at.trim());
+                                                swn_totali.trim(),vacc.trim(), vacct.trim(), dewormed.trim(),created_at.trim());
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);

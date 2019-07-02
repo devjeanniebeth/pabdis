@@ -37,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OWNERCOL_11 = "created_at";
     public static final String OWNERCOL_12 = "house";
     public static final String OWNERCOL_13 = "latitude";
-    public static final String OWNERCOL_14 = "latitude";
+    public static final String OWNERCOL_14 = "longitude";
 
 
 //   FOR SURVEY

@@ -47,17 +47,19 @@ import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
-        implements LocationListener,NavigationView.OnNavigationItemSelectedListener {
+        implements LocationListener, NavigationView.OnNavigationItemSelectedListener {
 
-    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact,tvLongi, tvLati;
+    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact;
+    TextView tvLatitude,tvLongitude;
     Spinner muni, brgy;
+    public static String tvLongi;
+    public static String tvLati;
     Integer position, year, ctr;
     DatabaseHelper myDB;
     Character first;
     String ownerid, petid;
     Button btndate, proceedSurvey;
     LocationManager locationManager;
-    TextView tvLatitude,tvLongitude;
     ArrayAdapter<CharSequence> munici, brgylt, brgy_kib, brgy_it,brgy_bug,brgy_kab,brgy_sab,brgy_man,brgy_bak,brgy_tba,brgy_tbl,brgy_at,brgy_bok,brgy_kap;
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -394,8 +396,19 @@ public class MainActivity extends AppCompatActivity
         // Getting reference to TextView tv_latitude
         tvLatitude = findViewById(R.id.tv_latitude);
 
-        tvLongi.setText(String.valueOf(location.getLongitude()));
-        tvLati.setText(String.valueOf(location.getLatitude()));
+        tvLongi = String.valueOf(location.getLongitude());
+        tvLati= String.valueOf(location.getLatitude());
+
+        // Setting Current Longitude
+        tvLongitude.setText("Longitude:" + tvLongi);
+        // Setting Current Latitude
+        tvLatitude.setText("Latitude:" + tvLati);
+
+        Toast.makeText(this, "Enabled new provider!" + tvLati + tvLongi,
+                Toast.LENGTH_SHORT).show();
+
+
+
 
 
 
