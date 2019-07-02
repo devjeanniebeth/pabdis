@@ -107,6 +107,7 @@ public class CarabaoActivity extends AppCompatActivity {
                                 try {
                                     myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf,car_sa,
                                             car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
+                                    Toast.makeText(CarabaoActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
                                     intent.putExtra("owner_id",ownerid);
                                     startActivity(intent);

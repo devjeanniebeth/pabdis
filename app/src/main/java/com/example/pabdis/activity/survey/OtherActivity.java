@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.ui.MainActivity;
 
 import java.sql.Array;
 import java.text.SimpleDateFormat;
@@ -119,6 +120,7 @@ public class OtherActivity extends AppCompatActivity {
                                 }else {
                                     try {
                                         myDB.addOther(ownerid, sheep, horse, rabbit, duck, pigeon, quail, turkey,n_string,total, created_at);
+                                        Toast.makeText(OtherActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);

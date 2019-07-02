@@ -90,6 +90,7 @@ public class FisheryActivity extends AppCompatActivity {
                                     try {
                                         myDB.addFishery(ownerid, f_area, f_prod, f_inc,created_at);
                                         myDB.addApiary(ownerid,a_col, a_prod, a_inc, created_at);
+                                        Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);

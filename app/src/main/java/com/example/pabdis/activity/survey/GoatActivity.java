@@ -117,9 +117,9 @@ public class GoatActivity extends AppCompatActivity {
 
 
                                     try {
-                                        Toast.makeText(GoatActivity.this, "Check your input!"+vacc + vacct + dewormed , Toast.LENGTH_SHORT).show();
                                         myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm, go_sf, go_sa,
                                                 go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
+                                        Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);

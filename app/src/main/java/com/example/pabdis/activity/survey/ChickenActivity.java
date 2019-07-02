@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.ui.MainActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -108,17 +109,28 @@ public class ChickenActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                try {
-                                    Toast.makeText(ChickenActivity.this, "Check your input!"+vacc + vacct + dewormed , Toast.LENGTH_SHORT).show();
-                                    myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,
-                                            ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
-                                    Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
-                                    intent.putExtra("owner_id",ownerid);
-                                    startActivity(intent);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+
+
+                                if (broiler.equals("") || layer.equals("") || snative.equals("") ||
+                                        total.equals("") || prod.equals("") || ch_sf.equals("")) {
+                                    Toast.makeText(ChickenActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                }else {
+
+                                    try {
+                                        myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,
+                                                ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
+                                        Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
+                                        intent.putExtra("owner_id",ownerid);
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+
+                                    }
+
 
                                 }
+
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:

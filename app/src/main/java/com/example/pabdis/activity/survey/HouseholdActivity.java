@@ -91,6 +91,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                 }else {
                                     try {
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
+                                        Toast.makeText(HouseholdActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);

@@ -164,7 +164,7 @@
 
                     <Button
                         android:id="@+id/btnDateVacc"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimaryDark"
                         android:text="@string/choose_date"
@@ -188,7 +188,7 @@
 
                     <Button
                         android:id="@+id/btnDate"
-                        android:layout_width="wrap_content"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimaryDark"
                         android:text="@string/choose_date"

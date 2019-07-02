@@ -131,12 +131,11 @@ public class SwineActivity extends AppCompatActivity {
 
                                 }else {
                                     try {
-
-                                        Toast.makeText(SwineActivity.this, "Check your input!"+vacc + vacct + dewormed , Toast.LENGTH_SHORT).show();
                                         myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(),
                                                 sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
                                                 swntotal.trim(), swn_sf.trim(), swn_sa.trim(), swn_totala.trim(),
                                                 swn_totali.trim(),vacc.trim(), vacct.trim(), dewormed.trim(),created_at.trim());
+                                        Toast.makeText(SwineActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);
