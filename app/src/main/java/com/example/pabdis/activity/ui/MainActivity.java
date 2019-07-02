@@ -36,6 +36,7 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.survey.ChickenActivity;
 import com.example.pabdis.activity.survey.GoatActivity;
+import com.example.pabdis.activity.survey.OtherActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 
 import java.io.File;
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity
 
                                 if (hfname.equals("") || hlname.equals("") || rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
                                     Toast.makeText(MainActivity.this, ""+ctr , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
                                     startActivity(intent);
                                 }else{
 

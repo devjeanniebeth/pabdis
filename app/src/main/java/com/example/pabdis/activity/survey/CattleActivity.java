@@ -50,8 +50,7 @@ public class CattleActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
 
-        vacc.setVisibility(View.VISIBLE);
-        rbyes.setChecked(true);
+        vacc.setVisibility(View.GONE);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -80,6 +79,10 @@ public class CattleActivity extends AppCompatActivity {
                 final String ca_totala = edtSwineTotalArea.getText().toString();
                 final String ca_totali = edtSwineTotalIncome.getText().toString();
 
+                final String vacc = vaccstat;
+                final String vacct = vacctype;
+                final String dewormed = deworm;
+
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -104,8 +107,9 @@ public class CattleActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 try {
+                                    Toast.makeText(getApplicationContext(), "Back press disabled!" +vacc +vacct +dewormed, Toast.LENGTH_SHORT).show();
                                     myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf,ca_sa,ca_totala,
-                                            ca_totali ,vaccstat.trim(), vacctype.trim(),deworm.trim(),created_at );
+                                            ca_totali ,vacc.trim(), vacct.trim(),dewormed.trim(),created_at );
                                     Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                     intent.putExtra("owner_id",ownerid);
                                     startActivity(intent);

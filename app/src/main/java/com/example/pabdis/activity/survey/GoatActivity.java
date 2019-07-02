@@ -54,8 +54,7 @@ public class GoatActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
 
-        vacc.setVisibility(View.VISIBLE);
-        rbyes.setChecked(true);
+        vacc.setVisibility(View.GONE);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -83,6 +82,9 @@ public class GoatActivity extends AppCompatActivity {
                 final String go_sa = edtSA_sw.getText().toString();
                 final String go_totala = edtSwineTotalArea.getText().toString();
                 final String go_totali = edtSwineTotalIncome.getText().toString();
+                final String vacc = vaccstat;
+                final String vacct = vacctype;
+                final String dewormed = deworm;
 
 
                 Calendar cal = Calendar.getInstance();
@@ -115,8 +117,9 @@ public class GoatActivity extends AppCompatActivity {
 
 
                                     try {
+                                        Toast.makeText(GoatActivity.this, "Check your input!"+vacc + vacct + dewormed , Toast.LENGTH_SHORT).show();
                                         myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm, go_sf, go_sa,
-                                                go_totala, go_totali,vaccstat.trim(), vacctype.trim(), deworm.trim(), created_at);
+                                                go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
                                         Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);

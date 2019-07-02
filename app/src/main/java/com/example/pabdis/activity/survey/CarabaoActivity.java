@@ -51,8 +51,7 @@ public class CarabaoActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
 
-        vacc.setVisibility(View.VISIBLE);
-        rbyes.setChecked(true);
+        vacc.setVisibility(View.GONE);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -80,6 +79,10 @@ public class CarabaoActivity extends AppCompatActivity {
                 final String car_totala = edtSwineTotalArea.getText().toString();
                 final String car_totali = edtSwineTotalIncome.getText().toString();
 
+                final String vacc = vaccstat;
+                final String vacct = vacctype;
+                final String dewormed = deworm;
+
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -103,7 +106,7 @@ public class CarabaoActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 try {
                                     myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf,car_sa,
-                                            car_totala,car_totali ,vaccstat.trim(), vacctype.trim(),deworm.trim(), created_at );
+                                            car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
                                     Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
                                     intent.putExtra("owner_id",ownerid);
                                     startActivity(intent);

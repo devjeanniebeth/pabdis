@@ -24,7 +24,7 @@ public class OtherActivity extends AppCompatActivity {
     String ownerid;
     DatabaseHelper myDB;
 
-    ArrayList<String> n;
+
 
 
 
@@ -73,10 +73,20 @@ public class OtherActivity extends AppCompatActivity {
                 final String othernum = edtOthersNum.getText().toString();
                 final  String total = edtTotal.getText().toString();
 
+                final ArrayList<String> n = new ArrayList<>();
+
+                if(othernum != null && othern != null)
+                {
+                    n.add(othern);
+                    n.add(othernum);
+
+                }
 
 
-                n.add(othern);
-                n.add(othernum);
+                final String n_string = n.toString();
+
+
+
 
 
 
@@ -105,11 +115,10 @@ public class OtherActivity extends AppCompatActivity {
                                 if (sheep.equals("") || horse.equals("") || rabbit.equals("") ||
                                         duck.equals("") || pigeon.equals("") || quail.equals("") ||
                                         turkey.equals("") ) {
-                                    Toast.makeText(OtherActivity.this, ""+n , Toast.LENGTH_SHORT).show();
 
                                 }else {
                                     try {
-                                        myDB.addOther(ownerid, sheep, horse, rabbit, duck, pigeon, quail, turkey,othern,total, created_at);
+                                        myDB.addOther(ownerid, sheep, horse, rabbit, duck, pigeon, quail, turkey,n_string,total, created_at);
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                         intent.putExtra("owner_id", ownerid);
                                         startActivity(intent);

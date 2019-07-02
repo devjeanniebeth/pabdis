@@ -50,8 +50,7 @@ public class ChickenActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
 
 
-        vacc.setVisibility(View.VISIBLE);
-        rbyes.setChecked(true);
+        vacc.setVisibility(View.GONE);
 
 
 
@@ -83,6 +82,10 @@ public class ChickenActivity extends AppCompatActivity {
                 final String ch_sa = edtSA_sw.getText().toString();
                 final String ch_totala = edtTotalArea.getText().toString();
                 final String ch_totali = edtTotalIncome.getText().toString();
+                final String vacc = vaccstat;
+                final String vacct = vacctype;
+                final String dewormed = deworm;
+
 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
@@ -106,8 +109,9 @@ public class ChickenActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 try {
+                                    Toast.makeText(ChickenActivity.this, "Check your input!"+vacc + vacct + dewormed , Toast.LENGTH_SHORT).show();
                                     myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,
-                                            ch_totala,ch_totali,vaccstat.trim(), vacctype.trim(), deworm.trim(),created_at );
+                                            ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
                                     Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                     intent.putExtra("owner_id",ownerid);
                                     startActivity(intent);

@@ -62,9 +62,9 @@ public class SwineActivity extends AppCompatActivity {
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
 
+        vacc.setVisibility(View.GONE);
 
-        vacc.setVisibility(View.VISIBLE);
-        rbyes.setChecked(true);
+
 
 
         if (savedInstanceState == null) {
@@ -101,7 +101,6 @@ public class SwineActivity extends AppCompatActivity {
                 final String vacct = vacctype;
                 final String dewormed = deworm;
 
-
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
@@ -133,7 +132,7 @@ public class SwineActivity extends AppCompatActivity {
                                 }else {
                                     try {
 
-                                        Toast.makeText(SwineActivity.this, "Check your input!"+deworm , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SwineActivity.this, "Check your input!"+vacc + vacct + dewormed , Toast.LENGTH_SHORT).show();
                                         myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(),
                                                 sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
                                                 swntotal.trim(), swn_sf.trim(), swn_sa.trim(), swn_totala.trim(),
