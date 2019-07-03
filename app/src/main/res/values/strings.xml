@@ -116,7 +116,6 @@
     </string-array>
 
     <string-array name="chicken">
-        <item>Hog Cholera</item>
         <item>New Castle Disease</item>
         <item>Fowl Pox</item>
         <item>Infectious Bronchitis</item>
@@ -128,9 +127,14 @@
     </string-array>
 
     <string-array name="swine">
-        <item>Black Leg</item>
+        <item>Hog Cholera</item>
     </string-array>
 
+    <string-array name="ownertype">
+        <item>Household</item>
+        <item>Establishment</item>
+        <item>Cooperative</item>
+    </string-array>
 
 
 
@@ -162,8 +166,8 @@
     <string name="caracow_c">Caracow/Caraheifer (Crossbreed)</string>
     <string name="caracalf_c">Caracalf (Crossbreed)</string>
     <string name="carabull_n">Carabull (Native)</string>
-    <string name="caracow_n">Caracow/Caraheifer (Meat)</string>
-    <string name="caracalf_n">Caracalf (Meat)</string>
+    <string name="caracow_n">Caracow/Caraheifer (Native)</string>
+    <string name="caracalf_n">Caracalf (Native)</string>
 
     <string name="buck_d">Buck (Dairy)</string>
     <string name="doe_d">Doe (Dairy)</string>
@@ -213,6 +217,7 @@
     <string name="with_vaccination">WITH VACCINATION?</string>
     <string name="is_vaccinated">VACCINATED?</string>
     <string name="dewormed">DEWORMED?</string>
+    <string name="owner_type">Owner Type</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>
