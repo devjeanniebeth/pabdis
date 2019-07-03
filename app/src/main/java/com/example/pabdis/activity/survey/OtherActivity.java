@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.sql.Array;
 import java.text.SimpleDateFormat;
@@ -57,6 +58,44 @@ public class OtherActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(OtherActivity.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("Skipping the process.");
+
+                // Ask the final question
+                builder.setMessage("Are you sure you want to skip this survey?");
+
+                // Set click listener for alert dialog buttons
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+                                Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
+                                intent.putExtra("owner_id",ownerid);
+                                startActivity(intent);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                // User clicked the No button
+                                break;
+                        }
+                    }
+                };
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Yes", dialogClickListener);
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("No",dialogClickListener);
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
 
             }
         });
