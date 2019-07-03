@@ -29,15 +29,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OWNERCOL_2 = "owner_type";
     public static final String OWNERCOL_3 = "owner_id";
     public static final String OWNERCOL_4 = "owner_info ";
-    public static final String OWNERCOL_5 = "respondent_name";
-    public static final String OWNERCOL_6 = "contact_no";
-    public static final String OWNERCOL_7 = "municipality";
-    public static final String OWNERCOL_8 = "barangay";
-    public static final String OWNERCOL_9 = "house";
-    public static final String OWNERCOL_10 = "latitude";
-    public static final String OWNERCOL_11 = "longitude";
-    public static final String OWNERCOL_12 = "created_at";
-
+    public static final String OWNERCOL_5 = "r_lname";
+    public static final String OWNERCOL_6 = "r_fname";
+    public static final String OWNERCOL_7 = "contact_no";
+    public static final String OWNERCOL_8 = "municipality";
+    public static final String OWNERCOL_9 = "barangay";
+    public static final String OWNERCOL_10 = "house";
+    public static final String OWNERCOL_11 = "latitude";
+    public static final String OWNERCOL_12 = "longitude";
+    public static final String OWNERCOL_13 = "full_add";
+    public static final String OWNERCOL_14 = "created_at";
 
 //   FOR SURVEY
 
@@ -222,7 +223,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_OWNER_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_OWNER + "("
                 + OWNERCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + OWNERCOL_2 + " TEXT," + OWNERCOL_3 + " TEXT,"  + OWNERCOL_4 + " TEXT,"
                 + OWNERCOL_5 + " TEXT," + OWNERCOL_6 + " TEXT," + OWNERCOL_7 + " TEXT," + OWNERCOL_8 + " TEXT,"
-                + OWNERCOL_12 + " TEXT," + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT," + OWNERCOL_11 + " TEXT " +  ")";
+                + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT,"  + OWNERCOL_11 + " TEXT,"  + OWNERCOL_12 + " TEXT,"  + OWNERCOL_13 + " TEXT,"  + OWNERCOL_14 + " TEXT " +  ")";
 
         String CREATE_SURVEY1_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY1 + "("
                 + SURVEYCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEYCOL_3 + " TEXT,"  + SURVEYCOL_4 + " TEXT,"
@@ -318,21 +319,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean addOwner(String owner_id, String hfname, String hlname, String rfname, String rlname, String contact, String house,
-                            String muni, String brgy, String createdat)
+    public boolean addOwner(String owner_id, String ownertype, String ownerinfo, String rfname, String rlname, String contact, String house,
+                            String muni, String brgy, String lat, String longt, String fulladd, String createdat)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(OWNERCOL_2,ownertype);
         contentValues.put(OWNERCOL_3,owner_id);
-        contentValues.put(OWNERCOL_4,hfname);
-        contentValues.put(OWNERCOL_5,hlname);
+        contentValues.put(OWNERCOL_4,ownerinfo);
+        contentValues.put(OWNERCOL_5,rlname);
         contentValues.put(OWNERCOL_6,rfname);
-        contentValues.put(OWNERCOL_7,rlname);
-        contentValues.put(OWNERCOL_8,contact);
-        contentValues.put(OWNERCOL_12,house);
-        contentValues.put(OWNERCOL_9,muni);
-        contentValues.put(OWNERCOL_10,brgy);
-        contentValues.put(OWNERCOL_11,createdat);
+        contentValues.put(OWNERCOL_7,contact);
+        contentValues.put(OWNERCOL_8,muni);
+        contentValues.put(OWNERCOL_9,brgy);
+        contentValues.put(OWNERCOL_10,house);
+        contentValues.put(OWNERCOL_11,lat);
+        contentValues.put(OWNERCOL_12,longt);
+        contentValues.put(OWNERCOL_13,fulladd);
+        contentValues.put(OWNERCOL_14,createdat);
         long result = db.insert(TABLE_OWNER,null ,contentValues);
         if(result == -1)
             return false;

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class HouseholdActivity extends AppCompatActivity {
 
     Button btnDone;
     String ownerid;
+    FloatingActionButton skip;
     DatabaseHelper myDB;
     EditText edtBeef,edtCarabeef,edtPork,edtChicken,edtFish,edtEgg;
     @Override
@@ -48,6 +50,13 @@ public class HouseholdActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
         }
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override

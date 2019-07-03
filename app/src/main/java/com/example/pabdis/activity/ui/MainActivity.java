@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -36,31 +38,37 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.survey.ChickenActivity;
 import com.example.pabdis.activity.survey.GoatActivity;
+import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.survey.OtherActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
-        implements LocationListener, NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,LocationListener{
 
-    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact;
+    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact,edtEstab,edtCoop;
     TextView tvLatitude,tvLongitude;
-    Spinner muni, brgy;
+    Double lang, longi;
+    Spinner muni, brgy,ownertype;
     public static String tvLongi;
     public static String tvLati;
     Integer position, year, ctr;
     DatabaseHelper myDB;
     Character first;
-    String ownerid, petid;
+    String ownerid, petid, ownerinfo, add;
     Button btndate, proceedSurvey;
     LocationManager locationManager;
+    Geocoder geocoder = new Geocoder(this, Locale.getDefault());
     ArrayAdapter<CharSequence> munici, brgylt, brgy_kib, brgy_it,brgy_bug,brgy_kab,brgy_sab,brgy_man,brgy_bak,brgy_tba,brgy_tbl,brgy_at,brgy_bok,brgy_kap;
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -78,14 +86,25 @@ public class MainActivity extends AppCompatActivity
         firstname2 = findViewById(R.id.edtFirstName1);
         contact = findViewById(R.id.edtContact);
         houseno = findViewById(R.id.edtHouseNo);
+        edtCoop = findViewById(R.id.edtCoop);
+        edtEstab = findViewById(R.id.edtEstab);
+        lastname.setVisibility(View.GONE);
+        firstname.setVisibility(View.GONE);
+        edtCoop.setVisibility(View.GONE);
+        edtEstab.setVisibility(View.GONE);
         CheckPermission();
+
+
+
+
 
         proceedSurvey = findViewById(R.id.btnProceedSurvey);
 //        dateSurvey.setEnabled(false);
-
-
         muni = findViewById(R.id.muni);
         brgy = findViewById(R.id.brgy);
+        ownertype = findViewById(R.id.ownertype);
+
+
 
         munici = ArrayAdapter.createFromResource(this, R.array.muni, R.layout.support_simple_spinner_dropdown_item);
         brgylt = ArrayAdapter.createFromResource(this, R.array.brgy_lt, R.layout.support_simple_spinner_dropdown_item);
@@ -111,6 +130,46 @@ public class MainActivity extends AppCompatActivity
 
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        ownertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                switch (selectedItem)
+                {
+                    case "Household":
+                        lastname.setVisibility(View.VISIBLE);
+                        firstname.setVisibility(View.VISIBLE);
+                        edtCoop.setVisibility(View.GONE);
+                        edtEstab.setVisibility(View.GONE);
+                        final String hfname = firstname.getText().toString();
+                        final String hlname = lastname.getText().toString();
+                        ownerinfo = hlname + ", " + hfname;
+                        break;
+                    case "Cooperative":
+                        edtCoop.setVisibility(View.VISIBLE);
+                        lastname.setVisibility(View.GONE);
+                        firstname.setVisibility(View.GONE);
+                        edtEstab.setVisibility(View.GONE);
+                        ownerinfo = edtCoop.getText().toString();
+                        break;
+                    case "Establishment":
+                        edtEstab.setVisibility(View.VISIBLE);
+                        lastname.setVisibility(View.GONE);
+                        firstname.setVisibility(View.GONE);
+                        edtCoop.setVisibility(View.GONE);
+                        ownerinfo = edtEstab.getText().toString();
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         muni.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -174,14 +233,29 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                final String hfname = firstname.getText().toString();
-                final String hlname = lastname.getText().toString();
+
+                try {
+                    List<Address> addresses = geocoder.getFromLocation(lang, longi, 1);
+                    add = addresses.get(0).getAddressLine(0).toString();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                final String addrsss;
+                addrsss = add;
+
+
+
+
+
                 final String rfname = firstname2.getText().toString();
                 final String rlname = lastname2.getText().toString();
                 final String num = contact.getText().toString();
                 final String house = houseno.getText().toString();
                 final String mun = muni.getSelectedItem().toString();
                 final String brg = brgy.getSelectedItem().toString();
+                final String ownert = ownertype.getSelectedItem().toString();
+
 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
@@ -191,10 +265,13 @@ public class MainActivity extends AppCompatActivity
                 String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
                 StringBuilder salt = new StringBuilder();
                 Random rnd = new Random();
-                while (salt.length() < 18) { // length of the random string.
+                while (salt.length() < 5) { // length of the random string.
                     int index = (int) (rnd.nextFloat() * SALTCHARS.length());
                     salt.append(SALTCHARS.charAt(index));
                 }
+
+                final String end = salt.toString();
+
 
 
                 position = brgy.getSelectedItemPosition();
@@ -204,7 +281,7 @@ public class MainActivity extends AppCompatActivity
                 ctr = myDB.getData(mun);
                 ctr++;
                 first = mun.charAt(0);
-                ownerid = first.toString() + position.toString() + year.toString() + ctr.toString();
+                ownerid = first.toString() + position.toString() + year.toString() + "-" + end;
                 petid = first.toString() + position.toString() + year.toString();
 
                 // Build an AlertDialog
@@ -214,7 +291,7 @@ public class MainActivity extends AppCompatActivity
                 builder.setTitle("There's no going back.");
 
                 // Ask the final question
-                builder.setMessage("Are you sure you want to save the data?");
+                builder.setMessage("You're OWNER ID is " + ownerid + ".  Are you sure you want to save the data?");
 
                 // Set click listener for alert dialog buttons
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -224,20 +301,32 @@ public class MainActivity extends AppCompatActivity
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
 
-                                if (hfname.equals("") || hlname.equals("") || rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
-                                    Toast.makeText(MainActivity.this, ""+ctr , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
-                                    startActivity(intent);
+                                if (rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
+                                    Toast.makeText(MainActivity.this, ""  , Toast.LENGTH_SHORT).show();
+//                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
+//                                    startActivity(intent);
                                 }else{
 
                                     try {
-                                        myDB.addOwner(ownerid.trim(),hfname.trim(),hlname.trim(),rfname.trim(),rlname.trim(),num.trim(), house.trim(), mun.trim(), brg.trim(),created_at);
+                                        myDB.addOwner(ownerid.trim(),ownert.trim(),ownerinfo,rfname.trim(),rlname.trim(),num.trim(), mun.trim(), brg.trim(),house.trim(), tvLati.trim(), tvLongi.trim(),addrsss.trim(),created_at);
                                         Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
-                                        Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
-                                        intent.putExtra("ownerid", ownerid.trim());
-                                        intent.putExtra("petid", petid.trim());
-                                        startActivity(intent);
+
+                                        if(!ownert.equals("Household"))
+                                        {
+                                            Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                            intent.putExtra("ownerid", ownerid.trim());
+                                            intent.putExtra("petid", petid.trim());
+                                            startActivity(intent);
+
+                                        }else{
+                                            Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
+                                            intent.putExtra("ownerid", ownerid.trim());
+                                            intent.putExtra("petid", petid.trim());
+                                            startActivity(intent);
+                                        }
+
+
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -398,15 +487,18 @@ public class MainActivity extends AppCompatActivity
         tvLatitude = findViewById(R.id.tv_latitude);
 
         tvLongi = String.valueOf(location.getLongitude());
+        longi = location.getLongitude();
         tvLati= String.valueOf(location.getLatitude());
+        lang = location.getLatitude();
 
         // Setting Current Longitude
-        tvLongitude.setText("Longitude:" + tvLongi);
+//        tvLongitude.setText("Longitude:" + tvLongi);
         // Setting Current Latitude
-        tvLatitude.setText("Latitude:" + tvLati);
+//        tvLatitude.setText("Latitude:" + tvLati);
 
-        Toast.makeText(this, "Enabled new provider!" + tvLati + tvLongi,
+        Toast.makeText(this, "Your location is set!",
                 Toast.LENGTH_SHORT).show();
+
 
 
 

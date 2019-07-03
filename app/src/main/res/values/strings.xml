@@ -14,12 +14,16 @@
     <string name="menu_list_pet">List of Pet</string>
     <string name="menu_logout">Logout</string>
     <string name="start_survey">Start survey!</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
+    <string name="first_name">Household First Name</string>
+    <string name="last_name">Household Last Name</string>
+
+    <string name="r_first_name">Respondent First Name</string>
+    <string name="r_last_name">Respondent Last Name</string>
+
     <string name="municipality">Municipality</string>
     <string name="vacc_prompt">Vaccination</string>
     <string name="brgy_prompty">Choose Municipality</string>
-    <string name="muni_prompt">Choos Barangay</string>
+    <string name="muni_prompt">Choose Barangay</string>
     <string name="house_no">House No.</string>
     <string name="get_geolocation">Get geolocation</string>
     <string name="add">PROCEED SURVEY</string>
@@ -36,7 +40,7 @@
     <string name="cattle">Cattle</string>
     <string name="fishery">Fishery &amp; Apiary</string>
     <string name="goat">Goat</string>
-    <string name="household_consumption">Household Consumption</string>
+    <string name="household_consumption">Weekly Consumption</string>
 
     <string name="production">Production (in Dozens) Egg</string>
 
@@ -218,6 +222,8 @@
     <string name="is_vaccinated">VACCINATED?</string>
     <string name="dewormed">DEWORMED?</string>
     <string name="owner_type">Owner Type</string>
+    <string name="name_of_cooperative">Name of Cooperative</string>
+    <string name="name_of_establishment">Name of Establishment</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

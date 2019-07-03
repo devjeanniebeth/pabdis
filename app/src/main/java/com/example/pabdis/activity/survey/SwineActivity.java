@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
@@ -28,6 +30,7 @@ import java.util.Calendar;
 public class SwineActivity extends AppCompatActivity {
 
     Button btnNext;
+    FloatingActionButton skip;
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,edtSwineTotal,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid;
     DatabaseHelper myDB;
@@ -44,6 +47,7 @@ public class SwineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_swine);
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        skip = findViewById(R.id.fab);
         edtboarn = findViewById(R.id.edtBoarN);
         edtboaru = findViewById(R.id.edtBoarU);
         edtGrowN = findViewById(R.id.edtGrowN);
@@ -77,6 +81,14 @@ public class SwineActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
         }
+
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
 

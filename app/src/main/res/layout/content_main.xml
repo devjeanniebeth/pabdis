@@ -70,6 +70,46 @@
 
 
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/text_input_layout12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name_of_cooperative">
+
+                    <EditText
+                        android:id="@+id/edtCoop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:padding="15dp"
+                        android:maxLines="1"
+                        android:textColor="@color/textColor"
+                        android:textColorHighlight="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/text_input_layout11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name_of_establishment">
+
+                    <EditText
+                        android:id="@+id/edtEstab"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:padding="15dp"
+                        android:maxLines="1"
+                        android:textColor="@color/textColor"
+                        android:textColorHighlight="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.design.widget.TextInputLayout
                     android:id="@+id/text_input_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -122,7 +162,7 @@
                     android:id="@+id/text_input_layout9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/last_name">
+                    android:hint="@string/r_last_name">
 
                     <EditText
                         android:id="@+id/edtLastName1"
@@ -141,7 +181,7 @@
                     android:id="@+id/text_input_layout4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/first_name">
+                    android:hint="@string/r_first_name">
 
                     <EditText
                         android:id="@+id/edtFirstName1"
@@ -198,7 +238,8 @@
                         android:animateLayoutChanges="true"
                         android:entries="@array/muni"
                         android:padding="10dp"
-                        android:prompt="@string/muni_prompt" />
+                        android:prompt="@string/muni_prompt"
+                        style="@style/spinner_style"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -224,7 +265,8 @@
                         android:layout_marginTop="10dp"
                         android:animateLayoutChanges="true"
                         android:padding="10dp"
-                        android:prompt="@string/muni_prompt" />
+                        android:prompt="@string/muni_prompt"
+                        style="@style/spinner_style"/>
 
                 </android.support.design.widget.TextInputLayout>
 

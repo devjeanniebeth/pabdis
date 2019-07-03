@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -22,15 +23,9 @@ import java.util.Calendar;
 public class OtherActivity extends AppCompatActivity {
 
     Button btnNext;
+    FloatingActionButton skip;
     String ownerid;
     DatabaseHelper myDB;
-
-
-
-
-
-
-
     EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtOthersName,edtOthersNum,edtTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +53,13 @@ public class OtherActivity extends AppCompatActivity {
         edtOthersName = findViewById(R.id.edtOthersName);
         edtOthersNum = findViewById(R.id.edtOthersNum);
         edtTotal = findViewById(R.id.edtTotal);
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

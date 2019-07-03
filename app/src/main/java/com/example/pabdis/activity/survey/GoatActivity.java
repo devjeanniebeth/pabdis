@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +28,7 @@ public class GoatActivity extends AppCompatActivity {
     Button btnNext;
     String ownerid,vaccstat, vacctype, deworm;
     RadioButton rbyes, rbno;
+    FloatingActionButton skip;
     Spinner vacc;
     TextView textView;
     DatabaseHelper myDB;
@@ -66,6 +68,13 @@ public class GoatActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
         }
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
