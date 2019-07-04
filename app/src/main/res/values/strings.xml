@@ -35,7 +35,7 @@
     <string name="respondent">Respondent</string>
     <string name="swine">SWINE</string>
     <string name="other_animals_birds">Other Animals / Birds</string>
-    <string name="apiary">Apiary</string>
+    <string name="apiary">Apiculture </string>
     <string name="carabao">Carabao</string>
     <string name="cattle">Cattle</string>
     <string name="fishery">Fishery &amp; Apiary</string>
@@ -151,9 +151,13 @@
     <string name="grower_upgrade">Growers and Finishers (Upgrade)</string>
     <string name="pig_native">Piglets and Weanlings (Native)</string>
     <string name="pig_upgrade">Piglets and Weanlings (Upgrade)</string>
-    <string name="sl_farm">Slaughtered on Farm</string>
-    <string name="sl_abb">Slaughtered in Abattoir</string>
+    <string name="sl_farm_kg">Slaughtered on Farm (per kg)</string>
+    <string name="sl_farm_hd">Slaughtered on Farm (per head)</string>
+    <string name="sl_abb_kg">Slaughtered in Abattoir (per kg)</string>
+    <string name="sl_abb_hd">Slaughtered in Abattoir (per head)</string>
 
+    <string name="sl_abb">Slaughtered in Abattoir (per kg)</string>
+    <string name="sl_farm">Slaughtered on Farm (per head)</string>
     <string name="broilers">Broilers</string>
     <string name="layers">Layers</string>
     <string name="local">Native/Improved/Local Breed</string>
@@ -181,7 +185,7 @@
     <string name="kids_m">Kids (Meat)</string>
 
     <string name="total">TOTAL</string>
-    <string name="total_area">Total Area (sqm)</string>
+    <string name="total_area">Total Area</string>
     <string name="total_income">Total Income</string>
 
     <string name="sheep">Sheep</string>
@@ -194,12 +198,12 @@
     <string name="others">Others</string>
 
 
-    <string name="beef">Beef</string>
-    <string name="carabeef">Carabeef</string>
-    <string name="pork">Pork</string>
-    <string name="chicken">Chicken</string>
-    <string name="fish">Fish</string>
-    <string name="egg">Egg</string>
+    <string name="beef">Beef (per kg)</string>
+    <string name="carabeef">Carabeef (per kg)</string>
+    <string name="pork">Pork (per kg)</string>
+    <string name="chicken">Chicken (per kg)</string>
+    <string name="fish">Fish (per kg)</string>
+    <string name="egg">Egg (per piece)</string>
     <string name="other_pls_specify">Other (pls. specify)</string>
     <string name="done">DONE</string>
     <string name="age">Age</string>
@@ -224,6 +228,8 @@
     <string name="owner_type">Owner Type</string>
     <string name="name_of_cooperative">Name of Cooperative</string>
     <string name="name_of_establishment">Name of Establishment</string>
+    <string name="sow_gilt">SOW / GILT</string>
+    <string name="growers_and_finishers_2_months_to_8_months">Growers and Finishers (2 months to 8 months)</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

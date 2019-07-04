@@ -32,6 +32,7 @@ public class FisheryActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_fishery);
         btnNext = findViewById(R.id.btnProceedSurvey);
+        skip = findViewById(R.id.fab);
         edtTotalArea = findViewById(R.id.edtTotalArea);
         edtProd = findViewById(R.id.edtProd);
         edtIncome = findViewById(R.id.edtIncome);

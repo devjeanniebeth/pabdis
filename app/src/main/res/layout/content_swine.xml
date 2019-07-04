@@ -59,36 +59,47 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView1"
-                    android:layout_width="match_parent"
+                <TableLayout
+                    android:id="@+id/tblayout1"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/boar_native">
+                    android:stretchColumns="0,1">
+                    <TableRow
+                        android:id="@+id/tblrow1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/boar_native">
 
-                    <EditText
-                        android:id="@+id/edtBoarN"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
+                            <EditText
+                                android:id="@+id/edtBoarN"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:layout_column="0"
+                                android:inputType="number" />
 
-                </android.support.design.widget.TextInputLayout>
+                        </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/txtView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/boar_upgrade">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/boar_upgrade">
+                            <EditText
+                                android:id="@+id/edtBoarU"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:layout_column="1"
+                                android:inputType="number" />
 
-                    <EditText
-                        android:id="@+id/edtBoarU"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="clip_vertical"
-                        android:ems="10"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline2"
@@ -101,41 +112,56 @@
                     android:id="@+id/txt3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="SOW / GIT"
+                    android:text="@string/sow_gilt"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView5"
-                    android:layout_width="match_parent"
+
+                <TableLayout
+                    android:id="@+id/tblayout2"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/git_native">
+                    android:stretchColumns="0,1">
+                    <TableRow
+                        android:id="@+id/tblrow2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/edtGrowN"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/txtView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/grower_native">
 
-                </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/edtGrowN"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:layout_column="0"
+                                android:inputType="number" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/git_upgrade">
+                        </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edtGrowU"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="clip_vertical"
-                        android:ems="10"
-                        android:inputType="number" />
 
-                </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/grower_upgrade">
+
+                            <EditText
+                                android:id="@+id/edtGrowU"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:layout_column="1"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline5"
@@ -148,41 +174,55 @@
                     android:id="@+id/txt2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Growers and Finishers (2 months to 8 months)"
+                    android:text="@string/growers_and_finishers_2_months_to_8_months"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView3"
-                    android:layout_width="match_parent"
+
+                <TableLayout
+                    android:id="@+id/tblayout3"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/grower_native">
+                    android:stretchColumns="0,1">
+                    <TableRow
+                        android:id="@+id/tblrow3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/edtSowN"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/git_native">
 
-                </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/edtSowN"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:layout_column="0"
+                                android:inputType="number" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/grower_upgrade">
+                        </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edtSowU"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="clip_vertical"
-                        android:ems="10"
-                        android:inputType="number" />
 
-                </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/git_upgrade">
+
+                            <EditText
+                                android:id="@+id/edtSowU"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:layout_column="1"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline3"
@@ -200,38 +240,77 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView7"
-                    android:layout_width="match_parent"
+                <TableLayout
+                    android:id="@+id/tblayout4"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/pig_native">
+                    android:stretchColumns="0,1">
+                    <TableRow
+                        android:id="@+id/tblrow4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/edtPigN"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/pig_native">
 
-                </android.support.design.widget.TextInputLayout>
+                            <EditText
+                                android:id="@+id/edtPigN"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:layout_column="0"
+                                android:inputType="number" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/pig_upgrade">
+                        </android.support.design.widget.TextInputLayout>
 
-                    <EditText
-                        android:id="@+id/edtPigU"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="clip_vertical"
-                        android:ems="10"
-                        android:inputType="number" />
 
-                </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/pig_upgrade">
+
+                            <EditText
+                                android:id="@+id/edtPigU"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:layout_column="1"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
+
 
                 <!---->
+
+
+                <TextView
+                    android:id="@+id/txtincome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/total_income">
+
+                    <EditText
+                        android:id="@+id/edtSwineTotalIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
 
 
 
@@ -246,7 +325,7 @@
                     android:id="@+id/txt8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TOTAL INVENTORY"
+                    android:text="Total Inventory"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -266,51 +345,14 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-
-
-
                 <TextView
-                    android:id="@+id/txt7"
+                    android:id="@+id/txt9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Pork Production"
+                    android:text="Total Area in sqm."
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:textStyle="bold" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/sl_farm">
-
-                    <EditText
-                        android:id="@+id/edtSF_sw"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/sl_abb">
-
-                    <EditText
-                        android:id="@+id/edtSA_sw"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="clip_vertical"
-                        android:ems="10"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                    <!---->
-
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline6"
@@ -335,20 +377,113 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView14"
+
+
+                <TextView
+                    android:id="@+id/txt7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/total_income">
+                    android:text="Pork Production"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/edtSwineTotalIncome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
+                    <!---->
 
-                </android.support.design.widget.TextInputLayout>
+
+                <TableLayout
+                    android:id="@+id/tblayout5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,1">
+
+                    <TableRow
+                        android:id="@+id/tblrow5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sl_farm_kg">
+
+                            <EditText
+                                android:id="@+id/edtSF_sw_kg"
+                                android:layout_column="0"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/txtView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sl_farm_hd">
+
+                            <EditText
+                                android:id="@+id/edtSF_sw_hd"
+                                android:layout_column="0"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ems="10"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
+
+                <TableLayout
+                    android:id="@+id/tableLayout1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="0,1">
+
+                    <TableRow
+                        android:id="@+id/tableRow1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sl_abb_kg">
+
+                            <EditText
+                                android:id="@+id/edtSA_sw_kg"
+                                android:layout_column="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/txtView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sl_abb_hd">
+
+                            <EditText
+                                android:id="@+id/edtSA_sw_hd"
+                                android:layout_column="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+                    </TableRow>
+                </TableLayout>
 
                 <TextView
                     android:id="@+id/textView2"
@@ -408,7 +543,8 @@
                         android:entries="@array/swine"
                         android:padding="10dp"
                         android:textAlignment="center"
-                        android:prompt="@string/vacc_prompt" />
+                        android:prompt="@string/vacc_prompt"
+                        style="@style/spinner_style" />
 
                 <TextView
                     android:id="@+id/textView4"

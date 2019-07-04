@@ -33,12 +33,15 @@ public class HouseholdActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_household);
         btnDone = findViewById(R.id.btnProceedSurvey);
+        skip = findViewById(R.id.fab);
         edtBeef = findViewById(R.id.edtBeef);
         edtCarabeef = findViewById(R.id.edtCarabeef);
         edtPork = findViewById(R.id.edtPork);
         edtChicken = findViewById(R.id.edtChicken);
         edtFish = findViewById(R.id.edtFish);
         edtEgg = findViewById(R.id.edtEgg);
+
+
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -152,9 +155,22 @@ public class HouseholdActivity extends AppCompatActivity {
 
                             case DialogInterface.BUTTON_NEGATIVE:
                                 // User clicked the No button
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.putExtra("owner_id",ownerid);
-                                startActivity(intent);
+
+                                if (beef.equals("") || carabeef.equals("") || pork.equals("") ||
+                                        chicken.equals("") || fish.equals("") || egg.equals("")) {
+                                    Toast.makeText(HouseholdActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                }else {
+                                    try {
+                                        myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
+                                        Toast.makeText(HouseholdActivity.this, "Success survey!" , Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        intent.putExtra("owner_id", ownerid);
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+
+                                    }
+                                }
                                 break;
                         }
                     }

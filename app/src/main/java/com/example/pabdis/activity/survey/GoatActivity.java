@@ -39,6 +39,7 @@ public class GoatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_goat);
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        skip = findViewById(R.id.fab);
         edtBuckD = findViewById(R.id.edtBuckD);
         edtBuckM = findViewById(R.id.edtBuckM);
         edtDoeD = findViewById(R.id.edtDoeD);
@@ -164,12 +165,12 @@ public class GoatActivity extends AppCompatActivity {
 
 
                                     try {
-                                        myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm, go_sf, go_sa,
-                                                go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
-                                        Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
-                                        intent.putExtra("owner_id", ownerid);
-                                        startActivity(intent);
+////                                        myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm, go_sf, go_sa,
+//                                                go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
+//                                        Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+//                                        Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
+//                                        intent.putExtra("owner_id", ownerid);
+//                                        startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }

@@ -44,6 +44,7 @@ public class OtherActivity extends AppCompatActivity {
         }
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        skip = findViewById(R.id.fab);
         edtSheep = findViewById(R.id.edtSheep);
         edtHorse = findViewById(R.id.edtHorse);
         edtRabbit = findViewById(R.id.edtRabbit);
@@ -51,8 +52,7 @@ public class OtherActivity extends AppCompatActivity {
         edtPigeon = findViewById(R.id.edtPigeon);
         edtQuail = findViewById(R.id.edtQuail);
         edtTurkey = findViewById(R.id.edtTurkey);
-        edtOthersName = findViewById(R.id.edtOthersName);
-        edtOthersNum = findViewById(R.id.edtOthersNum);
+
         edtTotal = findViewById(R.id.edtTotal);
 
         skip.setOnClickListener(new View.OnClickListener() {
@@ -111,21 +111,8 @@ public class OtherActivity extends AppCompatActivity {
                 final String pigeon = edtPigeon.getText().toString();
                 final String quail = edtQuail.getText().toString();
                 final String turkey = edtTurkey.getText().toString();
-                final String othern = edtOthersName.getText().toString();
-                final String othernum = edtOthersNum.getText().toString();
                 final  String total = edtTotal.getText().toString();
 
-                final ArrayList<String> n = new ArrayList<>();
-
-                if(othernum != null && othern != null)
-                {
-                    n.add(othern);
-                    n.add(othernum);
-
-                }
-
-
-                final String n_string = n.toString();
 
 
 
@@ -160,7 +147,7 @@ public class OtherActivity extends AppCompatActivity {
 
                                 }else {
                                     try {
-                                        myDB.addOther(ownerid, sheep, horse, rabbit, duck, pigeon, quail, turkey,n_string,total, created_at);
+//                                        myDB.addOther(ownerid, sheep, horse, rabbit, duck, pigeon, quail, turkey,"" ,total, created_at);
                                         Toast.makeText(OtherActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                         intent.putExtra("owner_id", ownerid);

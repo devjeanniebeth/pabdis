@@ -38,6 +38,7 @@ public class ChickenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_chicken);
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        skip = findViewById(R.id.fab);
         edtBroiler = findViewById(R.id.edtBroiler);
         edtLayers = findViewById(R.id.edtLayers);
         edtNative = findViewById(R.id.edtNative);
@@ -161,8 +162,8 @@ public class ChickenActivity extends AppCompatActivity {
                                 }else {
 
                                     try {
-                                        myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,
-                                                ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
+//                                        myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,
+//                                                ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
                                         Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                         intent.putExtra("owner_id",ownerid);

@@ -303,8 +303,8 @@ public class MainActivity extends AppCompatActivity
 
                                 if (rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
                                     Toast.makeText(MainActivity.this, ""  , Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
-//                                    startActivity(intent);
+                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
+                                    startActivity(intent);
                                 }else{
 
                                     try {

@@ -36,6 +36,7 @@ public class CarabaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_carabao);
         myDB = new DatabaseHelper(getApplicationContext());
+        skip = findViewById(R.id.fab);
         edtCarabullC = findViewById(R.id.edtCarabullC);
         edtCarabullN = findViewById(R.id.edtCarabullN);
         edtCaracowC = findViewById(R.id.edtCaracowC);
@@ -156,8 +157,8 @@ public class CarabaoActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 try {
-                                    myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf,car_sa,
-                                            car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
+//                                    myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf,car_sa,
+//                                            car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
                                     Toast.makeText(CarabaoActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
                                     intent.putExtra("owner_id",ownerid);

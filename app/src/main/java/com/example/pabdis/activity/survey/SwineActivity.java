@@ -31,13 +31,14 @@ public class SwineActivity extends AppCompatActivity {
 
     Button btnNext;
     FloatingActionButton skip;
-    EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,edtSwineTotal,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
+    EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,
+            edtSwineTotal,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
     Spinner vacc;
     String vaccstat, vacctype, deworm;
-    TextView textView;
+    TextView textView, txtincome;
     final Calendar myCalendar = Calendar.getInstance();
 
 
@@ -57,14 +58,19 @@ public class SwineActivity extends AppCompatActivity {
         edtPigN = findViewById(R.id.edtPigN);
         edtPigU = findViewById(R.id.edtPigU);
         edtSwineTotal = findViewById(R.id.edtSwineTotal);
-        edtSF_sw = findViewById(R.id.edtSF_sw);
-        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSF_sw_kg = findViewById(R.id.edtSF_sw_kg);
+        edtSF_sw_hd = findViewById(R.id.edtSF_sw_hd);
+        edtSA_sw_kg = findViewById(R.id.edtSA_sw_kg);
+        edtSA_sw_hd = findViewById(R.id.edtSA_sw_hd);
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
+        txtincome = findViewById(R.id.txtincome);
+
+        txtincome.setText("Total Income for 2018");
 
         vacc.setVisibility(View.GONE);
 
@@ -143,8 +149,10 @@ public class SwineActivity extends AppCompatActivity {
                 final String pign = edtPigN.getText().toString();
                 final String pigu = edtPigU.getText().toString();
                 final String swntotal = edtSwineTotal.getText().toString();
-                final String swn_sf = edtSF_sw.getText().toString();
-                final String swn_sa = edtSA_sw.getText().toString();
+                final String swn_sf_kg = edtSF_sw_kg.getText().toString();
+                final String swn_sf_hd = edtSF_sw_hd.getText().toString();
+                final String swn_sa_kg = edtSA_sw_kg.getText().toString();
+                final String swn_sa_hd = edtSA_sw_hd.getText().toString();
                 final String swn_totala = edtSwineTotalArea.getText().toString();
                 final String swn_totali = edtSwineTotalIncome.getText().toString();
                 final String vacc = vaccstat;
@@ -175,7 +183,7 @@ public class SwineActivity extends AppCompatActivity {
                                 if (boarn.equals("") || boaru.equals("") || grown.equals("") ||
                                         growu.equals("") || sown.equals("") || sowu.equals("") ||
                                         pign.equals("") || pigu.equals("") || swntotal.equals("") ||
-                                        swn_sf.equals("") || swn_sa.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
+                                        swn_sf_kg.equals("") || swn_sf_hd.equals("") || swn_sa_kg.equals("") || swn_sa_hd.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
                                     Toast.makeText(SwineActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
 
 
@@ -183,7 +191,7 @@ public class SwineActivity extends AppCompatActivity {
                                     try {
                                         myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(),
                                                 sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
-                                                swntotal.trim(), swn_sf.trim(), swn_sa.trim(), swn_totala.trim(),
+                                                swntotal.trim(), swn_sf_kg.trim(), swn_sf_hd.trim(),swn_sa_kg.trim(), swn_sa_hd.trim(), swn_totala.trim(),
                                                 swn_totali.trim(),vacc.trim(), vacct.trim(), dewormed.trim(),created_at.trim());
                                         Toast.makeText(SwineActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);

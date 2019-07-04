@@ -36,6 +36,7 @@ public class CattleActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_cattle);
         btnNext = findViewById(R.id.btnProceedSurvey);
+        skip = findViewById(R.id.fab);
         edtBullD = findViewById(R.id.edtBullD);
         edtBullM = findViewById(R.id.edtBullM);
         edtCowD = findViewById(R.id.edtCowD);
@@ -154,8 +155,8 @@ public class CattleActivity extends AppCompatActivity {
 
                                 try {
                                     Toast.makeText(getApplicationContext(), "Back press disabled!" +vacc +vacct +dewormed, Toast.LENGTH_SHORT).show();
-                                    myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf,ca_sa,ca_totala,
-                                            ca_totali ,vacc.trim(), vacct.trim(),dewormed.trim(),created_at );
+//                                    myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf,ca_sa,ca_totala,
+//                                            ca_totali ,vacc.trim(), vacct.trim(),dewormed.trim(),created_at );
                                         Toast.makeText(CattleActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                     intent.putExtra("owner_id",ownerid);
