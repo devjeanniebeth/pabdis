@@ -35,7 +35,7 @@
     <string name="respondent">Respondent</string>
     <string name="swine">SWINE</string>
     <string name="other_animals_birds">Other Animals / Birds</string>
-    <string name="apiary">Apiculture </string>
+    <string name="apiary">APICULTURE </string>
     <string name="carabao">Carabao</string>
     <string name="cattle">Cattle</string>
     <string name="fishery">Fishery &amp; Apiary</string>
@@ -107,6 +107,7 @@
         <item>Please choose</item>
         <item>Dog</item>
         <item>Cat</item>
+        <item>Monkey</item>
     </string-array>
 
     <string-array name="color_mark">
@@ -184,7 +185,6 @@
     <string name="doe_m">Doe (Meat)</string>
     <string name="kids_m">Kids (Meat)</string>
 
-    <string name="total">TOTAL</string>
     <string name="total_area">Total Area</string>
     <string name="total_income">Total Income</string>
 
@@ -214,7 +214,7 @@
     <string name="pet_name">Pet Name</string>
     <string name="specie">SPECIE</string>
     <string name="breed">BREED</string>
-    <string name="gender">GENDER</string>
+    <string name="gender">SEX</string>
     <string name="pet_image">Pet Image</string>
     <string name="distinct_color">Distinct Color</string>
     <string name="color_markings">COLOR MARKINGS</string>
@@ -233,6 +233,8 @@
     <string name="growers_and_finishers_2_months_to_8_months">Growers and Finishers (2 months to 8 months)</string>
     <string name="gamefowl">Gamefowl</string>
     <string name="dual_purpose">Dual Purpose</string>
+    <string name="compute">COMPUTE</string>
+    <string name="total">TOTAL</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

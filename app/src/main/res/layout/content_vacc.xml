@@ -167,7 +167,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimaryDark"
-                        android:text="@string/choose_date"
+                        android:text="DATE VACCINATION"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -191,7 +191,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@color/colorPrimaryDark"
-                        android:text="@string/choose_date"
+                        android:text="BIRTHDATE"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -237,7 +237,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:entries="@array/gender"
+                        android:entries="@array/color_mark"
                         android:padding="10dp" />
                 </android.support.design.widget.TextInputLayout>
 

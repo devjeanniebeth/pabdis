@@ -37,7 +37,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
     EditText otherbreed, othercolormark, txtpetname, txtcolor;
     TextView dateSurvey,txtAge;
-    Button btndate, chooseImg, btnVacc;
+    Button btndate, chooseImg, btnVacc, dateVacc;
     final Calendar myCalendar = Calendar.getInstance();
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -57,6 +57,8 @@ public class VaccinationActivity extends AppCompatActivity {
         dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
         btnVacc = findViewById(R.id.btnVacc);
+
+        dateVacc = findViewById(R.id.btnDateVacc);
 
 
         chooseImg = findViewById(R.id.btnChoose);

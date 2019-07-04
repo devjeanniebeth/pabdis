@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class OtherActivity extends AppCompatActivity {
 
-    Button btnNext;
+    Button btnNext, compute;
     FloatingActionButton skip;
     String ownerid;
     DatabaseHelper myDB;
@@ -44,6 +44,7 @@ public class OtherActivity extends AppCompatActivity {
         }
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        compute = findViewById(R.id.btnCompute);
         skip = findViewById(R.id.fab);
         edtSheep = findViewById(R.id.edtSheep);
         edtHorse = findViewById(R.id.edtHorse);
@@ -54,6 +55,25 @@ public class OtherActivity extends AppCompatActivity {
         edtTurkey = findViewById(R.id.edtTurkey);
 
         edtTotal = findViewById(R.id.edtTotal);
+        edtTotal.setEnabled(false);
+
+        compute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Integer sheep = Integer.parseInt(edtSheep.getText().toString());
+                final Integer horse = Integer.parseInt(edtHorse.getText().toString());
+                final Integer rabbit = Integer.parseInt(edtRabbit.getText().toString());
+                final Integer duck = Integer.parseInt(edtDuck.getText().toString());
+                final Integer pigeon = Integer.parseInt(edtPigeon.getText().toString());
+                final Integer quail = Integer.parseInt(edtQuail.getText().toString());
+                final Integer turkey = Integer.parseInt(edtTurkey.getText().toString());
+
+
+
+                final Integer total = sheep + horse + rabbit + duck +  pigeon + quail + turkey;
+                edtTotal.setText(String.valueOf(total));
+            }
+        });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
