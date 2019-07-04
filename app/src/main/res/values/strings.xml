@@ -231,6 +231,8 @@
     <string name="name_of_establishment">Name of Establishment</string>
     <string name="sow_gilt">SOW / GILT</string>
     <string name="growers_and_finishers_2_months_to_8_months">Growers and Finishers (2 months to 8 months)</string>
+    <string name="gamefowl">Gamefowl</string>
+    <string name="dual_purpose">Dual Purpose</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

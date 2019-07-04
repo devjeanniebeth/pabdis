@@ -26,11 +26,11 @@ public class CarabaoActivity extends AppCompatActivity {
     String ownerid,vaccstat, vacctype, deworm;
     DatabaseHelper myDB;
     EditText edtCarabullC,edtCarabullN,edtCaracowC,edtCaracowN,edtCaracalfC,edtCaracalfN,
-            edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
+            edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     RadioButton rbyes, rbno;
     Spinner vacc;
     FloatingActionButton skip;
-    TextView textView;
+    TextView textView, txtincome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +43,10 @@ public class CarabaoActivity extends AppCompatActivity {
         edtCaracowN = findViewById(R.id.edtCaracowN);
         edtCaracalfC = findViewById(R.id.edtCaracalfC);
         edtCaracalfN = findViewById(R.id.edtCaracalfN);
-        edtSF_sw = findViewById(R.id.edtSF_sw);
-        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSF_sw_kg = findViewById(R.id.edtSF_sw_kg);
+        edtSF_sw_hd = findViewById(R.id.edtSF_sw_hd);
+        edtSA_sw_kg = findViewById(R.id.edtSA_sw_kg);
+        edtSA_sw_hd = findViewById(R.id.edtSA_sw_hd);
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
         btnNext = findViewById(R.id.btnProceedSurvey);
@@ -52,6 +54,8 @@ public class CarabaoActivity extends AppCompatActivity {
         rbyes = findViewById(R.id.rb1);
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
+        txtincome = findViewById(R.id.txtincome);
+        txtincome.setText("Total Income for 2018");
 
 
         vacc.setVisibility(View.GONE);
@@ -126,8 +130,10 @@ public class CarabaoActivity extends AppCompatActivity {
                 final String caracown = edtCaracowN.getText().toString();
                 final String caracalfc = edtCaracalfC.getText().toString();
                 final String caracalfn = edtCaracalfN.getText().toString();
-                final String car_sf = edtSF_sw.getText().toString();
-                final String car_sa = edtSA_sw.getText().toString();
+                final String car_sf_kg = edtSF_sw_kg.getText().toString();
+                final String car_sf_hd = edtSF_sw_hd.getText().toString();
+                final String car_sa_kg = edtSA_sw_kg.getText().toString();
+                final String car_sa_hd = edtSA_sw_hd.getText().toString();
                 final String car_totala = edtSwineTotalArea.getText().toString();
                 final String car_totali = edtSwineTotalIncome.getText().toString();
 
@@ -157,8 +163,8 @@ public class CarabaoActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 try {
-//                                    myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf,car_sa,
-//                                            car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
+                                    myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf_kg,car_sf_hd,car_sa_kg,car_sa_hd,
+                                            car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
                                     Toast.makeText(CarabaoActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
                                     intent.putExtra("owner_id",ownerid);

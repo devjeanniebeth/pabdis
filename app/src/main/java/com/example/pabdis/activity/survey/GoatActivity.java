@@ -30,9 +30,9 @@ public class GoatActivity extends AppCompatActivity {
     RadioButton rbyes, rbno;
     FloatingActionButton skip;
     Spinner vacc;
-    TextView textView;
+    TextView textView,txtincome;
     DatabaseHelper myDB;
-    EditText edtBuckD,edtBuckM,edtDoeD,edtDoeM,edtKidsD,edtKidsM,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
+    EditText edtBuckD,edtBuckM,edtDoeD,edtDoeM,edtKidsD,edtKidsM,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +46,10 @@ public class GoatActivity extends AppCompatActivity {
         edtDoeM = findViewById(R.id.edtDoeM);
         edtKidsD = findViewById(R.id.edtKidsD);
         edtKidsM = findViewById(R.id.edtKidsM);
-        edtSF_sw = findViewById(R.id.edtSF_sw);
-        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSF_sw_kg = findViewById(R.id.edtSF_sw_kg);
+        edtSF_sw_hd = findViewById(R.id.edtSF_sw_hd);
+        edtSA_sw_kg = findViewById(R.id.edtSA_sw_kg);
+        edtSA_sw_hd = findViewById(R.id.edtSA_sw_hd);
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
 
@@ -55,6 +57,9 @@ public class GoatActivity extends AppCompatActivity {
         rbyes = findViewById(R.id.rb1);
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
+
+        txtincome = findViewById(R.id.txtincome);
+        txtincome.setText("Total Income for 2018");
 
 
         vacc.setVisibility(View.GONE);
@@ -126,8 +131,10 @@ public class GoatActivity extends AppCompatActivity {
                 final String doem = edtDoeM.getText().toString();
                 final String kidsd = edtKidsD.getText().toString();
                 final String kidsm = edtKidsM.getText().toString();
-                final String go_sf = edtSF_sw.getText().toString();
-                final String go_sa = edtSA_sw.getText().toString();
+                final String go_sf_kg = edtSF_sw_kg.getText().toString();
+                final String go_sf_hd = edtSF_sw_hd.getText().toString();
+                final String go_sa_kg = edtSA_sw_kg.getText().toString();
+                final String go_sa_hd = edtSA_sw_hd.getText().toString();
                 final String go_totala = edtSwineTotalArea.getText().toString();
                 final String go_totali = edtSwineTotalIncome.getText().toString();
                 final String vacc = vaccstat;
@@ -158,19 +165,19 @@ public class GoatActivity extends AppCompatActivity {
 
                                 if (buckd.equals("") || buckm.equals("") || doed.equals("") ||
                                         doem.equals("") || kidsd.equals("") || kidsm.equals("") ||
-                                        go_sf.equals("") || go_sa.equals("") || go_totala.equals("") || go_totali.equals("")  ) {
+                                        go_sf_kg.equals("") ||  go_sf_hd.equals("") || go_sa_kg.equals("") || go_sa_hd.equals("") || go_totala.equals("") || go_totali.equals("")  ) {
                                     Toast.makeText(GoatActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
 
                                 }else {
 
 
                                     try {
-////                                        myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm, go_sf, go_sa,
-//                                                go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
-//                                        Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-//                                        Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
-//                                        intent.putExtra("owner_id", ownerid);
-//                                        startActivity(intent);
+                                        myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm, go_sf_kg,go_sf_hd, go_sa_kg,go_sa_hd,
+                                                go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
+                                        Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
+                                        intent.putExtra("owner_id", ownerid);
+                                        startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }

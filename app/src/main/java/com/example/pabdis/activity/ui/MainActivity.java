@@ -36,6 +36,8 @@ import android.widget.Toast;
 import com.example.pabdis.BuildConfig;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.survey.CarabaoActivity;
+import com.example.pabdis.activity.survey.CattleActivity;
 import com.example.pabdis.activity.survey.ChickenActivity;
 import com.example.pabdis.activity.survey.GoatActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
@@ -303,7 +305,7 @@ public class MainActivity extends AppCompatActivity
 
                                 if (rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
                                     Toast.makeText(MainActivity.this, ""  , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
                                     intent.putExtra("ownerid", ownerid.trim());
                                     intent.putExtra("petid", petid.trim());
                                     startActivity(intent);

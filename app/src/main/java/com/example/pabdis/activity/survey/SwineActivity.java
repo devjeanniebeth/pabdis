@@ -69,8 +69,9 @@ public class SwineActivity extends AppCompatActivity {
         rbyes = findViewById(R.id.rb1);
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
-        txtincome = findViewById(R.id.txtincome);
+
         edtSwineTotal.setEnabled(false);
+        txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
 
         vacc.setVisibility(View.GONE);

@@ -384,6 +384,12 @@
                     </TableRow>
                 </TableLayout>
 
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.20935412" />
 
                 <TextView
                     android:id="@+id/txt9"
@@ -394,12 +400,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.20935412" />
+
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/txtView13"
@@ -575,14 +576,14 @@
 
                 <Spinner
                     android:id="@+id/vaccination"
-                    style="@style/spinner_style"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:animateLayoutChanges="true"
                     android:entries="@array/swine"
                     android:padding="10dp"
                     android:prompt="@string/vacc_prompt"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    style="@style/spinner_style" />
 
                 <TextView
                     android:id="@+id/textView4"

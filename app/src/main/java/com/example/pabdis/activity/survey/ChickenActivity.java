@@ -23,15 +23,16 @@ import java.util.Calendar;
 
 public class ChickenActivity extends AppCompatActivity {
 
-    Button btnNext;
-    EditText edtBroiler,edtLayers,edtNative,edtTotal,edtProd,edtSF_sw,edtSA_sw,edtTotalArea,edtTotalIncome;
+    Button btnNext, compute;
+    EditText edtBroiler,edtLayers,edtNative,edtTotal,edtProd,
+            edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtTotalArea,edtTotalIncome;
     String ownerid;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
     FloatingActionButton skip;
     Spinner vacc;
     String vaccstat, vacctype, deworm;
-    TextView textView;
+    TextView textView, txtincome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +45,10 @@ public class ChickenActivity extends AppCompatActivity {
         edtNative = findViewById(R.id.edtNative);
         edtTotal = findViewById(R.id.edtTotal);
         edtProd = findViewById(R.id.edtProd);
-        edtSF_sw = findViewById(R.id.edtSF_sw);
-        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSF_sw_kg = findViewById(R.id.edtSF_sw_kg);
+        edtSF_sw_hd = findViewById(R.id.edtSF_sw_hd);
+        edtSA_sw_kg = findViewById(R.id.edtSA_sw_kg);
+        edtSA_sw_hd = findViewById(R.id.edtSA_sw_hd);
         edtTotalArea = findViewById(R.id.edtTotalArea);
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
         rbno = findViewById(R.id.rb2);
@@ -53,6 +56,10 @@ public class ChickenActivity extends AppCompatActivity {
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
 
+        compute = findViewById(R.id.btnCompute);
+        edtTotal.setEnabled(false);
+        txtincome = findViewById(R.id.txtincome);
+        txtincome.setText("Total Income for 2018");
 
         vacc.setVisibility(View.GONE);
 
@@ -68,6 +75,20 @@ public class ChickenActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
         }
+
+        compute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Integer broiler = Integer.parseInt(edtBroiler.getText().toString());
+                final Integer layer = Integer.parseInt(edtLayers.getText().toString());
+                final Integer snative = Integer.parseInt(edtNative.getText().toString());
+                final Integer total = broiler + layer + snative ;
+                edtTotal.setText(String.valueOf(total));
+
+
+            }
+        });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,8 +145,10 @@ public class ChickenActivity extends AppCompatActivity {
                 final String snative = edtNative.getText().toString();
                 final String total = edtTotal.getText().toString();
                 final String prod = edtProd.getText().toString();
-                final String ch_sf = edtSF_sw.getText().toString();
-                final String ch_sa = edtSA_sw.getText().toString();
+                final String ch_sf_kg = edtSF_sw_kg.getText().toString();
+                final String ch_sf__hd = edtSF_sw_hd.getText().toString();
+                final String ch_sa_kg = edtSA_sw_kg.getText().toString();
+                final String ch_sa__hd = edtSA_sw_hd.getText().toString();
                 final String ch_totala = edtTotalArea.getText().toString();
                 final String ch_totali = edtTotalIncome.getText().toString();
                 final String vacc = vaccstat;
@@ -157,13 +180,14 @@ public class ChickenActivity extends AppCompatActivity {
 
 
                                 if (broiler.equals("") || layer.equals("") || snative.equals("") ||
-                                        total.equals("") || prod.equals("") || ch_sf.equals("")) {
+                                        total.equals("") || prod.equals("") || ch_sf_kg.equals("") || ch_sf__hd.equals("")
+                                        || ch_sa_kg.equals("") || ch_sa__hd.equals("")  || ch_totala.equals("") || ch_totali.equals("")  ) {
                                     Toast.makeText(ChickenActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
                                 }else {
 
                                     try {
-//                                        myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf,ch_sa,
-//                                                ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
+                                        myDB.addChicken(ownerid,broiler, layer,snative,total,prod,ch_sf_kg,ch_sf__hd,ch_sa_kg,ch_sa__hd,
+                                                ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
                                         Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                         intent.putExtra("owner_id",ownerid);

@@ -23,13 +23,13 @@ import java.util.Calendar;
 public class CattleActivity extends AppCompatActivity {
 
     Button btnNext;
-    EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtSF_sw,edtSA_sw,edtSwineTotalArea,edtSwineTotalIncome;
+    EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid, vaccstat, vacctype, deworm;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
     Spinner vacc;
     FloatingActionButton skip;
-    TextView textView;
+    TextView textView, txtincome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,15 +43,19 @@ public class CattleActivity extends AppCompatActivity {
         edtCowM = findViewById(R.id.edtCowM);
         edtCalfD = findViewById(R.id.edtCalfD);
         edtCalfM = findViewById(R.id.edtCalfM);
-        edtSF_sw = findViewById(R.id.edtSF_sw);
-        edtSA_sw = findViewById(R.id.edtSA_sw);
+        edtSF_sw_kg = findViewById(R.id.edtSF_sw_kg);
+        edtSF_sw_hd = findViewById(R.id.edtSF_sw_hd);
+        edtSA_sw_kg = findViewById(R.id.edtSA_sw_kg);
+        edtSA_sw_hd = findViewById(R.id.edtSA_sw_hd);
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
-
+        txtincome = findViewById(R.id.txtincome);
+        txtincome.setText("Total Income for 2018");
+        textView.setVisibility(View.GONE);
 
         vacc.setVisibility(View.GONE);
 
@@ -121,8 +125,10 @@ public class CattleActivity extends AppCompatActivity {
                 final String cowm = edtCowM.getText().toString();
                 final String calfd = edtCalfD.getText().toString();
                 final String calfm = edtCalfM.getText().toString();
-                final String ca_sf = edtSF_sw.getText().toString();
-                final String ca_sa = edtSA_sw.getText().toString();
+                final String ca_sf_kg = edtSF_sw_kg.getText().toString();
+                final String ca_sf__hd = edtSF_sw_hd.getText().toString();
+                final String ca_sa_kg = edtSA_sw_kg.getText().toString();
+                final String ca_sa__hd = edtSA_sw_hd.getText().toString();
                 final String ca_totala = edtSwineTotalArea.getText().toString();
                 final String ca_totali = edtSwineTotalIncome.getText().toString();
 
@@ -153,18 +159,27 @@ public class CattleActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
 
-                                try {
-                                    Toast.makeText(getApplicationContext(), "Back press disabled!" +vacc +vacct +dewormed, Toast.LENGTH_SHORT).show();
-//                                    myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf,ca_sa,ca_totala,
-//                                            ca_totali ,vacc.trim(), vacct.trim(),dewormed.trim(),created_at );
-                                        Toast.makeText(CattleActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
-                                    intent.putExtra("owner_id",ownerid);
-                                    startActivity(intent);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
 
+                                // User clicked the Yes button
+                                if (bulld.equals("") || bullm.equals("") || cowd.equals("") ||
+                                        calfd.equals("") || calfm.equals("") || ca_sf_kg.equals("") ||
+                                        ca_sf__hd.equals("") || ca_sa_kg.equals("") || ca_sa__hd.equals("") ||
+                                        ca_totala.equals("") || ca_totali.equals("") || vacc.equals("") || vacct.equals("") || dewormed.equals("")) {
+                                    Toast.makeText(CattleActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
+
+                                }else {
+                                    try {
+                                        myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf_kg,ca_sf__hd,ca_sa_kg,ca_sa__hd,ca_totala,
+                                                ca_totali ,vacc.trim(), vacct.trim(),dewormed.trim(),created_at );
+                                        Toast.makeText(CattleActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
+                                        intent.putExtra("owner_id",ownerid);
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
+
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
@@ -214,8 +229,8 @@ public class CattleActivity extends AppCompatActivity {
         }
     }
 
-    public void onRadioButtonClicked2(View view) {
         // Is the button now checked?
+        public void onRadioButtonClicked2(View view) {
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked

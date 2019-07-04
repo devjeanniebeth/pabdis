@@ -251,7 +251,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + SURVEY2COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEY2COL_3 + " TEXT,"  + SURVEY2COL_4 + " TEXT,"
                 + SURVEY2COL_5 + " TEXT, " + SURVEY2COL_6 + " TEXT, " + SURVEY2COL_7 + " TEXT, " + SURVEY2COL_8 + " TEXT, " + SURVEY2COL_9 + " TEXT, "
                 + SURVEY2COL_10 + " TEXT, " +  SURVEY2COL_11 + " TEXT, " +  SURVEY2COL_12 + " TEXT, " +  SURVEY2COL_13 + " TEXT , " + SURVEY2COL_14
-                + " TEXT , " + SURVEY2COL_15 + " TEXT , " + SURVEY2COL_16 + " TEXT , "+ SURVEY2COL_17 + " TEXT , "  +  SURVEY2COL_18 + " TEXT " +  ")";
+                + " TEXT , " + SURVEY2COL_15 + " TEXT , " + SURVEY2COL_16 + " TEXT , "+ SURVEY2COL_17 + " TEXT , "
+                +  SURVEY2COL_18 + " TEXT " +  ")";
 
         String CREATE_SURVEY3_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY3 + "("
                 + SURVEY3COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY3COL_3 + " TEXT,"  + SURVEY3COL_4 + " TEXT,"
