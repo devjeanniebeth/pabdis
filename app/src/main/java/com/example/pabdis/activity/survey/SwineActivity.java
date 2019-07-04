@@ -29,7 +29,7 @@ import java.util.Calendar;
 
 public class SwineActivity extends AppCompatActivity {
 
-    Button btnNext;
+    Button btnNext, compute;
     FloatingActionButton skip;
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,
             edtSwineTotal,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
@@ -49,6 +49,7 @@ public class SwineActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         skip = findViewById(R.id.fab);
+        compute = findViewById(R.id.btnCompute);
         edtboarn = findViewById(R.id.edtBoarN);
         edtboaru = findViewById(R.id.edtBoarU);
         edtGrowN = findViewById(R.id.edtGrowN);
@@ -69,7 +70,7 @@ public class SwineActivity extends AppCompatActivity {
         vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
         txtincome = findViewById(R.id.txtincome);
-
+        edtSwineTotal.setEnabled(false);
         txtincome.setText("Total Income for 2018");
 
         vacc.setVisibility(View.GONE);
@@ -87,6 +88,27 @@ public class SwineActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
         }
+
+        compute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Integer boarn = Integer.parseInt(edtboarn.getText().toString());
+                final Integer boaru = Integer.parseInt(edtboaru.getText().toString());
+                final Integer grown = Integer.parseInt(edtGrowN.getText().toString());
+                final Integer growu = Integer.parseInt(edtGrowU.getText().toString());
+                final Integer sown = Integer.parseInt(edtSowN.getText().toString());
+                final Integer sowu = Integer.parseInt(edtSowU.getText().toString());
+                final Integer pign = Integer.parseInt(edtPigN.getText().toString());
+                final Integer pigu = Integer.parseInt(edtPigU.getText().toString());
+
+
+
+                final Integer total = boarn + boaru + grown + growu +  sown + sowu + pign + pigu;
+                edtSwineTotal.setText(String.valueOf(total));
+
+            }
+        });
 
 
         skip.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +206,7 @@ public class SwineActivity extends AppCompatActivity {
                                         growu.equals("") || sown.equals("") || sowu.equals("") ||
                                         pign.equals("") || pigu.equals("") || swntotal.equals("") ||
                                         swn_sf_kg.equals("") || swn_sf_hd.equals("") || swn_sa_kg.equals("") || swn_sa_hd.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
-                                    Toast.makeText(SwineActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SwineActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
 
 
                                 }else {

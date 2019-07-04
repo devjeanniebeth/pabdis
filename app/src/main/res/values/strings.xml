@@ -202,6 +202,7 @@
     <string name="carabeef">Carabeef (per kg)</string>
     <string name="pork">Pork (per kg)</string>
     <string name="chicken">Chicken (per kg)</string>
+    <string name="chicken_tl">Chicken</string>
     <string name="fish">Fish (per kg)</string>
     <string name="egg">Egg (per piece)</string>
     <string name="other_pls_specify">Other (pls. specify)</string>
