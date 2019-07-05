@@ -21,7 +21,7 @@ import java.util.Calendar;
 public class FisheryActivity extends AppCompatActivity {
 
     Button btnNext;
-    String ownerid;
+    String ownerid, petid;
     DatabaseHelper myDB;
     FloatingActionButton skip;
     EditText edtTotalArea,edtProd,edtIncome,edtColonyNum,edtProdH,edtTotalIncome;
@@ -41,15 +41,19 @@ public class FisheryActivity extends AppCompatActivity {
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
 
 
+
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
+                petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
+                petid= extras.getString("ownerid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid = (String) savedInstanceState.getSerializable("petid");
         }
 
         skip.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +78,7 @@ public class FisheryActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
                                 intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("petid", petid.trim());
                                 startActivity(intent);
                                 break;
 
@@ -141,6 +146,7 @@ public class FisheryActivity extends AppCompatActivity {
                                         Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
                                         intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

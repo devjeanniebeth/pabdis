@@ -306,8 +306,8 @@ public class MainActivity extends AppCompatActivity
                                 if (rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
                                     Toast.makeText(MainActivity.this, ""  , Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-                                    intent.putExtra("ownerid", ownerid.trim());
-                                    intent.putExtra("petid", petid.trim());
+                                    intent.putExtra("ownerid", ownerid);
+                                    intent.putExtra("petid", petid);
                                     startActivity(intent);
                                 }else{
 

@@ -24,7 +24,7 @@ public class CattleActivity extends AppCompatActivity {
 
     Button btnNext;
     EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
-    String ownerid, vaccstat, vacctype, deworm;
+    String ownerid, vaccstat, vacctype, deworm, petid;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
     Spinner vacc;
@@ -63,11 +63,14 @@ public class CattleActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
+                petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
+                petid= extras.getString("ownerid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid = (String) savedInstanceState.getSerializable("petid");
         }
 
         skip.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +96,7 @@ public class CattleActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                 intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("petid", petid.trim());
                                 startActivity(intent);
                                 break;
 
@@ -174,6 +178,7 @@ public class CattleActivity extends AppCompatActivity {
                                         Toast.makeText(CattleActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                         intent.putExtra("owner_id",ownerid);
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

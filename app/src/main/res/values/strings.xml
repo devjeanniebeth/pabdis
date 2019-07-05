@@ -44,8 +44,11 @@
 
     <string name="production">Production (in Dozens) Egg</string>
 
+    <string-array name="breed_monkey">
+        <item>Simian</item>
+    </string-array>
+
     <string-array name="breed_dod">
-        <item>Please choose</item>
         <item>Akita</item>
         <item>Alaskan Malamute</item>
         <item>American Bully</item>
@@ -90,7 +93,6 @@
     </string-array>
 
     <string-array name="gender">
-        <item>Please choose</item>
         <item>Female</item>
         <item>Male</item>
         <item>Neutered</item>
@@ -104,14 +106,12 @@
     </string-array>
 
     <string-array name="species">
-        <item>Please choose</item>
         <item>Dog</item>
         <item>Cat</item>
         <item>Monkey</item>
     </string-array>
 
     <string-array name="color_mark">
-        <item>Please choose</item>
         <item>White</item>
         <item>Black</item>
         <item>Orange</item>
@@ -212,7 +212,7 @@
     <string name="vaccination">VACCINATION</string>
     <string name="choose_an_image">Choose an image</string>
     <string name="pet_name">Pet Name</string>
-    <string name="specie">SPECIE</string>
+    <string name="specie">SPECIES</string>
     <string name="breed">BREED</string>
     <string name="gender">SEX</string>
     <string name="pet_image">Pet Image</string>
@@ -235,6 +235,7 @@
     <string name="dual_purpose">Dual Purpose</string>
     <string name="compute">COMPUTE</string>
     <string name="total">TOTAL</string>
+    <string name="date_vaccination">DATE VACCINATION</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

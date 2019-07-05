@@ -23,7 +23,7 @@ public class HouseholdActivity extends AppCompatActivity {
 
 
     Button btnDone;
-    String ownerid;
+    String ownerid, petid;
     FloatingActionButton skip;
     DatabaseHelper myDB;
     EditText edtBeef,edtCarabeef,edtPork,edtChicken,edtFish,edtEgg;
@@ -47,11 +47,14 @@ public class HouseholdActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
+                petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
+                petid= extras.getString("ownerid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid = (String) savedInstanceState.getSerializable("petid");
         }
 
         skip.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +79,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                 intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("petid", petid.trim());
                                 startActivity(intent);
                                 break;
 
@@ -144,6 +148,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                         Toast.makeText(HouseholdActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                         intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -165,6 +170,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                         Toast.makeText(HouseholdActivity.this, "Success survey!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

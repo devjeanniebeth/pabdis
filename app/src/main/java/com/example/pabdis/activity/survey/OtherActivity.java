@@ -25,7 +25,7 @@ public class OtherActivity extends AppCompatActivity {
 
     Button btnNext, compute;
     FloatingActionButton skip;
-    String ownerid;
+    String ownerid, petid;
     DatabaseHelper myDB;
     EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtOthersName,edtOthersNum,edtTotal;
     @Override
@@ -36,11 +36,14 @@ public class OtherActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
+                petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
+                petid= extras.getString("ownerid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid = (String) savedInstanceState.getSerializable("petid");
         }
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
@@ -97,6 +100,7 @@ public class OtherActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                 intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("petid", petid.trim());
                                 startActivity(intent);
                                 break;
 
@@ -167,10 +171,11 @@ public class OtherActivity extends AppCompatActivity {
 
                                 }else {
                                     try {
-//                                        myDB.addOther(ownerid, sheep, horse, rabbit, duck, pigeon, quail, turkey,"" ,total, created_at);
+//                                        myDB.addOther(ownerid, sheep,1,horse,1, rabbit,1, duck,1, pigeon,1, quail, turkey,"" ,total, created_at);
                                         Toast.makeText(OtherActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                         intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

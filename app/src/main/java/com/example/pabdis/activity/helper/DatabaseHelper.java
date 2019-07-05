@@ -625,7 +625,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_7,sex);
         contentValues.put(VACCCOL_8,birthday);
         contentValues.put(VACCCOL_9,colormarking);
-        contentValues.put(VACCCOL_10,createdAt);
+        contentValues.put(VACCCOL_10,petid);
+        contentValues.put(VACCCOL_11,createdAt);
         long result = db.insert(TABLE_VACC,null ,contentValues);
         if(result == -1)
             return false;
@@ -682,9 +683,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public int getCountPet(String ownerid, String breed) {
+    public int getCountPet(String ownerid, String species) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT COUNT(*) from "+TABLE_VACC+" WHERE "+VACCCOL_3+"='"+ownerid+" AND "+VACCCOL_6+"="+breed+"";
+        String query = "SELECT COUNT(*) from "+TABLE_VACC+" WHERE "+VACCCOL_3+"='"+ownerid+" AND "+VACCCOL_5+"="+species+"";
         Cursor res =  db.rawQuery(query,null);
         res.moveToFirst();
         int count = res.getInt(0);

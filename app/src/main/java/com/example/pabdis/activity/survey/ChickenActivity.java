@@ -31,7 +31,7 @@ public class ChickenActivity extends AppCompatActivity {
     RadioButton rbyes, rbno;
     FloatingActionButton skip;
     Spinner vacc;
-    String vaccstat, vacctype, deworm;
+    String vaccstat, vacctype, deworm, petid;
     TextView textView, txtincome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +69,14 @@ public class ChickenActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
+                petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
+                petid= extras.getString("ownerid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid = (String) savedInstanceState.getSerializable("petid");
         }
 
         compute.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +114,7 @@ public class ChickenActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                 intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("petid", petid.trim());
                                 startActivity(intent);
                                 break;
 
@@ -191,6 +195,7 @@ public class ChickenActivity extends AppCompatActivity {
                                         Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                         intent.putExtra("owner_id",ownerid);
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

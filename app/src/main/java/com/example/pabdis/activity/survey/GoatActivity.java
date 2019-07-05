@@ -26,7 +26,7 @@ public class GoatActivity extends AppCompatActivity {
 
 
     Button btnNext;
-    String ownerid,vaccstat, vacctype, deworm;
+    String ownerid,vaccstat, vacctype, deworm, petid;
     RadioButton rbyes, rbno;
     FloatingActionButton skip;
     Spinner vacc;
@@ -68,11 +68,14 @@ public class GoatActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
+                petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
+                petid= extras.getString("ownerid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid = (String) savedInstanceState.getSerializable("petid");
         }
 
         skip.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +100,7 @@ public class GoatActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
                                 intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("petid", petid.trim());
                                 startActivity(intent);
                                 break;
 
@@ -177,6 +181,7 @@ public class GoatActivity extends AppCompatActivity {
                                         Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
                                         intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("petid", petid.trim());
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
