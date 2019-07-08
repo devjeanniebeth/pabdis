@@ -38,7 +38,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
     EditText otherbreed, othercolormark, txtpetname, txtcolor;
-    TextView dateSurvey,txtAge, txtxDateVacc;
+    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed;
     Button btndate, chooseImg, btnVacc, dateVacc;
     final Calendar myCalendar = Calendar.getInstance();
     ImageView imgView;
@@ -74,6 +74,7 @@ public class VaccinationActivity extends AppCompatActivity {
         othercolormark = findViewById(R.id.txtcolorother);
         txtxDateVacc = findViewById(R.id.txtxDateVacc);
         txtvaccinatedby = findViewById(R.id.txtvaccinatedby);
+        strngbreed = findViewById(R.id.strngbreed);
         txtAge = findViewById(R.id.txtAge);
         txtcolor = findViewById(R.id.txtcolor);
         otherbreed.setVisibility(View.GONE);
@@ -220,21 +221,6 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String pet = petid + first + "-" + end;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
 
@@ -346,13 +332,22 @@ public class VaccinationActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String selectedItem = adapterView.getItemAtPosition(i).toString();
 
-
-                if(selectedItem.equals("Cat")) {
-                    txtbreed.setAdapter(adapter2);}
-                else if(selectedItem.equals("Dog")) {
-                    txtbreed.setAdapter(adapter);}
-                else{
-                    txtbreed.setVisibility(View.GONE);
+                switch (selectedItem)
+                {
+                    case "Cat":
+                        txtbreed.setVisibility(View.VISIBLE);
+                        strngbreed.setVisibility(View.VISIBLE);
+                        txtbreed.setAdapter(adapter2);
+                        break;
+                    case "Dog":
+                        txtbreed.setVisibility(View.VISIBLE);
+                        strngbreed.setVisibility(View.VISIBLE);
+                        txtbreed.setAdapter(adapter);
+                        break;
+                    case "Monkey":
+                        txtbreed.setVisibility(View.GONE);
+                        strngbreed.setVisibility(View.GONE);
+                        break;
 
                 }
             }
@@ -368,8 +363,11 @@ public class VaccinationActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
 
-                if(selectedItem.equals("Others")) {
-                    othercolormark.setVisibility(View.VISIBLE);
+                switch (selectedItem)
+                {
+                    case "Others":
+                        othercolormark.setVisibility(View.VISIBLE);
+                        break;
                 }
             }
 
@@ -384,8 +382,11 @@ public class VaccinationActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                if(selectedItem.equals("Others")) {
-                    otherbreed.setVisibility(View.VISIBLE);
+                switch (selectedItem)
+                {
+                    case "Others":
+                        otherbreed.setVisibility(View.VISIBLE);
+                        break;
                 }
             }
 
