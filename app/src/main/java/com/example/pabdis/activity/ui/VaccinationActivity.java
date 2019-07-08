@@ -239,7 +239,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ ownerid.trim() + petname.trim() + specie.trim() + other_breed.trim() + gender.trim() + birthdate.trim() + othercolor.trim() + petid +created_at , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+  datevacc , Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
