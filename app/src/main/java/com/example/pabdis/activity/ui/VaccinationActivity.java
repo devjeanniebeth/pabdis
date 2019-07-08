@@ -180,11 +180,11 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String other_breed;
                 final String gender = txtGender.getSelectedItem().toString();
                 final String vacc_by = txtvaccinatedby.getSelectedItem().toString();
-                final String birthdate = dateSurvey.getText().toString();
+                final String birthdate = txtxDateVacc.getText().toString();
                 final String agepet = age;
                 final String colormark = txtColorMark.getSelectedItem().toString();
                 final String othercolor;
-                final String datevacc = dateSurvey.getText().toString();
+                final String datevacc = txtxDateVacc.getText().toString();
 
                 if(colormark == "Others")
                 {
