@@ -239,12 +239,12 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ ownerid.trim() + petname.trim() + specie.trim() + other_breed.trim() + gender.trim() + birthdate.trim() + othercolor.trim() + petid +created_at , Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
                                         myDB.addVaccination(ownerid.trim(),petname.trim(),specie.trim(), other_breed.trim(),gender.trim(),birthdate.trim(),othercolor.trim(),petid,created_at);
-                                        myDB.addVaccinationDate(petid,datevacc,vacc_by,created_at);
+                                        myDB.addVaccinationDate(petid,datevacc,vacc_by.trim(),created_at);
 
                                         // Build an AlertDialog
                                         AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
@@ -367,6 +367,21 @@ public class VaccinationActivity extends AppCompatActivity {
                 {
                     case "Others":
                         othercolormark.setVisibility(View.VISIBLE);
+                        break;
+                    case "White":
+                        othercolormark.setVisibility(View.GONE);
+                        break;
+                    case "Black":
+                        othercolormark.setVisibility(View.GONE);
+                        break;
+                    case "Orange":
+                        othercolormark.setVisibility(View.GONE);
+                        break;
+                    case "Gray":
+                        othercolormark.setVisibility(View.GONE);
+                        break;
+                    case "Tricolor":
+                        othercolormark.setVisibility(View.GONE);
                         break;
                 }
             }
