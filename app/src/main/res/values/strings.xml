@@ -24,7 +24,7 @@
     <string name="vacc_prompt">Vaccination</string>
     <string name="brgy_prompty">Choose Municipality</string>
     <string name="muni_prompt">Choose Barangay</string>
-    <string name="house_no">House No.</string>
+    <string name="house_no">House No./ Sitio </string>
     <string name="get_geolocation">Get geolocation</string>
     <string name="add">PROCEED SURVEY</string>
     <string name="contact_number">Contact Number</string>
@@ -47,7 +47,6 @@
     <string-array name="breed_monkey">
         <item>Simian</item>
     </string-array>
-
     <string-array name="breed_dod">
         <item>Akita</item>
         <item>Alaskan Malamute</item>
@@ -91,26 +90,22 @@
         <item>Yorkshire Terrier</item>
         <item>Others</item>
     </string-array>
-
     <string-array name="gender">
         <item>Female</item>
         <item>Male</item>
         <item>Neutered</item>
     </string-array>
-
     <string-array name="breed_cat">
         <item>Puspin</item>
         <item>Mixed</item>
         <item>Persian</item>
         <item>Siamese</item>
     </string-array>
-
     <string-array name="species">
         <item>Dog</item>
         <item>Cat</item>
         <item>Monkey</item>
     </string-array>
-
     <string-array name="color_mark">
         <item>White</item>
         <item>Black</item>
@@ -119,30 +114,31 @@
         <item>Tricolor</item>
         <item>Others</item>
     </string-array>
-
     <string-array name="chicken">
         <item>New Castle Disease</item>
         <item>Fowl Pox</item>
         <item>Infectious Bronchitis</item>
-        <item>Black Leg</item>
+        <item>Newcastle Disease La Sota</item>
+        <item>Newcastle Disease B1B1</item>
+        <item>Combination of New Castle Disease and Infectious Bronchitis (ND + IB)</item>
     </string-array>
-
     <string-array name="vaccination">
         <item>Black Leg</item>
     </string-array>
-
     <string-array name="swine">
         <item>Hog Cholera</item>
+        <item>Porcine Circovirus 2 (PCV2)</item>
+        <item>Mycoplasma</item>
     </string-array>
-
     <string-array name="ownertype">
         <item>Household</item>
         <item>Establishment</item>
         <item>Cooperative</item>
     </string-array>
-
-
-
+    <string-array name="vaccinated_by">
+        <item>LGU</item>
+        <item>Private</item>
+    </string-array>
 
     <string name="boar_native">Boar (Native)</string>
     <string name="boar_upgrade">Boar (Upgrade)</string>
@@ -152,13 +148,16 @@
     <string name="grower_upgrade">Growers and Finishers (Upgrade)</string>
     <string name="pig_native">Piglets and Weanlings (Native)</string>
     <string name="pig_upgrade">Piglets and Weanlings (Upgrade)</string>
-    <string name="sl_farm_kg">Slaughtered on Farm (per kg)</string>
-    <string name="sl_farm_hd">Slaughtered on Farm (per head)</string>
-    <string name="sl_abb_kg">Slaughtered in Abattoir (per kg)</string>
-    <string name="sl_abb_hd">Slaughtered in Abattoir (per head)</string>
+    <string name="sl_farm_kg">Slaughtered on Farm (total kg)</string>
+    <string name="sl_farm_hd">Slaughtered on Farm (total head)</string>
+    <string name="sl_abb_kg">Slaughtered in Abattoir (total kg)</string>
+    <string name="sl_abb_hd">Slaughtered in Abattoir (total head)</string>
 
-    <string name="sl_abb">Slaughtered in Abattoir (per kg)</string>
-    <string name="sl_farm">Slaughtered on Farm (per head)</string>
+    <string name="dressed_kg">Dressed in Household (total kg)</string>
+    <string name="sold_kg">Sold Live (total kg)</string>
+    <string name="dressed_hd">Dressed in Household (total head)</string>
+    <string name="sold_hd">Sold Live (total head)</string>
+
     <string name="broilers">Broilers</string>
     <string name="layers">Layers</string>
     <string name="local">Native/Improved/Local Breed</string>
@@ -198,13 +197,13 @@
     <string name="others">Others</string>
 
 
-    <string name="beef">Beef (per kg)</string>
-    <string name="carabeef">Carabeef (per kg)</string>
-    <string name="pork">Pork (per kg)</string>
-    <string name="chicken">Chicken (per kg)</string>
+    <string name="beef">Beef (in kg)</string>
+    <string name="carabeef">Carabeef (in kg)</string>
+    <string name="pork">Pork (in kg)</string>
+    <string name="chicken">Chicken (in kg)</string>
     <string name="chicken_tl">Chicken</string>
-    <string name="fish">Fish (per kg)</string>
-    <string name="egg">Egg (per piece)</string>
+    <string name="fish">Fish (in kg)</string>
+    <string name="egg">Egg (in piece)</string>
     <string name="other_pls_specify">Other (pls. specify)</string>
     <string name="done">DONE</string>
     <string name="age">Age</string>
@@ -216,7 +215,7 @@
     <string name="breed">BREED</string>
     <string name="gender">SEX</string>
     <string name="pet_image">Pet Image</string>
-    <string name="distinct_color">Distinct Color</string>
+    <string name="distinct_color">Distinguishing Feature</string>
     <string name="color_markings">COLOR MARKINGS</string>
     <string name="calf_male_female_below_2_years_old">CALF (male/female, below 2 years old)</string>
     <string name="other_breed">Other Breed</string>
@@ -236,6 +235,8 @@
     <string name="compute">COMPUTE</string>
     <string name="total">TOTAL</string>
     <string name="date_vaccination">DATE VACCINATION</string>
+    <string name="vaccinated_by">VACCINATED BY</string>
+    <string name="goose">GOOSE</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>
@@ -418,7 +419,4 @@
         <item>Sagubo</item>
         <item>Taba-oa</item>
     </string-array>
-
-
-
 </resources>

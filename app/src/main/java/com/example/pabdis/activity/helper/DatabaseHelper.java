@@ -154,21 +154,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY6COL_2 = "user_id";
     public static final String SURVEY6COL_3 = "owner_id";
     public static final String SURVEY6COL_4 = "sheep";
-    public static final String SURVEY6COL_5 = "sheep_dw";
-    public static final String SURVEY6COL_6 = "horse";
-    public static final String SURVEY6COL_7 = "horse_dw";
-    public static final String SURVEY6COL_8 = "rabbit";
-    public static final String SURVEY6COL_9 = "rabbit_dw";
-    public static final String SURVEY6COL_10 = "duck";
-    public static final String SURVEY6COL_11 = "duck_dw";
-    public static final String SURVEY6COL_12 = "pigeon";
-    public static final String SURVEY6COL_13 = "pigeon_dw";
-    public static final String SURVEY6COL_14 = "quail";
-    public static final String SURVEY6COL_15 = "quail_dw";
-    public static final String SURVEY6COL_16 = "turkey";
-    public static final String SURVEY6COL_17 = "turkey_dw";
-    public static final String SURVEY6COL_18 = "total_income";
-    public static final String SURVEY6COL_19 = "created_at";
+    public static final String SURVEY6COL_5 = "horse";
+    public static final String SURVEY6COL_6 = "rabbit";
+    public static final String SURVEY6COL_7 = "duck";
+    public static final String SURVEY6COL_8 = "turkey";
+    public static final String SURVEY6COL_9 = "goose";
+    public static final String SURVEY6COL_10 = "total_income";
+    public static final String SURVEY6COL_11 = "created_at";
 
     public static final String TABLE_SURVEY7= "pvet_survey_fishery";
     public static final String SURVEY7COL_1 = "id";
@@ -221,7 +213,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VACC_DATE_1 = "id";
     public static final String VACC_DATE_2 = "pet_id";
     public static final String VACC_DATE_3 = "date_vaccination";
-    public static final String VACC_DATE_4 = "created_at";
+    public static final String VACC_DATE_4 = "vaccinated_by";
+    public static final String VACC_DATE_5 = "created_at";
 
 
     public DatabaseHelper(Context context) {
@@ -275,9 +268,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_SURVEY6_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY6 + "("
                 + SURVEY6COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY6COL_3 + " TEXT,"  + SURVEY6COL_4 + " TEXT,"
-                + SURVEY6COL_5 + " TEXT, " + SURVEY6COL_6 + " TEXT, " + SURVEY6COL_7 + " TEXT, " + SURVEY6COL_8 + " TEXT, " + SURVEY6COL_9 + " TEXT, "
-                + SURVEY6COL_10 + " TEXT, " + SURVEY6COL_11 + " TEXT, " + SURVEY6COL_12 + " TEXT, " + SURVEY6COL_13 + " TEXT, " + SURVEY6COL_14 + " TEXT, "
-                + SURVEY6COL_15 + " TEXT, " +  SURVEY6COL_16 + " TEXT, " + SURVEY6COL_17 + " TEXT, " + SURVEY6COL_18 + " TEXT, "  + SURVEY6COL_19 + " TEXT " +" )";
+                + SURVEY6COL_5 + " TEXT, " + SURVEY6COL_6 + " TEXT, " + SURVEY6COL_7 + " TEXT, " + SURVEY6COL_8 + " TEXT, " + SURVEY6COL_9 + " TEXT, " + SURVEY6COL_10 + " TEXT, "
+                + SURVEY6COL_11 + " TEXT " +" )";
 
         String CREATE_SURVEY7_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY7 + "("
                 + SURVEY7COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY7COL_3 + " TEXT,"  + SURVEY7COL_4 + " TEXT,"
@@ -298,7 +290,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + VACCCOL_11 + " TEXT" +")";
 
         String CREATE_VACC_DATE_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC_DATE + "("
-                + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"  + VACC_DATE_3 + " TEXT,"  + VACC_DATE_4 + " TEXT" +")";
+                + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"  + VACC_DATE_3 + " TEXT,"  + VACC_DATE_4 + " TEXT,"   + VACC_DATE_5 + " TEXT" +")";
 
 
         db.execSQL(CREATE_LOGIN_TABLE);
@@ -517,9 +509,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean addOther(String owner_id, String sheep, String horse, String rabbit, String duck, String pigeon,
-                            String quail, String turkey,  String sheep_dw, String horse_dw, String rabbit_dw, String duck_dw, String pigeon_dw,
-                            String quail_dw, String turkey_dw, String total,String createdAt)
+    public boolean addOther(String owner_id, String sheep, String horse, String rabbit, String duck,  String turkey, String goose, String total,String createdAt)
     {
 
 
@@ -527,21 +517,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(SURVEY6COL_3,owner_id);
         contentValues.put(SURVEY6COL_4,sheep);
-        contentValues.put(SURVEY6COL_5,sheep_dw);
-        contentValues.put(SURVEY6COL_6,horse);
-        contentValues.put(SURVEY6COL_7,horse_dw);
-        contentValues.put(SURVEY6COL_8,rabbit);
-        contentValues.put(SURVEY6COL_9,rabbit_dw);
-        contentValues.put(SURVEY6COL_10,duck);
-        contentValues.put(SURVEY6COL_11,duck_dw);
-        contentValues.put(SURVEY6COL_12,pigeon);
-        contentValues.put(SURVEY6COL_13,pigeon_dw);
-        contentValues.put(SURVEY6COL_14,quail);
-        contentValues.put(SURVEY6COL_15,quail_dw);
-        contentValues.put(SURVEY6COL_16,turkey);
-        contentValues.put(SURVEY6COL_17,turkey_dw);
-        contentValues.put(SURVEY6COL_18,total);
-        contentValues.put(SURVEY6COL_19,createdAt);
+        contentValues.put(SURVEY6COL_5,horse);
+        contentValues.put(SURVEY6COL_6,rabbit);
+        contentValues.put(SURVEY6COL_7,duck);
+        contentValues.put(SURVEY6COL_8,turkey);
+        contentValues.put(SURVEY6COL_9,goose);
+        contentValues.put(SURVEY6COL_10,total);
+        contentValues.put(SURVEY6COL_9,createdAt);
         long result = db.insert(TABLE_SURVEY6,null ,contentValues);
         if(result == -1)
 
@@ -636,14 +618,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean addVaccinationDate(String petid, String datevacc, String created_at)
+    public boolean addVaccinationDate(String petid, String datevacc, String vacc_by,String created_at)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(VACC_DATE_2,petid);
         contentValues.put(VACC_DATE_3,datevacc);
-        contentValues.put(VACC_DATE_4,created_at);
+        contentValues.put(VACC_DATE_4,vacc_by);
+        contentValues.put(VACC_DATE_5,created_at);
         long result = db.insert(TABLE_VACC_DATE,null ,contentValues);
         if(result == -1)
             return false;

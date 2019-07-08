@@ -44,7 +44,7 @@ public class VaccinationActivity extends AppCompatActivity {
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
-    Spinner txtbreed, txtGender, txtSpecie, txtColorMark;
+    Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby;
     DatabaseHelper myDB;
     String age,ownerid, petid;
     Integer position, year, ctr;
@@ -73,6 +73,7 @@ public class VaccinationActivity extends AppCompatActivity {
         otherbreed = findViewById(R.id.txtbreedother);
         othercolormark = findViewById(R.id.txtcolorother);
         txtxDateVacc = findViewById(R.id.txtxDateVacc);
+        txtvaccinatedby = findViewById(R.id.txtvaccinatedby);
         txtAge = findViewById(R.id.txtAge);
         txtcolor = findViewById(R.id.txtcolor);
         otherbreed.setVisibility(View.GONE);
@@ -168,9 +169,16 @@ public class VaccinationActivity extends AppCompatActivity {
 
                 final String petname = txtpetname.getText().toString();
                 final String specie = txtSpecie.getSelectedItem().toString();
-                final String breed = txtbreed.getSelectedItem().toString();
+                final String breed;
+
+                if(specie == "Monkey"){
+                      breed = "";
+                }else{
+                      breed = txtbreed.getSelectedItem().toString();
+                }
                 final String other_breed;
                 final String gender = txtGender.getSelectedItem().toString();
+                final String vacc_by = txtvaccinatedby.getSelectedItem().toString();
                 final String birthdate = dateSurvey.getText().toString();
                 final String agepet = age;
                 final String colormark = txtColorMark.getSelectedItem().toString();
@@ -190,6 +198,9 @@ public class VaccinationActivity extends AppCompatActivity {
                 }else{
                     other_breed = breed;
                 }
+
+
+
 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
@@ -247,7 +258,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                                     try {
                                         myDB.addVaccination(ownerid.trim(),petname.trim(),specie.trim(), other_breed.trim(),gender.trim(),birthdate.trim(),othercolor.trim(),petid,created_at);
-                                        myDB.addVaccinationDate(petid,datevacc,created_at);
+                                        myDB.addVaccinationDate(petid,datevacc,vacc_by,created_at);
 
                                         // Build an AlertDialog
                                         AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
@@ -311,7 +322,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                             case DialogInterface.BUTTON_NEGATIVE:
                                 // User clicked the No button
-                             
+
                                 break;
                         }
                     }
@@ -341,7 +352,8 @@ public class VaccinationActivity extends AppCompatActivity {
                 else if(selectedItem.equals("Dog")) {
                     txtbreed.setAdapter(adapter);}
                 else{
-                    txtbreed.setAdapter(adapter3);
+                    txtbreed.setVisibility(View.GONE);
+
                 }
             }
 

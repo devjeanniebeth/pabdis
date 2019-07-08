@@ -113,39 +113,7 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/pigeon">
 
-                    <EditText
-                        android:id="@+id/edtPigeon"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:text="0"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/quail">
-
-                    <EditText
-                        android:id="@+id/edtQuail"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:text="0"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/txtView10"
@@ -166,57 +134,51 @@
                 </android.support.design.widget.TextInputLayout>
 
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/goose">
+
+                    <EditText
+                        android:id="@+id/edtGoose"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="clip_vertical"
+                        android:ems="10"
+                        android:text="0"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:text="@string/total"
+                    android:text="@string/total_income"
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
-
-                <TableLayout
-                    android:id="@+id/tblayout7"
-                    android:layout_width="fill_parent"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtView11"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="0,1">
+                    android:hint="@string/total_income"
+                    >
 
-                    <TableRow
-                        android:id="@+id/tblrow7"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/edtTotal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:textColorHint="@color/textColor" />
 
-                        <Button
-                            android:id="@+id/btnCompute"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="@string/compute"
-                            android:textColor="@android:color/white" />
-
-
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/txtView11"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            >
-
-                            <EditText
-                                android:id="@+id/edtTotal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_column="1"
-                                android:ems="10"
-                                android:inputType="number"
-                                android:textAlignment="center"
-                                android:textColorHint="@color/textColor" />
-
-                        </android.support.design.widget.TextInputLayout>
-                    </TableRow>
-                </TableLayout>
-
+                </android.support.design.widget.TextInputLayout>
 
                 <Button
                     android:id="@+id/btnProceedSurvey"

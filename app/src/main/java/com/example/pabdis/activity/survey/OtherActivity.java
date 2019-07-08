@@ -27,7 +27,7 @@ public class OtherActivity extends AppCompatActivity {
     FloatingActionButton skip;
     String ownerid, petid;
     DatabaseHelper myDB;
-    EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtOthersName,edtOthersNum,edtTotal;
+    EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtGoose,edtOthersNum,edtTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +53,7 @@ public class OtherActivity extends AppCompatActivity {
         edtHorse = findViewById(R.id.edtHorse);
         edtRabbit = findViewById(R.id.edtRabbit);
         edtDuck = findViewById(R.id.edtDuck);
-        edtPigeon = findViewById(R.id.edtPigeon);
-        edtQuail = findViewById(R.id.edtQuail);
+        edtGoose = findViewById(R.id.edtGoose);
         edtTurkey = findViewById(R.id.edtTurkey);
 
         edtTotal = findViewById(R.id.edtTotal);
@@ -132,8 +131,7 @@ public class OtherActivity extends AppCompatActivity {
                 final String horse = edtHorse.getText().toString();
                 final String rabbit = edtRabbit.getText().toString();
                 final String duck = edtDuck.getText().toString();
-                final String pigeon = edtPigeon.getText().toString();
-                final String quail = edtQuail.getText().toString();
+                final String goose = edtGoose.getText().toString();
                 final String turkey = edtTurkey.getText().toString();
                 final  String total = edtTotal.getText().toString();
 
@@ -166,12 +164,11 @@ public class OtherActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 if (sheep.equals("") || horse.equals("") || rabbit.equals("") ||
-                                        duck.equals("") || pigeon.equals("") || quail.equals("") ||
-                                        turkey.equals("") ) {
+                                        duck.equals("") || turkey.equals("") ) {
 
                                 }else {
                                     try {
-//                                        myDB.addOther(ownerid, sheep,1,horse,1, rabbit,1, duck,1, pigeon,1, quail, turkey,"" ,total, created_at);
+                                        myDB.addOther(ownerid, sheep,horse, rabbit, duck, turkey,goose ,total, created_at);
                                         Toast.makeText(OtherActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                         intent.putExtra("owner_id", ownerid);

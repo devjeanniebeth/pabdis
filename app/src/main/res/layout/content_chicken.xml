@@ -245,7 +245,7 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/sl_farm_kg">
+                            android:hint="@string/dressed_kg">
 
                             <EditText
                                 android:id="@+id/edtSF_sw_kg"
@@ -262,7 +262,7 @@
                             android:id="@+id/txtView9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/sl_farm_hd">
+                            android:hint="@string/dressed_hd">
 
                             <EditText
                                 android:id="@+id/edtSF_sw_hd"
@@ -290,7 +290,7 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/sl_abb_kg">
+                            android:hint="@string/sold_kg">
 
                             <EditText
                                 android:id="@+id/edtSA_sw_kg"
@@ -308,7 +308,7 @@
                             android:id="@+id/txtView10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/sl_abb_hd">
+                            android:hint="@string/sold_hd">
 
                             <EditText
                                 android:id="@+id/edtSA_sw_hd"

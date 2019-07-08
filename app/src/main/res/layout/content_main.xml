@@ -212,7 +212,7 @@
                         android:textColorHint="@color/colorPrimaryDark"
                         android:maxLines="1"
                         android:maxLength="11"
-                        android:inputType="number" />
+                        android:inputType="phone" />
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -290,20 +290,22 @@
                 </android.support.design.widget.TextInputLayout>
 
 
-
                 <TextView
                     android:id="@+id/tv_longitude"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="16dp" />
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
 
                 <TextView
                     android:id="@+id/tv_latitude"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="16dp" />
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
 
 
                 <Button

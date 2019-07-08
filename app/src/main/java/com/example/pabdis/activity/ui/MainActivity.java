@@ -1,5 +1,6 @@
 package com.example.pabdis.activity.ui;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -56,22 +58,24 @@ import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,LocationListener{
+        implements NavigationView.OnNavigationItemSelectedListener, LocationListener {
 
-    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact,edtEstab,edtCoop;
-    TextView tvLatitude,tvLongitude;
+    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact, edtEstab, edtCoop;
+    TextView tvLatitude, tvLongitude;
     Double lang, longi;
-    Spinner muni, brgy,ownertype;
+    Spinner muni, brgy, ownertype;
     public static String tvLongi;
     public static String tvLati;
     Integer position, year, ctr;
     DatabaseHelper myDB;
+    Context mContext;
     Character first;
-    String ownerid, petid, ownerinfo, add;
+    String ownerid, petid, ownerinfo, add, addrsss;
     Button btndate, proceedSurvey;
     LocationManager locationManager;
+    Double latitude, longitude;
     Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-    ArrayAdapter<CharSequence> munici, brgylt, brgy_kib, brgy_it,brgy_bug,brgy_kab,brgy_sab,brgy_man,brgy_bak,brgy_tba,brgy_tbl,brgy_at,brgy_bok,brgy_kap;
+    ArrayAdapter<CharSequence> munici, brgylt, brgy_kib, brgy_it, brgy_bug, brgy_kab, brgy_sab, brgy_man, brgy_bak, brgy_tba, brgy_tbl, brgy_at, brgy_bok, brgy_kap;
     final Calendar myCalendar = Calendar.getInstance();
 
     @Override
@@ -228,26 +232,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-
         proceedSurvey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                try {
-                    List<Address> addresses = geocoder.getFromLocation(lang, longi, 1);
-                    add = addresses.get(0).getAddressLine(0).toString();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                final String addrsss;
-                addrsss = add;
-
-
-
 
 
                 final String rfname = firstname2.getText().toString();
@@ -279,7 +266,7 @@ public class MainActivity extends AppCompatActivity
                 position = brgy.getSelectedItemPosition();
                 position++;
                 year = Calendar.getInstance().get(Calendar.YEAR);
-
+                addrsss = "";
                 ctr = myDB.getData(mun);
                 ctr++;
                 first = mun.charAt(0);
@@ -303,12 +290,12 @@ public class MainActivity extends AppCompatActivity
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
 
-                                if (rfname.equals("") || rlname.equals("") || num.equals("") || house.equals("") ) {
-                                    Toast.makeText(MainActivity.this, ""  , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-                                    intent.putExtra("ownerid", ownerid);
-                                    intent.putExtra("petid", petid);
-                                    startActivity(intent);
+                                if (rfname.equals("") || rlname.equals("") || house.equals("") ) {
+                                    Toast.makeText(MainActivity.this, ""+latitude + longitude  , Toast.LENGTH_SHORT).show();
+//                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+//                                    intent.putExtra("ownerid", ownerid);
+//                                    intent.putExtra("petid", petid);
+//                                    startActivity(intent);
                                 }else{
 
                                     try {
@@ -316,9 +303,9 @@ public class MainActivity extends AppCompatActivity
                                         Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
 
-                                        if(!ownert.equals("Household"))
+                                        if(ownert.equals("Establishment"))
                                         {
-                                            Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                             intent.putExtra("ownerid", ownerid.trim());
                                             intent.putExtra("petid", petid.trim());
                                             startActivity(intent);
@@ -359,11 +346,8 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
-
-
-
     }
+
 
     public static void showDebugDBAddressLogToast(Context context) {
         if (BuildConfig.DEBUG) {
@@ -381,7 +365,7 @@ public class MainActivity extends AppCompatActivity
     public void getLocation() {
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
         } catch (SecurityException e) {
             e.printStackTrace();
         }
@@ -399,6 +383,7 @@ public class MainActivity extends AppCompatActivity
     public void onResume() {
         super.onResume();
         getLocation();
+//        isLocationEnabled();
     }
 
     /* Remove the locationlistener updates when Activity is paused */
@@ -480,27 +465,80 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void isLocationEnabled() {
+
+        if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+            AlertDialog.Builder alertDialog=new AlertDialog.Builder(mContext);
+            alertDialog.setTitle("Enable Location");
+            alertDialog.setMessage("Your locations setting is not enabled. Please enabled it in settings menu.");
+            alertDialog.setPositiveButton("Location Settings", new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    Intent intent=new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(intent);
+                }
+            });
+            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert=alertDialog.create();
+            alert.show();
+        }
+        else{
+            AlertDialog.Builder alertDialog=new AlertDialog.Builder(mContext);
+            alertDialog.setTitle("Confirm Location");
+            alertDialog.setMessage("Your Location is enabled, please enjoy");
+            alertDialog.setNegativeButton("Back to interface",new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface dialog, int which){
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert=alertDialog.create();
+            alert.show();
+        }
+    }
+
+
+
 
     @Override
     public void onLocationChanged(Location location) {
-
-
-        // Getting reference to TextView tv_longitude
-        tvLongitude = findViewById(R.id.tv_longitude);
-        // Getting reference to TextView tv_latitude
-        tvLatitude = findViewById(R.id.tv_latitude);
-
-        tvLongi = String.valueOf(location.getLongitude());
-        longi = location.getLongitude();
-        tvLati= String.valueOf(location.getLatitude());
-        lang = location.getLatitude();
-
-        // Setting Current Longitude
+//
+//
+//        // Getting reference to TextView tv_longitude
+//        tvLongitude = findViewById(R.id.tv_longitude);
+//        // Getting reference to TextView tv_latitude
+//        tvLatitude = findViewById(R.id.tv_latitude);
+//
+//        tvLongi = String.valueOf(location.getLongitude());
+//        longi = location.getLongitude();
+//        tvLati= String.valueOf(location.getLatitude());
+//        lang = location.getLatitude();
+//
+//        // Setting Current Longitude
 //        tvLongitude.setText("Longitude:" + tvLongi);
-        // Setting Current Latitude
+//        // Setting Current Latitude
 //        tvLatitude.setText("Latitude:" + tvLati);
+//
+//        Toast.makeText(this, "Your location is set!" + longi,
+//                Toast.LENGTH_SHORT).show();
 
-        Toast.makeText(this, "Your location is set!",
+         latitude = location.getLatitude();
+         longitude = location.getLongitude();
+//
+//        try {
+//            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
+//            add = addresses.get(0).getAddressLine(0).toString();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        addrsss = add;
+
+        String msg="New Latitude: "+latitude + "New Longitude: "+longitude;
+
+        Toast.makeText(this, "Your location is set!" + msg,
                 Toast.LENGTH_SHORT).show();
 
 
