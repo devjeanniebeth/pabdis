@@ -292,10 +292,10 @@ public class MainActivity extends AppCompatActivity
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") ) {
                                     Toast.makeText(MainActivity.this, ""+latitude + longitude  , Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-//                                    intent.putExtra("ownerid", ownerid);
-//                                    intent.putExtra("petid", petid);
-//                                    startActivity(intent);
+                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                    intent.putExtra("ownerid", ownerid);
+                                    intent.putExtra("petid", petid);
+                                    startActivity(intent);
                                 }else{
 
                                     try {
@@ -306,14 +306,14 @@ public class MainActivity extends AppCompatActivity
                                         if(ownert.equals("Establishment"))
                                         {
                                             Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-                                            intent.putExtra("ownerid", ownerid.trim());
-                                            intent.putExtra("petid", petid.trim());
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
                                             startActivity(intent);
 
                                         }else{
                                             Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
-                                            intent.putExtra("ownerid", ownerid.trim());
-                                            intent.putExtra("petid", petid.trim());
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
                                             startActivity(intent);
                                         }
 
@@ -365,7 +365,7 @@ public class MainActivity extends AppCompatActivity
     public void getLocation() {
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, this);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 5000, 5, this);
         } catch (SecurityException e) {
             e.printStackTrace();
         }
@@ -507,25 +507,25 @@ public class MainActivity extends AppCompatActivity
 //
 //
 //        // Getting reference to TextView tv_longitude
-//        tvLongitude = findViewById(R.id.tv_longitude);
+        tvLongitude = findViewById(R.id.tv_longitude);
 //        // Getting reference to TextView tv_latitude
-//        tvLatitude = findViewById(R.id.tv_latitude);
+        tvLatitude = findViewById(R.id.tv_latitude);
 //
-//        tvLongi = String.valueOf(location.getLongitude());
-//        longi = location.getLongitude();
-//        tvLati= String.valueOf(location.getLatitude());
-//        lang = location.getLatitude();
+        tvLongi = String.valueOf(location.getLongitude());
+        longi = location.getLongitude();
+        tvLati= String.valueOf(location.getLatitude());
+        lang = location.getLatitude();
 //
 //        // Setting Current Longitude
-//        tvLongitude.setText("Longitude:" + tvLongi);
+        tvLongitude.setText("Longitude:" + tvLongi);
 //        // Setting Current Latitude
-//        tvLatitude.setText("Latitude:" + tvLati);
+        tvLatitude.setText("Latitude:" + tvLati);
 //
 //        Toast.makeText(this, "Your location is set!" + longi,
 //                Toast.LENGTH_SHORT).show();
 
-         latitude = location.getLatitude();
-         longitude = location.getLongitude();
+//         latitude = location.getLatitude();
+//         longitude = location.getLongitude();
 //
 //        try {
 //            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
@@ -536,7 +536,7 @@ public class MainActivity extends AppCompatActivity
 //
 //        addrsss = add;
 
-        String msg="New Latitude: "+latitude + "New Longitude: "+longitude;
+        String msg="New Latitude: "+tvLati + "New Longitude: "+tvLongi;
 
         Toast.makeText(this, "Your location is set!" + msg,
                 Toast.LENGTH_SHORT).show();

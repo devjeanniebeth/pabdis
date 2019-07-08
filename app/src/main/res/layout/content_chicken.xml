@@ -94,57 +94,6 @@
 
                 </android.support.design.widget.TextInputLayout>
 
-
-                <TextView
-                    android:id="@+id/txt9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Total Area in sqm."
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/total_area">
-
-                    <EditText
-                        android:id="@+id/edtTotalArea"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/txtincome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:hint="@string/total_income">
-
-                    <EditText
-                        android:id="@+id/edtTotalIncome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
                 <!--TOTAL-->
                 <TextView
                     android:id="@+id/txt8"
@@ -196,10 +145,65 @@
                     </TableRow>
                 </TableLayout>
 
+
+                <TextView
+                    android:id="@+id/txt9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Total Area in sqm."
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/total_area">
+
+                    <EditText
+                        android:id="@+id/edtTotalArea"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/txtincome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:hint="@string/total_income">
+
+                    <EditText
+                        android:id="@+id/edtTotalIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Egg Production"
+                    android:text="@string/egg_production"
                     android:textAlignment="center"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -209,7 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:hint="@string/production">
+                    android:hint="@string/production_of_eggs_in_pieces">
 
                     <EditText
                         android:id="@+id/edtProd"

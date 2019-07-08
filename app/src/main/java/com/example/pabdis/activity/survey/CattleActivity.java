@@ -96,7 +96,7 @@ public class CattleActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                 intent.putExtra("owner_id",ownerid);
-                                intent.putExtra("petid", petid.trim());
+                                intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
 
@@ -178,7 +178,7 @@ public class CattleActivity extends AppCompatActivity {
                                         Toast.makeText(CattleActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                         intent.putExtra("owner_id",ownerid);
-                                        intent.putExtra("petid", petid.trim());
+                                        intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

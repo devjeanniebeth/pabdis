@@ -79,7 +79,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                 intent.putExtra("owner_id",ownerid);
-                                intent.putExtra("petid", petid.trim());
+                                intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
 
@@ -148,7 +148,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                         Toast.makeText(HouseholdActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                         intent.putExtra("owner_id", ownerid);
-                                        intent.putExtra("petid", petid.trim());
+                                        intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -170,7 +170,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                         Toast.makeText(HouseholdActivity.this, "Success survey!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                         intent.putExtra("owner_id", ownerid);
-                                        intent.putExtra("petid", petid.trim());
+                                        intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

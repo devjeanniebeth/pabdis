@@ -186,7 +186,7 @@ public class ChickenActivity extends AppCompatActivity {
                                 if (broiler.equals("") || layer.equals("") || snative.equals("") ||
                                         total.equals("") || prod.equals("") || ch_sf_kg.equals("") || ch_sf__hd.equals("")
                                         || ch_sa_kg.equals("") || ch_sa__hd.equals("")  || ch_totala.equals("") || ch_totali.equals("")  ) {
-                                    Toast.makeText(ChickenActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ChickenActivity.this, "Check your input!"+ownerid +broiler+layer+snative+total  , Toast.LENGTH_SHORT).show();
                                 }else {
 
                                     try {
@@ -195,7 +195,7 @@ public class ChickenActivity extends AppCompatActivity {
                                         Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                         intent.putExtra("owner_id",ownerid);
-                                        intent.putExtra("petid", petid.trim());
+                                        intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

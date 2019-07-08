@@ -99,7 +99,7 @@ public class OtherActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                 intent.putExtra("owner_id",ownerid);
-                                intent.putExtra("petid", petid.trim());
+                                intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
 
@@ -172,7 +172,7 @@ public class OtherActivity extends AppCompatActivity {
                                         Toast.makeText(OtherActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                         intent.putExtra("owner_id", ownerid);
-                                        intent.putExtra("petid", petid.trim());
+                                        intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

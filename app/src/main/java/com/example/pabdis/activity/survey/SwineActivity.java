@@ -93,6 +93,9 @@ public class SwineActivity extends AppCompatActivity {
             petid = (String) savedInstanceState.getSerializable("petid");
         }
 
+
+
+
         compute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,6 +108,8 @@ public class SwineActivity extends AppCompatActivity {
                 final Integer sowu = Integer.parseInt(edtSowU.getText().toString());
                 final Integer pign = Integer.parseInt(edtPigN.getText().toString());
                 final Integer pigu = Integer.parseInt(edtPigU.getText().toString());
+
+
 
 
 
@@ -137,7 +142,7 @@ public class SwineActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                                 intent.putExtra("owner_id",ownerid);
-                                intent.putExtra("petid", petid.trim());
+                                intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
 
@@ -223,7 +228,7 @@ public class SwineActivity extends AppCompatActivity {
                                         Toast.makeText(SwineActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                                         intent.putExtra("owner_id", ownerid);
-                                        intent.putExtra("petid", petid.trim());
+                                        intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

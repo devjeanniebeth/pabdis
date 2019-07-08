@@ -237,6 +237,8 @@
     <string name="date_vaccination">DATE VACCINATION</string>
     <string name="vaccinated_by">VACCINATED BY</string>
     <string name="goose">GOOSE</string>
+    <string name="production_of_eggs_in_pieces">Production of Eggs (in pieces)</string>
+    <string name="egg_production">Egg Production</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>
