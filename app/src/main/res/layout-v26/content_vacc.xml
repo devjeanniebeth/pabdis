@@ -33,6 +33,12 @@
                     android:text="@string/vaccination"
                     android:textColor="#fff"
                     android:textSize="18sp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </FrameLayout>
             </RelativeLayout>
 
 
@@ -42,13 +48,19 @@
                 android:layout_marginTop="60dp"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/imgPet"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:scaleType="fitCenter"
-                    android:contentDescription="@string/pet_image" />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="50dp">
+
+                    <ImageView
+                        android:id="@+id/imgPet"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="@string/pet_image"
+                        android:scaleType="fitCenter" />
+                </FrameLayout>
 
                 <Button
                     android:id="@+id/btnChoose"
@@ -101,6 +113,7 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/strngbreed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/breed"
@@ -241,7 +254,7 @@
 
 
                     <EditText
-                        android:id="@+id/txtcolor"
+                        android:id="@+id/txtdistinguish"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"

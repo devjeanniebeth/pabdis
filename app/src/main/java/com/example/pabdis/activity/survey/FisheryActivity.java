@@ -77,7 +77,7 @@ public class FisheryActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
-                                intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("ownerid",ownerid);
                                 intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
@@ -138,14 +138,14 @@ public class FisheryActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 if (f_area.equals("") || f_prod.equals("") || f_inc.equals("") ||
                                         a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
-                                    Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(FisheryActivity.this, "Check your input!"+ownerid , Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         myDB.addFishery(ownerid, f_area, f_prod, f_inc,created_at);
                                         myDB.addApiary(ownerid,a_col, a_prod, a_inc, created_at);
                                         Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
-                                        intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {

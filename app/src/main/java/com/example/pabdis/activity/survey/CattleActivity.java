@@ -95,7 +95,7 @@ public class CattleActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
-                                intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("ownerid",ownerid);
                                 intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
@@ -177,7 +177,7 @@ public class CattleActivity extends AppCompatActivity {
                                                 ca_totali ,vacc.trim(), vacct.trim(),dewormed.trim(),created_at );
                                         Toast.makeText(CattleActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
-                                        intent.putExtra("owner_id",ownerid);
+                                        intent.putExtra("ownerid",ownerid);
                                         intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {

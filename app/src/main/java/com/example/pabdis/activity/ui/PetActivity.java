@@ -1,26 +1,50 @@
 package com.example.pabdis.activity.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.helper.ListAdapter;
+import com.example.pabdis.activity.helper.Owner;
+import com.example.pabdis.activity.helper.Pet;
+
+import java.util.ArrayList;
 
 public class PetActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    DatabaseHelper myDB;
+    ListView LISTVIEW;
+    ListAdapter listAdapter;
+    EditText searchView;
+    Cursor cursor;
+    ArrayList<Pet> PetList = new ArrayList<Pet>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        myDB = new DatabaseHelper(getApplicationContext());
+        LISTVIEW = findViewById(R.id.listView1);
+        searchView = findViewById(R.id.searchEdt);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -31,6 +55,48 @@ public class PetActivity extends AppCompatActivity
 
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        LISTVIEW.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(final AdapterView<?> adapterView, final View view, int position, long l) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
+                builder.setTitle("Choose option");
+                builder.setMessage("Update or delete user?");
+                builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        //go to update activity
+                        //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
+                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+
+
+
+                    }
+                });
+                builder.setNegativeButton("View", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                });
+
+                builder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DatabaseHelper dbHelper = new DatabaseHelper(PetActivity.this);
+                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.create().show();
+            }
+        });
     }
 
     @Override

@@ -198,7 +198,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_VACC = "pvet_pet";
     public static final String VACCCOL_1 = "id";
-    public static final String VACCCOL_2 = "user_id";
     public static final String VACCCOL_3 = "owner_id";
     public static final String VACCCOL_4 = "petname";
     public static final String VACCCOL_5 = "species";
@@ -206,8 +205,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VACCCOL_7 = "sex";
     public static final String VACCCOL_8 = "birthday";
     public static final String VACCCOL_9 = "color_marking";
-    public static final String VACCCOL_10 = "Pet_ID";
-    public static final String VACCCOL_11 = "created_at";
+    public static final String VACCCOL_10 = "distinguish_feature";
+    public static final String VACCCOL_11 = "Pet_ID";
+    public static final String VACCCOL_12 = "created_at";
 
     public static final String TABLE_VACC_DATE = "pvet_pet_vaccination";
     public static final String VACC_DATE_1 = "id";
@@ -286,8 +286,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String CREATE_VACC_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC + "("
                 + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
-                + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, " + VACCCOL_10 + " TEXT, "
-                + VACCCOL_11 + " TEXT" +")";
+                + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, " + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, "
+                + VACCCOL_12 + " TEXT" +")";
 
         String CREATE_VACC_DATE_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC_DATE + "("
                 + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"  + VACC_DATE_3 + " TEXT,"  + VACC_DATE_4 + " TEXT,"   + VACC_DATE_5 + " TEXT" +")";
@@ -594,7 +594,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public boolean addVaccination(String owner_id,
-                                  String petname, String species,String breed, String sex,String birthday, String colormarking,
+                                  String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
                                   String petid, String createdAt )
     {
 
@@ -607,8 +607,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_7,sex);
         contentValues.put(VACCCOL_8,birthday);
         contentValues.put(VACCCOL_9,colormarking);
-        contentValues.put(VACCCOL_10,petid);
-        contentValues.put(VACCCOL_11,createdAt);
+        contentValues.put(VACCCOL_10,distinctfeat);
+        contentValues.put(VACCCOL_11,petid);
+        contentValues.put(VACCCOL_12,createdAt);
         long result = db.insert(TABLE_VACC,null ,contentValues);
         if(result == -1)
             return false;
@@ -634,9 +635,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
 
     }
-
-
-
 
     public static String strSeparator = "__,__";
     public static String convertArrayToString(String[] array){
@@ -668,7 +666,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public int getCountPet(String ownerid, String species) {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT COUNT(*) from "+TABLE_VACC+" WHERE "+VACCCOL_3+"='"+ownerid+" AND "+VACCCOL_5+"="+species+"";
+        String query = "SELECT COUNT(*) from "+TABLE_VACC+" WHERE "+VACCCOL_3+"='"+ownerid+"' AND "+VACCCOL_5+"='"+species+"'";
         Cursor res =  db.rawQuery(query,null);
         res.moveToFirst();
         int count = res.getInt(0);

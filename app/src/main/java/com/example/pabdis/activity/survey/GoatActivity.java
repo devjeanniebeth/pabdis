@@ -99,7 +99,7 @@ public class GoatActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
-                                intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("ownerid",ownerid);
                                 intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
@@ -170,7 +170,7 @@ public class GoatActivity extends AppCompatActivity {
                                 if (buckd.equals("") || buckm.equals("") || doed.equals("") ||
                                         doem.equals("") || kidsd.equals("") || kidsm.equals("") ||
                                         go_sf_kg.equals("") ||  go_sf_hd.equals("") || go_sa_kg.equals("") || go_sa_hd.equals("") || go_totala.equals("") || go_totali.equals("")  ) {
-                                    Toast.makeText(GoatActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(GoatActivity.this, "Check your input!"+ ownerid, Toast.LENGTH_SHORT).show();
 
                                 }else {
 
@@ -180,7 +180,7 @@ public class GoatActivity extends AppCompatActivity {
                                                 go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
                                         Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
-                                        intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {

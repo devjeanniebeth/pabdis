@@ -103,8 +103,7 @@ public class OwnerActivity extends AppCompatActivity
     @Override
     protected void onResume() {
 
-        ShowSQLiteDBdata() ;
-
+        ShowSQLiteDBdata();
         super.onResume();
     }
 
@@ -120,14 +119,15 @@ public class OwnerActivity extends AppCompatActivity
 
                 String id =  ("ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_1)));
                 String ownerid = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_3)));
-                String r_full = ("Owner Name: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_7)) );
-                String h_full = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
-                String contact = ("Contact: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
-                String muni =  ("Municipality: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
-                String brgy =  ("Barangay: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
-                String createdat =  ("Created At: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11)));
-                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_12));
-                owner = new Owner(id,ownerid,h_full,r_full,contact,housenum, muni,brgy,createdat);
+                String r_full = ("Owner Name: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
+//                String h_full = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
+//                String owner_info = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
+                String contact = ("Contact: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_7)));
+                String muni =  ("Municipality: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
+                String brgy =  ("Barangay: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
+                String createdat =  ("Created At: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_14)));
+                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10));
+                owner = new Owner(id,ownerid,r_full,contact,housenum, muni,brgy,createdat);
                 OwnerList.add(owner);
             } while (cursor.moveToNext());
         }

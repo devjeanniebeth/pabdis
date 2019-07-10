@@ -141,7 +141,7 @@ public class SwineActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
-                                intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("ownerid",ownerid);
                                 intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
@@ -221,13 +221,13 @@ public class SwineActivity extends AppCompatActivity {
 
                                 }else {
                                     try {
-                                        myDB.addSwine(ownerid.trim(), boarn.trim(), boaru.trim(), sown.trim(),
+                                        myDB.addSwine(ownerid, boarn.trim(), boaru.trim(), sown.trim(),
                                                 sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
                                                 swntotal.trim(), swn_sf_kg.trim(), swn_sf_hd.trim(),swn_sa_kg.trim(), swn_sa_hd.trim(), swn_totala.trim(),
                                                 swn_totali.trim(),vacc.trim(), vacct.trim(), dewormed.trim(),created_at.trim());
                                         Toast.makeText(SwineActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
-                                        intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {

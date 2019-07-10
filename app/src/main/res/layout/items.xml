@@ -34,18 +34,6 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/txtViewFullH"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textViewID"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:text="Owner Name"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#050505"
-            android:textSize="18sp" />
-
-        <TextView
             android:id="@+id/txtViewFullR"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

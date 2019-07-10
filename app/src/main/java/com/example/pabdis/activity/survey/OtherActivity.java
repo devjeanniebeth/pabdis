@@ -47,7 +47,6 @@ public class OtherActivity extends AppCompatActivity {
         }
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
-        compute = findViewById(R.id.btnCompute);
         skip = findViewById(R.id.fab);
         edtSheep = findViewById(R.id.edtSheep);
         edtHorse = findViewById(R.id.edtHorse);
@@ -57,25 +56,6 @@ public class OtherActivity extends AppCompatActivity {
         edtTurkey = findViewById(R.id.edtTurkey);
 
         edtTotal = findViewById(R.id.edtTotal);
-        edtTotal.setEnabled(false);
-
-        compute.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Integer sheep = Integer.parseInt(edtSheep.getText().toString());
-                final Integer horse = Integer.parseInt(edtHorse.getText().toString());
-                final Integer rabbit = Integer.parseInt(edtRabbit.getText().toString());
-                final Integer duck = Integer.parseInt(edtDuck.getText().toString());
-                final Integer pigeon = Integer.parseInt(edtPigeon.getText().toString());
-                final Integer quail = Integer.parseInt(edtQuail.getText().toString());
-                final Integer turkey = Integer.parseInt(edtTurkey.getText().toString());
-
-
-
-                final Integer total = sheep + horse + rabbit + duck +  pigeon + quail + turkey;
-                edtTotal.setText(String.valueOf(total));
-            }
-        });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +78,7 @@ public class OtherActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
-                                intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("ownerid",ownerid);
                                 intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
@@ -165,13 +145,15 @@ public class OtherActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 if (sheep.equals("") || horse.equals("") || rabbit.equals("") ||
                                         duck.equals("") || turkey.equals("") ) {
+                                    Toast.makeText(OtherActivity.this, "Check your input!" + ownerid , Toast.LENGTH_LONG).show();
+
 
                                 }else {
                                     try {
                                         myDB.addOther(ownerid, sheep,horse, rabbit, duck, turkey,goose ,total, created_at);
                                         Toast.makeText(OtherActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
-                                        intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {

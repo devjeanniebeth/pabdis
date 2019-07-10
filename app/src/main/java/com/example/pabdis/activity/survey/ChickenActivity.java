@@ -113,8 +113,8 @@ public class ChickenActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
-                                intent.putExtra("owner_id",ownerid);
-                                intent.putExtra("petid", petid.trim());
+                                intent.putExtra("ownerid",ownerid);
+                                intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
 
@@ -186,7 +186,7 @@ public class ChickenActivity extends AppCompatActivity {
                                 if (broiler.equals("") || layer.equals("") || snative.equals("") ||
                                         total.equals("") || prod.equals("") || ch_sf_kg.equals("") || ch_sf__hd.equals("")
                                         || ch_sa_kg.equals("") || ch_sa__hd.equals("")  || ch_totala.equals("") || ch_totali.equals("")  ) {
-                                    Toast.makeText(ChickenActivity.this, "Check your input!"+ownerid +broiler+layer+snative+total  , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ChickenActivity.this, "Check your input!"+ownerid  , Toast.LENGTH_SHORT).show();
                                 }else {
 
                                     try {
@@ -194,7 +194,7 @@ public class ChickenActivity extends AppCompatActivity {
                                                 ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim(),created_at );
                                         Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
-                                        intent.putExtra("owner_id",ownerid);
+                                        intent.putExtra("ownerid",ownerid);
                                         intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {

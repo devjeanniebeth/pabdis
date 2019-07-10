@@ -4,7 +4,7 @@ public class Owner {
 
     String id = null;
     String ownerid = null;
-    String h_full = null;
+    String owner_info = null;
     String r_full = null;
     String contact_no = null;
     String municipality = null;
@@ -13,15 +13,15 @@ public class Owner {
     String createdat = null;
 
 
-    public Owner(String id, String ownerid, String h_full,
+    public Owner(String id, String ownerid,
                  String r_full, String contact_no, String house, String municipality, String barangay,
                  String createdat) {
 
         super();
 
-            this.id = id;
+        this.id = id;
         this.ownerid = ownerid;
-        this.h_full = h_full;
+//        this.owner_info =
         this.r_full = r_full;
         this.contact_no = contact_no;
         this.house = house;
@@ -52,14 +52,14 @@ public class Owner {
 
     }
 
-    public String getH_full() {
+    public String getOwner_info() {
 
-        return h_full;
+        return owner_info;
 
     }
-    public void setH_full(String h_full) {
+    public void setOwner_info(String owner_info) {
 
-        this.h_full = h_full;
+        this.owner_info = owner_info;
 
     }
 
@@ -132,7 +132,7 @@ public class Owner {
     @Override
     public String toString() {
 
-        return  id + " " + ownerid + " " +  h_full + " " +  r_full + " " +
+        return  id + " " + ownerid  + " " +  r_full + " " +
                 contact_no + " " + house + " " + municipality  + " "
                 + barangay + " " + createdat;
 

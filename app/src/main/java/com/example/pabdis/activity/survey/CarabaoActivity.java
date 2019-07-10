@@ -97,7 +97,7 @@ public class CarabaoActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
-                                intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("ownerid",ownerid);
                                 intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
@@ -166,18 +166,36 @@ public class CarabaoActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                try {
-                                    myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf_kg,car_sf_hd,car_sa_kg,car_sa_hd,
-                                            car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
-                                    Toast.makeText(CarabaoActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
-                                    intent.putExtra("owner_id",ownerid);
-                                    intent.putExtra("petid", petid);
-                                    startActivity(intent);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
 
+
+
+
+                                // User clicked the Yes button
+                                if (carabullc.equals("") || carabulln.equals("") || caracowc.equals("") ||
+                                        caracown.equals("") || caracalfc.equals("") || caracalfn.equals("") ||
+                                        car_sf_kg.equals("") || car_sf_hd.equals("") || car_sa_kg.equals("") ||
+                                        car_sa_hd.equals("") || car_totala.equals("") || car_totali.equals("") ||  vacc.equals("") || vacct.equals("") || dewormed.equals("")) {
+                                    Toast.makeText(CarabaoActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
+
+                                }else {
+                                    try {
+                                        myDB.addCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,car_sf_kg,car_sf_hd,car_sa_kg,car_sa_hd,
+                                                car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim(), created_at );
+                                        Toast.makeText(CarabaoActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
+                                        intent.putExtra("ownerid",ownerid);
+                                        intent.putExtra("petid", petid);
+                                        startActivity(intent);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+
+                                    }
                                 }
+
+
+
+
+
                                 break;
 
                             case DialogInterface.BUTTON_NEGATIVE:

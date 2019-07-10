@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.ui.MainActivity;
+import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.text.SimpleDateFormat;
@@ -50,7 +52,7 @@ public class HouseholdActivity extends AppCompatActivity {
                 petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
-                petid= extras.getString("ownerid");
+                petid= extras.getString("petid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
@@ -78,7 +80,7 @@ public class HouseholdActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-                                intent.putExtra("owner_id",ownerid);
+                                intent.putExtra("ownerid",ownerid);
                                 intent.putExtra("petid", petid);
                                 startActivity(intent);
                                 break;
@@ -141,13 +143,13 @@ public class HouseholdActivity extends AppCompatActivity {
 
                                 if (beef.equals("") || carabeef.equals("") || pork.equals("") ||
                                         chicken.equals("") || fish.equals("") || egg.equals("")) {
-                                    Toast.makeText(HouseholdActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HouseholdActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
                                         Toast.makeText(HouseholdActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-                                        intent.putExtra("owner_id", ownerid);
+                                        intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         startActivity(intent);
                                     } catch (Exception e) {
@@ -163,14 +165,12 @@ public class HouseholdActivity extends AppCompatActivity {
 
                                 if (beef.equals("") || carabeef.equals("") || pork.equals("") ||
                                         chicken.equals("") || fish.equals("") || egg.equals("")) {
-                                    Toast.makeText(HouseholdActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HouseholdActivity.this, "Check your input!"+ ownerid, Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
                                         Toast.makeText(HouseholdActivity.this, "Success survey!" , Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        intent.putExtra("owner_id", ownerid);
-                                        intent.putExtra("petid", petid);
+                                        Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

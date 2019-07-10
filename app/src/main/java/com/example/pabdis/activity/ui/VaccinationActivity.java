@@ -25,8 +25,6 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
-import com.example.pabdis.activity.survey.HouseholdActivity;
-import com.example.pabdis.activity.survey.SwineActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -37,7 +35,7 @@ import java.util.Random;
 public class VaccinationActivity extends AppCompatActivity {
 
 
-    EditText otherbreed, othercolormark, txtpetname, txtcolor;
+    EditText otherbreed, othercolormark, txtpetname, txtdistinguish;
     TextView dateSurvey,txtAge, txtxDateVacc,strngbreed;
     Button btndate, chooseImg, btnVacc, dateVacc;
     final Calendar myCalendar = Calendar.getInstance();
@@ -55,7 +53,7 @@ public class VaccinationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacc);
 
-
+        myDB = new DatabaseHelper(getApplicationContext());
         dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
         btnVacc = findViewById(R.id.btnVacc);
@@ -76,7 +74,7 @@ public class VaccinationActivity extends AppCompatActivity {
         txtvaccinatedby = findViewById(R.id.txtvaccinatedby);
         strngbreed = findViewById(R.id.strngbreed);
         txtAge = findViewById(R.id.txtAge);
-        txtcolor = findViewById(R.id.txtcolor);
+        txtdistinguish = findViewById(R.id.txtdistinguish);
         otherbreed.setVisibility(View.GONE);
         othercolormark.setVisibility(View.GONE);
 
@@ -88,7 +86,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
-                petid= extras.getString("ownerid");
+                petid= extras.getString("petid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
@@ -173,17 +171,19 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String breed;
 
                 if(specie == "Monkey"){
-                      breed = "";
+                      breed = "N/A";
                 }else{
                       breed = txtbreed.getSelectedItem().toString();
                 }
                 final String other_breed;
+
                 final String gender = txtGender.getSelectedItem().toString();
                 final String vacc_by = txtvaccinatedby.getSelectedItem().toString();
                 final String birthdate = txtxDateVacc.getText().toString();
                 final String agepet = age;
                 final String colormark = txtColorMark.getSelectedItem().toString();
                 final String othercolor;
+                final String feat = txtdistinguish.getText().toString();
                 final String datevacc = txtxDateVacc.getText().toString();
 
                 if(colormark == "Others")
@@ -208,17 +208,13 @@ public class VaccinationActivity extends AppCompatActivity {
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
-                String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-                StringBuilder salt = new StringBuilder();
-                Random rnd = new Random();
-                while (salt.length() < 5) { // length of the random string.
-                    int index = (int) (rnd.nextFloat() * SALTCHARS.length());
-                    salt.append(SALTCHARS.charAt(index));
-                }
 
-                final String end = salt.toString();
+
+                ctr = myDB.getCountPet(ownerid,specie);
+                ctr++;
+
                 first = specie.charAt(0);
-                final String pet = petid + first + "-" + end;
+                final String pet = petid + first + ctr;
 
 
                 // Build an AlertDialog
@@ -228,7 +224,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 builder.setTitle("There's no going back.");
 
                 // Ask the final question
-                builder.setMessage("Are you sure you want to save the data?");
+                builder.setMessage("Do you have any pet/s to be vaccinated?");
 
                 // Set click listener for alert dialog buttons
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -239,66 +235,32 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+  datevacc , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ petid +first + ctr , Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
-                                        myDB.addVaccination(ownerid.trim(),petname.trim(),specie.trim(), other_breed.trim(),gender.trim(),birthdate.trim(),othercolor.trim(),petid,created_at);
-                                        myDB.addVaccinationDate(petid,datevacc,vacc_by.trim(),created_at);
-
-                                        // Build an AlertDialog
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
-
-                                        // Set a title for alert dialog
-                                        builder.setTitle("There's no going back.");
-
-                                        // Ask the final question
-                                        builder.setMessage("Do you have another pet to be registered?");
-
-                                        // Set click listener for alert dialog buttons
-                                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                switch(which){
-                                                    case DialogInterface.BUTTON_POSITIVE:
-                                                        // User clicked the Yes button
-
-                                                        Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-//                                        showDebugDBAddressLogToast(MainActivity.this);
-                                                        Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-                                                        intent.putExtra("ownerid", ownerid.trim());
-                                                        startActivity(intent);
 
 
-                                                        break;
+                                        if(!ownerid.equals("") && !petname.equals("") && !specie.equals("") && !other_breed.equals("") &&
+                                                !gender.equals("") && !birthdate.equals("") && !othercolor.equals("") && !feat.equals("") )
+                                        {
 
-                                                    case DialogInterface.BUTTON_NEGATIVE:
-                                                        // User clicked the No button
 
-                                                        Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-//                                        showDebugDBAddressLogToast(MainActivity.this);
-                                                         intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                        intent.putExtra("ownerid", ownerid.trim());
-                                                        startActivity(intent);
-                                                        break;
-                                                }
+
+                                                myDB.addVaccination(ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,pet,created_at);
+
+                                            if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
+
+                                                myDB.addVaccinationDate(pet,datevacc,vacc_by.trim(),created_at);
+
+                                                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                startActivity(intent);
+
                                             }
-                                        };
 
-                                        // Set the alert dialog yes button click listener
-                                        builder.setPositiveButton("Yes", dialogClickListener);
-
-                                        // Set the alert dialog no button click listener
-                                        builder.setNegativeButton("No",dialogClickListener);
-
-                                        AlertDialog dialog2 = builder.create();
-                                        // Display the alert dialog on interface
-                                        dialog2.show();
-
-
-
-
-
+                                        }
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -308,6 +270,35 @@ public class VaccinationActivity extends AppCompatActivity {
 
                             case DialogInterface.BUTTON_NEGATIVE:
                                 // User clicked the No button
+
+
+                                if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                }else{
+
+                                    try {
+
+                                        if(!ownerid.equals("") && !petname.equals("") && !specie.equals("") && !other_breed.equals("") &&
+                                                !gender.equals("") && !birthdate.equals("") && !othercolor.equals("") && !feat.equals("") )
+                                        {
+
+                                            myDB.addVaccination(ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,pet,created_at);
+
+                                            if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
+
+                                                myDB.addVaccinationDate(pet,datevacc,vacc_by.trim(),created_at);
+                                                Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                                Toast.makeText(VaccinationActivity.this, "Sucess!" , Toast.LENGTH_SHORT).show();
+                                                startActivity(intent);
+
+                                            }
+
+                                        }
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
 
                                 break;
                         }

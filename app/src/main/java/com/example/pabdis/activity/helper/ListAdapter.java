@@ -1,17 +1,12 @@
 package com.example.pabdis.activity.helper;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.pabdis.R;
 
@@ -53,7 +48,6 @@ public class ListAdapter extends ArrayAdapter<Owner> {
 
         TextView ID;
         TextView OWNER_ID;
-        TextView H_FULL;
         TextView R_FULL;
         TextView CONTACT;
         TextView HOUSE;
@@ -75,7 +69,6 @@ public class ListAdapter extends ArrayAdapter<Owner> {
             holder = new ListAdapter.ViewHolder();
             holder.ID = child.findViewById(R.id.txtViewID);
             holder.OWNER_ID = child.findViewById(R.id.txtViewOwner);
-            holder.H_FULL = child.findViewById(R.id.txtViewFullH);
             holder.R_FULL = child.findViewById(R.id.txtViewFullR);
             holder.CONTACT = child.findViewById(R.id.txtContact);
             holder.HOUSE = child.findViewById(R.id.txtHouse);
@@ -95,7 +88,6 @@ public class ListAdapter extends ArrayAdapter<Owner> {
 
         holder.ID.setText( owner.getId());
         holder.OWNER_ID.setText(owner.getOwnerid());
-        holder.H_FULL.setText(owner.getH_full());
         holder.R_FULL.setText(owner.getR_full());
         holder.CONTACT.setText(owner.getContact_no());
         holder.HOUSE.setText(owner.getHouse());

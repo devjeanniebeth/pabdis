@@ -148,23 +148,31 @@ public class MainActivity extends AppCompatActivity
                         firstname.setVisibility(View.VISIBLE);
                         edtCoop.setVisibility(View.GONE);
                         edtEstab.setVisibility(View.GONE);
-                        final String hfname = firstname.getText().toString();
-                        final String hlname = lastname.getText().toString();
+                        final String hlname = firstname.getText().toString();
+                        final String hfname  = firstname.getText().toString();
                         ownerinfo = hlname + ", " + hfname;
+//                        Toast.makeText(MainActivity.this, ""+ selectedItem + ownerinfo , Toast.LENGTH_SHORT).show();
+
                         break;
                     case "Cooperative":
                         edtCoop.setVisibility(View.VISIBLE);
                         lastname.setVisibility(View.GONE);
                         firstname.setVisibility(View.GONE);
                         edtEstab.setVisibility(View.GONE);
-                        ownerinfo = edtCoop.getText().toString();
+                        ownerinfo =  edtEstab.getText().toString();
+//                        Toast.makeText(MainActivity.this, ""+ selectedItem  , Toast.LENGTH_SHORT).show();
+
                         break;
                     case "Establishment":
                         edtEstab.setVisibility(View.VISIBLE);
                         lastname.setVisibility(View.GONE);
                         firstname.setVisibility(View.GONE);
                         edtCoop.setVisibility(View.GONE);
-                        ownerinfo = edtEstab.getText().toString();
+                        ownerinfo = edtCoop.getText().toString();
+
+
+//                        Toast.makeText(MainActivity.this, ""+ selectedItem  , Toast.LENGTH_SHORT).show();
+
                         break;
 
                 }
@@ -244,6 +252,21 @@ public class MainActivity extends AppCompatActivity
                 final String mun = muni.getSelectedItem().toString();
                 final String brg = brgy.getSelectedItem().toString();
                 final String ownert = ownertype.getSelectedItem().toString();
+                final String ownerin;
+
+                if(ownert.equals("Household"))
+                {
+
+                    ownerin = lastname.getText().toString() + "," + firstname.getText().toString();
+
+                }else if(ownert.equals("Establishment")){
+                    ownerin = edtEstab.getText().toString();
+
+                }else{
+
+                    ownerin = edtCoop.getText().toString();
+                }
+
 
 
                 Calendar cal = Calendar.getInstance();
@@ -264,9 +287,9 @@ public class MainActivity extends AppCompatActivity
 
 
                 position = brgy.getSelectedItemPosition();
+                addrsss = "";
                 position++;
                 year = Calendar.getInstance().get(Calendar.YEAR);
-                addrsss = "";
                 ctr = myDB.getData(mun);
                 ctr++;
                 first = mun.charAt(0);
@@ -290,16 +313,16 @@ public class MainActivity extends AppCompatActivity
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
 
-                                if (rfname.equals("") || rlname.equals("") || house.equals("") ) {
-                                    Toast.makeText(MainActivity.this, ""+latitude + longitude  , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
+                                    Toast.makeText(MainActivity.this, "Check your input!"+ownerin  , Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
                                     intent.putExtra("ownerid", ownerid);
                                     intent.putExtra("petid", petid);
                                     startActivity(intent);
                                 }else{
 
                                     try {
-                                        myDB.addOwner(ownerid.trim(),ownert.trim(),ownerinfo,rfname.trim(),rlname.trim(),num.trim(), mun.trim(), brg.trim(),house.trim(), tvLati.trim(), tvLongi.trim(),addrsss.trim(),created_at);
+                                        myDB.addOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),num.trim(), mun.trim(), brg.trim(),house.trim(), tvLati.trim(), tvLongi.trim(),addrsss.trim(),created_at);
                                         Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
 
@@ -527,14 +550,14 @@ public class MainActivity extends AppCompatActivity
 //         latitude = location.getLatitude();
 //         longitude = location.getLongitude();
 //
-//        try {
-//            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
-//            add = addresses.get(0).getAddressLine(0).toString();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        addrsss = add;
+        try {
+            List<Address> addresses = geocoder.getFromLocation(lang, longi, 1);
+            add = addresses.get(0).getAddressLine(0).toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        addrsss = add;
 
         String msg="New Latitude: "+tvLati + "New Longitude: "+tvLongi;
 
