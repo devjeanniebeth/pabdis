@@ -47,6 +47,13 @@
     <string-array name="breed_monkey">
         <item>Simian</item>
     </string-array>
+
+    <string-array name="source">
+        <item>Indigenous </item>
+        <item>Introduced </item>
+    </string-array>
+
+
     <string-array name="breed_dod">
         <item>Akita</item>
         <item>Alaskan Malamute</item>

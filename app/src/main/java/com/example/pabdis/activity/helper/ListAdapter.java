@@ -57,6 +57,9 @@ public class ListAdapter extends ArrayAdapter<Owner> {
     }
 
 
+
+
+
     @Override
     public View getView(final int position, View child, ViewGroup viewGroup) {
 

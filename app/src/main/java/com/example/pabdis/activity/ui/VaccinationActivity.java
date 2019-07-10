@@ -35,16 +35,16 @@ import java.util.Random;
 public class VaccinationActivity extends AppCompatActivity {
 
 
-    EditText otherbreed, othercolormark, txtpetname, txtdistinguish;
+    EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
     TextView dateSurvey,txtAge, txtxDateVacc,strngbreed;
     Button btndate, chooseImg, btnVacc, dateVacc;
     final Calendar myCalendar = Calendar.getInstance();
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
-    Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby;
+    Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
-    String age,ownerid, petid;
+    String age,ownerid, petid, source;
     Integer position, year, ctr;
     Character first;
 
@@ -60,7 +60,8 @@ public class VaccinationActivity extends AppCompatActivity {
 
         dateVacc = findViewById(R.id.btnDateVacc);
 
-
+        txtsourceplace = findViewById(R.id.txtsourceplace);
+        txtsource = findViewById(R.id.txtsource);
         chooseImg = findViewById(R.id.btnChoose);
         imgView = findViewById(R.id.imgPet);
         txtpetname = findViewById(R.id.txtpetname);
@@ -185,6 +186,9 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String othercolor;
                 final String feat = txtdistinguish.getText().toString();
                 final String datevacc = txtxDateVacc.getText().toString();
+                final String stat = "alive";
+
+                final String src = source;
 
                 if(colormark == "Others")
                 {
@@ -247,7 +251,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-                                                myDB.addVaccination(ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,pet,created_at);
+                                                myDB.addVaccination(ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,src,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
@@ -282,7 +286,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                                 !gender.equals("") && !birthdate.equals("") && !othercolor.equals("") && !feat.equals("") )
                                         {
 
-                                            myDB.addVaccination(ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,pet,created_at);
+                                            myDB.addVaccination(ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,src,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
@@ -314,6 +318,32 @@ public class VaccinationActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 // Display the alert dialog on interface
                 dialog.show();
+
+            }
+        });
+
+        txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+
+
+                switch (selectedItem)
+                {
+                    case "Indigenous ":
+                        txtsourceplace.setVisibility(View.GONE);
+                        source = txtsource.getSelectedItem().toString();
+                        break;
+                    case "Introduced":
+                        txtsourceplace.setVisibility(View.VISIBLE);
+                        source = txtsourceplace.getText().toString();
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });

@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
                                     Toast.makeText(MainActivity.this, "Check your input!"+ownerin  , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                     intent.putExtra("ownerid", ownerid);
                                     intent.putExtra("petid", petid);
                                     startActivity(intent);

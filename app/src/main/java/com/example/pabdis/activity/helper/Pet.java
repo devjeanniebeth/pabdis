@@ -2,7 +2,7 @@ package com.example.pabdis.activity.helper;
 
 public class Pet {
     String id = null;
-    String user_id = null;
+    String petid = null;
     String owner_id = null;
     String petname = null;
     String species = null;
@@ -13,22 +13,21 @@ public class Pet {
     String Pet_ID = null;
     String created_at = null;
 
-    public Pet(String id, String user_id, String owner_id, String petname, String species,
-               String breed, String sex, String birthday, String color_marking, String Pet_ID,
+    public Pet(String id,String owner_id, String petid, String petname, String species,
+               String breed, String sex, String birthday, String color_marking,
                String created_at){
 
         super();
 
         this.id = id;
-        this.user_id = user_id;
         this.owner_id = owner_id;
+        this.petid = petid;
         this.petname = petname;
         this.species = species;
         this.breed = breed;
         this.sex = sex;
         this.birthday = birthday;
         this.color_marking = color_marking;
-        this.Pet_ID = Pet_ID;
         this.created_at = created_at;
 
     }
@@ -44,15 +43,12 @@ public class Pet {
 
     }
 
-    public String getUser_id(){
-
-        return user_id;
+    public String getPetid() {
+        return petid;
     }
 
-    public void setUser_id(String user_id){
-
-        this.user_id = user_id;
-
+    public void setPetid(String petid) {
+        this.petid = petid;
     }
 
     public String getOwner_id() {
@@ -135,17 +131,6 @@ public class Pet {
         this.color_marking = color_marking;
     }
 
-    public String getPet_ID() {
-
-        return Pet_ID;
-
-    }
-
-    public void  setPet_ID(String pet_ID){
-
-        this.Pet_ID = Pet_ID;
-
-    }
 
     public String getCreated_at(){
 
@@ -162,7 +147,7 @@ public class Pet {
     @Override
     public String toString(){
 
-        return id + " " + user_id + " " + owner_id + " " + petname
+        return id  + " " + owner_id + " " + petname
                 + " " + species + " " + breed + " " + sex + " " + birthday
                 + " " + color_marking + " " + Pet_ID + " " + created_at;
     }

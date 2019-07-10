@@ -3,6 +3,7 @@ package com.example.pabdis.activity.ui;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +25,7 @@ import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.ListAdapter;
 import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.helper.Pet;
+import com.example.pabdis.activity.helper.PetAdapter;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,7 @@ public class PetActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     DatabaseHelper myDB;
     ListView LISTVIEW;
-    ListAdapter listAdapter;
+    PetAdapter listAdapter;
     EditText searchView;
     Cursor cursor;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
@@ -108,6 +110,46 @@ public class PetActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
+
+    @Override
+    protected void onResume() {
+
+        ShowSQLiteDBdata();
+        super.onResume();
+    }
+
+    private void ShowSQLiteDBdata() {
+
+        SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet", null);
+        Pet pet;
+        PetList = new ArrayList<Pet>();
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                String id =  ("ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
+                String petid = ("Pet ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+                String owner_id = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
+                String petname = ("Pet Name:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                String specie = ("Specie:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
+                String breed = ("Breed: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_6)));
+                String sex =  ("Sex: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_7)));
+                String birth =  ("Birthdate: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
+                String color =  ("Color: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
+                String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_14));
+                pet = new Pet(id,owner_id,petid,petname,specie,breed,sex, birth,color,created_at);
+                PetList.add(pet);
+            } while (cursor.moveToNext());
+        }
+
+        listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
+        LISTVIEW.setAdapter(listAdapter);
+        cursor.close();
+    }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
