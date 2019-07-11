@@ -266,6 +266,16 @@ public class MainActivity extends AppCompatActivity
                 final String brg = brgy.getSelectedItem().toString();
                 final String ownert = ownertype.getSelectedItem().toString();
                 final String ownerin;
+                final String contact;
+
+
+                if(num.equals(""))
+                {
+                    contact = "N/A";
+
+                }else{
+                    contact = num;
+                }
 
                 if(ownert.equals("Household"))
                 {
@@ -329,15 +339,15 @@ public class MainActivity extends AppCompatActivity
                                 // User clicked the Yes button
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                    Toast.makeText(MainActivity.this, "Check your input!"+petid  , Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
-                                    intent.putExtra("ownerid", ownerid);
-                                    intent.putExtra("petid", petid);
-                                    startActivity(intent);
+                                    Toast.makeText(MainActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
+//                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+//                                    intent.putExtra("ownerid", ownerid);
+//                                    intent.putExtra("petid", petid);
+//                                    startActivity(intent);
                                 }else{
 
                                     try {
-                                        myDB.addOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),num.trim(), mun.trim(), brg.trim(),house.trim(), tvLati.trim(), tvLongi.trim(),addrsss.trim(),created_at);
+                                        myDB.addOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),contact.trim(), mun.trim(), brg.trim(),house.trim(), tvLati.trim(), tvLongi.trim(),addrsss.trim(),created_at);
                                         Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
 
@@ -399,6 +409,7 @@ public class MainActivity extends AppCompatActivity
     public void CheckPermission() {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, android.Manifest.permission.ACCESS_COARSE_LOCATION}, 101);
+
         }
     }
 
