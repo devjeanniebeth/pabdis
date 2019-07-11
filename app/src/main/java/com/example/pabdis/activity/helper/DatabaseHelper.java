@@ -198,6 +198,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String TABLE_VACC = "pvet_pet";
     public static final String VACCCOL_1 = "id";
+    public static final String VACCCOL_2 = "imgpet";
     public static final String VACCCOL_3 = "owner_id";
     public static final String VACCCOL_4 = "petname";
     public static final String VACCCOL_5 = "species";
@@ -287,7 +288,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + SURVEY9COL_10 + " TEXT" +  ")";
 
         String CREATE_VACC_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC + "("
-                + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
+                + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACCCOL_2 + " BLOB," + VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
                 + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, "
                 + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, "
                 + VACCCOL_14 + " TEXT" +")";
@@ -596,13 +597,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean addVaccination(String owner_id,
+    public boolean addVaccination(byte[]  imgPet,String owner_id,
                                   String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
                                   String source, String petid, String status, String createdAt )
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+        contentValues.put(VACCCOL_2,imgPet);
         contentValues.put(VACCCOL_3,owner_id);
         contentValues.put(VACCCOL_4,petname);
         contentValues.put(VACCCOL_5,species);

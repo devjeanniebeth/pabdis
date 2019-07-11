@@ -41,19 +41,14 @@
     <string name="fishery">Fishery &amp; Apiary</string>
     <string name="goat">Goat</string>
     <string name="household_consumption">Weekly Consumption</string>
-
     <string name="production">Production (in Dozens) Egg</string>
-
     <string-array name="breed_monkey">
         <item>Simian</item>
     </string-array>
-
     <string-array name="source">
-        <item>Indigenous </item>
-        <item>Introduced </item>
+        <item>Introduced</item>
+        <item>Indigenous</item>
     </string-array>
-
-
     <string-array name="breed_dod">
         <item>Akita</item>
         <item>Alaskan Malamute</item>
@@ -246,6 +241,8 @@
     <string name="goose">GOOSE</string>
     <string name="production_of_eggs_in_pieces">Production of Eggs (in pieces)</string>
     <string name="egg_production">Egg Production</string>
+    <string name="source_of_pet">SOURCE OF PET</string>
+    <string name="place">Place</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

@@ -130,7 +130,8 @@ public class PetActivity extends AppCompatActivity
 
                 String id =  ("ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
                 String petid = ("Pet ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
-                String owner_id = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
+//                String owner_id = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
+                String owner_id = "";
                 String petname = ("Pet Name:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
                 String specie = ("Specie:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
                 String breed = ("Breed: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_6)));

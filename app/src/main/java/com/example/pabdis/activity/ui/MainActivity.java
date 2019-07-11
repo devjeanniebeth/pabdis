@@ -194,42 +194,55 @@ public class MainActivity extends AppCompatActivity
                 switch (selectedItem) {
                     case "La Trinidad":
                         brgy.setAdapter(brgylt);
+                        petid = String.valueOf((selectedItem.charAt(0))) + selectedItem.charAt(3);
                         break;
                     case "Itogon":
                         brgy.setAdapter(brgy_it);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Buguias":
                         brgy.setAdapter(brgy_bug);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Kabayan":
                         brgy.setAdapter(brgy_kab);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Sablan":
                         brgy.setAdapter(brgy_sab);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Mankayan":
                         brgy.setAdapter(brgy_man);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Kapangan":
                         brgy.setAdapter(brgy_kap);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Bokod":
                         brgy.setAdapter(brgy_bok);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Atok":
                         brgy.setAdapter(brgy_at);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Kibungan":
                         brgy.setAdapter(brgy_kib);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Tublay":
                         brgy.setAdapter(brgy_tbl);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Tuba":
                         brgy.setAdapter(brgy_tba);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                     case "Bakun":
                         brgy.setAdapter(brgy_bak);
+                        petid = String.valueOf(selectedItem.charAt(0));
                         break;
                 }
                 }
@@ -289,12 +302,14 @@ public class MainActivity extends AppCompatActivity
                 position = brgy.getSelectedItemPosition();
                 addrsss = "";
                 position++;
+
+                first = mun.charAt(0);
                 year = Calendar.getInstance().get(Calendar.YEAR);
                 ctr = myDB.getData(mun);
                 ctr++;
-                first = mun.charAt(0);
+
                 ownerid = first.toString() + position.toString() + year.toString() + "-" + end;
-                petid = first.toString() + position.toString() + year.toString();
+//                petid = first.toString() + position.toString() + year.toString();
 
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -314,7 +329,7 @@ public class MainActivity extends AppCompatActivity
                                 // User clicked the Yes button
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                    Toast.makeText(MainActivity.this, "Check your input!"+ownerin  , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Check your input!"+petid  , Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                     intent.putExtra("ownerid", ownerid);
                                     intent.putExtra("petid", petid);
@@ -371,19 +386,6 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-
-    public static void showDebugDBAddressLogToast(Context context) {
-        if (BuildConfig.DEBUG) {
-            try {
-                Class<?> debugDB = Class.forName("com.amitshekhar.DebugDB");
-                Method getAddressLog = debugDB.getMethod("getAddressLog");
-                Object value = getAddressLog.invoke(null);
-                Toast.makeText(context, (String) value, Toast.LENGTH_LONG).show();
-            } catch (Exception ignore) {
-
-            }
-        }
-    }
 
     public void getLocation() {
         try {
@@ -552,7 +554,7 @@ public class MainActivity extends AppCompatActivity
 //
         try {
             List<Address> addresses = geocoder.getFromLocation(lang, longi, 1);
-            add = addresses.get(0).getAddressLine(0).toString();
+            add = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -563,14 +565,6 @@ public class MainActivity extends AppCompatActivity
 
         Toast.makeText(this, "Your location is set!" + msg,
                 Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
-
     }
 
     @Override

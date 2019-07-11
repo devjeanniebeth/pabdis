@@ -198,6 +198,21 @@
                 </TableRow>
 
 
+
+
+
+                    <TextView
+                        android:id="@+id/txtAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        />
+
+
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -205,7 +220,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/vaccinated_by"
+                        android:text="@string/source_of_pet"
                         android:textAlignment="center"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -223,7 +238,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/other_color_marking">
+                    android:hint="@string/place">
 
                     <EditText
                         android:id="@+id/txtsourceplace"
@@ -234,18 +249,6 @@
                         android:maxLines="1"
                         android:padding="10dp"/>
                 </android.support.design.widget.TextInputLayout>
-
-
-                    <TextView
-                        android:id="@+id/txtAge"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:textAlignment="center"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        />
 
 
                 <android.support.design.widget.TextInputLayout
