@@ -272,10 +272,6 @@ public class VaccinationActivity extends AppCompatActivity {
 
                     final String sr = source2;
                     src = sr;
-
-
-                }else{
-                    src = source2;
                 }
 
                 final String souces = src;
@@ -324,7 +320,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+souces, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
@@ -336,7 +332,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-                                                myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, source,pet,stat,created_at);
+                                                myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
@@ -362,7 +358,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.
                                         // User clicked the No button
                                                 equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ souces, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
@@ -371,7 +367,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                                 !gender.equals("") && !birthdate.equals("") && !othercolor.equals("") && !feat.equals("") )
                                         {
 
-                                            myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, source,pet,stat,created_at);
+                                            myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
