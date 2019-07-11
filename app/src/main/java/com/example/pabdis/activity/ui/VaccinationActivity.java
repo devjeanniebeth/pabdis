@@ -84,7 +84,7 @@ public class VaccinationActivity extends AppCompatActivity {
         otherbreed.setVisibility(View.GONE);
         othercolormark.setVisibility(View.GONE);
 
-        txtsourceplace.setVisibility(View.VISIBLE);
+
 
 
         if (savedInstanceState == null) {
@@ -244,8 +244,9 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String datevacc = txtxDateVacc.getText().toString();
                 final String stat = "alive";
 
-                 String src = null;
-                final String source2 = txtsource.getSelectedItem().toString();
+                 String src = "";
+                 String source2 = txtsource.getSelectedItem().toString();
+                final String place =  txtsourceplace.getText().toString();
 
                 if(colormark == "Others")
                 {
@@ -262,18 +263,22 @@ public class VaccinationActivity extends AppCompatActivity {
                 }
 
 
-                if(source2 != "Indigenous") {
-                    final String sr = txtsourceplace.getText().toString();
+                if(source2.equals("Introduced") ) {
+                    final String sr = place;
                     src = sr;
 
-                }
-                if(source2 != "Introduced"){
-                    final String sr2 = txtsource.getSelectedItem().toString();
-                    src = sr2;
-                }
+
+                }else if(source2.equals("Indigenous") ){
+
+                    final String sr = source2;
+                    src = sr;
 
 
-                final String source = src;
+                }else{
+                    src = source2;
+                }
+
+                final String souces = src;
 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 1);
@@ -281,12 +286,23 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String created_at = format1.format(cal.getTime());
 
 
+                String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                StringBuilder salt = new StringBuilder();
+                Random rnd = new Random();
+                while (salt.length() < 7) { // length of the random string.
+                    int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+                    salt.append(SALTCHARS.charAt(index));
+                }
+
+                final String end = salt.toString();
+
+
 
                 ctr = myDB.getCountPet(ownerid,specie);
                 ctr++;
 
                 first = specie.charAt(0);
-                final String pet = petid + first + ctr;
+                final String pet = petid + end;
 
 
                 // Build an AlertDialog
@@ -308,7 +324,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+source, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+souces, Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
@@ -346,7 +362,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.
                                         // User clicked the No button
                                                 equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ source, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ souces, Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
@@ -402,11 +418,9 @@ public class VaccinationActivity extends AppCompatActivity {
                 {
                     case "Indigenous":
                         txtsourceplace.setVisibility(View.GONE);
-
                         break;
                     case "Introduced":
                         txtsourceplace.setVisibility(View.VISIBLE);
-
                         break;
 
                 }

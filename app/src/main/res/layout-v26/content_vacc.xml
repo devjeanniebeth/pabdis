@@ -231,7 +231,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:entries="@array/source"
+                        android:entries="@array/source_pet"
                         android:padding="10dp" />
                 </android.support.design.widget.TextInputLayout>
 
