@@ -64,7 +64,7 @@ public class PetAdapter extends ArrayAdapter<Pet> {
         if (child == null) {
             LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            child = layoutInflater.inflate(R.layout.items, null);
+            child = layoutInflater.inflate(R.layout.items_pet, null);
             holder = new PetAdapter.ViewHolder();
             holder.ID = child.findViewById(R.id.txtViewID);
             holder.OWNER_ID = child.findViewById(R.id.ownerID);

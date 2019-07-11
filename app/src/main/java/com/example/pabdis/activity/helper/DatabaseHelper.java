@@ -288,7 +288,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + SURVEY9COL_10 + " TEXT" +  ")";
 
         String CREATE_VACC_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC + "("
-                + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACCCOL_2 + " BLOB," + VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
+                + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACCCOL_2 + " NONE," + VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
                 + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, "
                 + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, "
                 + VACCCOL_14 + " TEXT" +")";
@@ -613,8 +613,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_8,birthday);
         contentValues.put(VACCCOL_9,colormarking);
         contentValues.put(VACCCOL_10,distinctfeat);
-        contentValues.put(VACCCOL_11,petid);
-        contentValues.put(VACCCOL_12,source);
+        contentValues.put(VACCCOL_12,petid);
+        contentValues.put(VACCCOL_11,source);
         contentValues.put(VACCCOL_13,status);
         contentValues.put(VACCCOL_14,createdAt);
         long result = db.insert(TABLE_VACC,null ,contentValues);

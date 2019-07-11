@@ -332,7 +332,8 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-                                                myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at);
+                                                myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
+                                                        souces,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
@@ -595,7 +596,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
         Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 500, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
 
