@@ -301,39 +301,6 @@
 
                 <!---->
 
-
-                <TextView
-                    android:id="@+id/txtincome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/txtView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/total_income">
-
-                    <EditText
-                        android:id="@+id/edtSwineTotalIncome"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:inputType="number" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.20935412" />
-
                 <TextView
                     android:id="@+id/txt8"
                     android:layout_width="match_parent"
@@ -383,6 +350,41 @@
                         </android.support.design.widget.TextInputLayout>
                     </TableRow>
                 </TableLayout>
+
+
+                <TextView
+                    android:id="@+id/txtincome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/txtView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/total_income">
+
+                    <EditText
+                        android:id="@+id/edtSwineTotalIncome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number" />
+
+                </android.support.design.widget.TextInputLayout>
+
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guideline4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.20935412" />
+
+
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guideline6"
@@ -441,23 +443,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content">
 
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/sl_farm_kg">
-
-                            <EditText
-                                android:id="@+id/edtSF_sw_kg"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_column="0"
-                                android:ems="10"
-                                android:inputType="number" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/txtView9"
                             android:layout_width="match_parent"
@@ -470,9 +455,28 @@
                                 android:layout_height="wrap_content"
                                 android:layout_column="0"
                                 android:ems="10"
+                                android:text="0"
                                 android:inputType="number" />
 
                         </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sl_farm_kg">
+
+                            <EditText
+                                android:id="@+id/edtSF_sw_kg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:ems="10"
+                                android:text="0"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+
                     </TableRow>
                 </TableLayout>
 
@@ -488,23 +492,6 @@
                         android:layout_height="wrap_content">
 
                         <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/sl_abb_kg">
-
-                            <EditText
-                                android:id="@+id/edtSA_sw_kg"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_column="1"
-                                android:layout_gravity="clip_vertical"
-                                android:ems="10"
-                                android:inputType="number" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-
-                        <android.support.design.widget.TextInputLayout
                             android:id="@+id/txtView10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -517,9 +504,28 @@
                                 android:layout_column="1"
                                 android:layout_gravity="clip_vertical"
                                 android:ems="10"
+                                android:text="0"
                                 android:inputType="number" />
 
                         </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sl_abb_kg">
+
+                            <EditText
+                                android:id="@+id/edtSA_sw_kg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:text="0"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
                     </TableRow>
                 </TableLayout>
 
@@ -574,16 +580,29 @@
                     android:textAlignment="center"
                     android:textStyle="bold" />
 
-                <Spinner
-                    android:id="@+id/vaccination"
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:animateLayoutChanges="true"
-                    android:entries="@array/swine"
-                    android:padding="10dp"
-                    android:prompt="@string/vacc_prompt"
-                    android:textAlignment="center"
-                    style="@style/spinner_style" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp">
+
+                        <CheckBox
+                            android:id="@+id/cbhog"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hog Cholera" />
+
+                        <CheckBox
+                            android:id="@+id/cbpcv2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Porcine Circovirus 2 (PCV2" />
+
+                        <CheckBox
+                            android:id="@+id/cbmyco"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mycoplasma" />
+                </TableRow>
 
                 <TextView
                     android:id="@+id/textView4"

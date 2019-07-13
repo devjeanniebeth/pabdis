@@ -8,6 +8,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -20,19 +22,24 @@ import com.example.pabdis.activity.ui.MainActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class GoatActivity extends AppCompatActivity {
 
 
-    Button btnNext;
+    Button btnNext,compute;
     String ownerid,vaccstat, vacctype, deworm, petid;
     RadioButton rbyes, rbno;
     FloatingActionButton skip;
     Spinner vacc;
+    CheckBox cbbl;
+    ArrayList<String> mylist = new ArrayList<String>();
     TextView textView,txtincome;
     DatabaseHelper myDB;
-    EditText edtBuckD,edtBuckM,edtDoeD,edtDoeM,edtKidsD,edtKidsM,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
+    EditText edtBuckD,edtBuckM,edtDoeD,edtDoeM,edtKidsD,edtKidsM,edtTotal,
+            edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +47,10 @@ public class GoatActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         skip = findViewById(R.id.fab);
+        cbbl = findViewById(R.id.cbbl);
+        cbbl.setVisibility(View.GONE);
+        compute = findViewById(R.id.btnCompute);
+        edtTotal = findViewById(R.id.edtTotal);
         edtBuckD = findViewById(R.id.edtBuckD);
         edtBuckM = findViewById(R.id.edtBuckM);
         edtDoeD = findViewById(R.id.edtDoeD);
@@ -53,16 +64,16 @@ public class GoatActivity extends AppCompatActivity {
         edtSwineTotalArea = findViewById(R.id.edtSwineTotalArea);
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
 
+        edtTotal.setEnabled(false);
+
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
-        vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
 
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
 
 
-        vacc.setVisibility(View.GONE);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -77,6 +88,45 @@ public class GoatActivity extends AppCompatActivity {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
         }
+
+        cbbl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                {
+                    if(!Arrays.asList(mylist).contains(cbbl.getText().toString()))
+                    {
+                        mylist.add(cbbl.getText().toString());
+                    }
+                }else{
+                    mylist.remove(cbbl.getText().toString());
+                }
+            }
+        });
+
+        compute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                final Integer boarn = Integer.parseInt(edtBuckD.getText().toString());
+                final Integer boaru = Integer.parseInt(edtBuckM.getText().toString());
+                final Integer grown = Integer.parseInt(edtDoeD.getText().toString());
+                final Integer growu = Integer.parseInt(edtDoeM.getText().toString());
+                final Integer sown = Integer.parseInt(edtKidsD.getText().toString());
+                final Integer sowu = Integer.parseInt(edtKidsM.getText().toString());
+
+
+
+
+
+
+                final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
+                edtTotal.setText(String.valueOf(total));
+
+            }
+        });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,6 +180,7 @@ public class GoatActivity extends AppCompatActivity {
 
 
                 final String buckd = edtBuckD.getText().toString();
+                final String total = edtTotal.getText().toString();
                 final String buckm = edtBuckM.getText().toString();
                 final String doed = edtDoeD.getText().toString();
                 final String doem = edtDoeM.getText().toString();
@@ -176,7 +227,7 @@ public class GoatActivity extends AppCompatActivity {
 
 
                                     try {
-                                        myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm, go_sf_kg,go_sf_hd, go_sa_kg,go_sa_hd,
+                                        myDB.addGoat(ownerid, buckd, buckm, doed, doem, kidsd, kidsm,total, go_sf_kg,go_sf_hd, go_sa_kg,go_sa_hd,
                                                 go_totala, go_totali,vacc.trim(), vacct.trim(), dewormed.trim(), created_at);
                                         Toast.makeText(GoatActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
@@ -220,15 +271,16 @@ public class GoatActivity extends AppCompatActivity {
             case R.id.rb1:
                 if (checked)
                     // Pirates are the best
-                    vacc.setVisibility(View.VISIBLE);
                 vaccstat = "1";
+                cbbl.setVisibility(View.VISIBLE);
                 textView.setVisibility(View.VISIBLE);
-                vacctype = vacc.getSelectedItem().toString();
+
                 break;
             case R.id.rb2:
                 if (checked)
-                    vacc.setVisibility(View.GONE);
                 textView.setVisibility(View.GONE);
+                cbbl.setVisibility(View.GONE);
+                mylist.add("");
                 vaccstat = "2";
                 vacctype = "";
                 // Ninjas rule

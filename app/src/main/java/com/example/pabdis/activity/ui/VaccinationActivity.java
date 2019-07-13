@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +49,7 @@ public class VaccinationActivity extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
-    String age,ownerid, petid, source;
+    String age,ownerid, petid, vacc;
     Integer position, year, ctr;
     Character first;
 
@@ -63,6 +64,7 @@ public class VaccinationActivity extends AppCompatActivity {
         btnVacc = findViewById(R.id.btnVacc);
 
         dateVacc = findViewById(R.id.btnDateVacc);
+
 
         txtsourceplace = findViewById(R.id.txtsourceplace);
         txtsource = findViewById(R.id.txtsource);
@@ -320,7 +322,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+vacc, Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
@@ -564,6 +566,25 @@ public class VaccinationActivity extends AppCompatActivity {
                     Toast.makeText(VaccinationActivity.this,"Permission Cancelled, Now your application cannot access CAMERA.", Toast.LENGTH_LONG).show();
 
                 }
+                break;
+        }
+    }
+
+    public void onRadioButtonClicked2(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.rby:
+                if (checked)
+                    // Pirates are the best
+                    vacc = "1";
+                break;
+            case R.id.rbn:
+                if (checked)
+                    vacc = "2";
+                // Ninjas rule
                 break;
         }
     }

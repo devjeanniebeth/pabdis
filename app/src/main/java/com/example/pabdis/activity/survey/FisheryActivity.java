@@ -8,7 +8,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
@@ -21,7 +24,8 @@ import java.util.Calendar;
 public class FisheryActivity extends AppCompatActivity {
 
     Button btnNext;
-    String ownerid, petid;
+    String ownerid, petid, api, fish;
+    CheckBox withfishery, withapiary;
     DatabaseHelper myDB;
     FloatingActionButton skip;
     EditText edtTotalArea,edtProd,edtIncome,edtColonyNum,edtProdH,edtTotalIncome;
@@ -40,6 +44,22 @@ public class FisheryActivity extends AppCompatActivity {
         edtProdH = findViewById(R.id.edtProdH);
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
 
+        withapiary = findViewById(R.id.withapiary);
+        withfishery = findViewById(R.id.withfishery);
+
+        edtTotalArea.setEnabled(false);
+        edtProd.setEnabled(false);
+        edtIncome.setEnabled(false);
+        edtColonyNum.setEnabled(false);
+        edtProdH.setEnabled(false);
+        edtTotalIncome.setEnabled(false);
+        withapiary.setChecked(false);
+        withfishery.setChecked(false);
+        fish = "false";
+        api = "false";
+
+
+
 
 
         if (savedInstanceState == null) {
@@ -55,6 +75,45 @@ public class FisheryActivity extends AppCompatActivity {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
         }
+
+
+        withfishery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    fish = "true";
+                    edtTotalArea.setEnabled(true);
+                    edtProd.setEnabled(true);
+                    edtIncome.setEnabled(true);
+
+                }else{
+                    fish = "false";
+                    edtTotalArea.setEnabled(false);
+                    edtProd.setEnabled(false);
+                    edtIncome.setEnabled(false);
+
+                }
+
+            }
+        });
+
+        withapiary.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b) {
+                    api = "true";
+                    edtColonyNum.setEnabled(true);
+                    edtProdH.setEnabled(true);
+                    edtTotalIncome.setEnabled(true);
+                }else{
+                    api = "false";
+                    edtColonyNum.setEnabled(false);
+                    edtProdH.setEnabled(false);
+                    edtTotalIncome.setEnabled(false);
+                }
+
+            }
+        });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,24 +195,60 @@ public class FisheryActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                if (f_area.equals("") || f_prod.equals("") || f_inc.equals("") ||
-                                        a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
-                                    Toast.makeText(FisheryActivity.this, "Check your input!"+ownerid , Toast.LENGTH_SHORT).show();
-                                }else {
+
                                     try {
-                                        myDB.addFishery(ownerid, f_area, f_prod, f_inc,created_at);
-                                        myDB.addApiary(ownerid,a_col, a_prod, a_inc, created_at);
-                                        Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
-                                        intent.putExtra("ownerid", ownerid);
-                                        intent.putExtra("petid", petid);
-                                        startActivity(intent);
+
+                                        if(api.equals("true") && fish.equals("false") )
+                                        {
+                                            if ( a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
+                                                Toast.makeText(FisheryActivity.this, "Check your input!"+ api + fish , Toast.LENGTH_SHORT).show();
+                                            }else {
+                                                myDB.addApiary(ownerid, a_col, a_prod, a_inc, created_at);
+                                                Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                startActivity(intent);
+                                            }
+                                        }else if(fish.equals("true") && api.equals("false") )
+                                        {
+                                            if ( (f_area.equals("") ||  f_prod.equals("") ||  f_inc.equals(""))) {
+                                                Toast.makeText(FisheryActivity.this, "Check your input!"+ api + fish , Toast.LENGTH_SHORT).show();
+                                            }else {
+                                                myDB.addFishery(ownerid, f_area, f_prod, f_inc, created_at);
+                                                Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                startActivity(intent);
+                                            }
+                                        }else if(fish.equals("true") && api.equals("true"))
+                                        {
+
+                                            if ( f_area.equals("") ||  f_prod.equals("") ||  f_inc.equals("") ||  a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
+                                                Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                            }else {
+                                                myDB.addApiary(ownerid, a_col, a_prod, a_inc, created_at);
+                                                myDB.addFishery(ownerid, f_area, f_prod, f_inc, created_at);
+                                                Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                startActivity(intent);
+                                            }
+
+
+                                        }
+
+
+
+
+
                                     } catch (Exception e) {
                                         e.printStackTrace();
 
                                     }
-                                }
-                                break;
+                                    break;
 
                             case DialogInterface.BUTTON_NEGATIVE:
                                 // User clicked the No button
@@ -176,6 +271,9 @@ public class FisheryActivity extends AppCompatActivity {
         });
 
     }
+
+
+
     @Override
     public void onBackPressed() {
 //        DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -138,7 +138,7 @@
         <item>Cooperative</item>
     </string-array>
     <string-array name="vaccinated_by">
-        <item>LGU</item>
+        <item>Government</item>
         <item>Private</item>
     </string-array>
 
@@ -243,6 +243,7 @@
     <string name="egg_production">Egg Production</string>
     <string name="source_of_pet">SOURCE OF PET</string>
     <string name="place">Place</string>
+    <string name="number_of_household_member">Number of Household/Establishment/Cooperative Member</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

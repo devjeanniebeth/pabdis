@@ -31,14 +31,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OWNERCOL_4 = "owner_info ";
     public static final String OWNERCOL_5 = "r_lname";
     public static final String OWNERCOL_6 = "r_fname";
-    public static final String OWNERCOL_7 = "contact_no";
-    public static final String OWNERCOL_8 = "municipality";
-    public static final String OWNERCOL_9 = "barangay";
-    public static final String OWNERCOL_10 = "house";
-    public static final String OWNERCOL_11 = "latitude";
-    public static final String OWNERCOL_12 = "longitude";
-    public static final String OWNERCOL_13 = "full_add";
-    public static final String OWNERCOL_14 = "created_at";
+    public static final String OWNERCOL_7 = "members";
+    public static final String OWNERCOL_8 = "contact_no";
+    public static final String OWNERCOL_9 = "municipality";
+    public static final String OWNERCOL_10 = "barangay";
+    public static final String OWNERCOL_11 = "house";
+    public static final String OWNERCOL_12 = "latitude";
+    public static final String OWNERCOL_13 = "longitude";
+    public static final String OWNERCOL_14 = "full_add";
+    public static final String OWNERCOL_15 = "created_at";
 
 //   FOR SURVEY
 
@@ -96,16 +97,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY3COL_7 = "cow_m";
     public static final String SURVEY3COL_8 = "calf_d";
     public static final String SURVEY3COL_9 = "calf_m";
-    public static final String SURVEY3COL_10 = "sl_farm_kg";
-    public static final String SURVEY3COL_11 = "sl_farm_hd";
-    public static final String SURVEY3COL_12 = "sl_abb_kg";
-    public static final String SURVEY3COL_13 = "sl_abb_hd";
-    public static final String SURVEY3COL_14 = "total_area";
-    public static final String SURVEY3COL_15 = "total_income";
-    public static final String SURVEY3COL_16 = "IsVaccinated";
-    public static final String SURVEY3COL_17 = "vaccination";
-    public static final String SURVEY3COL_18 = "IsDewormed";
-    public static final String SURVEY3COL_19= "created_at";
+    public static final String SURVEY3COL_10 = "total";
+    public static final String SURVEY3COL_11 = "sl_farm_kg";
+    public static final String SURVEY3COL_12 = "sl_farm_hd";
+    public static final String SURVEY3COL_13 = "sl_abb_kg";
+    public static final String SURVEY3COL_14 = "sl_abb_hd";
+    public static final String SURVEY3COL_15 = "total_area";
+    public static final String SURVEY3COL_16 = "total_income";
+    public static final String SURVEY3COL_17 = "IsVaccinated";
+    public static final String SURVEY3COL_18 = "vaccination";
+    public static final String SURVEY3COL_19 = "IsDewormed";
+    public static final String SURVEY3COL_20= "created_at";
 
     public static final String TABLE_SURVEY4 = "pvet_survey_carabao";
     public static final String SURVEY4COL_1 = "id";
@@ -117,16 +119,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY4COL_7 = "caracow_n";
     public static final String SURVEY4COL_8 = "caracalf_c";
     public static final String SURVEY4COL_9 = "caracalf_n";
-    public static final String SURVEY4COL_10 = "sl_farm_kg";
-    public static final String SURVEY4COL_11 = "sl_farm_hd";
-    public static final String SURVEY4COL_12 = "sl_abb_kg";
-    public static final String SURVEY4COL_13 = "sl_abb_hd";
-    public static final String SURVEY4COL_14 = "total_area";
-    public static final String SURVEY4COL_15 = "total_income";
-    public static final String SURVEY4COL_16 = "IsVaccinated";
-    public static final String SURVEY4COL_17 = "vaccination";
-    public static final String SURVEY4COL_18 = "IsDewormed";
-    public static final String SURVEY4COL_19 = "created_at";
+    public static final String SURVEY4COL_10 = "total";
+    public static final String SURVEY4COL_11 = "sl_farm_kg";
+    public static final String SURVEY4COL_12 = "sl_farm_hd";
+    public static final String SURVEY4COL_13 = "sl_abb_kg";
+    public static final String SURVEY4COL_14 = "sl_abb_hd";
+    public static final String SURVEY4COL_15 = "total_area";
+    public static final String SURVEY4COL_16 = "total_income";
+    public static final String SURVEY4COL_17 = "IsVaccinated";
+    public static final String SURVEY4COL_18 = "vaccination";
+    public static final String SURVEY4COL_19 = "IsDewormed";
+    public static final String SURVEY4COL_20 = "created_at";
 
     public static final String TABLE_SURVEY5 = "pvet_survey_goat";
     public static final String SURVEY5COL_1 = "id";
@@ -138,16 +141,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY5COL_7 = "doe_m";
     public static final String SURVEY5COL_8 = "kids_d";
     public static final String SURVEY5COL_9 = "kids_m";
-    public static final String SURVEY5COL_10 = "sl_farm_kg";
-    public static final String SURVEY5COL_11 = "sl_farm_hd";
-    public static final String SURVEY5COL_12 = "sl_abb_kg";
-    public static final String SURVEY5COL_13 = "sl_abb_hd";
-    public static final String SURVEY5COL_14 = "total_area";
-    public static final String SURVEY5COL_15 = "total_income";
-    public static final String SURVEY5COL_16 = "IsVaccinated";
-    public static final String SURVEY5COL_17 = "vaccination";
-    public static final String SURVEY5COL_18 = "IsDewormed";
-    public static final String SURVEY5COL_19 = "created_at";
+    public static final String SURVEY5COL_10 = "total";
+    public static final String SURVEY5COL_11 = "sl_farm_kg";
+    public static final String SURVEY5COL_12 = "sl_farm_hd";
+    public static final String SURVEY5COL_13 = "sl_abb_kg";
+    public static final String SURVEY5COL_14 = "sl_abb_hd";
+    public static final String SURVEY5COL_15 = "total_area";
+    public static final String SURVEY5COL_16 = "total_income";
+    public static final String SURVEY5COL_17 = "IsVaccinated";
+    public static final String SURVEY5COL_18 = "vaccination";
+    public static final String SURVEY5COL_19 = "IsDewormed";
+    public static final String SURVEY5COL_20 = "created_at";
 
     public static final String TABLE_SURVEY6 = "pvet_survey_other";
     public static final String SURVEY6COL_1 = "id";
@@ -234,7 +238,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_OWNER_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_OWNER + "("
                 + OWNERCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + OWNERCOL_2 + " TEXT," + OWNERCOL_3 + " TEXT,"  + OWNERCOL_4 + " TEXT,"
                 + OWNERCOL_5 + " TEXT," + OWNERCOL_6 + " TEXT," + OWNERCOL_7 + " TEXT," + OWNERCOL_8 + " TEXT,"
-                + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT,"  + OWNERCOL_11 + " TEXT,"  + OWNERCOL_12 + " TEXT,"  + OWNERCOL_13 + " TEXT,"  + OWNERCOL_14 + " TEXT " +  ")";
+                + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT,"  + OWNERCOL_11 + " TEXT,"  + OWNERCOL_12 + " TEXT,"
+                + OWNERCOL_13 + " TEXT,"  + OWNERCOL_14 + " TEXT,"   + OWNERCOL_15 + " TEXT " +  ")";
 
         String CREATE_SURVEY1_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY1 + "("
                 + SURVEYCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEYCOL_3 + " TEXT,"  + SURVEYCOL_4 + " TEXT,"
@@ -255,19 +260,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + SURVEY3COL_5 + " TEXT," +  SURVEY3COL_6 + " TEXT," +  SURVEY3COL_7 + " TEXT," +  SURVEY3COL_8 + " TEXT," +  SURVEY3COL_9 + " TEXT,"
                 + SURVEY3COL_10 + " TEXT," +  SURVEY3COL_11 + " TEXT," +  SURVEY3COL_12 + " TEXT," + SURVEY3COL_13
                 + " TEXT," + SURVEY3COL_14  + " TEXT,"  + SURVEY3COL_15 + " TEXT," + SURVEY3COL_16 + " TEXT , "
-                + SURVEY3COL_17 + " TEXT , "  + SURVEY3COL_18 + " TEXT , "  +  SURVEY3COL_19 + " TEXT" +  ")";
+                + SURVEY3COL_17 + " TEXT , "  + SURVEY3COL_18 + " TEXT , "  + SURVEY3COL_19 + " TEXT , "  +   SURVEY3COL_20 + " TEXT" +  ")";
 
         String CREATE_SURVEY4_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY4 + "("
                 + SURVEY4COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY4COL_3 + " TEXT,"  + SURVEY4COL_4 + " TEXT,"
                 + SURVEY4COL_5 + " TEXT, " + SURVEY4COL_6 + " TEXT, " +  SURVEY4COL_7 + " TEXT, " +  SURVEY4COL_8 + " TEXT, " +  SURVEY4COL_9 + " TEXT, "
                 + SURVEY4COL_10 + " TEXT, " +  SURVEY4COL_11 + " TEXT, " +  SURVEY4COL_12 + " TEXT, " +  SURVEY4COL_13 + " TEXT, " +  SURVEY4COL_14 + " TEXT, "
-                + SURVEY4COL_15  + " TEXT,"  + SURVEY4COL_16 + " TEXT," +  SURVEY4COL_17 + " TEXT, "+ SURVEY4COL_18 + " TEXT , " +  SURVEY4COL_19 + " TEXT " + ")";
+                + SURVEY4COL_15  + " TEXT,"  + SURVEY4COL_16 + " TEXT," +  SURVEY4COL_17 + " TEXT, "
+                + SURVEY4COL_18 + " TEXT , " + SURVEY4COL_19 + " TEXT , " +  SURVEY4COL_20 + " TEXT " + ")";
 
         String CREATE_SURVEY5_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY5 + "("
                 + SURVEY5COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY5COL_3 + " TEXT,"  + SURVEY5COL_4 + " TEXT,"
                 + SURVEY5COL_5 + " TEXT, " + SURVEY5COL_6 + " TEXT, " +  SURVEY5COL_7 + " TEXT, " +  SURVEY5COL_8 + " TEXT, " +  SURVEY5COL_9 + " TEXT, "
                 + SURVEY5COL_10 + " TEXT, " +  SURVEY5COL_11 + " TEXT, " +  SURVEY5COL_12 + " TEXT, " +  SURVEY5COL_13 + " TEXT, "
-                + SURVEY5COL_14  + " TEXT,"  + SURVEY5COL_15 + " TEXT,"+ SURVEY5COL_16  + " TEXT,"  + SURVEY5COL_17 + " TEXT," + SURVEY5COL_18 + " TEXT , " + SURVEY5COL_19 + " TEXT " + ")";
+                + SURVEY5COL_14  + " TEXT,"  + SURVEY5COL_15 + " TEXT,"+ SURVEY5COL_16
+                + " TEXT,"  + SURVEY5COL_17 + " TEXT," + SURVEY5COL_18 + " TEXT , " + SURVEY5COL_19 + " TEXT , " + SURVEY5COL_20 + " TEXT " + ")";
 
         String CREATE_SURVEY6_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY6 + "("
                 + SURVEY6COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY6COL_3 + " TEXT,"  + SURVEY6COL_4 + " TEXT,"
@@ -333,8 +340,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean addOwner(String owner_id, String ownertype, String ownerinfo, String rfname, String rlname, String contact, String house,
-                            String muni, String brgy, String lat, String longt, String fulladd, String createdat)
+    public boolean addOwner(String owner_id, String ownertype, String ownerinfo, String rfname, String rlname,String members, String contact,
+                            String muni, String brgy,  String house,String lat, String longt, String fulladd, String createdat)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -343,14 +350,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(OWNERCOL_4,ownerinfo);
         contentValues.put(OWNERCOL_5,rlname);
         contentValues.put(OWNERCOL_6,rfname);
-        contentValues.put(OWNERCOL_7,contact);
-        contentValues.put(OWNERCOL_8,muni);
-        contentValues.put(OWNERCOL_9,brgy);
-        contentValues.put(OWNERCOL_10,house);
-        contentValues.put(OWNERCOL_11,lat);
-        contentValues.put(OWNERCOL_12,longt);
-        contentValues.put(OWNERCOL_13,fulladd);
-        contentValues.put(OWNERCOL_14,createdat);
+        contentValues.put(OWNERCOL_7,members);
+        contentValues.put(OWNERCOL_8,contact);
+        contentValues.put(OWNERCOL_9,muni);
+        contentValues.put(OWNERCOL_10,brgy);
+        contentValues.put(OWNERCOL_11,house);
+        contentValues.put(OWNERCOL_12,lat);
+        contentValues.put(OWNERCOL_13,longt);
+        contentValues.put(OWNERCOL_14,fulladd);
+        contentValues.put(OWNERCOL_15,createdat);
         long result = db.insert(TABLE_OWNER,null ,contentValues);
         if(result == -1)
             return false;
@@ -421,7 +429,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addCattle(String owner_id, String bull_d, String bull_m, String cow_d, String cow_m, String calf_d,
-                              String calf_m, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area, String totl_inc,
+                              String calf_m, String total,String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area, String totl_inc,
                              String vaccstatus,String vacctype,String deworm, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -433,16 +441,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY3COL_7,cow_m);
         contentValues.put(SURVEY3COL_8,calf_d);
         contentValues.put(SURVEY3COL_9,calf_m);
-        contentValues.put(SURVEY3COL_10,sl_f_kg);
-        contentValues.put(SURVEY3COL_11,sl_f_hd);
-        contentValues.put(SURVEY3COL_12,sl_a_kg);
-        contentValues.put(SURVEY3COL_13,sl_a_hd);
-        contentValues.put(SURVEY3COL_14,total_area);
-        contentValues.put(SURVEY3COL_15,totl_inc);
-        contentValues.put(SURVEY3COL_16,vaccstatus);
-        contentValues.put(SURVEY3COL_17,vacctype);
-        contentValues.put(SURVEY3COL_18,deworm);
-        contentValues.put(SURVEY3COL_19,createdAt);
+        contentValues.put(SURVEY3COL_10,total);
+        contentValues.put(SURVEY3COL_11,sl_f_kg);
+        contentValues.put(SURVEY3COL_12,sl_f_hd);
+        contentValues.put(SURVEY3COL_13,sl_a_kg);
+        contentValues.put(SURVEY3COL_14,sl_a_hd);
+        contentValues.put(SURVEY3COL_15,total_area);
+        contentValues.put(SURVEY3COL_16,totl_inc);
+        contentValues.put(SURVEY3COL_17,vaccstatus);
+        contentValues.put(SURVEY3COL_18,vacctype);
+        contentValues.put(SURVEY3COL_19,deworm);
+        contentValues.put(SURVEY3COL_20,createdAt);
         long result = db.insert(TABLE_SURVEY3,null ,contentValues);
         if(result == -1)
 
@@ -452,7 +461,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addCarabao(String owner_id, String carabull_c, String carabull_n, String caracow_c, String caracow_n,
-                               String caracalf_c,String caracalf_n, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area,
+                               String caracalf_c,String caracalf_n, String total, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area,
                               String totl_inc,String vaccstatus,String vacctype,String deworm, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -464,16 +473,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY4COL_7,caracow_n);
         contentValues.put(SURVEY4COL_8,caracalf_c);
         contentValues.put(SURVEY4COL_9,caracalf_n);
-        contentValues.put(SURVEY4COL_10,sl_f_kg);
-        contentValues.put(SURVEY4COL_11,sl_f_hd);
-        contentValues.put(SURVEY4COL_12,sl_a_kg);
-        contentValues.put(SURVEY4COL_13,sl_a_hd);
-        contentValues.put(SURVEY4COL_14,total_area);
-        contentValues.put(SURVEY4COL_15,totl_inc);
-        contentValues.put(SURVEY4COL_16,vaccstatus);
-        contentValues.put(SURVEY4COL_17,vacctype);
-        contentValues.put(SURVEY4COL_18,deworm);
-        contentValues.put(SURVEY4COL_19,createdAt);
+        contentValues.put(SURVEY4COL_10,total);
+        contentValues.put(SURVEY4COL_11,sl_f_kg);
+        contentValues.put(SURVEY4COL_12,sl_f_hd);
+        contentValues.put(SURVEY4COL_13,sl_a_kg);
+        contentValues.put(SURVEY4COL_14,sl_a_hd);
+        contentValues.put(SURVEY4COL_15,total_area);
+        contentValues.put(SURVEY4COL_16,totl_inc);
+        contentValues.put(SURVEY4COL_17,vaccstatus);
+        contentValues.put(SURVEY4COL_18,vacctype);
+        contentValues.put(SURVEY4COL_19,deworm);
+        contentValues.put(SURVEY4COL_20,createdAt);
         long result = db.insert(TABLE_SURVEY4,null ,contentValues);
         if(result == -1)
 
@@ -483,7 +493,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addGoat(String owner_id, String buck_d, String buck_m, String doe_d, String doe_m, String kids_d,
-                             String kids_m,String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area, String totl_inc,
+                             String kids_m,String total, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area, String totl_inc,
                            String vaccstatus,String vacctype,String deworm, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -495,16 +505,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY5COL_7,doe_m);
         contentValues.put(SURVEY5COL_8,kids_d);
         contentValues.put(SURVEY5COL_9,kids_m);
-        contentValues.put(SURVEY5COL_10,sl_f_kg);
-        contentValues.put(SURVEY5COL_11,sl_f_hd);
-        contentValues.put(SURVEY5COL_12,sl_a_kg);
-        contentValues.put(SURVEY5COL_13,sl_a_hd);
-        contentValues.put(SURVEY5COL_14,total_area);
-        contentValues.put(SURVEY5COL_15,totl_inc);
-        contentValues.put(SURVEY5COL_16,vaccstatus);
-        contentValues.put(SURVEY5COL_17,vacctype);
-        contentValues.put(SURVEY5COL_18,deworm);
-        contentValues.put(SURVEY5COL_19,createdAt);
+        contentValues.put(SURVEY5COL_10,total);
+        contentValues.put(SURVEY5COL_11,sl_f_kg);
+        contentValues.put(SURVEY5COL_12,sl_f_hd);
+        contentValues.put(SURVEY5COL_13,sl_a_kg);
+        contentValues.put(SURVEY5COL_14,sl_a_hd);
+        contentValues.put(SURVEY5COL_15,total_area);
+        contentValues.put(SURVEY5COL_16,totl_inc);
+        contentValues.put(SURVEY5COL_17,vaccstatus);
+        contentValues.put(SURVEY5COL_18,vacctype);
+        contentValues.put(SURVEY5COL_19,deworm);
+        contentValues.put(SURVEY5COL_20,createdAt);
         long result = db.insert(TABLE_SURVEY5,null ,contentValues);
         if(result == -1)
 
@@ -613,8 +624,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_8,birthday);
         contentValues.put(VACCCOL_9,colormarking);
         contentValues.put(VACCCOL_10,distinctfeat);
-        contentValues.put(VACCCOL_12,petid);
         contentValues.put(VACCCOL_11,source);
+        contentValues.put(VACCCOL_12,petid);
         contentValues.put(VACCCOL_13,status);
         contentValues.put(VACCCOL_14,createdAt);
         long result = db.insert(TABLE_VACC,null ,contentValues);

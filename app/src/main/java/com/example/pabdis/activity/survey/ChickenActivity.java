@@ -8,6 +8,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -19,6 +21,8 @@ import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class ChickenActivity extends AppCompatActivity {
@@ -29,8 +33,10 @@ public class ChickenActivity extends AppCompatActivity {
     String ownerid;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
+    ArrayList<String> mylist = new ArrayList<String>();
     FloatingActionButton skip;
     Spinner vacc;
+    CheckBox cbncdls,cbfp,cbib,cbncdb1,cbncdcombo;
     String vaccstat, vacctype, deworm, petid;
     TextView textView, txtincome;
     @Override
@@ -39,6 +45,19 @@ public class ChickenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_chicken);
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        cbncdls = findViewById(R.id.cbncdls);
+        cbfp = findViewById(R.id.cbfp);
+        cbib = findViewById(R.id.cbib);
+        cbncdb1 = findViewById(R.id.cbncdb1);
+        cbncdcombo = findViewById(R.id.cbncdcombo);
+
+        cbncdls.setVisibility(View.GONE);
+        cbfp.setVisibility(View.GONE);
+        cbib.setVisibility(View.GONE);
+        cbncdb1.setVisibility(View.GONE);
+        cbncdcombo.setVisibility(View.GONE);
+
+
         skip = findViewById(R.id.fab);
         edtBroiler = findViewById(R.id.edtBroiler);
         edtLayers = findViewById(R.id.edtLayers);
@@ -53,7 +72,6 @@ public class ChickenActivity extends AppCompatActivity {
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
-        vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
 
         compute = findViewById(R.id.btnCompute);
@@ -61,7 +79,6 @@ public class ChickenActivity extends AppCompatActivity {
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
 
-        vacc.setVisibility(View.GONE);
 
 
 
@@ -78,6 +95,103 @@ public class ChickenActivity extends AppCompatActivity {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
         }
+
+
+        cbncdls.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                if(b)
+                {
+
+                    if(!Arrays.asList(mylist).contains(cbncdls.getText().toString()))
+                    {
+                        mylist.add(cbncdls.getText().toString());
+                    }
+
+                }else{
+                    mylist.remove(cbncdls.getText().toString());
+                }
+
+            }
+        });
+        cbfp.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                if(b)
+                {
+
+                    if(!Arrays.asList(mylist).contains(cbfp.getText().toString()))
+                    {
+                        mylist.add(cbfp.getText().toString());
+                    }
+
+                }else{
+                    mylist.remove(cbfp.getText().toString());
+                }
+
+            }
+        });
+                cbib.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                        if(b)
+                        {
+
+                            if(!Arrays.asList(mylist).contains(cbib.getText().toString()))
+                            {
+                                mylist.add(cbib.getText().toString());
+                            }
+
+                        }else{
+                            mylist.remove(cbib.getText().toString());
+                        }
+
+                    }
+                });
+        cbncdb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                if(b)
+                {
+
+                    if(!Arrays.asList(mylist).contains(cbncdb1.getText().toString()))
+                    {
+                        mylist.add(cbncdb1.getText().toString());
+                    }
+
+                }else{
+                    mylist.remove(cbncdb1.getText().toString());
+                }
+
+            }
+        });
+                cbncdcombo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                        if(b)
+                        {
+
+                            if(!Arrays.asList(mylist).contains(cbncdcombo.getText().toString()))
+                            {
+                                mylist.add(cbncdcombo.getText().toString());
+                            }
+
+                        }else{
+                            mylist.remove(cbncdcombo.getText().toString());
+                        }
+
+                    }
+                });
 
         compute.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +270,7 @@ public class ChickenActivity extends AppCompatActivity {
                 final String ch_totala = edtTotalArea.getText().toString();
                 final String ch_totali = edtTotalIncome.getText().toString();
                 final String vacc = vaccstat;
-                final String vacct = vacctype;
+                final String vacct = mylist.toString();
                 final String dewormed = deworm;
 
 
@@ -186,7 +300,7 @@ public class ChickenActivity extends AppCompatActivity {
                                 if (broiler.equals("") || layer.equals("") || snative.equals("") ||
                                         total.equals("") || prod.equals("") || ch_sf_kg.equals("") || ch_sf__hd.equals("")
                                         || ch_sa_kg.equals("") || ch_sa__hd.equals("")  || ch_totala.equals("") || ch_totali.equals("")  ) {
-                                    Toast.makeText(ChickenActivity.this, "Check your input!"+ownerid  , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ChickenActivity.this, "Check your input!"+vacct  , Toast.LENGTH_SHORT).show();
                                 }else {
 
                                     try {
@@ -237,17 +351,26 @@ public class ChickenActivity extends AppCompatActivity {
             case R.id.rb1:
                 if (checked)
                     // Pirates are the best
-                    vacc.setVisibility(View.VISIBLE);
                 vaccstat = "1";
                 textView.setVisibility(View.VISIBLE);
-                vacctype = vacc.getSelectedItem().toString();
+                cbncdls.setVisibility(View.VISIBLE);
+                cbfp.setVisibility(View.VISIBLE);
+                cbib.setVisibility(View.VISIBLE);
+                cbncdb1.setVisibility(View.VISIBLE);
+                cbncdcombo.setVisibility(View.VISIBLE);
+//                vacctype = vacc.getSelectedItem().toString();
                 break;
             case R.id.rb2:
                 if (checked)
-                    vacc.setVisibility(View.GONE);
+                    cbncdls.setVisibility(View.GONE);
+                cbfp.setVisibility(View.GONE);
+                cbib.setVisibility(View.GONE);
+                cbncdb1.setVisibility(View.GONE);
+                cbncdcombo.setVisibility(View.GONE);
                 textView.setVisibility(View.GONE);
                 vaccstat = "2";
-                vacctype = "";
+                mylist.add("");
+
                 // Ninjas rule
                 break;
         }

@@ -42,6 +42,12 @@
                 android:orientation="vertical">
 
 
+                <CheckBox
+                    android:id="@+id/withfishery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Applicable" />
+
                 <TextView
                     android:id="@+id/txtv10"
                     android:layout_width="match_parent"
@@ -82,6 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="clip_vertical"
                         android:ems="10"
+                        android:text="0"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -102,6 +109,11 @@
 
                 </android.support.design.widget.TextInputLayout>
 
+                <CheckBox
+                    android:id="@+id/withapiary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Applicable" />
 
                 <TextView
                     android:id="@+id/txtv11"
@@ -145,6 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:text="0"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>

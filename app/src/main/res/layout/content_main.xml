@@ -147,6 +147,26 @@
 
                 </android.support.design.widget.TextInputLayout>
 
+                <android.support.design.widget.TextInputLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/number_of_household_member">
+
+                    <EditText
+                        android:id="@+id/edtTotalHousehold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:maxLines="1"
+                        android:maxLength="5"
+                        android:inputType="number"
+                        android:textColor="@color/textColor"
+                        android:textColorHighlight="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimaryDark" />
+
+                </android.support.design.widget.TextInputLayout>
+
 
                 <TextView
                     android:id="@+id/txtViewName"
@@ -195,6 +215,11 @@
                         android:textColorHint="@color/colorPrimaryDark" />
 
                 </android.support.design.widget.TextInputLayout>
+
+
+
+
+
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/text_input_layout6"

@@ -41,6 +41,7 @@ import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.survey.CarabaoActivity;
 import com.example.pabdis.activity.survey.CattleActivity;
 import com.example.pabdis.activity.survey.ChickenActivity;
+import com.example.pabdis.activity.survey.FisheryActivity;
 import com.example.pabdis.activity.survey.GoatActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.survey.OtherActivity;
@@ -60,7 +61,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LocationListener {
 
-    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact, edtEstab, edtCoop;
+    EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact, edtEstab, edtCoop,edtTotalHousehold;
     TextView tvLatitude, tvLongitude;
     Double lang, longi;
     Spinner muni, brgy, ownertype;
@@ -91,6 +92,9 @@ public class MainActivity extends AppCompatActivity
         lastname2 = findViewById(R.id.edtLastName1);
         firstname2 = findViewById(R.id.edtFirstName1);
         contact = findViewById(R.id.edtContact);
+        tvLongitude = findViewById(R.id.tv_longitude);
+        tvLatitude = findViewById(R.id.tv_latitude);
+        edtTotalHousehold = findViewById(R.id.edtTotalHousehold);
         houseno = findViewById(R.id.edtHouseNo);
         edtCoop = findViewById(R.id.edtCoop);
         edtEstab = findViewById(R.id.edtEstab);
@@ -265,6 +269,8 @@ public class MainActivity extends AppCompatActivity
                 final String mun = muni.getSelectedItem().toString();
                 final String brg = brgy.getSelectedItem().toString();
                 final String ownert = ownertype.getSelectedItem().toString();
+                final String member;
+
                 final String ownerin;
                 final String contact;
 
@@ -281,13 +287,16 @@ public class MainActivity extends AppCompatActivity
                 {
 
                     ownerin = lastname.getText().toString() + "," + firstname.getText().toString();
+                    member =  edtTotalHousehold.getText().toString();
 
                 }else if(ownert.equals("Establishment")){
                     ownerin = edtEstab.getText().toString();
+                    member = "";
 
                 }else{
 
                     ownerin = edtCoop.getText().toString();
+                    member = "";
                 }
 
 
@@ -307,7 +316,25 @@ public class MainActivity extends AppCompatActivity
 
                 final String end = salt.toString();
 
+                final String lat;
+                final String longi;
 
+                if(tvLatitude.equals(null)){
+
+                    lat = "N/A";
+                }else{
+                    lat = tvLati;
+                }
+
+                if(tvLongitude.equals(null))
+                {
+                    longi = "N/A";
+
+                }else{
+
+                    longi = tvLongi;
+
+                }
 
                 position = brgy.getSelectedItemPosition();
                 addrsss = "";
@@ -340,14 +367,14 @@ public class MainActivity extends AppCompatActivity
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
                                     Toast.makeText(MainActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+//                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
 //                                    intent.putExtra("ownerid", ownerid);
 //                                    intent.putExtra("petid", petid);
 //                                    startActivity(intent);
                                 }else{
 
                                     try {
-                                        myDB.addOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),contact.trim(), mun.trim(), brg.trim(),house.trim(), tvLati.trim(), tvLongi.trim(),addrsss.trim(),created_at);
+                                        myDB.addOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(), mun.trim(), brg.trim(),house.trim(), lat.trim(), longi.trim(),addrsss.trim(),created_at);
                                         Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
 
@@ -541,11 +568,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLocationChanged(Location location) {
 //
-//
-//        // Getting reference to TextView tv_longitude
-        tvLongitude = findViewById(R.id.tv_longitude);
-//        // Getting reference to TextView tv_latitude
-        tvLatitude = findViewById(R.id.tv_latitude);
 //
         tvLongi = String.valueOf(location.getLongitude());
         longi = location.getLongitude();
