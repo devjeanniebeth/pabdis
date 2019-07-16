@@ -220,6 +220,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
+                        android:text="0"
                         android:inputType="number" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -245,23 +246,6 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content">
 
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/dressed_kg">
-
-                            <EditText
-                                android:id="@+id/edtSF_sw_kg"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_column="0"
-                                android:ems="10"
-                                android:inputType="number" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/txtView9"
                             android:layout_width="match_parent"
@@ -274,9 +258,28 @@
                                 android:layout_height="wrap_content"
                                 android:layout_column="0"
                                 android:ems="10"
+                                android:text="0"
                                 android:inputType="number" />
 
                         </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/dressed_kg">
+
+                            <EditText
+                                android:id="@+id/edtSF_sw_kg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="0"
+                                android:ems="10"
+                                android:text="0"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+
                     </TableRow>
                 </TableLayout>
 
@@ -290,24 +293,6 @@
                         android:id="@+id/tableRow1"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content">
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/sold_kg">
-
-                            <EditText
-                                android:id="@+id/edtSA_sw_kg"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_column="1"
-                                android:layout_gravity="clip_vertical"
-                                android:ems="10"
-                                android:inputType="number" />
-
-                        </android.support.design.widget.TextInputLayout>
-
-
                         <android.support.design.widget.TextInputLayout
                             android:id="@+id/txtView10"
                             android:layout_width="match_parent"
@@ -321,12 +306,42 @@
                                 android:layout_column="1"
                                 android:layout_gravity="clip_vertical"
                                 android:ems="10"
+                                android:text="0"
                                 android:inputType="number" />
 
                         </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/sold_kg">
+
+                            <EditText
+                                android:id="@+id/edtSA_sw_kg"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_gravity="clip_vertical"
+                                android:ems="10"
+                                android:text="0"
+                                android:inputType="number" />
+
+                        </android.support.design.widget.TextInputLayout>
+
+
+
                     </TableRow>
                 </TableLayout>
                 <!---->
+
+                <!---->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/vaccination"
+                    android:textAlignment="center"
+                    android:textStyle="bold" />
 
                 <TableRow
                     android:id="@+id/tableRow3"
@@ -367,17 +382,51 @@
                     android:text="@string/vaccination"
                     android:textAlignment="center"
                     android:textStyle="bold" />
-                <Spinner
-                    android:id="@+id/vaccination"
-                    style="@style/spinner_style"
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:animateLayoutChanges="true"
-                    android:entries="@array/chicken"
-                    android:padding="10dp"
-                    android:textAlignment="center"
-                    android:prompt="@string/vacc_prompt" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp">
 
+                    <CheckBox
+                        android:id="@+id/cbncdls"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Castle Disease La Sota" />
+
+                    <CheckBox
+                        android:id="@+id/cbfp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fowl Pox" />
+
+                    <CheckBox
+                        android:id="@+id/cbib"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Infectious Bronchitis" />
+
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp">
+
+
+
+                    <CheckBox
+                        android:id="@+id/cbncdb1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Castle Disease B1B1" />
+
+                    <CheckBox
+                        android:id="@+id/cbncdcombo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Combination of New Castle Disease and Infectious Bronchitis (ND + IB)" />
+                </TableRow>
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"

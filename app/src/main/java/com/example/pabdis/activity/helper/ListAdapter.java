@@ -53,6 +53,8 @@ public class ListAdapter extends ArrayAdapter<Owner> {
         TextView HOUSE;
         TextView MUNI;
         TextView BRGY;
+        TextView LATI;
+        TextView LONGI;
         TextView CREATED;
     }
 
@@ -77,6 +79,8 @@ public class ListAdapter extends ArrayAdapter<Owner> {
             holder.HOUSE = child.findViewById(R.id.txtHouse);
             holder.MUNI = child.findViewById(R.id.txtMuni);
             holder.BRGY = child.findViewById(R.id.txtBrgy);
+            holder.LATI = child.findViewById(R.id.txtLati);
+            holder.LONGI = child.findViewById(R.id.txtLongi);
             holder.CREATED = child.findViewById(R.id.txtCreatedat);
             child.setTag(holder);
 
@@ -96,6 +100,8 @@ public class ListAdapter extends ArrayAdapter<Owner> {
         holder.HOUSE.setText(owner.getHouse());
         holder.MUNI.setText(owner.getMunicipality());
         holder.BRGY.setText(owner.getBarangay());
+        holder.LATI.setText(owner.getLatitude());
+        holder.LONGI.setText(owner.getLongitude());
         holder.CREATED.setText(owner.getCreatedat());
 
         return child;

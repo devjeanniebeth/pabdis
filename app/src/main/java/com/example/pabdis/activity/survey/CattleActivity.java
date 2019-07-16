@@ -8,6 +8,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -18,15 +20,19 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class CattleActivity extends AppCompatActivity {
 
-    Button btnNext;
-    EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
+    Button btnNext, compute;
+    EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtTotal, edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid, vaccstat, vacctype, deworm, petid;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
+    CheckBox cbbl;
+    ArrayList<String> mylist = new ArrayList<String>();
     Spinner vacc;
     FloatingActionButton skip;
     TextView textView, txtincome;
@@ -37,7 +43,11 @@ public class CattleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_cattle);
         btnNext = findViewById(R.id.btnProceedSurvey);
         skip = findViewById(R.id.fab);
+        cbbl = findViewById(R.id.cbbl);
+        cbbl.setVisibility(View.GONE);
+        compute = findViewById(R.id.btnCompute);
         edtBullD = findViewById(R.id.edtBullD);
+        edtTotal = findViewById(R.id.edtTotal);
         edtBullM = findViewById(R.id.edtBullM);
         edtCowD = findViewById(R.id.edtCowD);
         edtCowM = findViewById(R.id.edtCowM);
@@ -51,13 +61,11 @@ public class CattleActivity extends AppCompatActivity {
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
-        vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
         textView.setVisibility(View.GONE);
-
-        vacc.setVisibility(View.GONE);
+        edtTotal.setEnabled(false);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -66,12 +74,49 @@ public class CattleActivity extends AppCompatActivity {
                 petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
-                petid= extras.getString("ownerid");
+                petid= extras.getString("petid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
         }
+
+
+        cbbl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                {
+                    if(!Arrays.asList(mylist).contains(cbbl.getText().toString()))
+                    {
+                        mylist.add(cbbl.getText().toString());
+                    }
+                }else{
+                    mylist.remove(cbbl.getText().toString());
+                }
+            }
+        });
+
+        compute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                final Integer boarn = Integer.parseInt(edtBullD.getText().toString());
+                final Integer boaru = Integer.parseInt(edtBullM.getText().toString());
+                final Integer grown = Integer.parseInt(edtCowD.getText().toString());
+                final Integer growu = Integer.parseInt(edtCowM.getText().toString());
+                final Integer sown = Integer.parseInt(edtCalfD.getText().toString());
+                final Integer sowu = Integer.parseInt(edtCalfM.getText().toString());
+
+
+
+
+                final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
+                edtTotal.setText(String.valueOf(total));
+
+            }
+        });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,8 +181,11 @@ public class CattleActivity extends AppCompatActivity {
                 final String ca_totala = edtSwineTotalArea.getText().toString();
                 final String ca_totali = edtSwineTotalIncome.getText().toString();
 
+
+                final String total = edtTotal.getText().toString();
+
                 final String vacc = vaccstat;
-                final String vacct = vacctype;
+                final String vacct = mylist.toString();
                 final String dewormed = deworm;
 
                 Calendar cal = Calendar.getInstance();
@@ -169,11 +217,11 @@ public class CattleActivity extends AppCompatActivity {
                                         calfd.equals("") || calfm.equals("") || ca_sf_kg.equals("") ||
                                         ca_sf__hd.equals("") || ca_sa_kg.equals("") || ca_sa__hd.equals("") ||
                                         ca_totala.equals("") || ca_totali.equals("") || vacc.equals("") || vacct.equals("") || dewormed.equals("")) {
-                                    Toast.makeText(CattleActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CattleActivity.this, "Check your input!" + dewormed , Toast.LENGTH_SHORT).show();
 
                                 }else {
                                     try {
-                                        myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,ca_sf_kg,ca_sf__hd,ca_sa_kg,ca_sa__hd,ca_totala,
+                                        myDB.addCattle(ownerid,bulld, bullm,cowd,cowm,calfd,calfm,total,ca_sf_kg,ca_sf__hd,ca_sa_kg,ca_sa__hd,ca_totala,
                                                 ca_totali ,vacc.trim(), vacct.trim(),dewormed.trim(),created_at );
                                         Toast.makeText(CattleActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
@@ -218,17 +266,17 @@ public class CattleActivity extends AppCompatActivity {
             case R.id.rb1:
                 if (checked)
                     // Pirates are the best
-                    vacc.setVisibility(View.VISIBLE);
                 vaccstat = "1";
                 textView.setVisibility(View.VISIBLE);
-                vacctype = vacc.getSelectedItem().toString();
+                cbbl.setVisibility(View.VISIBLE);
                 break;
             case R.id.rb2:
                 if (checked)
-                    vacc.setVisibility(View.GONE);
                 textView.setVisibility(View.GONE);
+                cbbl.setVisibility(View.GONE);
                 vaccstat = "2";
                 vacctype = "";
+                mylist.add("");
                 // Ninjas rule
                 break;
         }

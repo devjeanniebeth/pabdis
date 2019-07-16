@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,22 +26,28 @@ import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class SwineActivity extends AppCompatActivity {
 
     Button btnNext, compute;
     FloatingActionButton skip;
+    ArrayList<String> mylist = new ArrayList<String>();
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,
             edtSwineTotal,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid, petid;
+    CheckBox cbhog, cbpcv2, cbmyco;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
     Spinner vacc;
-    String vaccstat, vacctype, deworm;
+    String vaccstat, deworm, vacctype;
     TextView textView, txtincome;
     final Calendar myCalendar = Calendar.getInstance();
+
 
 
     @Override
@@ -49,6 +57,12 @@ public class SwineActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         skip = findViewById(R.id.fab);
+        cbhog = findViewById(R.id.cbhog);
+        cbpcv2 = findViewById(R.id.cbpcv2);
+        cbmyco = findViewById(R.id.cbmyco);
+        cbpcv2.setVisibility(View.GONE);
+        cbhog.setVisibility(View.GONE);
+        cbmyco.setVisibility(View.GONE);
         compute = findViewById(R.id.btnCompute);
         edtboarn = findViewById(R.id.edtBoarN);
         edtboaru = findViewById(R.id.edtBoarU);
@@ -67,14 +81,14 @@ public class SwineActivity extends AppCompatActivity {
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
-        vacc = findViewById(R.id.vaccination);
+//        vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
 
         edtSwineTotal.setEnabled(false);
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
 
-        vacc.setVisibility(View.GONE);
+//        vacc.setVisibility(View.GONE);
 
 
 
@@ -86,12 +100,77 @@ public class SwineActivity extends AppCompatActivity {
                 petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
-                petid= extras.getString("ownerid");
+                petid= extras.getString("petid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
         }
+
+
+
+
+        cbhog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+
+                if(b)
+                {
+
+                    if(!Arrays.asList(mylist).contains(cbhog.getText().toString()))
+                    {
+                        mylist.add(cbhog.getText().toString());
+                        Toast.makeText(SwineActivity.this, "Check your input!" + mylist, Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    mylist.remove(cbhog.getText().toString());
+                }
+
+            }
+        });
+
+        cbpcv2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                {
+                    if(!Arrays.asList(mylist).contains(cbpcv2.getText().toString()))
+                    {
+                        mylist.add(cbpcv2.getText().toString());
+                        Toast.makeText(SwineActivity.this, "Check your input!" + mylist, Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }else{
+                    mylist.remove(cbpcv2.getText().toString());
+                }
+            }
+        });
+
+
+        cbmyco.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                {
+                    if(!Arrays.asList(mylist).contains(cbmyco.getText().toString()))
+                    {
+                        mylist.add(cbmyco.getText().toString());
+                        Toast.makeText(SwineActivity.this, "Check your input!" + mylist, Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    mylist.remove(cbmyco.getText().toString());
+                }
+            }
+        });
+
+
+
+
+
 
 
 
@@ -110,11 +189,24 @@ public class SwineActivity extends AppCompatActivity {
                 final Integer pigu = Integer.parseInt(edtPigU.getText().toString());
 
 
+                if(boarn.equals("") || boaru.equals("") ||grown.equals("") || growu.equals("")
+                        || sown.equals("") || sowu.equals("") || pign.equals("") || pigu.equals("") )
+                {
+
+                    Toast.makeText(SwineActivity.this, "Empty input!" + ownerid , Toast.LENGTH_SHORT).show();
 
 
 
-                final Integer total = boarn + boaru + grown + growu +  sown + sowu + pign + pigu;
-                edtSwineTotal.setText(String.valueOf(total));
+                }else {
+                    final Integer total = boarn + boaru + grown + growu +  sown + sowu + pign + pigu;
+                    edtSwineTotal.setText(String.valueOf(total));
+                }
+
+
+
+
+
+
 
             }
         });
@@ -188,7 +280,7 @@ public class SwineActivity extends AppCompatActivity {
                 final String swn_totala = edtSwineTotalArea.getText().toString();
                 final String swn_totali = edtSwineTotalIncome.getText().toString();
                 final String vacc = vaccstat;
-                final String vacct = vacctype;
+                final String vacct = mylist.toString();
                 final String dewormed = deworm;
 
                 Calendar cal = Calendar.getInstance();
@@ -216,7 +308,7 @@ public class SwineActivity extends AppCompatActivity {
                                         growu.equals("") || sown.equals("") || sowu.equals("") ||
                                         pign.equals("") || pigu.equals("") || swntotal.equals("") ||
                                         swn_sf_kg.equals("") || swn_sf_hd.equals("") || swn_sa_kg.equals("") || swn_sa_hd.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
-                                    Toast.makeText(SwineActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SwineActivity.this, "Check your input!" + vacct, Toast.LENGTH_SHORT).show();
 
 
                                 }else {
@@ -275,19 +367,21 @@ public class SwineActivity extends AppCompatActivity {
             case R.id.rb1:
                 if (checked)
                     // Pirates are the best
-                    vacc.setVisibility(View.VISIBLE);
+
+                    cbpcv2.setVisibility(View.VISIBLE);
+                cbhog.setVisibility(View.VISIBLE);
+                cbmyco.setVisibility(View.VISIBLE);
                     vaccstat = "1";
                     textView.setVisibility(View.VISIBLE);
-                    vacctype = vacc.getSelectedItem().toString();
-                    Toast.makeText(SwineActivity.this, "YES!" , Toast.LENGTH_SHORT).show();
                     break;
             case R.id.rb2:
                 if (checked)
-                    vacc.setVisibility(View.GONE);
                     textView.setVisibility(View.GONE);
                     vaccstat = "2";
-                    vacctype = "";
-                    Toast.makeText(SwineActivity.this, "NOOOOOOOOOOOO!" , Toast.LENGTH_SHORT).show();
+                    mylist.add("");
+                    cbpcv2.setVisibility(View.GONE);
+                    cbhog.setVisibility(View.GONE);
+                    cbmyco.setVisibility(View.GONE);
                     // Ninjas rule
                     break;
         }

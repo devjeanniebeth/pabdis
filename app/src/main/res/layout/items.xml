@@ -84,6 +84,26 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/txtLati"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtLongi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+        <TextView
             android:id="@+id/txtCreatedat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
