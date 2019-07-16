@@ -100,7 +100,7 @@ public class SwineActivity extends AppCompatActivity {
                 petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
-                petid= extras.getString("ownerid");
+                petid= extras.getString("petid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");

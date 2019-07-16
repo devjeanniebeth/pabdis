@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity
                         lastname.setVisibility(View.GONE);
                         firstname.setVisibility(View.GONE);
                         edtEstab.setVisibility(View.GONE);
+                        edtTotalHousehold.setVisibility(View.GONE);
                         ownerinfo =  edtEstab.getText().toString();
 //                        Toast.makeText(MainActivity.this, ""+ selectedItem  , Toast.LENGTH_SHORT).show();
 
@@ -172,6 +173,7 @@ public class MainActivity extends AppCompatActivity
                         lastname.setVisibility(View.GONE);
                         firstname.setVisibility(View.GONE);
                         edtCoop.setVisibility(View.GONE);
+                        edtTotalHousehold.setVisibility(View.GONE);
                         ownerinfo = edtCoop.getText().toString();
 
 
@@ -319,21 +321,20 @@ public class MainActivity extends AppCompatActivity
                 final String lat;
                 final String longi;
 
-                if(tvLatitude.equals(null)){
+                if(tvLati == null){
 
                     lat = "N/A";
                 }else{
                     lat = tvLati;
                 }
 
-                if(tvLongitude.equals(null))
+                if(tvLongi == null)
                 {
                     longi = "N/A";
 
                 }else{
 
                     longi = tvLongi;
-
                 }
 
                 position = brgy.getSelectedItemPosition();
@@ -346,6 +347,11 @@ public class MainActivity extends AppCompatActivity
                 ctr++;
 
                 ownerid = first.toString() + position.toString() + year.toString() + "-" + end;
+
+
+
+
+
 //                petid = first.toString() + position.toString() + year.toString();
 
                 // Build an AlertDialog
@@ -366,11 +372,8 @@ public class MainActivity extends AppCompatActivity
                                 // User clicked the Yes button
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                    Toast.makeText(MainActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
-//                                    intent.putExtra("ownerid", ownerid);
-//                                    intent.putExtra("petid", petid);
-//                                    startActivity(intent);
+                                    Toast.makeText(MainActivity.this, "Check your input!"+ longi + lat , Toast.LENGTH_SHORT).show();
+
                                 }else{
 
                                     try {
@@ -449,7 +452,7 @@ public class MainActivity extends AppCompatActivity
 //        isLocationEnabled();
     }
 
-    /* Remove the locationlistener updates when Activity is paused */
+
     @Override
     protected void onPause() {
         super.onPause();

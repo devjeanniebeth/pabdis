@@ -80,13 +80,14 @@
         <item>Maltese</item>
         <item>Mexican Hairless Dog</item>
         <item>Mini Pincher</item>
+        <item>Mixed</item>
         <item>Pomeranian</item>
         <item>Poodle</item>
         <item>Pug</item>
         <item>Rottweiler</item>
         <item>St. Bernard</item>
         <item>Shih-Tzu</item>
-        <item>Schauzner</item>
+        <item>Schnauzer</item>
         <item>Shetland Sheepdog</item>
         <item>Siberian Husky</item>
         <item>Yorkshire Terrier</item>
@@ -243,7 +244,7 @@
     <string name="egg_production">Egg Production</string>
     <string name="source_of_pet">SOURCE OF PET</string>
     <string name="place">Place</string>
-    <string name="number_of_household_member">Number of Household/Establishment/Cooperative Member</string>
+    <string name="number_of_household_member">Number of Household Member</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>

@@ -138,7 +138,7 @@
                             android:id="@+id/txtView5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/grower_native">
+                            android:hint="@string/git_native">
 
                             <EditText
                                 android:id="@+id/edtGrowN"
@@ -155,7 +155,7 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/grower_upgrade">
+                            android:hint="@string/git_upgrade">
 
                             <EditText
                                 android:id="@+id/edtGrowU"
@@ -202,7 +202,7 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/git_native">
+                            android:hint="@string/grower_native">
 
                             <EditText
                                 android:id="@+id/edtSowN"
@@ -219,7 +219,7 @@
                         <android.support.design.widget.TextInputLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/git_upgrade">
+                            android:hint="@string/grower_upgrade">
 
                             <EditText
                                 android:id="@+id/edtSowU"

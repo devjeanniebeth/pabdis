@@ -82,7 +82,7 @@ public class GoatActivity extends AppCompatActivity {
                 petid = null;
             } else {
                 ownerid= extras.getString("ownerid");
-                petid= extras.getString("ownerid");
+                petid= extras.getString("petid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
@@ -193,7 +193,7 @@ public class GoatActivity extends AppCompatActivity {
                 final String go_totala = edtSwineTotalArea.getText().toString();
                 final String go_totali = edtSwineTotalIncome.getText().toString();
                 final String vacc = vaccstat;
-                final String vacct = vacctype;
+                final String vacct = mylist.toString();
                 final String dewormed = deworm;
 
 
@@ -221,7 +221,7 @@ public class GoatActivity extends AppCompatActivity {
                                 if (buckd.equals("") || buckm.equals("") || doed.equals("") ||
                                         doem.equals("") || kidsd.equals("") || kidsm.equals("") ||
                                         go_sf_kg.equals("") ||  go_sf_hd.equals("") || go_sa_kg.equals("") || go_sa_hd.equals("") || go_totala.equals("") || go_totali.equals("")  ) {
-                                    Toast.makeText(GoatActivity.this, "Check your input!"+ ownerid, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(GoatActivity.this, "Check your input!"+ vacc, Toast.LENGTH_SHORT).show();
 
                                 }else {
 
@@ -282,7 +282,6 @@ public class GoatActivity extends AppCompatActivity {
                 cbbl.setVisibility(View.GONE);
                 mylist.add("");
                 vaccstat = "2";
-                vacctype = "";
                 // Ninjas rule
                 break;
         }

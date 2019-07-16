@@ -11,10 +11,12 @@ public class Owner {
     String barangay = null;
     String house = null;
     String createdat = null;
+    String latitude = null;
+    String longitude = null;
 
 
     public Owner(String id, String ownerid,
-                 String r_full, String contact_no, String house, String municipality, String barangay,
+                 String r_full, String contact_no, String house, String municipality, String barangay, String latitude, String longitude,
                  String createdat) {
 
         super();
@@ -27,6 +29,8 @@ public class Owner {
         this.house = house;
         this.municipality = municipality;
         this.barangay = barangay;
+        this.latitude = latitude;
+        this.longitude = longitude;
         this.createdat = createdat;
     }
 
@@ -115,6 +119,24 @@ public class Owner {
 
         this.barangay = barangay;
 
+    }
+
+    public String getLatitude(){
+       return  latitude;
+    }
+
+    public  void setLatitude(String latitude)
+    {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude(){
+        return longitude;
+    }
+
+    public void setLongitude(String longitude)
+    {
+        this.longitude = longitude;
     }
 
     public String getCreatedat() {

@@ -27,12 +27,12 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
-import com.example.pabdis.activity.survey.CarabaoActivity;
-import com.example.pabdis.activity.survey.GoatActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
+import java.time.Period;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
@@ -40,7 +40,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
     EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
-    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed;
+    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2;
     Button btndate, chooseImg, btnVacc, dateVacc;
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
@@ -62,6 +62,7 @@ public class VaccinationActivity extends AppCompatActivity {
         dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
         btnVacc = findViewById(R.id.btnVacc);
+        txtvaccinatedby2= findViewById(R.id.txtvaccinatedby2);
 
         dateVacc = findViewById(R.id.btnDateVacc);
 
@@ -126,10 +127,13 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
                 updateLabel();
-                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
-                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
+//                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
+//                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
             }
+
+
 
         };
 
@@ -141,9 +145,14 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                String myFormat = "MM/dd/yyyy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                txtxDateVacc.setText(sdf.format(myCalendar.getTime()));
                 updateLabel2();
-                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
-                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
+//                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
+//                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
             }
 
         };
@@ -156,7 +165,10 @@ public class VaccinationActivity extends AppCompatActivity {
                 new DatePickerDialog(VaccinationActivity.this, date2, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
             }
+
         });
 
         skip.setOnClickListener(new View.OnClickListener() {
@@ -237,14 +249,49 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String other_breed;
 
                 final String gender = txtGender.getSelectedItem().toString();
-                final String vacc_by = txtvaccinatedby.getSelectedItem().toString();
-                final String birthdate = txtxDateVacc.getText().toString();
+                final String vacc_by;
+
+
+
+
+                final String birthdate = dateSurvey.getText().toString();
                 final String agepet = age;
                 final String colormark = txtColorMark.getSelectedItem().toString();
                 final String othercolor;
-                final String feat = txtdistinguish.getText().toString();
+                final String feat ;
+                final String dis  = txtdistinguish.getText().toString();
                 final String datevacc = txtxDateVacc.getText().toString();
+
+                if(datevacc.equals("NOT YET VACCINATED"))
+                {
+                    vacc_by = "N/A";
+                }else{
+                    vacc_by = txtvaccinatedby.toString();
+                }
                 final String stat = "alive";
+                 final byte imgv[]  ;
+                 final String nulla = "N/A";
+
+
+
+                if(imgView.getDrawable() == null)
+                {
+                    imgv = nulla.getBytes();
+
+
+                }else{
+
+                    imgv = imageViewToByte(imgView);
+
+                }
+
+
+                if(dis.equals("")){
+                    feat = "";
+
+                }else{
+                    feat = dis;
+                }
 
                  String src = "";
                  String source2 = txtsource.getSelectedItem().toString();
@@ -295,6 +342,9 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String end = salt.toString();
 
 
+                final byte imgv2[] = imgv;
+
+
 
                 ctr = myDB.getCountPet(ownerid,specie);
                 ctr++;
@@ -321,20 +371,20 @@ public class VaccinationActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
 
-                                if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+vacc, Toast.LENGTH_SHORT).show();
+                                if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ imgv, Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
 
 
                                         if(!ownerid.equals("") && !petname.equals("") && !specie.equals("") && !other_breed.equals("") &&
-                                                !gender.equals("") && !birthdate.equals("") && !othercolor.equals("") && !feat.equals("") )
+                                                !gender.equals("") && !birthdate.equals("") && !othercolor.equals("")  )
                                         {
 
 
 
-                                                myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
+                                                myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                         souces,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
@@ -358,19 +408,15 @@ public class VaccinationActivity extends AppCompatActivity {
 
                             case DialogInterface.BUTTON_NEGATIVE:
 
-                                if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") || agepet.
-                                        // User clicked the No button
-                                                equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                                if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!" + imgView, Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
 
-                                        if(!ownerid.equals("") && !petname.equals("") && !specie.equals("") && !other_breed.equals("") &&
-                                                !gender.equals("") && !birthdate.equals("") && !othercolor.equals("") && !feat.equals("") )
-                                        {
 
-                                            myDB.addVaccination(imageViewToByte(imgView),ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at);
+
+                                            myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
@@ -381,7 +427,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                                             }
 
-                                        }
+
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -523,6 +569,11 @@ public class VaccinationActivity extends AppCompatActivity {
     private void updateLabel() {
         String myFormat = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        String age = calculateAge(myCalendar.getTime());
+        Toast.makeText(VaccinationActivity.this, "Check your input!"+age, Toast.LENGTH_SHORT).show();
+        txtAge.setText(age);
+
         dateSurvey.setText(sdf.format(myCalendar.getTime()));
     }
 
@@ -539,15 +590,93 @@ public class VaccinationActivity extends AppCompatActivity {
         }
     }
 
-    int calculateAge(long date){
+    public String calculateAge(Date date){
+
+        int year =0;
+        int months = 0;
+        int days = 0;
+
         Calendar dob = Calendar.getInstance();
-        dob.setTimeInMillis(date);
+        dob.setTimeInMillis(date.getTime());
+        long current = System.currentTimeMillis();
         Calendar today = Calendar.getInstance();
-        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-        if(today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH)){
-            age--;
+        today.setTimeInMillis(current);
+
+
+        year = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+        int currMonth = today.get(Calendar.MONTH);
+        int birthMonth = dob.get(Calendar.MONTH);
+
+        months = currMonth - birthMonth;
+
+        if( months < 0)
+        {
+            year--;
+            months = 12 - birthMonth + currMonth;
+            if(today.get(Calendar.DATE) < dob.get(Calendar.DATE))
+            {
+                months--;
+            }else if(months == 0 && today.get(Calendar.DATE) < dob.get(Calendar.DATE))
+            {
+                year--;
+                months = 11;
+            }
         }
-        return age;
+
+
+        if(today.get(Calendar.DATE) > dob.get(Calendar.DATE))
+        {
+            days = today.get(Calendar.DATE) - dob.get(Calendar.DATE);
+
+        }else if(today.get(Calendar.DATE) < dob.get(Calendar.DATE)){
+
+            int now = today.get(Calendar.DAY_OF_MONTH);
+            today.add(Calendar.MONTH, -1);
+            days = today.getActualMaximum(Calendar.DAY_OF_MONTH) - dob.get(Calendar.DAY_OF_MONTH) + now;
+        }
+        else
+        {
+            days = 0;
+            if (months == 12)
+            {
+                year++;
+                months = 0;
+            }
+        }
+
+        final String aged1 ;
+
+        if(year > 0 && months > 0 && days > 0)
+        {
+            aged1 = year + " year/s, " + months + " month/s, " + days + " day/s";
+        }else if(year == 0 && months > 0 && days > 0)
+        {
+            aged1 = months + " month/s, " + days + " day/s";
+        }else if(year == 0 && months == 0 && days > 0){
+            aged1 =  days + " day/s";
+        }
+        else if(year > 0 && months == 0 && days == 0){
+            aged1 =  year + " year/s";
+        }
+
+        else if(year > 0 && months == 0 && days > 0){
+            aged1 =  year + " year/s " + days + " day/s";
+        }
+
+        else if(year > 0 && months > 0 && days == 0){
+            aged1 =  year + " year/s " + months + " month/s";
+        }
+
+        else if(year == 0 && months > 0 && days == 0){
+            aged1 =  months + " month/s";
+        }else{
+            aged1 = "New Born";
+        }
+
+
+
+
+        return aged1;
     }
 
     @Override
@@ -578,12 +707,20 @@ public class VaccinationActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.rby:
                 if (checked)
-                    // Pirates are the best
-                    vacc = "1";
+
+                    dateVacc.setEnabled(true);
+                txtxDateVacc.setText("");
+                txtvaccinatedby.setVisibility(View.VISIBLE);
+
+                // Pirates are the best
+
                 break;
             case R.id.rbn:
                 if (checked)
-                    vacc = "2";
+                    txtxDateVacc.setText("NOT YET VACCINATED");
+                txtvaccinatedby.setVisibility(View.GONE);
+                txtvaccinatedby2.setVisibility(View.GONE);
+                dateVacc.setEnabled(false);
                 // Ninjas rule
                 break;
         }
