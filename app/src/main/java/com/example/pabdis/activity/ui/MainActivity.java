@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity
         edtCoop.setVisibility(View.GONE);
         edtEstab.setVisibility(View.GONE);
         CheckPermission();
+        getLocation();
 
 
 
@@ -150,6 +151,7 @@ public class MainActivity extends AppCompatActivity
                     case "Household":
                         lastname.setVisibility(View.VISIBLE);
                         firstname.setVisibility(View.VISIBLE);
+                        edtTotalHousehold.setVisibility(View.VISIBLE);
                         edtCoop.setVisibility(View.GONE);
                         edtEstab.setVisibility(View.GONE);
                         final String hlname = firstname.getText().toString();
@@ -304,7 +306,7 @@ public class MainActivity extends AppCompatActivity
 
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -372,7 +374,7 @@ public class MainActivity extends AppCompatActivity
                                 // User clicked the Yes button
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                    Toast.makeText(MainActivity.this, "Check your input!"+ longi + lat , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Check your input!" + created_at, Toast.LENGTH_SHORT).show();
 
                                 }else{
 

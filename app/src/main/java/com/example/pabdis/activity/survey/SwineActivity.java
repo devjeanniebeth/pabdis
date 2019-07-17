@@ -189,8 +189,8 @@ public class SwineActivity extends AppCompatActivity {
                 final Integer pigu = Integer.parseInt(edtPigU.getText().toString());
 
 
-                if(boarn.equals("") || boaru.equals("") ||grown.equals("") || growu.equals("")
-                        || sown.equals("") || sowu.equals("") || pign.equals("") || pigu.equals("") )
+                if(edtboarn.equals("") || edtboaru.equals("") || edtGrowN.equals("") || edtGrowU.equals("")
+                        || edtSowN.equals("") || edtSowU.equals("") || edtPigN.equals("") || edtPigU.equals("") )
                 {
 
                     Toast.makeText(SwineActivity.this, "Empty input!" + ownerid , Toast.LENGTH_SHORT).show();
@@ -284,7 +284,7 @@ public class SwineActivity extends AppCompatActivity {
                 final String dewormed = deworm;
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -308,7 +308,7 @@ public class SwineActivity extends AppCompatActivity {
                                         growu.equals("") || sown.equals("") || sowu.equals("") ||
                                         pign.equals("") || pigu.equals("") || swntotal.equals("") ||
                                         swn_sf_kg.equals("") || swn_sf_hd.equals("") || swn_sa_kg.equals("") || swn_sa_hd.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
-                                    Toast.makeText(SwineActivity.this, "Check your input!" + vacct, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SwineActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
 
 
                                 }else {

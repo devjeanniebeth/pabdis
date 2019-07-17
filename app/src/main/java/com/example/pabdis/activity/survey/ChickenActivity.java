@@ -200,8 +200,24 @@ public class ChickenActivity extends AppCompatActivity {
                 final Integer broiler = Integer.parseInt(edtBroiler.getText().toString());
                 final Integer layer = Integer.parseInt(edtLayers.getText().toString());
                 final Integer snative = Integer.parseInt(edtNative.getText().toString());
-                final Integer total = broiler + layer + snative ;
-                edtTotal.setText(String.valueOf(total));
+
+
+
+
+                if(edtBroiler.equals("") || edtLayers.equals("") || edtNative.equals("") )
+                {
+
+                    Toast.makeText(ChickenActivity.this, "Empty input!" + ownerid , Toast.LENGTH_SHORT).show();
+
+
+
+                }else {
+
+                    final Integer total = broiler + layer + snative ;
+                    edtTotal.setText(String.valueOf(total));
+                }
+
+
 
 
             }
@@ -275,7 +291,7 @@ public class ChickenActivity extends AppCompatActivity {
 
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -300,7 +316,7 @@ public class ChickenActivity extends AppCompatActivity {
                                 if (broiler.equals("") || layer.equals("") || snative.equals("") ||
                                         total.equals("") || prod.equals("") || ch_sf_kg.equals("") || ch_sf__hd.equals("")
                                         || ch_sa_kg.equals("") || ch_sa__hd.equals("")  || ch_totala.equals("") || ch_totali.equals("")  ) {
-                                    Toast.makeText(ChickenActivity.this, "Check your input!"+vacct  , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ChickenActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
                                 }else {
 
                                     try {

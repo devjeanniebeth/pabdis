@@ -118,12 +118,25 @@ public class GoatActivity extends AppCompatActivity {
                 final Integer sowu = Integer.parseInt(edtKidsM.getText().toString());
 
 
+                if(edtBuckD.equals("") || edtBuckM.equals("") || edtDoeD.equals("") || edtDoeM.equals("")
+                        || edtKidsD.equals("") || edtKidsM.equals("") )
+                {
+
+                    Toast.makeText(GoatActivity.this, "Empty input!" + ownerid , Toast.LENGTH_SHORT).show();
+
+
+
+                }else {
+
+                    final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
+                    edtTotal.setText(String.valueOf(total));
+                }
 
 
 
 
-                final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
-                edtTotal.setText(String.valueOf(total));
+
+
 
             }
         });
@@ -198,7 +211,7 @@ public class GoatActivity extends AppCompatActivity {
 
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
                 // Build an AlertDialog
@@ -221,7 +234,7 @@ public class GoatActivity extends AppCompatActivity {
                                 if (buckd.equals("") || buckm.equals("") || doed.equals("") ||
                                         doem.equals("") || kidsd.equals("") || kidsm.equals("") ||
                                         go_sf_kg.equals("") ||  go_sf_hd.equals("") || go_sa_kg.equals("") || go_sa_hd.equals("") || go_totala.equals("") || go_totali.equals("")  ) {
-                                    Toast.makeText(GoatActivity.this, "Check your input!"+ vacc, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(GoatActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
 
                                 }else {
 

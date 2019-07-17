@@ -88,13 +88,13 @@ public class PetActivity extends AppCompatActivity
                     }
                 });
 
-                builder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        DatabaseHelper dbHelper = new DatabaseHelper(PetActivity.this);
-                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//                builder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        DatabaseHelper dbHelper = new DatabaseHelper(PetActivity.this);
+//                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
                 builder.create().show();
             }

@@ -119,7 +119,7 @@ public class HouseholdActivity extends AppCompatActivity {
 
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -143,7 +143,7 @@ public class HouseholdActivity extends AppCompatActivity {
 
                                 if (beef.equals("") || carabeef.equals("") || pork.equals("") ||
                                         chicken.equals("") || fish.equals("") || egg.equals("")) {
-                                    Toast.makeText(HouseholdActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HouseholdActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
@@ -165,7 +165,7 @@ public class HouseholdActivity extends AppCompatActivity {
 
                                 if (beef.equals("") || carabeef.equals("") || pork.equals("") ||
                                         chicken.equals("") || fish.equals("") || egg.equals("")) {
-                                    Toast.makeText(HouseholdActivity.this, "Check your input!"+ ownerid, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(HouseholdActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
                                 }else {
                                     try {
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);

@@ -114,10 +114,24 @@ public class CarabaoActivity extends AppCompatActivity {
                 final Integer sowu = Integer.parseInt(edtCaracalfN.getText().toString());
 
 
+                if(edtCarabullC.equals("") || edtCarabullN.equals("") || edtCaracowC.equals("") || edtCaracowN.equals("")
+                        || edtCaracalfC.equals("") || edtCaracalfN.equals("") )
+                {
+
+                    Toast.makeText(CarabaoActivity.this, "Empty input!" + ownerid , Toast.LENGTH_SHORT).show();
 
 
-                final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
-                edtTotal.setText(String.valueOf(total));
+
+                }else {
+
+
+
+                    final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
+                    edtTotal.setText(String.valueOf(total));
+                }
+
+
+
 
             }
         });
@@ -194,7 +208,7 @@ public class CarabaoActivity extends AppCompatActivity {
                 final String dewormed = deworm;
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -223,7 +237,7 @@ public class CarabaoActivity extends AppCompatActivity {
                                         caracown.equals("") || caracalfc.equals("") || caracalfn.equals("") ||
                                         car_sf_kg.equals("") || car_sf_hd.equals("") || car_sa_kg.equals("") ||
                                         car_sa_hd.equals("") || car_totala.equals("") || car_totali.equals("") ||  vacc.equals("") || vacct.equals("") || dewormed.equals("")) {
-                                    Toast.makeText(CarabaoActivity.this, "Check your input!" + ownerid , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CarabaoActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
 
                                 }else {
                                     try {

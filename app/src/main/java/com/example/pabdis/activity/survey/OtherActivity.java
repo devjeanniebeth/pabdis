@@ -122,7 +122,7 @@ public class OtherActivity extends AppCompatActivity {
 
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -145,7 +145,7 @@ public class OtherActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 if (sheep.equals("") || horse.equals("") || rabbit.equals("") ||
                                         duck.equals("") || turkey.equals("") ) {
-                                    Toast.makeText(OtherActivity.this, "Check your input!" + ownerid , Toast.LENGTH_LONG).show();
+                                    Toast.makeText(OtherActivity.this, "Check your input!" , Toast.LENGTH_LONG).show();
 
 
                                 }else {

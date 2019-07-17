@@ -126,7 +126,7 @@ public class FisheryActivity extends AppCompatActivity {
                 builder.setTitle("Skipping the process.");
 
                 // Ask the final question
-                builder.setMessage("Are you sure you want to skip this survey?");
+                builder.setMessage("Are you sure you want to skip this survey?" );
 
                 // Set click listener for alert dialog buttons
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -176,7 +176,7 @@ public class FisheryActivity extends AppCompatActivity {
 
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
                 // Build an AlertDialog
@@ -201,7 +201,7 @@ public class FisheryActivity extends AppCompatActivity {
                                         if(api.equals("true") && fish.equals("false") )
                                         {
                                             if ( a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
-                                                Toast.makeText(FisheryActivity.this, "Check your input!"+ api + fish , Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
                                             }else {
                                                 myDB.addApiary(ownerid, a_col, a_prod, a_inc, created_at);
                                                 Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
@@ -213,7 +213,7 @@ public class FisheryActivity extends AppCompatActivity {
                                         }else if(fish.equals("true") && api.equals("false") )
                                         {
                                             if ( (f_area.equals("") ||  f_prod.equals("") ||  f_inc.equals(""))) {
-                                                Toast.makeText(FisheryActivity.this, "Check your input!"+ api + fish , Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
                                             }else {
                                                 myDB.addFishery(ownerid, f_area, f_prod, f_inc, created_at);
                                                 Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();

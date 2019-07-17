@@ -266,7 +266,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 {
                     vacc_by = "N/A";
                 }else{
-                    vacc_by = txtvaccinatedby.toString();
+                    vacc_by = txtvaccinatedby.getSelectedItem().toString();
                 }
                 final String stat = "alive";
                  final byte imgv[]  ;
@@ -326,7 +326,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String souces = src;
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -372,15 +372,12 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ imgv, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ petid + pet + vacc_by + datevacc + created_at, Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
 
 
-                                        if(!ownerid.equals("") && !petname.equals("") && !specie.equals("") && !other_breed.equals("") &&
-                                                !gender.equals("") && !birthdate.equals("") && !othercolor.equals("")  )
-                                        {
 
 
 
@@ -398,7 +395,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                                             }
 
-                                        }
+
 
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -409,7 +406,7 @@ public class VaccinationActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_NEGATIVE:
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!" + imgView, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {

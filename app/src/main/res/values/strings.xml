@@ -153,8 +153,8 @@
     <string name="pig_upgrade">Piglets and Weanlings (Upgrade)</string>
     <string name="sl_farm_kg">Slaughtered on Farm (total kg)</string>
     <string name="sl_farm_hd">Slaughtered on Farm (total head)</string>
-    <string name="sl_abb_kg">Slaughtered in Abattoir (total kg)</string>
-    <string name="sl_abb_hd">Slaughtered in Abattoir (total head)</string>
+    <string name="sl_abb_kg">Slaughtered in Slaughterhouse (total kg)</string>
+    <string name="sl_abb_hd">Slaughtered in Slaughterhouse (total head)</string>
 
     <string name="dressed_kg">Dressed in Household (total kg)</string>
     <string name="sold_kg">Sold Live (total kg)</string>

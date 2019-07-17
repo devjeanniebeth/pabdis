@@ -110,10 +110,24 @@ public class CattleActivity extends AppCompatActivity {
                 final Integer sowu = Integer.parseInt(edtCalfM.getText().toString());
 
 
+                if(edtBullD.equals("") || edtBullM.equals("") || edtCowD.equals("") || edtCowM.equals("")
+                        || edtCalfD.equals("") || edtCalfM.equals("") )
+                {
+
+                    Toast.makeText(CattleActivity.this, "Empty input!" + ownerid , Toast.LENGTH_SHORT).show();
 
 
-                final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
-                edtTotal.setText(String.valueOf(total));
+
+                }else {
+
+                    final Integer total = boarn + boaru + grown + growu +  sown + sowu ;
+                    edtTotal.setText(String.valueOf(total));
+                }
+
+
+
+
+
 
             }
         });
@@ -189,7 +203,7 @@ public class CattleActivity extends AppCompatActivity {
                 final String dewormed = deworm;
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.DATE, 1);
+                cal.add(Calendar.DATE, 0);
                 SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                 final String created_at = format1.format(cal.getTime());
 
@@ -217,7 +231,7 @@ public class CattleActivity extends AppCompatActivity {
                                         calfd.equals("") || calfm.equals("") || ca_sf_kg.equals("") ||
                                         ca_sf__hd.equals("") || ca_sa_kg.equals("") || ca_sa__hd.equals("") ||
                                         ca_totala.equals("") || ca_totali.equals("") || vacc.equals("") || vacct.equals("") || dewormed.equals("")) {
-                                    Toast.makeText(CattleActivity.this, "Check your input!" + dewormed , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CattleActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
 
                                 }else {
                                     try {
