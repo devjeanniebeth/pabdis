@@ -7,347 +7,355 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activity.ui.MainActivity"
     tools:showIn="@layout/app_bar_main">
+
+
+
+
+
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
 
             <RelativeLayout
-                android:id="@+id/profile_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryDark"
-                android:elevation="4dp"
-                android:paddingBottom="24dp">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/user"
-                    android:layout_width="wrap_content"
+
+                <RelativeLayout
+                    android:id="@+id/profile_layout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="12dp"
-                    android:text="Survey Information"
-                    android:textColor="#fff"
-                    android:textSize="18dp" />
+                    android:background="@color/colorPrimaryDark"
+                    android:elevation="4dp"
+                    android:paddingBottom="24dp">
+
+                    <TextView
+                        android:id="@+id/user"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="12dp"
+                        android:text="Survey Information"
+                        android:textColor="#fff"
+                        android:textSize="18dp" />
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_layout"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:text="@string/owner_type"
+                            android:textAlignment="center"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/ownertype"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:animateLayoutChanges="true"
+                            android:entries="@array/ownertype"
+                            android:padding="10dp"
+                            style="@style/spinner_style" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name_of_cooperative">
+
+                        <EditText
+                            android:id="@+id/edtCoop"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:padding="15dp"
+                            android:maxLines="1"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout11"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/name_of_establishment">
+
+                        <EditText
+                            android:id="@+id/edtEstab"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:padding="15dp"
+                            android:maxLines="1"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/last_name">
+
+                        <EditText
+                            android:id="@+id/edtLastName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:padding="15dp"
+                            android:maxLines="1"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/first_name">
+
+
+                        <EditText
+                            android:id="@+id/edtFirstName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/number_of_household_member">
+
+                        <EditText
+                            android:id="@+id/edtTotalHousehold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:maxLines="1"
+                            android:maxLength="5"
+                            android:inputType="number"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtViewName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:text="@string/respondent"
+                        android:textAlignment="center"
+                        android:textStyle="bold" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/r_last_name">
+
+                        <EditText
+                            android:id="@+id/edtLastName1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:padding="15dp"
+                            android:maxLines="1"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/r_first_name">
+
+                        <EditText
+                            android:id="@+id/edtFirstName1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:maxLines="1"
+                            android:inputType="textCapSentences|textMultiLine"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+
+
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/contact_number">
+
+                        <EditText
+                            android:id="@+id/edtContact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark"
+                            android:maxLines="1"
+                            android:maxLength="11"
+                            android:inputType="phone" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:text="Municipality"
+                            android:textAlignment="center"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/muni"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:animateLayoutChanges="true"
+                            android:entries="@array/muni"
+                            android:padding="10dp"
+                            android:prompt="@string/muni_prompt"
+                            style="@style/spinner_style"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:text="Barangay"
+                            android:textAlignment="center"
+                            android:textStyle="bold" />
+
+                        <Spinner
+                            android:id="@+id/brgy"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="10dp"
+                            android:animateLayoutChanges="true"
+                            android:padding="10dp"
+                            android:prompt="@string/muni_prompt"
+                            style="@style/spinner_style"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/text_input_layout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/house_no">
+
+                        <EditText
+                            android:id="@+id/edtHouseNo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:textColor="@color/textColor"
+                            android:textColorHighlight="@color/colorPrimaryDark"
+                            android:textColorHint="@color/colorPrimaryDark"
+                            android:autofillHints=""
+                            android:inputType="" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_longitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/tv_latitude"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold"/>
+
+
+                    <Button
+                        android:id="@+id/btnProceedSurvey"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/btn_height"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/add"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </LinearLayout>
             </RelativeLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/profile_layout"
-                android:layout_marginTop="5dp"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:text="@string/owner_type"
-                        android:textAlignment="center"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/ownertype"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:animateLayoutChanges="true"
-                        android:entries="@array/ownertype"
-                        android:padding="10dp"
-                        style="@style/spinner_style" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/name_of_cooperative">
-
-                    <EditText
-                        android:id="@+id/edtCoop"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:padding="15dp"
-                        android:maxLines="1"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/name_of_establishment">
-
-                    <EditText
-                        android:id="@+id/edtEstab"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:padding="15dp"
-                        android:maxLines="1"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/last_name">
-
-                    <EditText
-                        android:id="@+id/edtLastName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:padding="15dp"
-                        android:maxLines="1"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/first_name">
-
-
-                    <EditText
-                        android:id="@+id/edtFirstName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/number_of_household_member">
-
-                    <EditText
-                        android:id="@+id/edtTotalHousehold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:maxLines="1"
-                        android:maxLength="5"
-                        android:inputType="number"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:id="@+id/txtViewName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:text="@string/respondent"
-                    android:textAlignment="center"
-                    android:textStyle="bold" />
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/r_last_name">
-
-                    <EditText
-                        android:id="@+id/edtLastName1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:padding="15dp"
-                        android:maxLines="1"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/r_first_name">
-
-                    <EditText
-                        android:id="@+id/edtFirstName1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:maxLines="1"
-                        android:inputType="textCapSentences|textMultiLine"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-
-
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/contact_number">
-
-                    <EditText
-                        android:id="@+id/edtContact"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark"
-                        android:maxLines="1"
-                        android:maxLength="11"
-                        android:inputType="phone" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:text="Municipality"
-                        android:textAlignment="center"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/muni"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:animateLayoutChanges="true"
-                        android:entries="@array/muni"
-                        android:padding="10dp"
-                        android:prompt="@string/muni_prompt"
-                        style="@style/spinner_style"/>
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:text="Barangay"
-                        android:textAlignment="center"
-                        android:textStyle="bold" />
-
-                    <Spinner
-                        android:id="@+id/brgy"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="10dp"
-                        android:animateLayoutChanges="true"
-                        android:padding="10dp"
-                        android:prompt="@string/muni_prompt"
-                        style="@style/spinner_style"/>
-
-                </android.support.design.widget.TextInputLayout>
-
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/text_input_layout3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/house_no">
-
-                    <EditText
-                        android:id="@+id/edtHouseNo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="15dp"
-                        android:textColor="@color/textColor"
-                        android:textColorHighlight="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimaryDark"
-                        android:autofillHints=""
-                        android:inputType="" />
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <TextView
-                    android:id="@+id/tv_longitude"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/tv_latitude"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-
-                <Button
-                    android:id="@+id/btnProceedSurvey"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/btn_height"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/add"
-                    android:textColor="@android:color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-            </LinearLayout>
-        </RelativeLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

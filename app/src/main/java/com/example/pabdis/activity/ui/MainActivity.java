@@ -17,6 +17,7 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Pair;
 import android.view.MenuItem;
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity
     DatabaseHelper myDB;
     Context mContext;
     Character first;
+    SwipeRefreshLayout mSwipeRefreshLayout;
     String ownerid, petid, ownerinfo, add, addrsss;
     Button btndate, proceedSurvey;
     LocationManager locationManager;
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity
         edtCoop.setVisibility(View.GONE);
         edtEstab.setVisibility(View.GONE);
         CheckPermission();
-        getLocation();
+
 
 
 
@@ -141,6 +143,9 @@ public class MainActivity extends AppCompatActivity
 
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+       
 
         ownertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

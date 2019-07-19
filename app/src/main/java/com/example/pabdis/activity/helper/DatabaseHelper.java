@@ -700,4 +700,94 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
 
     }
+
+    public Cursor getUserInfo()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_OWNER+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+
+    }
+    public Cursor getSwine()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY1+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+
+    }
+
+    public Cursor getChicken()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY2+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+
+    }
+
+    public Cursor getCattle()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY3+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getCarabao()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY4+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getGoat()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY5+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getOther()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY6+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getFishery()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY7+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getApiary()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY8+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getHousehold()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY9+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+    public Cursor getVacc()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_VACC+"";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
 }
