@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-       
+
 
         ownertype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

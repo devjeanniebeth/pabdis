@@ -72,7 +72,7 @@ public class OwnerActivity extends AppCompatActivity
 
                         //go to update activity
                         //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
-                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+
 
 
 
