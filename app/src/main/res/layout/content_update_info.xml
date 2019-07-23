@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activity.survey.SwineActivity"
+    tools:context=".activity.updates.ListUpdateActivity"
     tools:showIn="@layout/activity_survey_swine">
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,6 @@
                 android:paddingBottom="24dp">
 
             </RelativeLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -55,20 +54,20 @@
 
                         <Button
                             android:id="@+id/btnSwine"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="@string/swine"
                             android:textColor="@android:color/white" />
 
                         <Button
                             android:id="@+id/btnChicken"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="CHICKEN"
                             android:textColor="@android:color/white" />
                     </TableRow>
                 </TableLayout>
@@ -95,21 +94,21 @@
 
                         <Button
                             android:id="@+id/btnCattle"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="@string/cattle"
                             android:textColor="@android:color/white" />
 
 
                         <Button
                             android:id="@+id/btnCarabao"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="@string/carabao"
                             android:textColor="@android:color/white" />
                     </TableRow>
                 </TableLayout>
@@ -134,21 +133,21 @@
 
                         <Button
                             android:id="@+id/btnGoat"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="@string/goat"
                             android:textColor="@android:color/white" />
 
 
                         <Button
                             android:id="@+id/btnOther"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="OTHER"
                             android:textColor="@android:color/white" />
                     </TableRow>
                 </TableLayout>
@@ -174,21 +173,21 @@
 
                         <Button
                             android:id="@+id/btnFishery"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="@string/fishery"
                             android:textColor="@android:color/white" />
 
 
                         <Button
                             android:id="@+id/btnWeekly"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="50dp"
                             android:layout_column="0"
                             android:background="@color/colorPrimary"
-                            android:text="COMPUTE"
+                            android:text="@string/household_consumption"
                             android:textColor="@android:color/white" />
                     </TableRow>
                 </TableLayout>

@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class OtherActivity extends AppCompatActivity {
 
-    Button btnNext, compute;
+    Button btnNext, compute, btnUpdate;
     FloatingActionButton skip;
     String ownerid, petid;
     DatabaseHelper myDB;
@@ -47,6 +47,7 @@ public class OtherActivity extends AppCompatActivity {
         }
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
         edtSheep = findViewById(R.id.edtSheep);
         edtHorse = findViewById(R.id.edtHorse);

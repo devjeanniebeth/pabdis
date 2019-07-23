@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -34,12 +35,12 @@ import java.util.List;
 
 public class SwineActivity extends AppCompatActivity {
 
-    Button btnNext, compute;
+    Button btnNext, compute, btnUpdate;
     FloatingActionButton skip;
     ArrayList<String> mylist = new ArrayList<String>();
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,
             edtSwineTotal,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
-    String ownerid, petid;
+    String ownerid, petid, update;
     CheckBox cbhog, cbpcv2, cbmyco;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno;
@@ -56,6 +57,7 @@ public class SwineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_swine);
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
         cbhog = findViewById(R.id.cbhog);
         cbpcv2 = findViewById(R.id.cbpcv2);
@@ -88,7 +90,7 @@ public class SwineActivity extends AppCompatActivity {
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
 
-//        vacc.setVisibility(View.GONE);
+        btnUpdate.setVisibility(View.GONE);
 
 
 
@@ -108,29 +110,95 @@ public class SwineActivity extends AppCompatActivity {
         }
 
 
+        Cursor rs = myDB.getSwine(ownerid);
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0)
+        {
+
+            skip.setVisibility(View.GONE);
+            btnNext.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+
+            String boarn = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_4));
+            String boaru = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_5));
+            String sown = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_6));
+            String sowu = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_7));
+            String grown = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_8));
+            String growu = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_9));
+
+            String pign = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_10));
+            String pigu = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_11));
+            String total_inv = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_12));
+            String sl_f_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_13));
+            String sl_f_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_14));
+            String sl_a_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_15));
+            String sl_a_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_16));
+            String total_area = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_17));
+            String total_inc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_18));
+
+            String vacc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_19));
+            final String vacctype = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_20));
+            String dewormed = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_21));
+
+
+
+
+            edtboarn.setText(boarn);
+            edtboaru.setText(boaru);
+            edtGrowN.setText(grown);
+            edtGrowU.setText(growu);
+            edtSowN.setText(sown);
+            edtSowU.setText(sowu);
+            edtPigN.setText(pign);
+            edtPigU.setText(pigu);
+            edtSwineTotal.setText(total_inv);
+            edtSF_sw_kg.setText(sl_f_kg);
+            edtSF_sw_hd.setText(sl_f_hd);
+            edtSA_sw_kg.setText(sl_a_kg);
+            edtSA_sw_hd.setText(sl_a_hd);
+            edtSwineTotalArea.setText(total_area);
+            edtSwineTotalIncome.setText(total_inc);
+
+
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+
+
+
+
+
+                    Toast.makeText(SwineActivity.this, "UPDATE HERE!" + vacctype, Toast.LENGTH_SHORT).show();
+
+
+                }
+            });
+
+        }else{
+            Toast.makeText(SwineActivity.this, "WALANG LAMAN!", Toast.LENGTH_SHORT).show();
+
+        }
+
 
 
         cbhog.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-
                 if(b)
                 {
 
                     if(!Arrays.asList(mylist).contains(cbhog.getText().toString()))
                     {
                         mylist.add(cbhog.getText().toString());
-                        Toast.makeText(SwineActivity.this, "Check your input!" + mylist, Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
                     mylist.remove(cbhog.getText().toString());
                 }
-
             }
         });
-
         cbpcv2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -148,8 +216,6 @@ public class SwineActivity extends AppCompatActivity {
                 }
             }
         });
-
-
         cbmyco.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -166,11 +232,6 @@ public class SwineActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
 
 
 
@@ -355,6 +416,11 @@ public class SwineActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void disable()
+    {
 
     }
 

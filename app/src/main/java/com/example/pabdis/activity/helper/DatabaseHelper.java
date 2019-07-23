@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -692,6 +694,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public HashMap<String, String> getUserDetails() {
+        HashMap<String, String> user = new HashMap<String, String>();
+        String selectQuery = "SELECT  * FROM " + TABLE_OWNER;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            user.put(SURVEYCOL_3, cursor.getString(0));
+        }
+        cursor.close();
+        db.close();
+        // return user
+        Log.d(TAG, "Fetching user from Sqlite: " + user.toString());
+
+        return user;
+    }
+
+
+
     public Cursor getCount()
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -709,10 +732,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
 
     }
-    public Cursor getSwine()
+    public Cursor getSwine(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY1+"";
+        String query = "SELECT * from "+TABLE_SURVEY1+" WHERE owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
 

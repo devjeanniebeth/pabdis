@@ -26,7 +26,7 @@ import java.util.Calendar;
 
 public class CarabaoActivity extends AppCompatActivity {
 
-    Button btnNext, compute;
+    Button btnNext, compute,btnUpdate;
     String ownerid,vaccstat, vacctype, deworm, petid;
     DatabaseHelper myDB;
     EditText edtCarabullC,edtCarabullN,edtCaracowC,edtCaracowN,edtCaracalfC,edtCaracalfN, edtTotal,
@@ -42,6 +42,7 @@ public class CarabaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_carabao);
         myDB = new DatabaseHelper(getApplicationContext());
+        btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
         cbbl = findViewById(R.id.cbbl);
         cbbl.setVisibility(View.GONE);

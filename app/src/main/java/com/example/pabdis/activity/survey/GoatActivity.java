@@ -29,7 +29,7 @@ import java.util.Calendar;
 public class GoatActivity extends AppCompatActivity {
 
 
-    Button btnNext,compute;
+    Button btnNext,compute,btnUpdate;
     String ownerid,vaccstat, vacctype, deworm, petid;
     RadioButton rbyes, rbno;
     FloatingActionButton skip;
@@ -46,6 +46,7 @@ public class GoatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_goat);
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
         cbbl = findViewById(R.id.cbbl);
         cbbl.setVisibility(View.GONE);

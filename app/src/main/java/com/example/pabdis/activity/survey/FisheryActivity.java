@@ -23,7 +23,7 @@ import java.util.Calendar;
 
 public class FisheryActivity extends AppCompatActivity {
 
-    Button btnNext;
+    Button btnNext,btnUpdate;
     String ownerid, petid, api, fish;
     CheckBox withfishery, withapiary;
     DatabaseHelper myDB;
@@ -36,6 +36,7 @@ public class FisheryActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_fishery);
         btnNext = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
         edtTotalArea = findViewById(R.id.edtTotalArea);
         edtProd = findViewById(R.id.edtProd);

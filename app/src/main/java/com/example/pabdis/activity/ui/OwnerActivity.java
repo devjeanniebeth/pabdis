@@ -25,6 +25,7 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.ListAdapter;
 import com.example.pabdis.activity.helper.Owner;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.util.ArrayList;
 
@@ -63,6 +64,8 @@ public class OwnerActivity extends AppCompatActivity
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, int position, long l) {
 
+                final String code = listAdapter.getItem(position).getOwnerid();
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(OwnerActivity.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
@@ -71,18 +74,21 @@ public class OwnerActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
                         //go to update activity
-                        //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
 
-
-
+//
+                        Intent i = new Intent(OwnerActivity.this, ListUpdateActivity.class);
+                        i.putExtra("ownerid", code);
+                        startActivity(i);
 
                     }
                 });
                 builder.setNegativeButton("View", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
 
+                        Intent i = new Intent(OwnerActivity.this, ListUpdateActivity.class);
+                        i.putExtra("ownerid", code);
+                        startActivity(i);
 
                     }
                 });
@@ -90,8 +96,8 @@ public class OwnerActivity extends AppCompatActivity
                 builder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        DatabaseHelper dbHelper = new DatabaseHelper(OwnerActivity.this);
-                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+
+
                     }
                 });
 
@@ -117,17 +123,17 @@ public class OwnerActivity extends AppCompatActivity
         if (cursor.moveToFirst()) {
             do {
 
-                String id =  ("ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_1)));
-                String lati = ("Latitude: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_12)));
-                String longi = ("Longitude: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_13)));
-                String ownerid = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_3)));
-                String r_full = ("Owner Name: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
+                String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_1)));
+                String lati = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_12)));
+                String longi = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_13)));
+                String ownerid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_3)));
+                String r_full = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
 //                String h_full = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
 //                String owner_info = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-                String contact = ("Contact: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
-                String muni =  ("Municipality: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
-                String brgy =  ("Barangay: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
-                String createdat =  ("Created At: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_15)));
+                String contact = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
+                String muni =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
+                String brgy =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
+                String createdat =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_15)));
                 String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10));
                 owner = new Owner(id,ownerid,r_full,contact,housenum, muni,brgy,lati,longi,createdat);
                 OwnerList.add(owner);

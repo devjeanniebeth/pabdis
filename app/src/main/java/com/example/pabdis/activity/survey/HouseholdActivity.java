@@ -24,7 +24,7 @@ import java.util.Calendar;
 public class HouseholdActivity extends AppCompatActivity {
 
 
-    Button btnDone;
+    Button btnDone,btnUpdate;
     String ownerid, petid;
     FloatingActionButton skip;
     DatabaseHelper myDB;
@@ -35,6 +35,7 @@ public class HouseholdActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_household);
         btnDone = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
         edtBeef = findViewById(R.id.edtBeef);
         edtCarabeef = findViewById(R.id.edtCarabeef);

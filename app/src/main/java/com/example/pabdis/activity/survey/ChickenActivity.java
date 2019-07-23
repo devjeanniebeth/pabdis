@@ -27,7 +27,7 @@ import java.util.Calendar;
 
 public class ChickenActivity extends AppCompatActivity {
 
-    Button btnNext, compute;
+    Button btnNext, compute,btnUpdate;
     EditText edtBroiler,edtLayers,edtNative,edtTotal,edtProd,
             edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtTotalArea,edtTotalIncome;
     String ownerid;
@@ -45,6 +45,7 @@ public class ChickenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_chicken);
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
         cbncdls = findViewById(R.id.cbncdls);
         cbfp = findViewById(R.id.cbfp);
         cbib = findViewById(R.id.cbib);

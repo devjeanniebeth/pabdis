@@ -26,7 +26,7 @@ import java.util.Calendar;
 
 public class CattleActivity extends AppCompatActivity {
 
-    Button btnNext, compute;
+    Button btnNext, compute,btnUpdate;
     EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtTotal, edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid, vaccstat, vacctype, deworm, petid;
     DatabaseHelper myDB;
@@ -42,6 +42,7 @@ public class CattleActivity extends AppCompatActivity {
         myDB = new DatabaseHelper(getApplicationContext());
         setContentView(R.layout.activity_survey_cattle);
         btnNext = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
         cbbl = findViewById(R.id.cbbl);
         cbbl.setVisibility(View.GONE);
