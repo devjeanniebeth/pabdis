@@ -25,6 +25,7 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.ListAdapter;
 import com.example.pabdis.activity.helper.Owner;
+import com.example.pabdis.activity.survey.SwineActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.util.ArrayList;
@@ -76,7 +77,8 @@ public class OwnerActivity extends AppCompatActivity
                         //go to update activity
 
 //
-                        Intent i = new Intent(OwnerActivity.this, ListUpdateActivity.class);
+                        Intent i = new Intent(OwnerActivity.this, SwineActivity
+                                .class);
                         i.putExtra("ownerid", code);
                         startActivity(i);
 
@@ -86,7 +88,7 @@ public class OwnerActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Intent i = new Intent(OwnerActivity.this, ListUpdateActivity.class);
+                        Intent i = new Intent(OwnerActivity.this, SwineActivity.class);
                         i.putExtra("ownerid", code);
                         startActivity(i);
 

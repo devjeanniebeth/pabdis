@@ -3,6 +3,7 @@ package com.example.pabdis.activity.survey;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -74,8 +75,6 @@ public class GoatActivity extends AppCompatActivity {
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
 
-
-
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -88,6 +87,32 @@ public class GoatActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+        }
+
+        Cursor rs = myDB.getGoat(ownerid);
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0)
+        {
+            skip.setVisibility(View.GONE);
+            btnNext.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+
+
+            String buckd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_4));
+            String buckm = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_5));
+            String doed = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_6));
+            String doem = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_7));
+            String kidsd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_8));
+            String kidsm = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9));
+            String total_inv = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_10));
+            String sl_f_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_11));
+            String sl_f_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_12));
+            String sl_a_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_13));
+            String sl_a_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_14));
+            String total_area = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_15));
+            String total_inc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_16));
+
         }
 
         cbbl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

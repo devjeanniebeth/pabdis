@@ -3,6 +3,7 @@ package com.example.pabdis.activity.survey;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -44,8 +45,6 @@ public class HouseholdActivity extends AppCompatActivity {
         edtFish = findViewById(R.id.edtFish);
         edtEgg = findViewById(R.id.edtEgg);
 
-
-
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -58,6 +57,27 @@ public class HouseholdActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+        }
+
+        Cursor rs = myDB.getHousehold(ownerid);
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0)
+        {
+            skip.setVisibility(View.GONE);
+            btnDone.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+
+
+
+            String beef = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_4));
+            String carabeef = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_5));
+            String pork = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_6));
+            String chicken = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_7));
+            String fish = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_8));
+            String egg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_9));
+
+
         }
 
         skip.setOnClickListener(new View.OnClickListener() {

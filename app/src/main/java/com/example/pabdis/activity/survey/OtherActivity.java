@@ -3,6 +3,7 @@ package com.example.pabdis.activity.survey;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +46,11 @@ public class OtherActivity extends AppCompatActivity {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
         }
+
+
+
+
+
         myDB = new DatabaseHelper(getApplicationContext());
         btnNext = findViewById(R.id.btnProceedSurvey);
         btnUpdate = findViewById(R.id.btnUpdate);
@@ -55,8 +61,33 @@ public class OtherActivity extends AppCompatActivity {
         edtDuck = findViewById(R.id.edtDuck);
         edtGoose = findViewById(R.id.edtGoose);
         edtTurkey = findViewById(R.id.edtTurkey);
-
         edtTotal = findViewById(R.id.edtTotal);
+
+
+        Cursor rs = myDB.getOther(ownerid);
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0)
+        {
+            skip.setVisibility(View.GONE);
+            btnNext.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+
+
+
+
+            String sheep = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_4));
+            String horse = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_5));
+            String rabbit = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_6));
+            String duck = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_7));
+            String turkey = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8));
+            String goose = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9));
+            String total_inv = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_10));
+
+
+
+        }
+
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override

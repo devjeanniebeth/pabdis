@@ -25,7 +25,12 @@ import android.widget.Toast;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,14 +43,17 @@ public class SwineActivity extends AppCompatActivity {
     Button btnNext, compute, btnUpdate;
     FloatingActionButton skip;
     ArrayList<String> mylist = new ArrayList<String>();
+    ArrayList<String> mylist2 = new ArrayList<String>();
+
+    ArrayList<String> mylistup = new ArrayList<String>();
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,
             edtSwineTotal,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
     String ownerid, petid, update;
     CheckBox cbhog, cbpcv2, cbmyco;
     DatabaseHelper myDB;
-    RadioButton rbyes, rbno;
+    RadioButton rbyes, rbno, rby, rbn;
     Spinner vacc;
-    String vaccstat, deworm, vacctype;
+    String vaccstat, deworm;
     TextView textView, txtincome;
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -83,6 +91,9 @@ public class SwineActivity extends AppCompatActivity {
         edtSwineTotalIncome = findViewById(R.id.edtSwineTotalIncome);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
+
+        rbn = findViewById(R.id.rbn);
+        rby = findViewById(R.id.rby);
 //        vacc = findViewById(R.id.vaccination);
         textView = findViewById(R.id.textView);
 
@@ -91,6 +102,10 @@ public class SwineActivity extends AppCompatActivity {
         txtincome.setText("Total Income for 2018");
 
         btnUpdate.setVisibility(View.GONE);
+
+        cbpcv2.setChecked(false);
+        cbhog.setChecked(false);
+        cbmyco.setChecked(false);
 
 
 
@@ -116,6 +131,14 @@ public class SwineActivity extends AppCompatActivity {
         if(rs.getCount() > 0)
         {
 
+            cbpcv2.setVisibility(View.VISIBLE);
+            cbhog.setVisibility(View.VISIBLE);
+            cbmyco.setVisibility(View.VISIBLE);
+
+            cbpcv2.setChecked(false);
+            cbhog.setChecked(false);
+            cbmyco.setChecked(false);
+
             skip.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
@@ -138,11 +161,74 @@ public class SwineActivity extends AppCompatActivity {
             String total_inc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_18));
 
             String vacc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_19));
-            final String vacctype = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_20));
+
+
+            if(vacc.equals("1"))
+            {
+                rbyes.setChecked(true);
+                rbno.setChecked(false);
+                vaccstat = "1";
+
+            }else{
+                rbno.setChecked(true);
+                rbyes.setChecked(false);
+                vaccstat = "2";
+
+            }
+
+             String vacctype = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_20));
+            vacctype = vacctype.replace("[", "");
+            vacctype = vacctype.replace("]", "");
+            vacctype = vacctype.replace(", ", ",");
+
+
+
+            mylist2 = new ArrayList<String>(Arrays.asList(vacctype.split(",")));
+
+
+
+
+            final String vacca = vacctype;
+
+
+            if(mylist2.contains(cbhog.getText().toString()))
+            {
+                mylistup.add(cbhog.getText().toString());
+                cbhog.setChecked(true);
+
+            }
+
+            if(mylist2.contains(cbpcv2.getText().toString()))
+            {
+                mylistup.add(cbpcv2.getText().toString());
+                cbpcv2.setChecked(true);
+
+            }
+
+            if(mylist2.contains(cbmyco.getText().toString()))
+            {
+                mylistup.add(cbmyco.getText().toString());
+                cbmyco.setChecked(true);
+
+            }
+
             String dewormed = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_21));
 
 
+            if(dewormed.equals("1"))
+            {
+                rby.setChecked(true);
+                rbn.setChecked(false);
+                deworm = "1";
 
+
+            }else{
+                rbn.setChecked(true);
+                rby.setChecked(false);
+                deworm = "2";
+
+
+            }
 
             edtboarn.setText(boarn);
             edtboaru.setText(boaru);
@@ -166,11 +252,93 @@ public class SwineActivity extends AppCompatActivity {
                 public void onClick(View view) {
 
 
+                    final String boarn = edtboarn.getText().toString();
+                    final String boaru = edtboaru.getText().toString();
+                    final String grown = edtGrowN.getText().toString();
+                    final String growu = edtGrowU.getText().toString();
+                    final String sown = edtSowN.getText().toString();
+                    final String sowu = edtSowU.getText().toString();
+                    final String pign = edtPigN.getText().toString();
+                    final String pigu = edtPigU.getText().toString();
+                    final String swntotal = edtSwineTotal.getText().toString();
+                    final String swn_sf_kg = edtSF_sw_kg.getText().toString();
+                    final String swn_sf_hd = edtSF_sw_hd.getText().toString();
+                    final String swn_sa_kg = edtSA_sw_kg.getText().toString();
+                    final String swn_sa_hd = edtSA_sw_hd.getText().toString();
+                    final String swn_totala = edtSwineTotalArea.getText().toString();
+                    final String swn_totali = edtSwineTotalIncome.getText().toString();
+                    final String vacc = vaccstat;
+                    final String vacct = mylistup.toString();
+                    final String dewormed = deworm;
+
+                    Calendar cal = Calendar.getInstance();
+                    cal.add(Calendar.DATE, 0);
+                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                    final String created_at = format1.format(cal.getTime());
+
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SwineActivity.this);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("UPDATE");
+
+                    // Ask the final question
+                    builder.setMessage("Are you sure you want to update the data?");
+
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+                                    if (boarn.equals("") || boaru.equals("") || grown.equals("") ||
+                                            growu.equals("") || sown.equals("") || sowu.equals("") ||
+                                            pign.equals("") || pigu.equals("") || swntotal.equals("") ||
+                                            swn_sf_kg.equals("") || swn_sf_hd.equals("") || swn_sa_kg.equals("") || swn_sa_hd.equals("") || swn_totala.equals("") || swn_totali.equals("")) {
+                                        Toast.makeText(SwineActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+
+
+                                    }else {
+                                        try {
+                                            myDB.updateSwine(ownerid, boarn.trim(), boaru.trim(), sown.trim(),
+                                                    sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
+                                                    swntotal.trim(), swn_sf_kg.trim(), swn_sf_hd.trim(),swn_sa_kg.trim(), swn_sa_hd.trim(), swn_totala.trim(),
+                                                    swn_totali.trim(),vacc.trim(), vacct.trim(), dewormed.trim());
+                                            Toast.makeText(SwineActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+
+                                        }
+                                    }
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+                                    break;
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No",dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
 
 
 
 
-                    Toast.makeText(SwineActivity.this, "UPDATE HERE!" + vacctype, Toast.LENGTH_SHORT).show();
+
+
 
 
                 }
@@ -192,10 +360,14 @@ public class SwineActivity extends AppCompatActivity {
                     if(!Arrays.asList(mylist).contains(cbhog.getText().toString()))
                     {
                         mylist.add(cbhog.getText().toString());
+                        mylistup.add(cbhog.getText().toString());
+                        Toast.makeText(SwineActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
+
                     }
 
                 }else{
                     mylist.remove(cbhog.getText().toString());
+                    mylistup.remove(cbhog.getText().toString());
                 }
             }
         });
@@ -207,12 +379,15 @@ public class SwineActivity extends AppCompatActivity {
                     if(!Arrays.asList(mylist).contains(cbpcv2.getText().toString()))
                     {
                         mylist.add(cbpcv2.getText().toString());
-                        Toast.makeText(SwineActivity.this, "Check your input!" + mylist, Toast.LENGTH_SHORT).show();
+                        mylistup.add(cbpcv2.getText().toString());
+                        Toast.makeText(SwineActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
                     }
 
 
                 }else{
                     mylist.remove(cbpcv2.getText().toString());
+                    mylistup.remove(cbpcv2.getText().toString());
+
                 }
             }
         });
@@ -224,11 +399,15 @@ public class SwineActivity extends AppCompatActivity {
                     if(!Arrays.asList(mylist).contains(cbmyco.getText().toString()))
                     {
                         mylist.add(cbmyco.getText().toString());
-                        Toast.makeText(SwineActivity.this, "Check your input!" + mylist, Toast.LENGTH_SHORT).show();
+                        mylistup.add(cbmyco.getText().toString());
+
+                        Toast.makeText(SwineActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
                     }
 
                 }else{
                     mylist.remove(cbmyco.getText().toString());
+                    mylistup.remove(cbmyco.getText().toString());
+
                 }
             }
         });

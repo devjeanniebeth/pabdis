@@ -3,6 +3,7 @@ package com.example.pabdis.activity.survey;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -84,6 +85,16 @@ public class CarabaoActivity extends AppCompatActivity {
             petid = (String) savedInstanceState.getSerializable("petid");
         }
 
+        Cursor rs = myDB.getSwine(ownerid);
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0)
+        {
+            skip.setVisibility(View.GONE);
+            btnNext.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+
+        }
 
         cbbl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

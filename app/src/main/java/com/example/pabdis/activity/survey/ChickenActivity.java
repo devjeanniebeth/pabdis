@@ -3,6 +3,7 @@ package com.example.pabdis.activity.survey;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -32,8 +33,10 @@ public class ChickenActivity extends AppCompatActivity {
             edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtTotalArea,edtTotalIncome;
     String ownerid;
     DatabaseHelper myDB;
-    RadioButton rbyes, rbno;
+    RadioButton rbyes, rbno, rby, rbn;
     ArrayList<String> mylist = new ArrayList<String>();
+    ArrayList<String> mylist2 = new ArrayList<String>();
+    ArrayList<String> mylistup = new ArrayList<String>();
     FloatingActionButton skip;
     Spinner vacc;
     CheckBox cbncdls,cbfp,cbib,cbncdb1,cbncdcombo;
@@ -73,14 +76,15 @@ public class ChickenActivity extends AppCompatActivity {
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
+
+        rbn = findViewById(R.id.rbn);
+        rby = findViewById(R.id.rby);
         textView = findViewById(R.id.textView);
 
         compute = findViewById(R.id.btnCompute);
         edtTotal.setEnabled(false);
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
-
-
 
 
         if (savedInstanceState == null) {
@@ -95,6 +99,207 @@ public class ChickenActivity extends AppCompatActivity {
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+        }
+
+
+        Cursor rs = myDB.getChicken(ownerid);
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0)
+        {
+            skip.setVisibility(View.GONE);
+            btnNext.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+
+            String broilers = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4));
+            String layers = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_5));
+            String natives = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_6));
+            String total_inv = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_7));
+            String total_prod = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_8));
+            String sl_f_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_9));
+            String sl_f_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_10));
+            String sl_a_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_11));
+            String sl_a_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_12));
+            String total_area = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_13));
+            String total_inc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_14));
+
+
+
+            String vacc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_15));
+
+
+            if(vacc.equals("1"))
+            {
+                rbyes.setChecked(true);
+                rbno.setChecked(false);
+                vaccstat = "1";
+
+            }else{
+                rbno.setChecked(true);
+                rbyes.setChecked(false);
+                vaccstat = "2";
+
+            }
+
+            String vacctype = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_16));
+            vacctype = vacctype.replace("[", "");
+            vacctype = vacctype.replace("]", "");
+            vacctype = vacctype.replace(", ", ",");
+
+
+
+            mylist2 = new ArrayList<String>(Arrays.asList(vacctype.split(",")));
+
+
+
+
+            final String vacca = vacctype;
+
+
+            if(mylist2.contains(cbncdls.getText().toString()))
+            {
+                mylistup.add(cbncdls.getText().toString());
+                cbncdls.setChecked(true);
+
+            }
+
+            if(mylist2.contains(cbfp.getText().toString()))
+            {
+                mylistup.add(cbfp.getText().toString());
+                cbfp.setChecked(true);
+
+            }
+
+            if(mylist2.contains(cbib.getText().toString()))
+            {
+                mylistup.add(cbib.getText().toString());
+                cbib.setChecked(true);
+
+            }
+
+            if(mylist2.contains(cbncdb1.getText().toString()))
+            {
+                mylistup.add(cbncdb1.getText().toString());
+                cbncdb1.setChecked(true);
+
+            }
+
+
+            if(mylist2.contains(cbncdcombo.getText().toString()))
+            {
+                mylistup.add(cbncdcombo.getText().toString());
+                cbncdcombo.setChecked(true);
+            }
+
+            String dewormed = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_17));
+
+
+            if(dewormed.equals("1"))
+            {
+                rby.setChecked(true);
+                rbn.setChecked(false);
+                deworm = "1";
+
+
+            }else{
+                rbn.setChecked(true);
+                rby.setChecked(false);
+                deworm = "2";
+
+
+            }
+
+
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String broiler = edtBroiler.getText().toString();
+                    final String layer = edtLayers.getText().toString();
+                    final String snative = edtNative.getText().toString();
+                    final String total = edtTotal.getText().toString();
+                    final String prod = edtProd.getText().toString();
+                    final String ch_sf_kg = edtSF_sw_kg.getText().toString();
+                    final String ch_sf__hd = edtSF_sw_hd.getText().toString();
+                    final String ch_sa_kg = edtSA_sw_kg.getText().toString();
+                    final String ch_sa__hd = edtSA_sw_hd.getText().toString();
+                    final String ch_totala = edtTotalArea.getText().toString();
+                    final String ch_totali = edtTotalIncome.getText().toString();
+                    final String vacc = vaccstat;
+                    final String vacct = mylist.toString();
+                    final String dewormed = deworm;
+
+
+                    Calendar cal = Calendar.getInstance();
+                    cal.add(Calendar.DATE, 0);
+                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                    final String created_at = format1.format(cal.getTime());
+
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ChickenActivity.this);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("UPDATE.");
+
+                    // Ask the final question
+                    builder.setMessage("Are you sure you want to save the data?");
+
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+
+
+                                    if (broiler.equals("") || layer.equals("") || snative.equals("") ||
+                                            total.equals("") || prod.equals("") || ch_sf_kg.equals("") || ch_sf__hd.equals("")
+                                            || ch_sa_kg.equals("") || ch_sa__hd.equals("")  || ch_totala.equals("") || ch_totali.equals("")  ) {
+                                        Toast.makeText(ChickenActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
+                                    }else {
+
+                                        try {
+                                            myDB.updateChicken(ownerid,broiler, layer,snative,total,prod,ch_sf_kg,ch_sf__hd,ch_sa_kg,ch_sa__hd,
+                                                    ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim());
+                                            Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
+                                            intent.putExtra("ownerid",ownerid);
+                                            intent.putExtra("petid", petid);
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+
+                                        }
+
+
+                                    }
+
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+                                    break;
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No",dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+                }
+            });
+
+
+
+
         }
 
 

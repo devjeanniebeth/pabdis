@@ -43,6 +43,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OWNERCOL_14 = "full_add";
     public static final String OWNERCOL_15 = "created_at";
 
+
+
+    public static final String TABLE_LOGS = "pvet_logs";
+    public static final String LOGSCOL1 = "id";
+    public static final String LOGSCOL2 = "owner_id";
+    public static final String LOGSCOL3 = "updated_at";
+    public static final String LOGSCOL4 = "deleted_at";
+
 //   FOR SURVEY
 
     public static final String TABLE_SURVEY1 = "pvet_survey_swine";
@@ -241,7 +249,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + OWNERCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + OWNERCOL_2 + " TEXT," + OWNERCOL_3 + " TEXT,"  + OWNERCOL_4 + " TEXT,"
                 + OWNERCOL_5 + " TEXT," + OWNERCOL_6 + " TEXT," + OWNERCOL_7 + " TEXT," + OWNERCOL_8 + " TEXT,"
                 + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT,"  + OWNERCOL_11 + " TEXT,"  + OWNERCOL_12 + " TEXT,"
-                + OWNERCOL_13 + " TEXT,"  + OWNERCOL_14 + " TEXT,"   + OWNERCOL_15 + " TEXT " +  ")";
+                + OWNERCOL_13 + " TEXT,"  + OWNERCOL_14 + " TEXT,"   + OWNERCOL_15 + " TEXT" +  ")";
 
         String CREATE_SURVEY1_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY1 + "("
                 + SURVEYCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEYCOL_3 + " TEXT,"  + SURVEYCOL_4 + " TEXT,"
@@ -305,6 +313,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_VACC_DATE_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC_DATE + "("
                 + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"  + VACC_DATE_3 + " TEXT,"  + VACC_DATE_4 + " TEXT,"   + VACC_DATE_5 + " TEXT" +")";
 
+        String CREATE_LOGS_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_LOGS + "("
+                + LOGSCOL1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + LOGSCOL2 + " TEXT,"  + LOGSCOL3 + " TEXT,"  + LOGSCOL4 + " TEXT" +")";
+
 
         db.execSQL(CREATE_LOGIN_TABLE);
         db.execSQL(CREATE_OWNER_TABLE);
@@ -319,11 +330,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_SURVEY9_TABLE);
         db.execSQL(CREATE_VACC_TABLE);
         db.execSQL(CREATE_VACC_DATE_TABLE);
+        db.execSQL(CREATE_LOGS_TABLE);
+
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
 
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_USER);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_OWNER);
@@ -337,7 +351,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY8);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY9);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_VACC);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_LOGS);
         onCreate(db);
+
+
+
 
     }
 
@@ -402,7 +420,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addChicken(String owner_id, String broilers, String layers, String local, String total, String prod,
-                              String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area, String totl_inc,String vaccstatus,String vacctype,String deworm,String createdAt)
+                              String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area,
+                              String totl_inc,String vaccstatus,String vacctype,String deworm,String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -525,7 +544,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-
     public boolean addOther(String owner_id, String sheep, String horse, String rabbit, String duck,  String turkey, String goose, String total,String createdAt)
     {
 
@@ -549,8 +567,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-
-
     public boolean addFishery(String owner_id, String total_area_f, String total_prod_f, String total_income_f, String createdAt)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -567,7 +583,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-
     public boolean addApiary(String owner_id,
                               String total_area_a, String total_prod_a,
                               String total_income_a, String createdAt)
@@ -586,7 +601,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-
 
     public boolean addHousehold(String owner_id,
                              String beef, String carabeef,String pork, String chicken,String fish, String egg,
@@ -608,7 +622,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         else
             return true;
     }
-
 
     public boolean addVaccination(byte[]  imgPet,String owner_id,
                                   String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
@@ -637,7 +650,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
 
     }
-
 
     public boolean addVaccinationDate(String petid, String datevacc, String vacc_by,String created_at)
     {
@@ -672,9 +684,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] arr = str.split(strSeparator);
         return arr;
     }
-
     // Getting single contact
-
     public int getData(String muni) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT COUNT(*) from "+TABLE_OWNER+" WHERE "+OWNERCOL_9+" = '"+muni+"'";
@@ -683,7 +693,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = res.getInt(0);
         return count;
     }
-
     public int getCountPet(String ownerid, String species) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT COUNT(*) from "+TABLE_VACC+" WHERE "+VACCCOL_3+"='"+ownerid+"' AND "+VACCCOL_5+"='"+species+"'";
@@ -692,8 +701,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = res.getInt(0);
         return count;
     }
-
-
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         String selectQuery = "SELECT  * FROM " + TABLE_OWNER;
@@ -712,9 +719,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return user;
     }
-
-
-
     public Cursor getCount()
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -723,11 +727,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
 
     }
-
-    public Cursor getUserInfo()
+    public Cursor getUserInfo(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_OWNER+"";
+        String query = "SELECT * from "+TABLE_OWNER+" WHERE owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
 
@@ -740,77 +743,294 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
 
     }
-
-    public Cursor getChicken()
+    public Cursor getChicken(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY2+"";
+        String query = "SELECT * from "+TABLE_SURVEY2+" WHERE owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
 
     }
-
-    public Cursor getCattle()
+    public Cursor getCattle(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY3+"";
+        String query = "SELECT * from "+TABLE_SURVEY3+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor getCarabao(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY4+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor getGoat(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY5+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor getOther(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY6+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor getFishery(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY7+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor getApiary(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY8+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor getHousehold(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_SURVEY9+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+    public Cursor getVacc(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_VACC+" WHERE owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
 
-    public Cursor getCarabao()
-    {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY4+"";
-        Cursor res =  db.rawQuery(query,null);
-        return res;
+    public boolean updateSwine(String owner_id, String boar_n, String boar_u, String sow_n, String sow_u, String grow_n,
+                              String grow_u, String wean_n, String wean_u, String total, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd,
+                              String total_area, String totl_inc,String vaccstatus,String vacctype,String deworm) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEYCOL_4,boar_n);
+        contentValues.put(SURVEYCOL_5,boar_u);
+        contentValues.put(SURVEYCOL_6,sow_n);
+        contentValues.put(SURVEYCOL_7,sow_u);
+        contentValues.put(SURVEYCOL_8,grow_n);
+        contentValues.put(SURVEYCOL_9,grow_u);
+        contentValues.put(SURVEYCOL_10,wean_n);
+        contentValues.put(SURVEYCOL_11,wean_u);
+        contentValues.put(SURVEYCOL_12,total);
+        contentValues.put(SURVEYCOL_13,sl_f_kg);
+        contentValues.put(SURVEYCOL_14,sl_f_hd);
+        contentValues.put(SURVEYCOL_15,sl_a_kg);
+        contentValues.put(SURVEYCOL_16,sl_a_hd);
+        contentValues.put(SURVEYCOL_17,total_area);
+        contentValues.put(SURVEYCOL_18,totl_inc);
+        contentValues.put(SURVEYCOL_19,vaccstatus);
+        contentValues.put(SURVEYCOL_20,vacctype);
+        contentValues.put(SURVEYCOL_21,deworm);
+        db.update(TABLE_SURVEY1, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
     }
 
-    public Cursor getGoat()
+    public boolean updateChicken(String owner_id, String broilers, String layers, String local, String total, String prod,
+                                 String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area,
+                                 String totl_inc,String vaccstatus,String vacctype,String deworm)
     {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY5+"";
-        Cursor res =  db.rawQuery(query,null);
-        return res;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY2COL_4,broilers);
+        contentValues.put(SURVEY2COL_5,layers);
+        contentValues.put(SURVEY2COL_6,local);
+        contentValues.put(SURVEY2COL_7,total);
+        contentValues.put(SURVEY2COL_8,prod);
+        contentValues.put(SURVEY2COL_9,sl_f_kg);
+        contentValues.put(SURVEY2COL_10,sl_f_hd);
+        contentValues.put(SURVEY2COL_11,sl_a_kg);
+        contentValues.put(SURVEY2COL_12,sl_a_hd);
+        contentValues.put(SURVEY2COL_13,total_area);
+        contentValues.put(SURVEY2COL_14,totl_inc);
+        contentValues.put(SURVEY2COL_15,vaccstatus);
+        contentValues.put(SURVEY2COL_16,vacctype);
+        contentValues.put(SURVEY2COL_17,deworm);
+        db.update(TABLE_SURVEY2, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
     }
 
-    public Cursor getOther()
+
+    public boolean updateCattle(String owner_id, String bull_d, String bull_m, String cow_d, String cow_m, String calf_d,
+                                String calf_m, String total,String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area, String totl_inc,
+                                String vaccstatus,String vacctype,String deworm)
     {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY6+"";
-        Cursor res =  db.rawQuery(query,null);
-        return res;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY3COL_4,bull_d);
+        contentValues.put(SURVEY3COL_5,bull_m);
+        contentValues.put(SURVEY3COL_6,cow_d);
+        contentValues.put(SURVEY3COL_7,cow_m);
+        contentValues.put(SURVEY3COL_8,calf_d);
+        contentValues.put(SURVEY3COL_9,calf_m);
+        contentValues.put(SURVEY3COL_10,total);
+        contentValues.put(SURVEY3COL_11,sl_f_kg);
+        contentValues.put(SURVEY3COL_12,sl_f_hd);
+        contentValues.put(SURVEY3COL_13,sl_a_kg);
+        contentValues.put(SURVEY3COL_14,sl_a_hd);
+        contentValues.put(SURVEY3COL_15,total_area);
+        contentValues.put(SURVEY3COL_16,totl_inc);
+        contentValues.put(SURVEY3COL_17,vaccstatus);
+        contentValues.put(SURVEY3COL_18,vacctype);
+        contentValues.put(SURVEY3COL_19,deworm);
+        db.update(TABLE_SURVEY3, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
     }
 
-    public Cursor getFishery()
+
+    public boolean updateCarabao(String owner_id, String carabull_c, String carabull_n, String caracow_c, String caracow_n,
+                                 String caracalf_c,String caracalf_n, String total, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area,
+                                 String totl_inc,String vaccstatus,String vacctype,String deworm)
     {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY7+"";
-        Cursor res =  db.rawQuery(query,null);
-        return res;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY4COL_4,carabull_c);
+        contentValues.put(SURVEY4COL_5,carabull_n);
+        contentValues.put(SURVEY4COL_6,caracow_c);
+        contentValues.put(SURVEY4COL_7,caracow_n);
+        contentValues.put(SURVEY4COL_8,caracalf_c);
+        contentValues.put(SURVEY4COL_9,caracalf_n);
+        contentValues.put(SURVEY4COL_10,total);
+        contentValues.put(SURVEY4COL_11,sl_f_kg);
+        contentValues.put(SURVEY4COL_12,sl_f_hd);
+        contentValues.put(SURVEY4COL_13,sl_a_kg);
+        contentValues.put(SURVEY4COL_14,sl_a_hd);
+        contentValues.put(SURVEY4COL_15,total_area);
+        contentValues.put(SURVEY4COL_16,totl_inc);
+        contentValues.put(SURVEY4COL_17,vaccstatus);
+        contentValues.put(SURVEY4COL_18,vacctype);
+        contentValues.put(SURVEY4COL_19,deworm);
+        db.update(TABLE_SURVEY4, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
     }
 
-    public Cursor getApiary()
+
+    public boolean updateGoat(String owner_id, String buck_d, String buck_m, String doe_d, String doe_m, String kids_d,
+                              String kids_m,String total, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd, String total_area, String totl_inc,
+                              String vaccstatus,String vacctype,String deworm)
     {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY8+"";
-        Cursor res =  db.rawQuery(query,null);
-        return res;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY5COL_4,buck_d);
+        contentValues.put(SURVEY5COL_5,buck_m);
+        contentValues.put(SURVEY5COL_6,doe_d);
+        contentValues.put(SURVEY5COL_7,doe_m);
+        contentValues.put(SURVEY5COL_8,kids_d);
+        contentValues.put(SURVEY5COL_9,kids_m);
+        contentValues.put(SURVEY5COL_10,total);
+        contentValues.put(SURVEY5COL_11,sl_f_kg);
+        contentValues.put(SURVEY5COL_12,sl_f_hd);
+        contentValues.put(SURVEY5COL_13,sl_a_kg);
+        contentValues.put(SURVEY5COL_14,sl_a_hd);
+        contentValues.put(SURVEY5COL_15,total_area);
+        contentValues.put(SURVEY5COL_16,totl_inc);
+        contentValues.put(SURVEY5COL_17,vaccstatus);
+        contentValues.put(SURVEY5COL_18,vacctype);
+        contentValues.put(SURVEY5COL_19,deworm);
+        db.update(TABLE_SURVEY5, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
     }
 
-    public Cursor getHousehold()
+
+    public boolean updateOther(String owner_id, String sheep, String horse, String rabbit, String duck,  String turkey, String goose, String total)
     {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY9+"";
-        Cursor res =  db.rawQuery(query,null);
-        return res;
+
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY6COL_4,sheep);
+        contentValues.put(SURVEY6COL_5,horse);
+        contentValues.put(SURVEY6COL_6,rabbit);
+        contentValues.put(SURVEY6COL_7,duck);
+        contentValues.put(SURVEY6COL_8,turkey);
+        contentValues.put(SURVEY6COL_9,goose);
+        contentValues.put(SURVEY6COL_10,total);
+        db.update(TABLE_SURVEY6, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
     }
 
-    public Cursor getVacc()
+
+    public boolean updateFishery(String owner_id, String total_area_f, String total_prod_f, String total_income_f, String createdAt)
     {
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_VACC+"";
-        Cursor res =  db.rawQuery(query,null);
-        return res;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY7COL_4,total_area_f);
+        contentValues.put(SURVEY7COL_5,total_prod_f);
+        contentValues.put(SURVEY7COL_6,total_income_f);
+        contentValues.put(SURVEY7COL_7,createdAt);
+        db.update(TABLE_SURVEY7, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
     }
+
+
+    public boolean updateApiary(String owner_id,
+                                String total_area_a, String total_prod_a,
+                                String total_income_a)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY8COL_4,total_area_a);
+        contentValues.put(SURVEY8COL_5,total_prod_a);
+        contentValues.put(SURVEY8COL_6,total_income_a);
+        db.update(TABLE_SURVEY8, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
+    }
+
+
+    public boolean updateHousehold(String owner_id,
+                                   String beef, String carabeef,String pork, String chicken,String fish, String egg,
+                                   String createdAt)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SURVEY9COL_4,beef);
+        contentValues.put(SURVEY9COL_5,carabeef);
+        contentValues.put(SURVEY9COL_6,pork);
+        contentValues.put(SURVEY9COL_6,chicken);
+        contentValues.put(SURVEY9COL_6,fish);
+        contentValues.put(SURVEY9COL_6,egg);
+        db.update(TABLE_SURVEY9, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
+    }
+
+    public boolean updateVaccination(byte[]  imgPet,String owner_id,
+                                     String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
+                                     String source, String petid, String status )
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(VACCCOL_4,petname);
+        contentValues.put(VACCCOL_5,species);
+        contentValues.put(VACCCOL_6,breed);
+        contentValues.put(VACCCOL_7,sex);
+        contentValues.put(VACCCOL_8,birthday);
+        contentValues.put(VACCCOL_9,colormarking);
+        contentValues.put(VACCCOL_10,distinctfeat);
+        contentValues.put(VACCCOL_11,source);
+        contentValues.put(VACCCOL_13,status);
+        db.update(TABLE_SURVEY2, contentValues, "pet_id = ?",new String[] { petid });
+        return true;
+
+
+
+    }
+
+
 }
