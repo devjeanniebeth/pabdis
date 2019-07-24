@@ -8,6 +8,13 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.survey.CarabaoActivity;
+import com.example.pabdis.activity.survey.CattleActivity;
+import com.example.pabdis.activity.survey.ChickenActivity;
+import com.example.pabdis.activity.survey.FisheryActivity;
+import com.example.pabdis.activity.survey.GoatActivity;
+import com.example.pabdis.activity.survey.HouseholdActivity;
+import com.example.pabdis.activity.survey.OtherActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 
@@ -66,40 +73,58 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnChicken.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "" + ownerid, Toast.LENGTH_SHORT).show();
 
+                Intent i = new Intent(ListUpdateActivity.this, ChickenActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("update", "true");
+                startActivity(i);
 
             }
         });
         btnCattle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "" + ownerid, Toast.LENGTH_SHORT).show();
 
+
+                Intent i = new Intent(ListUpdateActivity.this, CattleActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("update", "true");
+                startActivity(i);
 
             }
         });
         btnCarabao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "" + ownerid, Toast.LENGTH_SHORT).show();
 
+
+                Intent i = new Intent(ListUpdateActivity.this, CarabaoActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("update", "true");
+                startActivity(i);
 
             }
         });
         btnGoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "" + ownerid, Toast.LENGTH_SHORT).show();
 
+
+                Intent i = new Intent(ListUpdateActivity.this, GoatActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("update", "true");
+                startActivity(i);
 
             }
         });
         btnOther.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "" + ownerid, Toast.LENGTH_SHORT).show();
 
+                Intent i = new Intent(ListUpdateActivity.this, OtherActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("update", "true");
+                startActivity(i);
 
             }
         });
@@ -107,8 +132,11 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnFishery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "" + ownerid, Toast.LENGTH_SHORT).show();
 
+                Intent i = new Intent(ListUpdateActivity.this, FisheryActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("update", "true");
+                startActivity(i);
 
             }
         });
@@ -116,8 +144,12 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnWeekly.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "" + ownerid, Toast.LENGTH_SHORT).show();
 
+
+                Intent i = new Intent(ListUpdateActivity.this, HouseholdActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("update", "true");
+                startActivity(i);
 
             }
         });

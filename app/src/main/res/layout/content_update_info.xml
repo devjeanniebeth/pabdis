@@ -33,198 +33,96 @@
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
-
-
-                <Button
-                    android:id="@+id/btnOwnerInfo"
+                <android.support.constraint.Guideline
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_column="0"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.20935412" />
+
+                <Button
+                    android:id="@+id/btnSwine"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:background="@color/colorPrimary"
                     android:text="@string/swine"
                     android:textColor="@android:color/white" />
 
 
-                <android.support.constraint.Guideline
+                <Button
+                    android:id="@+id/btnChicken"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.20935412" />
+                    android:layout_marginTop="10dp"
+                    android:background="@color/colorPrimary"
+                    android:text="CHICKEN"
+                    android:textColor="@android:color/white" />
 
-
-                <TableLayout
-                    android:id="@+id/tblayout1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="0,1">
-
-                    <TableRow
-                        android:id="@+id/tblrow1"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/btnSwine"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="@string/swine"
-                            android:textColor="@android:color/white" />
-
-                        <android.support.constraint.Guideline
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintGuide_percent="0.20935412" />
-
-                        <Button
-                            android:id="@+id/btnChicken"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="CHICKEN"
-                            android:textColor="@android:color/white" />
-                    </TableRow>
-                </TableLayout>
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline2"
+                <Button
+                    android:id="@+id/btnCattle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.20935412" />
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+
+                    android:background="@color/colorPrimary"
+                    android:text="@string/cattle"
+                    android:textColor="@android:color/white" />
 
 
 
-                <TableLayout
-                    android:id="@+id/tblayout2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="0,1">
-
-                    <TableRow
-                        android:id="@+id/tblrow2"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/btnCattle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="@string/cattle"
-                            android:textColor="@android:color/white" />
-
-                        <android.support.constraint.Guideline
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintGuide_percent="0.20935412" />
-
-
-                        <Button
-                            android:id="@+id/btnCarabao"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="@string/carabao"
-                            android:textColor="@android:color/white" />
-                    </TableRow>
-                </TableLayout>
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline5"
+                <Button
+                    android:id="@+id/btnCarabao"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.20935412" />
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
 
-                <TableLayout
-                    android:id="@+id/tblayout3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="0,1">
+                    android:background="@color/colorPrimary"
+                    android:text="@string/carabao"
+                    android:textColor="@android:color/white" />
 
-                    <TableRow
-                        android:id="@+id/tblrow3"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
 
-                        <Button
-                            android:id="@+id/btnGoat"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="@string/goat"
-                            android:textColor="@android:color/white" />
-
-                        <android.support.constraint.Guideline
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintGuide_percent="0.20935412" />
-
-                        <Button
-                            android:id="@+id/btnOther"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="OTHER"
-                            android:textColor="@android:color/white" />
-                    </TableRow>
-                </TableLayout>
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline3"
+                <Button
+                    android:id="@+id/btnGoat"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layout_constraintGuide_percent="0.20935412" />
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+
+                    android:background="@color/colorPrimary"
+                    android:text="@string/goat"
+                    android:textColor="@android:color/white" />
 
 
-                <TableLayout
-                    android:id="@+id/tblayout4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:stretchColumns="0,1">
+                <Button
+                    android:id="@+id/btnOther"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
 
-                    <TableRow
-                        android:id="@+id/tblrow4"
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content">
-
-                        <Button
-                            android:id="@+id/btnFishery"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="@string/fishery"
-                            android:textColor="@android:color/white" />
-
-                        <android.support.constraint.Guideline
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            app:layout_constraintGuide_percent="0.20935412" />
+                    android:background="@color/colorPrimary"
+                    android:text="OTHER"
+                    android:textColor="@android:color/white" />
 
 
-                        <Button
-                            android:id="@+id/btnWeekly"
-                            android:layout_width="wrap_content"
-                            android:layout_height="50dp"
-                            android:layout_column="0"
-                            android:background="@color/colorPrimary"
-                            android:text="@string/household_consumption"
-                            android:textColor="@android:color/white" />
-                    </TableRow>
-                </TableLayout>
+                <Button
+                    android:id="@+id/btnFishery"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+
+                    android:background="@color/colorPrimary"
+                    android:text="@string/fishery"
+                    android:textColor="@android:color/white" />
+
+
+
+                <Button
+                    android:id="@+id/btnWeekly"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+
+                    android:background="@color/colorPrimary"
+                    android:text="@string/household_consumption"
+                    android:textColor="@android:color/white" />
 
             </LinearLayout>
         </RelativeLayout>
