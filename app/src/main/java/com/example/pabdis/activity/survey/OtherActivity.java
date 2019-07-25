@@ -16,6 +16,7 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.sql.Array;
 import java.text.SimpleDateFormat;
@@ -83,6 +84,86 @@ public class OtherActivity extends AppCompatActivity {
             String turkey = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8));
             String goose = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9));
             String total_inv = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_10));
+
+
+            edtSheep.setText(sheep);
+            edtHorse.setText(horse);
+            edtRabbit.setText(rabbit);
+            edtDuck.setText(duck);
+            edtGoose.setText(goose);
+            edtTurkey.setText(turkey);
+            edtTotal.setText(total_inv);
+
+
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String sheep = edtSheep.getText().toString();
+                    final String horse = edtHorse.getText().toString();
+                    final String rabbit = edtRabbit.getText().toString();
+                    final String duck = edtDuck.getText().toString();
+                    final String goose = edtGoose.getText().toString();
+                    final String turkey = edtTurkey.getText().toString();
+                    final  String total = edtTotal.getText().toString();
+
+
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(OtherActivity.this);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("There's no going back.");
+
+                    // Ask the final question
+                    builder.setMessage("Are you sure you want to save the data?");
+
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+                                    if (sheep.equals("") || horse.equals("") || rabbit.equals("") ||
+                                            duck.equals("") || turkey.equals("") ) {
+                                        Toast.makeText(OtherActivity.this, "Check your input!" , Toast.LENGTH_LONG).show();
+
+
+                                    }else {
+                                        try {
+                                            myDB.updateOther(ownerid, sheep,horse, rabbit, duck, turkey,goose ,total);
+                                            Toast.makeText(OtherActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+
+                                        }
+                                    }
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+                                    break;
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No",dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+
+                }
+            });
 
 
 
@@ -211,6 +292,9 @@ public class OtherActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 // Display the alert dialog on interface
                 dialog.show();
+
+
+
             }
         });
 

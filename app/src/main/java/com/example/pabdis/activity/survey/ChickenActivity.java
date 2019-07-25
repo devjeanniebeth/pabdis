@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.ui.MainActivity;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -111,6 +112,20 @@ public class ChickenActivity extends AppCompatActivity {
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
 
+
+            cbncdls.setVisibility(View.VISIBLE);
+            cbfp.setVisibility(View.VISIBLE);
+            cbib.setVisibility(View.VISIBLE);
+            cbncdb1.setVisibility(View.VISIBLE);
+            cbncdcombo.setVisibility(View.VISIBLE);
+
+            cbncdls.setChecked(false);
+            cbfp.setChecked(false);
+            cbib.setChecked(false);
+            cbncdb1.setChecked(false);
+            cbncdcombo.setChecked(false);
+
+
             String broilers = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4));
             String layers = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_5));
             String natives = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_6));
@@ -141,16 +156,16 @@ public class ChickenActivity extends AppCompatActivity {
             }
 
             edtBroiler.setText(broilers);
-            edtLayers.setText(broilers);
-            edtNative.setText(broilers);
-            edtTotal.setText(broilers);
-            edtProd.setText(broilers);
-            edtSF_sw_kg.setText(broilers);
-            edtSF_sw_hd.setText(broilers);
-            edtSA_sw_kg.setText(broilers);
-            edtSA_sw_hd.setText(broilers);
-            edtTotalArea.setText(broilers);
-            edtTotalIncome.setText(broilers);
+            edtLayers.setText(layers);
+            edtNative.setText(natives);
+            edtTotal.setText(total_inv);
+            edtProd.setText(total_prod);
+            edtSF_sw_kg.setText(sl_f_kg);
+            edtSF_sw_hd.setText(sl_f_hd);
+            edtSA_sw_kg.setText(sl_a_kg);
+            edtSA_sw_hd.setText(sl_a_hd);
+            edtTotalArea.setText(total_area);
+            edtTotalIncome.setText(total_inc);
 
             String vacctype = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_16));
             vacctype = vacctype.replace("[", "");
@@ -250,7 +265,7 @@ public class ChickenActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(ChickenActivity.this);
 
                     // Set a title for alert dialog
-                    builder.setTitle("UPDATE.");
+                    builder.setTitle("UPDATE."+ vacca);
 
                     // Ask the final question
                     builder.setMessage("Are you sure you want to save the data?");
@@ -274,7 +289,7 @@ public class ChickenActivity extends AppCompatActivity {
                                             myDB.updateChicken(ownerid,broiler, layer,snative,total,prod,ch_sf_kg,ch_sf__hd,ch_sa_kg,ch_sa__hd,
                                                     ch_totala,ch_totali,vacc.trim(), vacct.trim(), dewormed.trim());
                                             Toast.makeText(ChickenActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                            Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid",ownerid);
                                             intent.putExtra("petid", petid);
                                             startActivity(intent);

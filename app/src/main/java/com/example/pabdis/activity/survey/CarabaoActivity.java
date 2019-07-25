@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,10 +33,13 @@ public class CarabaoActivity extends AppCompatActivity {
     DatabaseHelper myDB;
     EditText edtCarabullC,edtCarabullN,edtCaracowC,edtCaracowN,edtCaracalfC,edtCaracalfN, edtTotal,
             edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
-    RadioButton rbyes, rbno;
+    RadioButton rbyes, rbno, rbn, rby;
     Spinner vacc;
     CheckBox cbbl;
     ArrayList<String> mylist = new ArrayList<String>();
+    ArrayList<String> mylist2 = new ArrayList<String>();
+
+    ArrayList<String> mylistup = new ArrayList<String>();
     FloatingActionButton skip;
     TextView textView, txtincome;
     @Override
@@ -64,10 +68,14 @@ public class CarabaoActivity extends AppCompatActivity {
         btnNext = findViewById(R.id.btnProceedSurvey);
         rbno = findViewById(R.id.rb2);
         rbyes = findViewById(R.id.rb1);
+        rbn = findViewById(R.id.rbn);
+        rby = findViewById(R.id.rby);
         textView = findViewById(R.id.textView);
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
         edtTotal.setEnabled(false);
+        btnUpdate.setVisibility(View.GONE);
+
 
 
 
@@ -94,6 +102,183 @@ public class CarabaoActivity extends AppCompatActivity {
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
 
+
+            String carabullc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_4));
+            String carabulln = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_5));
+            String caracowc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_6));
+            String caracown = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_7));
+            String caracalfc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_8));
+            String caracalfn = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9));
+
+            String total_inv = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_10));
+            String sl_f_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_11));
+            String sl_f_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_12));
+            String sl_a_kg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_13));
+            String sl_a_hd = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_14));
+            String total_area = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_15));
+            String total_inc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_16));
+
+            String vacc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_17));
+
+            if(vacc.equals("1"))
+            {
+                rbyes.setChecked(true);
+                rbno.setChecked(false);
+                vaccstat = "1";
+
+            }else{
+                rbno.setChecked(true);
+                rbyes.setChecked(false);
+                vaccstat = "2";
+
+            }
+
+            String vacctype = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_18));
+            vacctype = vacctype.replace("[", "");
+            vacctype = vacctype.replace("]", "");
+            vacctype = vacctype.replace(", ", ",");
+
+
+
+            mylist2 = new ArrayList<String>(Arrays.asList(vacctype.split(",")));
+
+
+
+
+            final String vacca = vacctype;
+
+
+            if(mylist2.contains(cbbl.getText().toString()))
+            {
+                mylistup.add(cbbl.getText().toString());
+                cbbl.setChecked(true);
+
+            }
+
+            String dewormed = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_19));
+
+
+            if(dewormed.equals("1"))
+            {
+                rby.setChecked(true);
+                rbn.setChecked(false);
+                deworm = "1";
+
+
+            }else{
+                rbn.setChecked(true);
+                rby.setChecked(false);
+                deworm = "2";
+
+
+            }
+
+            edtCarabullC.setText(carabullc);
+            edtCarabullN.setText(carabulln);
+            edtCaracalfC.setText(caracalfc);
+            edtCaracalfN.setText(caracalfn);
+            edtCaracowC.setText(caracowc);
+            edtCaracowN.setText(caracown);
+            edtTotal.setText(total_inv);
+            edtSF_sw_kg.setText(sl_f_kg);
+            edtSF_sw_hd.setText(sl_f_hd);
+            edtSA_sw_kg.setText(sl_a_kg);
+            edtSA_sw_hd.setText(sl_a_hd);
+            edtSwineTotalArea.setText(total_area);
+            edtSwineTotalIncome.setText(total_inc);
+
+
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String carabullc = edtCarabullC.getText().toString();
+                    final String carabulln = edtCarabullN.getText().toString();
+                    final String caracowc = edtCaracowC.getText().toString();
+                    final String caracown = edtCaracowN.getText().toString();
+                    final String caracalfc = edtCaracalfC.getText().toString();
+                    final String caracalfn = edtCaracalfN.getText().toString();
+                    final String total = edtTotal.getText().toString();
+                    final String car_sf_kg = edtSF_sw_kg.getText().toString();
+                    final String car_sf_hd = edtSF_sw_hd.getText().toString();
+                    final String car_sa_kg = edtSA_sw_kg.getText().toString();
+                    final String car_sa_hd = edtSA_sw_hd.getText().toString();
+                    final String car_totala = edtSwineTotalArea.getText().toString();
+                    final String car_totali = edtSwineTotalIncome.getText().toString();
+
+                    final String vacc = vaccstat;
+                    final String vacct = mylist.toString();
+                    final String dewormed = deworm;
+
+
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CarabaoActivity.this);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("UPDATE.");
+
+                    // Ask the final question
+                    builder.setMessage("Are you sure you want to update the data?");
+
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+
+
+
+
+                                    // User clicked the Yes button
+                                    if (carabullc.equals("") || carabulln.equals("") || caracowc.equals("") ||
+                                            caracown.equals("") || caracalfc.equals("") || caracalfn.equals("") ||
+                                            car_sf_kg.equals("") || car_sf_hd.equals("") || car_sa_kg.equals("") ||
+                                            car_sa_hd.equals("") || car_totala.equals("") || car_totali.equals("") ||  vacc.equals("") || vacct.equals("") || dewormed.equals("")) {
+                                        Toast.makeText(CarabaoActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+
+                                    }else {
+                                        try {
+                                            myDB.updateCarabao(ownerid,carabullc, carabulln,caracowc,caracown,caracalfc,caracalfn,total,car_sf_kg,car_sf_hd,car_sa_kg,car_sa_hd,
+                                                    car_totala,car_totali ,vacc.trim(), vacct.trim(),dewormed.trim() );
+                                            Toast.makeText(CarabaoActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
+                                            intent.putExtra("ownerid",ownerid);
+                                            intent.putExtra("petid", petid);
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+
+                                        }
+                                    }
+
+
+
+
+
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+                                    break;
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No",dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+                }
+            });
+
         }
 
         cbbl.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -104,9 +289,13 @@ public class CarabaoActivity extends AppCompatActivity {
                     if(!Arrays.asList(mylist).contains(cbbl.getText().toString()))
                     {
                         mylist.add(cbbl.getText().toString());
+                        mylistup.add(cbbl.getText().toString());
+
                     }
                 }else{
                     mylist.remove(cbbl.getText().toString());
+                    mylistup.remove(cbbl.getText().toString());
+
                 }
             }
         });

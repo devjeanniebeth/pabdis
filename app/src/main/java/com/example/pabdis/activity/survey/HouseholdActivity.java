@@ -77,6 +77,76 @@ public class HouseholdActivity extends AppCompatActivity {
             String fish = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_8));
             String egg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_9));
 
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String beef = edtBeef.getText().toString();
+                    final String carabeef = edtCarabeef.getText().toString();
+                    final String pork = edtPork.getText().toString();
+                    final String chicken = edtChicken.getText().toString();
+                    final String fish = edtFish.getText().toString();
+                    final String egg = edtEgg.getText().toString();
+
+
+
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HouseholdActivity.this);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("UPDATE.");
+
+                    // Ask the final question
+                    builder.setMessage("Do you want to update the survey?");
+
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+
+                                    if (beef.equals("") || carabeef.equals("") || pork.equals("") ||
+                                            chicken.equals("") || fish.equals("") || egg.equals("")) {
+                                        Toast.makeText(HouseholdActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        try {
+                                            myDB.updateHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg);
+                                            Toast.makeText(HouseholdActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
+                                            startActivity(intent);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+
+                                        }
+                                    }
+
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+
+
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No",dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+
+                }
+            });
 
         }
 

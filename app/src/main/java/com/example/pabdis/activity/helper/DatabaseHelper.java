@@ -963,14 +963,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public boolean updateFishery(String owner_id, String total_area_f, String total_prod_f, String total_income_f, String createdAt)
+    public boolean updateFishery(String owner_id, String total_area_f, String total_prod_f, String total_income_f)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(SURVEY7COL_4,total_area_f);
         contentValues.put(SURVEY7COL_5,total_prod_f);
         contentValues.put(SURVEY7COL_6,total_income_f);
-        contentValues.put(SURVEY7COL_7,createdAt);
         db.update(TABLE_SURVEY7, contentValues, "owner_id = ?",new String[] { owner_id });
         return true;
 
@@ -993,8 +992,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public boolean updateHousehold(String owner_id,
-                                   String beef, String carabeef,String pork, String chicken,String fish, String egg,
-                                   String createdAt)
+                                   String beef, String carabeef,String pork, String chicken,String fish, String egg)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
