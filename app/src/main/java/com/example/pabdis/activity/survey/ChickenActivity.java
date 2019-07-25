@@ -124,7 +124,6 @@ public class ChickenActivity extends AppCompatActivity {
             String total_inc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_14));
 
 
-
             String vacc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_15));
 
 
@@ -140,6 +139,18 @@ public class ChickenActivity extends AppCompatActivity {
                 vaccstat = "2";
 
             }
+
+            edtBroiler.setText(broilers);
+            edtLayers.setText(broilers);
+            edtNative.setText(broilers);
+            edtTotal.setText(broilers);
+            edtProd.setText(broilers);
+            edtSF_sw_kg.setText(broilers);
+            edtSF_sw_hd.setText(broilers);
+            edtSA_sw_kg.setText(broilers);
+            edtSA_sw_hd.setText(broilers);
+            edtTotalArea.setText(broilers);
+            edtTotalIncome.setText(broilers);
 
             String vacctype = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_16));
             vacctype = vacctype.replace("[", "");
@@ -226,7 +237,7 @@ public class ChickenActivity extends AppCompatActivity {
                     final String ch_totala = edtTotalArea.getText().toString();
                     final String ch_totali = edtTotalIncome.getText().toString();
                     final String vacc = vaccstat;
-                    final String vacct = mylist.toString();
+                    final String vacct = mylistup.toString();
                     final String dewormed = deworm;
 
 
@@ -314,10 +325,13 @@ public class ChickenActivity extends AppCompatActivity {
                     if(!Arrays.asList(mylist).contains(cbncdls.getText().toString()))
                     {
                         mylist.add(cbncdls.getText().toString());
+                        mylistup.add(cbncdls.getText().toString());
                     }
 
                 }else{
                     mylist.remove(cbncdls.getText().toString());
+                    mylistup.remove(cbncdls.getText().toString());
+
                 }
 
             }
@@ -333,10 +347,14 @@ public class ChickenActivity extends AppCompatActivity {
                     if(!Arrays.asList(mylist).contains(cbfp.getText().toString()))
                     {
                         mylist.add(cbfp.getText().toString());
+                        mylistup.add(cbfp.getText().toString());
+
                     }
 
                 }else{
                     mylist.remove(cbfp.getText().toString());
+                    mylistup.remove(cbfp.getText().toString());
+
                 }
 
             }
@@ -352,10 +370,14 @@ public class ChickenActivity extends AppCompatActivity {
                             if(!Arrays.asList(mylist).contains(cbib.getText().toString()))
                             {
                                 mylist.add(cbib.getText().toString());
+                                mylistup.add(cbib.getText().toString());
+
                             }
 
                         }else{
                             mylist.remove(cbib.getText().toString());
+                            mylistup.remove(cbib.getText().toString());
+
                         }
 
                     }
@@ -371,10 +393,14 @@ public class ChickenActivity extends AppCompatActivity {
                     if(!Arrays.asList(mylist).contains(cbncdb1.getText().toString()))
                     {
                         mylist.add(cbncdb1.getText().toString());
+                        mylistup.add(cbncdb1.getText().toString());
+
                     }
 
                 }else{
                     mylist.remove(cbncdb1.getText().toString());
+                    mylistup.remove(cbncdb1.getText().toString());
+
                 }
 
             }
@@ -390,10 +416,14 @@ public class ChickenActivity extends AppCompatActivity {
                             if(!Arrays.asList(mylist).contains(cbncdcombo.getText().toString()))
                             {
                                 mylist.add(cbncdcombo.getText().toString());
+                                mylistup.add(cbncdcombo.getText().toString());
+
                             }
 
                         }else{
                             mylist.remove(cbncdcombo.getText().toString());
+                            mylistup.remove(cbncdcombo.getText().toString());
+
                         }
 
                     }
