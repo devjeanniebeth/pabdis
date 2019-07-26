@@ -558,7 +558,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY6COL_8,turkey);
         contentValues.put(SURVEY6COL_9,goose);
         contentValues.put(SURVEY6COL_10,total);
-        contentValues.put(SURVEY6COL_9,createdAt);
+        contentValues.put(SURVEY6COL_11,createdAt);
         long result = db.insert(TABLE_SURVEY6,null ,contentValues);
         if(result == -1)
 
@@ -612,10 +612,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY9COL_4,beef);
         contentValues.put(SURVEY9COL_5,carabeef);
         contentValues.put(SURVEY9COL_6,pork);
-        contentValues.put(SURVEY9COL_6,chicken);
-        contentValues.put(SURVEY9COL_6,fish);
-        contentValues.put(SURVEY9COL_6,egg);
-        contentValues.put(SURVEY9COL_7,createdAt);
+        contentValues.put(SURVEY9COL_7,chicken);
+        contentValues.put(SURVEY9COL_8,fish);
+        contentValues.put(SURVEY9COL_9,egg);
+        contentValues.put(SURVEY9COL_10,createdAt);
         long result = db.insert(TABLE_SURVEY9,null ,contentValues);
         if(result == -1)
             return false;
@@ -999,9 +999,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(SURVEY9COL_4,beef);
         contentValues.put(SURVEY9COL_5,carabeef);
         contentValues.put(SURVEY9COL_6,pork);
-        contentValues.put(SURVEY9COL_6,chicken);
-        contentValues.put(SURVEY9COL_6,fish);
-        contentValues.put(SURVEY9COL_6,egg);
+        contentValues.put(SURVEY9COL_7,chicken);
+        contentValues.put(SURVEY9COL_8,fish);
+        contentValues.put(SURVEY9COL_9,egg);
         db.update(TABLE_SURVEY9, contentValues, "owner_id = ?",new String[] { owner_id });
         return true;
 
@@ -1030,5 +1030,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void deleteUser(String ownerid)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_OWNER, "owner_id = ?",new String[] { ownerid });
+        db.close();
 
+        Log.d(TAG,"Successfully deleted user!");
+
+    }
 }

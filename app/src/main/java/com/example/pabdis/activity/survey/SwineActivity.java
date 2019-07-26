@@ -115,14 +115,20 @@ public class SwineActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                update = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update = extras.getString("update");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            update = (String) savedInstanceState.getSerializable("update");
+
         }
+
+
 
 
         Cursor rs = myDB.getSwine(ownerid);
@@ -280,7 +286,7 @@ public class SwineActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SwineActivity.this);
 
                     // Set a title for alert dialog
-                    builder.setTitle("UPDATE");
+                    builder.setTitle("UPDATE.");
 
                     // Ask the final question
                     builder.setMessage("Are you sure you want to update the data?");

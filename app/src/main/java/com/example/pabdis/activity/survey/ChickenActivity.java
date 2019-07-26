@@ -32,7 +32,7 @@ public class ChickenActivity extends AppCompatActivity {
     Button btnNext, compute,btnUpdate;
     EditText edtBroiler,edtLayers,edtNative,edtTotal,edtProd,
             edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtTotalArea,edtTotalIncome;
-    String ownerid;
+    String ownerid, update;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno, rby, rbn;
     ArrayList<String> mylist = new ArrayList<String>();
@@ -86,6 +86,8 @@ public class ChickenActivity extends AppCompatActivity {
         edtTotal.setEnabled(false);
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for 2018");
+        btnUpdate.setVisibility(View.GONE);
+
 
 
         if (savedInstanceState == null) {
@@ -93,14 +95,20 @@ public class ChickenActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                update = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update= extras.getString("update");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            update = (String) savedInstanceState.getSerializable("update");
+
         }
+
 
 
         Cursor rs = myDB.getChicken(ownerid);
@@ -108,9 +116,11 @@ public class ChickenActivity extends AppCompatActivity {
 
         if(rs.getCount() > 0)
         {
+
             skip.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
+
 
 
             cbncdls.setVisibility(View.VISIBLE);
@@ -256,19 +266,16 @@ public class ChickenActivity extends AppCompatActivity {
                     final String dewormed = deworm;
 
 
-                    Calendar cal = Calendar.getInstance();
-                    cal.add(Calendar.DATE, 0);
-                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
-                    final String created_at = format1.format(cal.getTime());
+
 
                     // Build an AlertDialog
                     AlertDialog.Builder builder = new AlertDialog.Builder(ChickenActivity.this);
 
                     // Set a title for alert dialog
-                    builder.setTitle("UPDATE."+ vacca);
+                    builder.setTitle("UPDATE.");
 
                     // Ask the final question
-                    builder.setMessage("Are you sure you want to save the data?");
+                    builder.setMessage("Are you sure you want to update the data?");
 
                     // Set click listener for alert dialog buttons
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

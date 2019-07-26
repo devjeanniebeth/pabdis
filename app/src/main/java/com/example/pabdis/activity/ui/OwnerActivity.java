@@ -25,6 +25,7 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.ListAdapter;
 import com.example.pabdis.activity.helper.Owner;
+import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
@@ -99,6 +100,56 @@ public class OwnerActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        // Build an AlertDialog
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(OwnerActivity.this);
+
+                        // Set a title for alert dialog
+                        builder.setTitle("DELETE.");
+
+                        // Ask the final question
+                        builder.setMessage("Do you want to delete the data?");
+
+                        // Set click listener for alert dialog buttons
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch(which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        // User clicked the Yes button
+
+
+                                        myDB.deleteUser(code);
+                                        Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(OwnerActivity.this, OwnerActivity.class);
+                                        i.putExtra("ownerid", code);
+                                        startActivity(i);
+
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        // User clicked the No button
+
+
+                                }
+                            }
+                        };
+
+                        // Set the alert dialog yes button click listener
+                        builder.setPositiveButton("Yes", dialogClickListener);
+
+                        // Set the alert dialog no button click listener
+                        builder.setNegativeButton("No",dialogClickListener);
+
+                        android.app.AlertDialog dialog2 = builder.create();
+                        // Display the alert dialog on interface
+                        dialog2.show();
+
+
+
+
+
+
+
 
                     }
                 });
@@ -132,7 +183,7 @@ public class OwnerActivity extends AppCompatActivity
                 String r_full = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
 //                String h_full = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
 //                String owner_info = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-                String contact = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
+                String contact = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_7)));
                 String muni =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                 String brgy =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
                 String createdat =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_15)));

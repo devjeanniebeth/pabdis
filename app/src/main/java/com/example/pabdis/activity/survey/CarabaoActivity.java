@@ -29,7 +29,7 @@ import java.util.Calendar;
 public class CarabaoActivity extends AppCompatActivity {
 
     Button btnNext, compute,btnUpdate;
-    String ownerid,vaccstat, vacctype, deworm, petid;
+    String ownerid,vaccstat, vacctype, deworm, petid, update;
     DatabaseHelper myDB;
     EditText edtCarabullC,edtCarabullN,edtCaracowC,edtCaracowN,edtCaracalfC,edtCaracalfN, edtTotal,
             edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
@@ -84,23 +84,35 @@ public class CarabaoActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                update = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update= extras.getString("update");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            update = (String) savedInstanceState.getSerializable("update");
+
         }
 
-        Cursor rs = myDB.getSwine(ownerid);
+
+        Cursor rs = myDB.getCarabao(ownerid);
         rs.moveToFirst();
 
         if(rs.getCount() > 0)
         {
+
             skip.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
+
+
+            cbbl.setVisibility(View.VISIBLE);
+            cbbl.setChecked(false);
+
 
 
             String carabullc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_4));
@@ -207,7 +219,7 @@ public class CarabaoActivity extends AppCompatActivity {
                     final String car_totali = edtSwineTotalIncome.getText().toString();
 
                     final String vacc = vaccstat;
-                    final String vacct = mylist.toString();
+                    final String vacct = mylistup.toString();
                     final String dewormed = deworm;
 
 

@@ -27,7 +27,7 @@ public class OtherActivity extends AppCompatActivity {
 
     Button btnNext, compute, btnUpdate;
     FloatingActionButton skip;
-    String ownerid, petid;
+    String ownerid, petid, update;
     DatabaseHelper myDB;
     EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtGoose,edtOthersNum,edtTotal;
     @Override
@@ -39,14 +39,21 @@ public class OtherActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                update = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update= extras.getString("update");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            update = (String) savedInstanceState.getSerializable("update");
+
         }
+
+
 
 
 
@@ -63,6 +70,8 @@ public class OtherActivity extends AppCompatActivity {
         edtGoose = findViewById(R.id.edtGoose);
         edtTurkey = findViewById(R.id.edtTurkey);
         edtTotal = findViewById(R.id.edtTotal);
+        btnUpdate.setVisibility(View.GONE);
+
 
 
         Cursor rs = myDB.getOther(ownerid);
@@ -112,10 +121,10 @@ public class OtherActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(OtherActivity.this);
 
                     // Set a title for alert dialog
-                    builder.setTitle("There's no going back.");
+                    builder.setTitle("UPDATE.");
 
                     // Ask the final question
-                    builder.setMessage("Are you sure you want to save the data?");
+                    builder.setMessage("Are you sure you want to survey the data?");
 
                     // Set click listener for alert dialog buttons
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

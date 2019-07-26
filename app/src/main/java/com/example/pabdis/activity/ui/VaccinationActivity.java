@@ -41,7 +41,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
     EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
     TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2;
-    Button btndate, chooseImg, btnVacc, dateVacc;
+    Button btndate, chooseImg, btnVacc, dateVacc, btnUpdate;
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
     ImageView imgView;
@@ -49,7 +49,7 @@ public class VaccinationActivity extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
-    String age,ownerid, petid, vacc;
+    String age,ownerid, petid, vacc, update;
     Integer position, year, ctr;
     Character first;
 
@@ -62,6 +62,8 @@ public class VaccinationActivity extends AppCompatActivity {
         dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
         btnVacc = findViewById(R.id.btnVacc);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnUpdate.setVisibility(View.GONE);
         txtvaccinatedby2= findViewById(R.id.txtvaccinatedby2);
 
         dateVacc = findViewById(R.id.btnDateVacc);
@@ -98,10 +100,13 @@ public class VaccinationActivity extends AppCompatActivity {
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update= extras.getString("update");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            update = (String) savedInstanceState.getSerializable("update");
+
         }
 
 

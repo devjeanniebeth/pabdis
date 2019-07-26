@@ -128,16 +128,16 @@ public class PetActivity extends AppCompatActivity
         if (cursor.moveToFirst()) {
             do {
 
-                String id =  ("ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
-                String petid = ("Pet ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+                String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
+                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
 //                String owner_id = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                 String owner_id = "";
-                String petname = ("Pet Name:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
-                String specie = ("Specie:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
-                String breed = ("Breed: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_6)));
-                String sex =  ("Sex: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_7)));
-                String birth =  ("Birthdate: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
-                String color =  ("Color: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
+                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
+                String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_6)));
+                String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_7)));
+                String birth =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
+                String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
                 String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_14));
                 pet = new Pet(id,owner_id,petid,petname,specie,breed,sex, birth,color,created_at);
                 PetList.add(pet);

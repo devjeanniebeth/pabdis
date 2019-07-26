@@ -30,7 +30,7 @@ public class CattleActivity extends AppCompatActivity {
 
     Button btnNext, compute,btnUpdate;
     EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtTotal, edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
-    String ownerid, vaccstat, vacctype, deworm, petid;
+    String ownerid, vaccstat, vacctype, deworm, petid, update;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno, rbn, rby;
     CheckBox cbbl;
@@ -82,20 +82,29 @@ public class CattleActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                update = null;
+
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update= extras.getString("update");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            update = (String) savedInstanceState.getSerializable("update");
+
         }
+
+
 
         Cursor rs = myDB.getCattle(ownerid);
         rs.moveToFirst();
 
         if(rs.getCount() > 0)
         {
+
             skip.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
@@ -220,10 +229,10 @@ public class CattleActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(CattleActivity.this);
 
                     // Set a title for alert dialog
-                    builder.setTitle("There's no going back.");
+                    builder.setTitle("UPDATE.");
 
                     // Ask the final question
-                    builder.setMessage("Are you sure you want to save the data?");
+                    builder.setMessage("Are you sure you want to update the data?");
 
                     // Set click listener for alert dialog buttons
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

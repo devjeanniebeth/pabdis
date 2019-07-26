@@ -18,6 +18,7 @@ import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.ui.MainActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +27,7 @@ public class HouseholdActivity extends AppCompatActivity {
 
 
     Button btnDone,btnUpdate;
-    String ownerid, petid;
+    String ownerid, petid, update;
     FloatingActionButton skip;
     DatabaseHelper myDB;
     EditText edtBeef,edtCarabeef,edtPork,edtChicken,edtFish,edtEgg;
@@ -44,6 +45,7 @@ public class HouseholdActivity extends AppCompatActivity {
         edtChicken = findViewById(R.id.edtChicken);
         edtFish = findViewById(R.id.edtFish);
         edtEgg = findViewById(R.id.edtEgg);
+        btnUpdate.setVisibility(View.GONE);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -53,11 +55,14 @@ public class HouseholdActivity extends AppCompatActivity {
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
         }
+
+
 
         Cursor rs = myDB.getHousehold(ownerid);
         rs.moveToFirst();
@@ -76,6 +81,17 @@ public class HouseholdActivity extends AppCompatActivity {
             String chicken = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_7));
             String fish = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_8));
             String egg = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_9));
+
+            edtBeef.setText(beef);
+            edtCarabeef.setText(carabeef);
+            edtPork.setText(pork);
+            edtChicken.setText(chicken);
+            edtFish.setText(fish);
+            edtEgg.setText(egg);
+
+
+
+
 
             btnUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,7 +113,7 @@ public class HouseholdActivity extends AppCompatActivity {
                     builder.setTitle("UPDATE.");
 
                     // Ask the final question
-                    builder.setMessage("Do you want to update the survey?");
+                    builder.setMessage("Do you want to update the data?");
 
                     // Set click listener for alert dialog buttons
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -114,7 +130,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                         try {
                                             myDB.updateHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg);
                                             Toast.makeText(HouseholdActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                            Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             startActivity(intent);

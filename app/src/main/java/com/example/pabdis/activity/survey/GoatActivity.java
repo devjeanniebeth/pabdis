@@ -32,7 +32,7 @@ public class GoatActivity extends AppCompatActivity {
 
 
     Button btnNext,compute,btnUpdate;
-    String ownerid,vaccstat, vacctype, deworm, petid;
+    String ownerid,vaccstat, vacctype, deworm, petid, update;
     RadioButton rbyes, rbno, rby, rbn;
     FloatingActionButton skip;
     Spinner vacc;
@@ -85,14 +85,21 @@ public class GoatActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                update = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update= extras.getString("update");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            update = (String) savedInstanceState.getSerializable("update");
+
         }
+
+
 
         Cursor rs = myDB.getGoat(ownerid);
         rs.moveToFirst();
@@ -219,10 +226,10 @@ public class GoatActivity extends AppCompatActivity {
                     AlertDialog.Builder builder = new AlertDialog.Builder(GoatActivity.this);
 
                     // Set a title for alert dialog
-                    builder.setTitle("There's no going back.");
+                    builder.setTitle("UPDATE.");
 
                     // Ask the final question
-                    builder.setMessage("Are you sure you want to save the data?");
+                    builder.setMessage("Are you sure you want to update the data?");
 
                     // Set click listener for alert dialog buttons
                     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

@@ -8,9 +8,5 @@
     tools:context=".activity.ui.MapActivity"
     tools:showIn="@layout/app_bar_map">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints" />
+
 </android.support.constraint.ConstraintLayout>

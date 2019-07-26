@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity
     Character first;
     SwipeRefreshLayout mSwipeRefreshLayout;
     String ownerid, petid, ownerinfo, add, addrsss;
-    Button btndate, proceedSurvey;
+    Button btndate, proceedSurvey, btnRefresh;
     LocationManager locationManager;
     Double latitude, longitude;
     Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -89,6 +89,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+        btnRefresh = findViewById(R.id.btnRefresh);
         lastname = findViewById(R.id.edtLastName);
         firstname = findViewById(R.id.edtFirstName);
         lastname2 = findViewById(R.id.edtLastName1);
@@ -116,6 +117,16 @@ public class MainActivity extends AppCompatActivity
         muni = findViewById(R.id.muni);
         brgy = findViewById(R.id.brgy);
         ownertype = findViewById(R.id.ownertype);
+
+
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getLocation();
+
+            }
+        });
 
 
 
