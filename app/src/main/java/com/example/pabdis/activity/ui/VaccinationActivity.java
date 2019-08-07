@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +34,8 @@ import com.example.pabdis.activity.helper.DatabaseHelper;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -40,10 +45,11 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
     EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
-    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2;
+    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2, txtv4;
     Button btndate, chooseImg, btnVacc, dateVacc, btnUpdate;
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
+    TableRow tbl1;
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
@@ -52,6 +58,7 @@ public class VaccinationActivity extends AppCompatActivity {
     String age,ownerid, petid, vacc, update;
     Integer position, year, ctr;
     Character first;
+    ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +72,10 @@ public class VaccinationActivity extends AppCompatActivity {
         btnUpdate = findViewById(R.id.btnUpdate);
         btnUpdate.setVisibility(View.GONE);
         txtvaccinatedby2= findViewById(R.id.txtvaccinatedby2);
-
+        txtv4 = findViewById(R.id.textView4);
         dateVacc = findViewById(R.id.btnDateVacc);
+
+        tbl1 = findViewById(R.id.tableRow4);
 
 
         txtsourceplace = findViewById(R.id.txtsourceplace);
@@ -108,6 +117,323 @@ public class VaccinationActivity extends AppCompatActivity {
             update = (String) savedInstanceState.getSerializable("update");
 
         }
+
+
+        Cursor rs = myDB.getVacc(ownerid);
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0) {
+
+
+            txtvaccinatedby.setVisibility(View.GONE);
+            dateVacc.setVisibility(View.GONE);
+            tbl1.setVisibility(View.GONE);
+            txtvaccinatedby2.setVisibility(View.GONE);
+            txtv4.setVisibility(View.GONE);
+
+
+
+
+            btnUpdate.setVisibility(View.VISIBLE);
+            btnVacc.setVisibility(View.GONE);
+
+//            String id = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_1));
+//            String owner = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_3));
+            String petname =  rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_4));
+            String specie = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_5));
+            String breed = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_6));
+            String gender = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_7));
+
+            String birth = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_8));
+            String color = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_9));
+            String feature = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_10));
+            String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
+//            final String petid = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_12));
+            String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
+
+
+            dateSurvey.setText(birth);
+            txtpetname.setText(petname);
+
+            chooseImg.setVisibility(View.GONE);
+
+
+
+            species = ArrayAdapter.createFromResource(this, R.array.species, R.layout.support_simple_spinner_dropdown_item);
+            if (specie != null) {
+                int spinnerPosition = species.getPosition(specie);
+                txtSpecie.setSelection(spinnerPosition);
+            }
+
+            final ArrayAdapter<CharSequence> adapter =  ArrayAdapter.createFromResource(this, R.array.breed_dod, R.layout.support_simple_spinner_dropdown_item);
+            final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.breed_cat, R.layout.support_simple_spinner_dropdown_item);
+
+
+
+            if(specie.equals("Cat")) {
+                    txtbreed.setVisibility(View.VISIBLE);
+                    strngbreed.setVisibility(View.VISIBLE);
+                    if (breed != null) {
+                        int spinnerPosition = adapter2.getPosition(breed);
+                        txtbreed.setSelection(spinnerPosition);
+                    }
+            }else if(specie.equals("Dog"))
+            {
+                txtbreed.setVisibility(View.VISIBLE);
+                strngbreed.setVisibility(View.VISIBLE);
+                if (breed != null) {
+                    int spinnerPosition1 = adapter.getPosition(breed);
+                    txtbreed.setSelection(spinnerPosition1);
+                }
+
+            }else if(specie.equals("Monkey"))
+            {
+                txtbreed.setVisibility(View.GONE);
+                strngbreed.setVisibility(View.GONE);
+
+            }
+
+
+
+//
+//            sex = ArrayAdapter.createFromResource(this, R.array.gender, R.layout.support_simple_spinner_dropdown_item);
+//            if (gender != null) {
+//                int spinnerPosition3 = sex.getPosition(gender);
+//                txtGender.setSelection(spinnerPosition3);
+//            }
+//
+//            sources = ArrayAdapter.createFromResource(this, R.array.source_pet, R.layout.support_simple_spinner_dropdown_item);
+//
+//
+//            if(srcs.equals("Indigenous"))
+//            {
+//                if (srcs != null) {
+//                    int spinnerPosition4 = sources.getPosition(srcs);
+//                    txtsource.setSelection(spinnerPosition4);
+//                }
+//
+//                txtsourceplace.setVisibility(View.GONE);
+//            }else{
+//
+//                String sr = "Introduced";
+//
+//                int spinnerPosition5 = sources.getPosition(sr);
+//                txtsource.setSelection(spinnerPosition5);
+//
+//                txtsourceplace.setVisibility(View.VISIBLE);
+//                txtsourceplace.setText(srcs);
+//            }
+//
+//
+//            colormarkings = ArrayAdapter.createFromResource(this, R.array.color_mark, R.layout.support_simple_spinner_dropdown_item);
+//
+//            if(color.equals("Others"))
+//            {
+//
+//                if (color != null) {
+//                    int spinnerPosition6 = colormarkings.getPosition(color);
+//                    txtsource.setSelection(spinnerPosition6);
+//                }
+//
+//
+//                othercolormark.setVisibility(View.VISIBLE);
+//                othercolormark.setText(color);
+//
+//            }else
+//            {
+//                if (color != null) {
+//                    int spinnerPosition7= colormarkings.getPosition(color);
+//                    txtsource.setSelection(spinnerPosition7);
+//                }
+//
+//                othercolormark.setVisibility(View.GONE);
+//
+//
+//
+//            }
+
+
+            txtdistinguish.setText(feature);
+
+
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String petname = txtpetname.getText().toString();
+                    final String specie = txtSpecie.getSelectedItem().toString();
+                    final String breed;
+
+
+                    if(specie == "Monkey"){
+                        breed = "N/A";
+                    }else{
+                        breed = txtbreed.getSelectedItem().toString();
+                    }
+                    final String other_breed;
+
+                    final String gender = txtGender.getSelectedItem().toString();
+                    final String vacc_by;
+
+
+
+
+                    final String birthdate = dateSurvey.getText().toString();
+                    final String agepet = age;
+                    final String colormark = txtColorMark.getSelectedItem().toString();
+                    final String othercolor;
+                    final String feat ;
+                    final String dis  = txtdistinguish.getText().toString();
+                    final String datevacc = txtxDateVacc.getText().toString();
+
+                    if(datevacc.equals("NOT YET VACCINATED"))
+                    {
+                        vacc_by = "N/A";
+                    }else{
+                        vacc_by = txtvaccinatedby.getSelectedItem().toString();
+                    }
+                    final String stat = "alive";
+                    final byte imgv[]  ;
+                    final String nulla = "N/A";
+
+
+
+                    if(imgView.getDrawable() == null)
+                    {
+                        imgv = nulla.getBytes();
+
+
+                    }else{
+
+                        imgv = imageViewToByte(imgView);
+
+                    }
+
+
+                    if(dis.equals("")){
+                        feat = "";
+
+                    }else{
+                        feat = dis;
+                    }
+
+                    String src = "";
+                    String source2 = txtsource.getSelectedItem().toString();
+                    final String place =  txtsourceplace.getText().toString();
+
+                    if(colormark == "Others")
+                    {
+                        othercolor = othercolormark.getText().toString();
+                    }else{
+                        othercolor = colormark;
+                    }
+
+                    if(breed == "Others")
+                    {
+                        other_breed =  otherbreed.getText().toString();
+                    }else{
+                        other_breed = breed;
+                    }
+
+
+                    if(source2.equals("Introduced") ) {
+                        final String sr = place;
+                        src = sr;
+
+
+                    }else if(source2.equals("Indigenous") ){
+
+                        final String sr = source2;
+                        src = sr;
+                    }
+
+                    final String souces = src;
+
+                    Calendar cal = Calendar.getInstance();
+                    cal.add(Calendar.DATE, 0);
+                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                    final String created_at = format1.format(cal.getTime());
+
+
+                    String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                    StringBuilder salt = new StringBuilder();
+                    Random rnd = new Random();
+                    while (salt.length() < 7) { // length of the random string.
+                        int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+                        salt.append(SALTCHARS.charAt(index));
+                    }
+
+                    final String end = salt.toString();
+
+
+                    final byte imgv2[] = imgv;
+
+
+
+
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("There's no going back.");
+
+                    // Ask the final question
+                    builder.setMessage("Do you want to save the update?");
+
+                    // Set click listener for alert dialog buttons
+
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+
+                                    if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
+                                        Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                                    }else{
+
+                                        try {
+                                            myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
+                                                    souces,petid);
+                                            Toast.makeText(VaccinationActivity.this, "SucCess!" , Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
+                                            startActivity(intent);
+
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+
+
+                                    break;
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No",dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+
+                }
+            });
+
+
+
+        }
+
 
 
 
@@ -186,7 +512,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
 
                 // Set a title for alert dialog
-                builder.setTitle("Skipping the process.");
+                builder.setTitle("Skipping the process."+ownerid);
 
                 // Ask the final question
                 builder.setMessage("Are you sure you want to skip this survey?");

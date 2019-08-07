@@ -102,9 +102,6 @@
         android:textColor="#050505"
         android:textSize="18sp" />
 
-
-
-
     <TextView
         android:id="@+id/txtCreatedat"
         android:layout_width="match_parent"

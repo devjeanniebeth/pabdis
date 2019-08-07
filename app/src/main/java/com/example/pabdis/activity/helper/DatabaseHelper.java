@@ -30,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OWNERCOL_1 = "id";
     public static final String OWNERCOL_2 = "owner_type";
     public static final String OWNERCOL_3 = "owner_id";
-    public static final String OWNERCOL_4 = "owner_info ";
+    public static final String OWNERCOL_4 = "owner_info";
     public static final String OWNERCOL_5 = "r_lname";
     public static final String OWNERCOL_6 = "r_fname";
     public static final String OWNERCOL_7 = "members";
@@ -803,7 +803,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getVacc(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_VACC+" WHERE owner_id = '"+ownerid+"'";
+        String query = "SELECT * from "+TABLE_VACC+" WHERE pet_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
@@ -991,6 +991,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+    public boolean updateOwner(String owner_id, String ownertype, String ownerinfo, String rfname, String rlname,String members, String contact,
+                                String house)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(OWNERCOL_2,ownertype);
+        contentValues.put(OWNERCOL_3,owner_id);
+        contentValues.put(OWNERCOL_4,ownerinfo);
+        contentValues.put(OWNERCOL_5,rlname);
+        contentValues.put(OWNERCOL_6,rfname);
+        contentValues.put(OWNERCOL_7,members);
+        contentValues.put(OWNERCOL_8,contact);
+//        contentValues.put(OWNERCOL_9,muni);
+//        contentValues.put(OWNERCOL_10,brgy);
+        contentValues.put(OWNERCOL_11,house);
+        db.update(TABLE_OWNER, contentValues, "owner_id = ?",new String[] { owner_id });
+        return true;
+
+    }
+
+
     public boolean updateHousehold(String owner_id,
                                    String beef, String carabeef,String pork, String chicken,String fish, String egg)
     {
@@ -1007,9 +1028,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean updateVaccination(byte[]  imgPet,String owner_id,
-                                     String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
-                                     String source, String petid, String status )
+    public boolean updateVaccination(String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
+                                     String source, String petid )
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1022,8 +1042,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_9,colormarking);
         contentValues.put(VACCCOL_10,distinctfeat);
         contentValues.put(VACCCOL_11,source);
-        contentValues.put(VACCCOL_13,status);
-        db.update(TABLE_SURVEY2, contentValues, "pet_id = ?",new String[] { petid });
+        db.update(TABLE_VACC, contentValues, "pet_id = ?",new String[] { petid });
         return true;
 
 
@@ -1034,6 +1053,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_OWNER, "owner_id = ?",new String[] { ownerid });
+        db.close();
+
+        Log.d(TAG,"Successfully deleted user!");
+
+    }
+
+    public void deletePet(String ownerid)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_VACC, "pet_id = ?",new String[] { ownerid });
         db.close();
 
         Log.d(TAG,"Successfully deleted user!");

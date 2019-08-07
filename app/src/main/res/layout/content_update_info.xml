@@ -39,9 +39,19 @@
                     android:orientation="horizontal"
                     app:layout_constraintGuide_percent="0.20935412" />
 
+
+                <Button
+                    android:id="@+id/btnOwner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/colorPrimary"
+                    android:text="OWNER INFO"
+                    android:textColor="@android:color/white" />
+
                 <Button
                     android:id="@+id/btnSwine"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
                     android:layout_height="50dp"
                     android:background="@color/colorPrimary"
                     android:text="@string/swine"

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -47,12 +48,14 @@ import com.example.pabdis.activity.survey.GoatActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.survey.OtherActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +67,7 @@ public class MainActivity extends AppCompatActivity
 
     EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact, edtEstab, edtCoop,edtTotalHousehold;
     TextView tvLatitude, tvLongitude;
+    ArrayList<String> mylist2 = new ArrayList<String>();
     Double lang, longi;
     Spinner muni, brgy, ownertype;
     public static String tvLongi;
@@ -74,11 +78,11 @@ public class MainActivity extends AppCompatActivity
     Character first;
     SwipeRefreshLayout mSwipeRefreshLayout;
     String ownerid, petid, ownerinfo, add, addrsss;
-    Button btndate, proceedSurvey, btnRefresh;
+    Button btnUpdate, proceedSurvey, btnRefresh;
     LocationManager locationManager;
     Double latitude, longitude;
     Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-    ArrayAdapter<CharSequence> munici, brgylt, brgy_kib, brgy_it, brgy_bug, brgy_kab, brgy_sab, brgy_man, brgy_bak, brgy_tba, brgy_tbl, brgy_at, brgy_bok, brgy_kap;
+    ArrayAdapter<CharSequence> types,munici, brgylt, brgy_kib, brgy_it, brgy_bug, brgy_kab, brgy_sab, brgy_man, brgy_bak, brgy_tba, brgy_tbl, brgy_at, brgy_bok, brgy_kap;
     final Calendar myCalendar = Calendar.getInstance();
 
     @Override
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         btnRefresh = findViewById(R.id.btnRefresh);
+
         lastname = findViewById(R.id.edtLastName);
         firstname = findViewById(R.id.edtFirstName);
         lastname2 = findViewById(R.id.edtLastName1);
@@ -113,10 +118,337 @@ public class MainActivity extends AppCompatActivity
 
 
         proceedSurvey = findViewById(R.id.btnProceedSurvey);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnUpdate.setVisibility(View.GONE);
+
 //        dateSurvey.setEnabled(false);
         muni = findViewById(R.id.muni);
         brgy = findViewById(R.id.brgy);
         ownertype = findViewById(R.id.ownertype);
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+                petid = null;
+            } else {
+                ownerid= extras.getString("ownerid");
+                petid= extras.getString("petid");
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid = (String) savedInstanceState.getSerializable("petid");
+
+        }
+
+
+
+
+        Cursor rs = myDB.getUserInfo(ownerid);
+        rs.moveToFirst();
+
+
+        if(rs.getCount() > 0)
+        {
+
+            proceedSurvey.setVisibility(View.GONE);
+            btnUpdate.setVisibility(View.VISIBLE);
+            btnRefresh.setVisibility(View.GONE);
+
+
+            String id = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_1));
+            String type = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_2));
+            String OWNER_ID = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_3));
+            String ownerinfo =  rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_4));
+            ownerinfo = ownerinfo.replace(", ", ",");
+            mylist2 = new ArrayList<String>(Arrays.asList(ownerinfo.split(",")));
+//            ArrayList<String> mylist2 = new ArrayList<String>(Arrays.asList(ownerinfo.split(",")));
+            String rlname = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_5));
+            String rfname = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_6));
+            String members = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_7));
+
+            String num = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_8));
+            String mun = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_9));
+            String brg = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_10));
+            String house = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_11));
+            String latitude = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_12));
+            String longitude = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_13));
+            String full_add = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_14));
+
+
+
+
+
+
+            tvLongitude.setText(longitude);
+            tvLatitude.setText(latitude);
+            types = ArrayAdapter.createFromResource(this, R.array.ownertype, R.layout.support_simple_spinner_dropdown_item);
+
+            if(type.equals("Household")) {
+                int spinnerPosition3 = types.getPosition(type);
+                ownertype.setSelection(spinnerPosition3);
+                lastname.setText(mylist2.get(0));
+                firstname.setText(mylist2.get(1));
+                edtTotalHousehold.setText(members);
+            }else if(type.equals("Cooperative"))
+            {
+                int spinnerPosition3 = types.getPosition(type);
+                ownertype.setSelection(spinnerPosition3);
+                ownertype.setSelection(1);
+                edtCoop.setText(mylist2.get(0));
+
+            }else if(!type.equals("Establishment"))
+            {
+                int spinnerPosition3 = types.getPosition(type);
+                ownertype.setSelection(spinnerPosition3);
+                ownertype.setSelection(2);
+                edtEstab.setText(mylist2.get(0));
+            }
+
+
+
+
+
+            lastname2.setText(rlname);
+            firstname2.setText(rfname);
+
+            munici = ArrayAdapter.createFromResource(this, R.array.muni, R.layout.support_simple_spinner_dropdown_item);
+            brgylt = ArrayAdapter.createFromResource(this, R.array.brgy_lt, R.layout.support_simple_spinner_dropdown_item);
+            brgy_at = ArrayAdapter.createFromResource(this, R.array.brgy_at, R.layout.support_simple_spinner_dropdown_item);
+            brgy_bak = ArrayAdapter.createFromResource(this, R.array.brgy_bak, R.layout.support_simple_spinner_dropdown_item);
+            brgy_bok = ArrayAdapter.createFromResource(this, R.array.brgy_bok, R.layout.support_simple_spinner_dropdown_item);
+            brgy_bug = ArrayAdapter.createFromResource(this, R.array.brgy_bug, R.layout.support_simple_spinner_dropdown_item);
+            brgy_it = ArrayAdapter.createFromResource(this, R.array.brgy_it, R.layout.support_simple_spinner_dropdown_item);
+            brgy_kab = ArrayAdapter.createFromResource(this, R.array.brgy_kab, R.layout.support_simple_spinner_dropdown_item);
+            brgy_kap = ArrayAdapter.createFromResource(this, R.array.brgy_kap, R.layout.support_simple_spinner_dropdown_item);
+            brgy_kib = ArrayAdapter.createFromResource(this, R.array.brgy_kib, R.layout.support_simple_spinner_dropdown_item);
+            brgy_man = ArrayAdapter.createFromResource(this, R.array.brgy_man, R.layout.support_simple_spinner_dropdown_item);
+            brgy_sab = ArrayAdapter.createFromResource(this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
+            brgy_tba = ArrayAdapter.createFromResource(this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
+            brgy_tbl = ArrayAdapter.createFromResource(this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
+
+
+            if (mun != null) {
+                int spinnerPosition = munici.getPosition(mun);
+                muni.setSelection(spinnerPosition);
+            }
+
+            switch (mun) {
+                case "La Trinidad":
+                    int spinnerPosition1 = brgylt.getPosition(brg);
+                    brgy.setSelection(spinnerPosition1);
+
+                    break;
+                case "Itogon":
+                    int spinnerPosition2 = brgy_it.getPosition(brg);
+                    brgy.setSelection(spinnerPosition2);
+                    break;
+                case "Buguias":
+
+                    int spinnerPosition3 = brgy_bug.getPosition(brg);
+                    brgy.setSelection(spinnerPosition3);
+
+                    break;
+                case "Kabayan":
+                    int spinnerPosition4 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition4);
+                    break;
+                case "Sablan":
+                    int spinnerPosition5 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition5);
+                    break;
+                case "Mankayan":
+                    int spinnerPosition6 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition6);
+                    break;
+                case "Kapangan":
+                    int spinnerPosition7 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition7);
+                    break;
+                case "Bokod":
+                    int spinnerPosition8 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition8);
+                    break;
+                case "Atok":
+                    int spinnerPosition9 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition9);
+                    break;
+                case "Kibungan":
+                    int spinnerPosition10 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition10);
+                    break;
+                case "Tublay":
+                    int spinnerPosition11 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition11);
+                    break;
+                case "Tuba":
+                    int spinnerPosition12 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition12);
+                    break;
+                case "Bakun":
+                    int spinnerPosition13 = brgy_kab.getPosition(brg);
+                    brgy.setSelection(spinnerPosition13);
+                    break;
+            }
+
+
+
+
+
+
+            contact.setText(num);
+            tvLongitude.setText(longitude);
+            tvLatitude.setText(latitude);
+
+            houseno.setText(house);
+
+
+
+
+
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String rfname = firstname2.getText().toString();
+                    final String rlname = lastname2.getText().toString();
+                    final String num = contact.getText().toString();
+                    final String house = houseno.getText().toString();
+                    final String mun = muni.getSelectedItem().toString();
+                    final String brg = brgy.getSelectedItem().toString();
+                    final String ownert = ownertype.getSelectedItem().toString();
+                    final String member;
+
+                    final String ownerin;
+                    final String contact;
+
+
+                    if(num.equals(""))
+                    {
+                        contact = "N/A";
+
+                    }else{
+                        contact = num;
+                    }
+
+                    if(ownert.equals("Household"))
+                    {
+
+                        ownerin = lastname.getText().toString() + "," + firstname.getText().toString();
+                        member =  edtTotalHousehold.getText().toString();
+
+                    }else if(ownert.equals("Establishment")){
+                        ownerin = edtEstab.getText().toString();
+                        member = "";
+
+                    }else{
+
+                        ownerin = edtCoop.getText().toString();
+                        member = "";
+                    }
+
+
+
+                    Calendar cal = Calendar.getInstance();
+                    cal.add(Calendar.DATE, 0);
+                    SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                    final String created_at = format1.format(cal.getTime());
+
+                    String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                    StringBuilder salt = new StringBuilder();
+                    Random rnd = new Random();
+                    while (salt.length() < 5) { // length of the random string.
+                        int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+                        salt.append(SALTCHARS.charAt(index));
+                    }
+
+                    final String end = salt.toString();
+
+                    final String lat;
+                    final String longi;
+
+                    if(tvLati == null){
+
+                        lat = "N/A";
+                    }else{
+                        lat = tvLati;
+                    }
+
+                    if(tvLongi == null)
+                    {
+                        longi = "N/A";
+
+                    }else{
+
+                        longi = tvLongi;
+                    }
+
+
+
+//                petid = first.toString() + position.toString() + year.toString();
+
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("There's no going back.");
+
+                    // Ask the final question
+                    builder.setMessage(" Are you sure you want to update the data?");
+
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+
+                                    if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
+                                        Toast.makeText(MainActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+
+                                    }else{
+
+                                        try {
+                                            myDB.updateOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(),  house.trim());
+                                            Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+//                                        showDebugDBAddressLogToast(MainActivity.this);
+
+                                                Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                startActivity(intent);
+
+
+
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+
+
+                                    }
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+                                    break;
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No",dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+
+                }
+            });
+        }
 
 
         btnRefresh.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +476,7 @@ public class MainActivity extends AppCompatActivity
         brgy_sab = ArrayAdapter.createFromResource(this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
         brgy_tba = ArrayAdapter.createFromResource(this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
         brgy_tbl = ArrayAdapter.createFromResource(this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
+        types = ArrayAdapter.createFromResource(this, R.array.ownertype, R.layout.support_simple_spinner_dropdown_item);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -466,7 +799,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
-        getLocation();
+//        getLocation();
 //        isLocationEnabled();
     }
 
@@ -474,7 +807,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         super.onPause();
-        locationManager.removeUpdates(this);
+
     }
 
 

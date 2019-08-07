@@ -26,6 +26,7 @@ import com.example.pabdis.activity.helper.ListAdapter;
 import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.helper.Pet;
 import com.example.pabdis.activity.helper.PetAdapter;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.util.ArrayList;
 
@@ -64,6 +65,8 @@ public class PetActivity extends AppCompatActivity
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, int position, long l) {
 
+                final String code = listAdapter.getItem(position).getPetid();
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
@@ -73,7 +76,13 @@ public class PetActivity extends AppCompatActivity
 
                         //go to update activity
                         //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
-                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+
+//                        Toast.makeText(PetActivity.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
+
+
+                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
+                        i.putExtra("ownerid", code);
+                        startActivity(i);
 
 
 
@@ -82,19 +91,68 @@ public class PetActivity extends AppCompatActivity
                 builder.setNegativeButton("View", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
+
+//                        Toast.makeText(PetActivity.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
+
+
+
+                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
+                        i.putExtra("ownerid", code);
+                        startActivity(i);
 
 
                     }
                 });
 
-//                builder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        DatabaseHelper dbHelper = new DatabaseHelper(PetActivity.this);
-//                        Toast.makeText(getApplicationContext(), "Work in progress!", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
+                builder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Build an AlertDialog
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetActivity.this);
+
+                        // Set a title for alert dialog
+                        builder.setTitle("DELETE.");
+
+                        // Ask the final question
+                        builder.setMessage("Do you want to delete the data?");
+
+                        // Set click listener for alert dialog buttons
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch(which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        // User clicked the Yes button
+
+
+                                        myDB.deletePet(code);
+                                        Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(PetActivity.this, PetActivity.class);
+                                        i.putExtra("ownerid", code);
+                                        startActivity(i);
+
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        // User clicked the No button
+
+
+                                }
+                            }
+                        };
+
+                        // Set the alert dialog yes button click listener
+                        builder.setPositiveButton("Yes", dialogClickListener);
+
+                        // Set the alert dialog no button click listener
+                        builder.setNegativeButton("No",dialogClickListener);
+
+                        android.app.AlertDialog dialog2 = builder.create();
+                        // Display the alert dialog on interface
+                        dialog2.show();
+                    }
+                });
 
                 builder.create().show();
             }
@@ -129,7 +187,7 @@ public class PetActivity extends AppCompatActivity
             do {
 
                 String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
-                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+
 //                String owner_id = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                 String owner_id = "";
                 String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
@@ -138,6 +196,7 @@ public class PetActivity extends AppCompatActivity
                 String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_7)));
                 String birth =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                 String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
+                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
                 String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_14));
                 pet = new Pet(id,owner_id,petid,petname,specie,breed,sex, birth,color,created_at);
                 PetList.add(pet);
