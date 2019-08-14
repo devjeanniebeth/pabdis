@@ -20,11 +20,12 @@ import com.example.pabdis.activity.survey.OtherActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 import com.example.pabdis.activity.ui.MainActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 
 public class ListUpdateActivity extends AppCompatActivity {
 
 
-    Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnWeekly;
+    Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnWeekly, btnPet;
     FloatingActionButton back;
     String ownerid;
 
@@ -45,6 +46,7 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnOther = findViewById(R.id.btnOther);
         btnFishery = findViewById(R.id.btnFishery);
         btnWeekly = findViewById(R.id.btnWeekly);
+        btnPet = findViewById(R.id.btnPet);
         back = findViewById(R.id.fab);
 
 
@@ -73,8 +75,6 @@ public class ListUpdateActivity extends AppCompatActivity {
 
 
 
-
-
         btnOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +89,24 @@ public class ListUpdateActivity extends AppCompatActivity {
 
             }
         });
+
+
+        btnPet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ListUpdateActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+
+
+                Intent i = new Intent(ListUpdateActivity.this, VaccinationActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("add", "true");
+                startActivity(i);
+
+
+            }
+        });
+
+
 
         btnSwine.setOnClickListener(new View.OnClickListener() {
             @Override

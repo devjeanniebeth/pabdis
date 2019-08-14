@@ -55,7 +55,7 @@ public class VaccinationActivity extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
-    String age,ownerid, petid, vacc, update;
+    String age,ownerid, petid, vacc, update, status;
     Integer position, year, ctr;
     Character first;
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
@@ -106,23 +106,27 @@ public class VaccinationActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                status = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
                 update= extras.getString("update");
+                status= extras.getString("add");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
+            status = (String) savedInstanceState.getSerializable("add");
+
 
         }
 
 
-        Cursor rs = myDB.getVacc(ownerid);
+        Cursor rs = myDB.getVacc(petid);
         rs.moveToFirst();
 
-        if(rs.getCount() > 0) {
+        if(rs.getCount() > 0 && status == null) {
 
 
             txtvaccinatedby.setVisibility(View.GONE);
@@ -174,6 +178,7 @@ public class VaccinationActivity extends AppCompatActivity {
                     txtbreed.setVisibility(View.VISIBLE);
                     strngbreed.setVisibility(View.VISIBLE);
                     if (breed != null) {
+                        txtbreed.setAdapter(adapter2);
                         int spinnerPosition = adapter2.getPosition(breed);
                         txtbreed.setSelection(spinnerPosition);
                     }
@@ -182,10 +187,10 @@ public class VaccinationActivity extends AppCompatActivity {
                 txtbreed.setVisibility(View.VISIBLE);
                 strngbreed.setVisibility(View.VISIBLE);
                 if (breed != null) {
+                    txtbreed.setAdapter(adapter);
                     int spinnerPosition1 = adapter.getPosition(breed);
                     txtbreed.setSelection(spinnerPosition1);
                 }
-
             }else if(specie.equals("Monkey"))
             {
                 txtbreed.setVisibility(View.GONE);
@@ -195,62 +200,62 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-//
-//            sex = ArrayAdapter.createFromResource(this, R.array.gender, R.layout.support_simple_spinner_dropdown_item);
-//            if (gender != null) {
-//                int spinnerPosition3 = sex.getPosition(gender);
-//                txtGender.setSelection(spinnerPosition3);
-//            }
-//
-//            sources = ArrayAdapter.createFromResource(this, R.array.source_pet, R.layout.support_simple_spinner_dropdown_item);
-//
-//
-//            if(srcs.equals("Indigenous"))
-//            {
-//                if (srcs != null) {
-//                    int spinnerPosition4 = sources.getPosition(srcs);
-//                    txtsource.setSelection(spinnerPosition4);
-//                }
-//
-//                txtsourceplace.setVisibility(View.GONE);
-//            }else{
-//
-//                String sr = "Introduced";
-//
-//                int spinnerPosition5 = sources.getPosition(sr);
-//                txtsource.setSelection(spinnerPosition5);
-//
-//                txtsourceplace.setVisibility(View.VISIBLE);
-//                txtsourceplace.setText(srcs);
-//            }
-//
-//
-//            colormarkings = ArrayAdapter.createFromResource(this, R.array.color_mark, R.layout.support_simple_spinner_dropdown_item);
-//
-//            if(color.equals("Others"))
-//            {
-//
-//                if (color != null) {
-//                    int spinnerPosition6 = colormarkings.getPosition(color);
-//                    txtsource.setSelection(spinnerPosition6);
-//                }
-//
-//
-//                othercolormark.setVisibility(View.VISIBLE);
-//                othercolormark.setText(color);
-//
-//            }else
-//            {
-//                if (color != null) {
-//                    int spinnerPosition7= colormarkings.getPosition(color);
-//                    txtsource.setSelection(spinnerPosition7);
-//                }
-//
-//                othercolormark.setVisibility(View.GONE);
-//
-//
-//
-//            }
+
+            sex = ArrayAdapter.createFromResource(this, R.array.gender, R.layout.support_simple_spinner_dropdown_item);
+            if (gender != null) {
+                int spinnerPosition3 = sex.getPosition(gender);
+                txtGender.setSelection(spinnerPosition3);
+            }
+
+            sources = ArrayAdapter.createFromResource(this, R.array.source_pet, R.layout.support_simple_spinner_dropdown_item);
+
+
+            if(srcs.equals("Indigenous"))
+            {
+                if (srcs != null) {
+                    int spinnerPosition4 = sources.getPosition(srcs);
+                    txtsource.setSelection(spinnerPosition4);
+                }
+
+                txtsourceplace.setVisibility(View.GONE);
+            }else{
+
+                String sr = "Introduced";
+
+                int spinnerPosition5 = sources.getPosition(sr);
+                txtsource.setSelection(spinnerPosition5);
+
+                txtsourceplace.setVisibility(View.VISIBLE);
+                txtsourceplace.setText(srcs);
+            }
+
+
+            colormarkings = ArrayAdapter.createFromResource(this, R.array.color_mark, R.layout.support_simple_spinner_dropdown_item);
+
+            if(color.equals("Others"))
+            {
+
+                if (color != null) {
+                    int spinnerPosition6 = colormarkings.getPosition(color);
+                    txtsource.setSelection(spinnerPosition6);
+                }
+
+
+                othercolormark.setVisibility(View.VISIBLE);
+                othercolormark.setText(color);
+
+            }else
+            {
+                if (color != null) {
+                    int spinnerPosition7= colormarkings.getPosition(color);
+                    txtsource.setSelection(spinnerPosition7);
+                }
+
+                othercolormark.setVisibility(View.GONE);
+
+
+
+            }
 
 
             txtdistinguish.setText(feature);
@@ -390,13 +395,13 @@ public class VaccinationActivity extends AppCompatActivity {
                                     // User clicked the Yes button
 
                                     if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                        Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(VaccinationActivity.this, "Check your input!" +petname + specie + other_breed + gender + birthdate + othercolor + feat + souces + petid , Toast.LENGTH_SHORT).show();
                                     }else{
 
                                         try {
                                             myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                     souces,petid);
-                                            Toast.makeText(VaccinationActivity.this, "SucCess!" , Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
@@ -805,36 +810,42 @@ public class VaccinationActivity extends AppCompatActivity {
             }
         });
 
-        txtSpecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
+        if(ownerid == null)
+        {
+            txtSpecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    String selectedItem = adapterView.getItemAtPosition(i).toString();
 
-                switch (selectedItem)
-                {
-                    case "Cat":
-                        txtbreed.setVisibility(View.VISIBLE);
-                        strngbreed.setVisibility(View.VISIBLE);
-                        txtbreed.setAdapter(adapter2);
-                        break;
-                    case "Dog":
-                        txtbreed.setVisibility(View.VISIBLE);
-                        strngbreed.setVisibility(View.VISIBLE);
-                        txtbreed.setAdapter(adapter);
-                        break;
-                    case "Monkey":
-                        txtbreed.setVisibility(View.GONE);
-                        strngbreed.setVisibility(View.GONE);
-                        break;
+                    switch (selectedItem)
+                    {
+                        case "Cat":
+                            txtbreed.setVisibility(View.VISIBLE);
+                            strngbreed.setVisibility(View.VISIBLE);
+                            txtbreed.setAdapter(adapter2);
+                            break;
+                        case "Dog":
+                            txtbreed.setVisibility(View.VISIBLE);
+                            strngbreed.setVisibility(View.VISIBLE);
+                            txtbreed.setAdapter(adapter);
+                            break;
+                        case "Monkey":
+                            txtbreed.setVisibility(View.GONE);
+                            strngbreed.setVisibility(View.GONE);
+                            break;
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
 
                 }
-            }
+            });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        });
+        }
+
 
         txtColorMark.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -70,7 +70,7 @@ public class PetActivity extends AppCompatActivity
                 AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
-                builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Update Pet Info", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -79,16 +79,15 @@ public class PetActivity extends AppCompatActivity
 
 //                        Toast.makeText(PetActivity.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
 
-
                         Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
-                        i.putExtra("ownerid", code);
+                        i.putExtra("petid", code);
                         startActivity(i);
 
 
 
                     }
                 });
-                builder.setNegativeButton("View", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Update Vaccination Info", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -96,9 +95,9 @@ public class PetActivity extends AppCompatActivity
 
 
 
-                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
-                        i.putExtra("ownerid", code);
-                        startActivity(i);
+//                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
+//                        i.putExtra("petid", code);
+//                        startActivity(i);
 
 
                     }

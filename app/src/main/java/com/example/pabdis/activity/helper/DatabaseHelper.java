@@ -992,7 +992,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public boolean updateOwner(String owner_id, String ownertype, String ownerinfo, String rfname, String rlname,String members, String contact,
-                                String house)
+                               String muni, String brgy,String house)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -1003,8 +1003,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(OWNERCOL_6,rfname);
         contentValues.put(OWNERCOL_7,members);
         contentValues.put(OWNERCOL_8,contact);
-//        contentValues.put(OWNERCOL_9,muni);
-//        contentValues.put(OWNERCOL_10,brgy);
+        contentValues.put(OWNERCOL_9,muni);
+        contentValues.put(OWNERCOL_10,brgy);
         contentValues.put(OWNERCOL_11,house);
         db.update(TABLE_OWNER, contentValues, "owner_id = ?",new String[] { owner_id });
         return true;

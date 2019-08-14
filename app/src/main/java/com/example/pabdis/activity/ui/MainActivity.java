@@ -112,6 +112,21 @@ public class MainActivity extends AppCompatActivity
         edtEstab.setVisibility(View.GONE);
         CheckPermission();
 
+        brgylt = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_lt, R.layout.support_simple_spinner_dropdown_item);
+        brgy_at = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_at, R.layout.support_simple_spinner_dropdown_item);
+        brgy_bak = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_bak, R.layout.support_simple_spinner_dropdown_item);
+        brgy_bok = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_bok, R.layout.support_simple_spinner_dropdown_item);
+        brgy_bug = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_bug, R.layout.support_simple_spinner_dropdown_item);
+        brgy_it = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_it, R.layout.support_simple_spinner_dropdown_item);
+        brgy_kab = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_kab, R.layout.support_simple_spinner_dropdown_item);
+        brgy_kap = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_kap, R.layout.support_simple_spinner_dropdown_item);
+        brgy_kib = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_kib, R.layout.support_simple_spinner_dropdown_item);
+        brgy_man = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_man, R.layout.support_simple_spinner_dropdown_item);
+        brgy_sab = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
+        brgy_tba = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
+        brgy_tbl = ArrayAdapter.createFromResource(MainActivity.this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
+
+
 
 
 
@@ -212,19 +227,6 @@ public class MainActivity extends AppCompatActivity
             firstname2.setText(rfname);
 
             munici = ArrayAdapter.createFromResource(this, R.array.muni, R.layout.support_simple_spinner_dropdown_item);
-            brgylt = ArrayAdapter.createFromResource(this, R.array.brgy_lt, R.layout.support_simple_spinner_dropdown_item);
-            brgy_at = ArrayAdapter.createFromResource(this, R.array.brgy_at, R.layout.support_simple_spinner_dropdown_item);
-            brgy_bak = ArrayAdapter.createFromResource(this, R.array.brgy_bak, R.layout.support_simple_spinner_dropdown_item);
-            brgy_bok = ArrayAdapter.createFromResource(this, R.array.brgy_bok, R.layout.support_simple_spinner_dropdown_item);
-            brgy_bug = ArrayAdapter.createFromResource(this, R.array.brgy_bug, R.layout.support_simple_spinner_dropdown_item);
-            brgy_it = ArrayAdapter.createFromResource(this, R.array.brgy_it, R.layout.support_simple_spinner_dropdown_item);
-            brgy_kab = ArrayAdapter.createFromResource(this, R.array.brgy_kab, R.layout.support_simple_spinner_dropdown_item);
-            brgy_kap = ArrayAdapter.createFromResource(this, R.array.brgy_kap, R.layout.support_simple_spinner_dropdown_item);
-            brgy_kib = ArrayAdapter.createFromResource(this, R.array.brgy_kib, R.layout.support_simple_spinner_dropdown_item);
-            brgy_man = ArrayAdapter.createFromResource(this, R.array.brgy_man, R.layout.support_simple_spinner_dropdown_item);
-            brgy_sab = ArrayAdapter.createFromResource(this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
-            brgy_tba = ArrayAdapter.createFromResource(this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
-            brgy_tbl = ArrayAdapter.createFromResource(this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
 
 
             if (mun != null) {
@@ -232,63 +234,127 @@ public class MainActivity extends AppCompatActivity
                 muni.setSelection(spinnerPosition);
             }
 
-            switch (mun) {
-                case "La Trinidad":
-                    int spinnerPosition1 = brgylt.getPosition(brg);
-                    brgy.setSelection(spinnerPosition1);
 
-                    break;
-                case "Itogon":
-                    int spinnerPosition2 = brgy_it.getPosition(brg);
-                    brgy.setSelection(spinnerPosition2);
-                    break;
-                case "Buguias":
 
-                    int spinnerPosition3 = brgy_bug.getPosition(brg);
-                    brgy.setSelection(spinnerPosition3);
+                    if(mun.equals("La Trinidad")) {
 
-                    break;
-                case "Kabayan":
-                    int spinnerPosition4 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition4);
-                    break;
-                case "Sablan":
-                    int spinnerPosition5 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition5);
-                    break;
-                case "Mankayan":
-                    int spinnerPosition6 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition6);
-                    break;
-                case "Kapangan":
-                    int spinnerPosition7 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition7);
-                    break;
-                case "Bokod":
-                    int spinnerPosition8 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition8);
-                    break;
-                case "Atok":
-                    int spinnerPosition9 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition9);
-                    break;
-                case "Kibungan":
-                    int spinnerPosition10 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition10);
-                    break;
-                case "Tublay":
-                    int spinnerPosition11 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition11);
-                    break;
-                case "Tuba":
-                    int spinnerPosition12 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition12);
-                    break;
-                case "Bakun":
-                    int spinnerPosition13 = brgy_kab.getPosition(brg);
-                    brgy.setSelection(spinnerPosition13);
-                    break;
-            }
+                        int spinnerPosition1 = brgylt.getPosition(brg);
+                        brgy.setAdapter(brgylt);
+                        brgy.setSelection(spinnerPosition1);
+                    }else if(mun.equals("Itogon")){
+                        brgy_it = ArrayAdapter.createFromResource(this, R.array.brgy_it, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_it);
+                        int spinnerPosition2 = brgy_it.getPosition(brg);
+                        brgy.setSelection(spinnerPosition2);
+                    }else if(mun.equals("Buguias")) {
+                       brgy_bug = ArrayAdapter.createFromResource(this, R.array.brgy_bug, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_bug.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_bug);
+                        int spinnerPosition3 = brgy_bug.getPosition(brg);
+                        brgy.setSelection(spinnerPosition3);
+
+                    }else if(mun.equals("Kabayan"))
+                    {
+
+                        brgy_kab = ArrayAdapter.createFromResource(this, R.array.brgy_kab, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_kab.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_kab);
+                        int spinnerPosition4 = brgy_kab.getPosition(brg);
+                        brgy.setSelection(spinnerPosition4);
+
+                    }else if(mun.equals("Sablan"))
+                    {
+
+                       brgy_sab = ArrayAdapter.createFromResource(this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_sab.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_sab);
+                        int spinnerPosition5 = brgy_sab.getPosition(brg);
+                        brgy.setSelection(spinnerPosition5);
+                    }else if(mun.equals("Mankayan"))
+                    {
+                        brgy_man = ArrayAdapter.createFromResource(this, R.array.brgy_man, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_man.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_man);
+                        int spinnerPosition6 = brgy_man.getPosition(brg);
+                        brgy.setSelection(spinnerPosition6);
+
+                    }else if(mun.equals("Kapangan"))
+                    {
+                        brgy_kap = ArrayAdapter.createFromResource(this, R.array.brgy_kap, R.layout.support_simple_spinner_dropdown_item);
+                        brgy_kap.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_kap);
+                        int spinnerPosition7 = brgy_kap.getPosition(brg);
+                        brgy.setSelection(spinnerPosition7);
+
+                    }else if(mun.equals("Bokod"))
+                    {
+                        brgy_bok = ArrayAdapter.createFromResource(this, R.array.brgy_bok, R.layout.support_simple_spinner_dropdown_item);
+                        brgy_bok.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_bok);
+                        int spinnerPosition8 = brgy_bok.getPosition(brg);
+
+                        brgy.setSelection(spinnerPosition8);
+                    }else if(mun.equals("Atok"))
+                    {
+                        brgy_at = ArrayAdapter.createFromResource(this, R.array.brgy_at, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_at.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        brgy.setAdapter(brgy_at);
+
+                        int spinnerPosition9 = brgy_at.getPosition(brg);
+
+                        brgy.setSelection(spinnerPosition9);
+
+                    }else if(mun.equals("Kibungan"))
+                    {
+                        brgy_kib = ArrayAdapter.createFromResource(this, R.array.brgy_kib, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_kib.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        brgy.setAdapter(brgy_kib);
+                        int spinnerPosition10 = brgy_kib.getPosition(brg);
+
+                        brgy.setSelection(spinnerPosition10);
+
+                    }else if(mun.equals("Tublay"))
+                    {
+                        brgy_tbl = ArrayAdapter.createFromResource(this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
+                        brgy_tbl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        brgy.setAdapter(brgy_tbl);
+
+                        int spinnerPosition11 = brgy_tbl.getPosition(brg);
+
+                        brgy.setSelection(spinnerPosition11);
+
+                    }else if(mun.equals("Tuba"))
+                    {
+                        brgy_tba = ArrayAdapter.createFromResource(this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
+
+                        brgy_tba.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        brgy.setAdapter(brgy_tba);
+
+                        int spinnerPosition12 = brgy_tba.getPosition(brg);
+
+                        brgy.setSelection(spinnerPosition12);
+
+                    }else if(mun.equals("Bakun"))
+                    {
+                        brgy_bak = ArrayAdapter.createFromResource(this, R.array.brgy_bak, R.layout.support_simple_spinner_dropdown_item);
+                        brgy_bak.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        brgy.setAdapter(brgy_bak);
+                        int spinnerPosition13 = brgy_bak.getPosition(brg);
+                        brgy.setSelection(spinnerPosition13);
+
+                    }
 
 
 
@@ -409,7 +475,7 @@ public class MainActivity extends AppCompatActivity
                                     }else{
 
                                         try {
-                                            myDB.updateOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(),  house.trim());
+                                            myDB.updateOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(), mun.trim(), brg.trim(),  house.trim());
                                             Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
 
@@ -463,20 +529,7 @@ public class MainActivity extends AppCompatActivity
 
 
         munici = ArrayAdapter.createFromResource(this, R.array.muni, R.layout.support_simple_spinner_dropdown_item);
-        brgylt = ArrayAdapter.createFromResource(this, R.array.brgy_lt, R.layout.support_simple_spinner_dropdown_item);
-        brgy_at = ArrayAdapter.createFromResource(this, R.array.brgy_at, R.layout.support_simple_spinner_dropdown_item);
-        brgy_bak = ArrayAdapter.createFromResource(this, R.array.brgy_bak, R.layout.support_simple_spinner_dropdown_item);
-        brgy_bok = ArrayAdapter.createFromResource(this, R.array.brgy_bok, R.layout.support_simple_spinner_dropdown_item);
-        brgy_bug = ArrayAdapter.createFromResource(this, R.array.brgy_bug, R.layout.support_simple_spinner_dropdown_item);
-        brgy_it = ArrayAdapter.createFromResource(this, R.array.brgy_it, R.layout.support_simple_spinner_dropdown_item);
-        brgy_kab = ArrayAdapter.createFromResource(this, R.array.brgy_kab, R.layout.support_simple_spinner_dropdown_item);
-        brgy_kap = ArrayAdapter.createFromResource(this, R.array.brgy_kap, R.layout.support_simple_spinner_dropdown_item);
-        brgy_kib = ArrayAdapter.createFromResource(this, R.array.brgy_kib, R.layout.support_simple_spinner_dropdown_item);
-        brgy_man = ArrayAdapter.createFromResource(this, R.array.brgy_man, R.layout.support_simple_spinner_dropdown_item);
-        brgy_sab = ArrayAdapter.createFromResource(this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
-        brgy_tba = ArrayAdapter.createFromResource(this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
-        brgy_tbl = ArrayAdapter.createFromResource(this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
-        types = ArrayAdapter.createFromResource(this, R.array.ownertype, R.layout.support_simple_spinner_dropdown_item);
+               types = ArrayAdapter.createFromResource(this, R.array.ownertype, R.layout.support_simple_spinner_dropdown_item);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -541,74 +594,78 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        if(ownerid == null)
+        {
+            muni.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                    String selectedItem = adapterView.getItemAtPosition(i).toString();
 
-        muni.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String selectedItem = adapterView.getItemAtPosition(i).toString();
-
-
-                switch (selectedItem) {
-                    case "La Trinidad":
-                        brgy.setAdapter(brgylt);
-                        petid = String.valueOf((selectedItem.charAt(0))) + selectedItem.charAt(3);
-                        break;
-                    case "Itogon":
-                        brgy.setAdapter(brgy_it);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Buguias":
-                        brgy.setAdapter(brgy_bug);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Kabayan":
-                        brgy.setAdapter(brgy_kab);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Sablan":
-                        brgy.setAdapter(brgy_sab);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Mankayan":
-                        brgy.setAdapter(brgy_man);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Kapangan":
-                        brgy.setAdapter(brgy_kap);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Bokod":
-                        brgy.setAdapter(brgy_bok);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Atok":
-                        brgy.setAdapter(brgy_at);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Kibungan":
-                        brgy.setAdapter(brgy_kib);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Tublay":
-                        brgy.setAdapter(brgy_tbl);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Tuba":
-                        brgy.setAdapter(brgy_tba);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
-                    case "Bakun":
-                        brgy.setAdapter(brgy_bak);
-                        petid = String.valueOf(selectedItem.charAt(0));
-                        break;
+                    switch (selectedItem) {
+                        case "La Trinidad":
+                            brgy.setAdapter(brgylt);
+                            petid = String.valueOf((selectedItem.charAt(0))) + selectedItem.charAt(3);
+                            break;
+                        case "Itogon":
+                            brgy.setAdapter(brgy_it);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Buguias":
+                            brgy.setAdapter(brgy_bug);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Kabayan":
+                            brgy.setAdapter(brgy_kab);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Sablan":
+                            brgy.setAdapter(brgy_sab);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Mankayan":
+                            brgy.setAdapter(brgy_man);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Kapangan":
+                            brgy.setAdapter(brgy_kap);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Bokod":
+                            brgy.setAdapter(brgy_bok);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Atok":
+                            brgy.setAdapter(brgy_at);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Kibungan":
+                            brgy.setAdapter(brgy_kib);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Tublay":
+                            brgy.setAdapter(brgy_tbl);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Tuba":
+                            brgy.setAdapter(brgy_tba);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                        case "Bakun":
+                            brgy.setAdapter(brgy_bak);
+                            petid = String.valueOf(selectedItem.charAt(0));
+                            break;
+                    }
                 }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+
                 }
+            });
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
 
-            }
-        });
+        }
+
 
         proceedSurvey.setOnClickListener(new View.OnClickListener() {
             @Override
