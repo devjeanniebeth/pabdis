@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity
     Spinner muni, brgy, ownertype;
     public static String tvLongi;
     public static String tvLati;
-    Integer position, year, ctr;
+    Integer position, year, ctr, pos;
     DatabaseHelper myDB;
     Context mContext;
     Character first;
@@ -145,13 +145,17 @@ public class MainActivity extends AppCompatActivity
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
         }
 
@@ -419,6 +423,9 @@ public class MainActivity extends AppCompatActivity
                     SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                     final String created_at = format1.format(cal.getTime());
 
+
+
+
                     String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
                     StringBuilder salt = new StringBuilder();
                     Random rnd = new Random();
@@ -426,6 +433,8 @@ public class MainActivity extends AppCompatActivity
                         int index = (int) (rnd.nextFloat() * SALTCHARS.length());
                         salt.append(SALTCHARS.charAt(index));
                     }
+
+
 
                     final String end = salt.toString();
 
@@ -450,6 +459,9 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
+
+
 //                petid = first.toString() + position.toString() + year.toString();
 
                     // Build an AlertDialog
@@ -470,7 +482,7 @@ public class MainActivity extends AppCompatActivity
                                     // User clicked the Yes button
 
                                     if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                        Toast.makeText(MainActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "Check your input!" +ownerid, Toast.LENGTH_SHORT).show();
 
                                     }else{
 
@@ -755,7 +767,24 @@ public class MainActivity extends AppCompatActivity
                 ctr++;
 
                 ownerid = first.toString() + position.toString() + year.toString() + "-" + end;
+                int ctrowner = myDB.getCountOwner(ownerid);
+                if(ctrowner > 0)
+                {
 
+                    String SALTCHARS2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+                    StringBuilder salt2 = new StringBuilder();
+                    Random rnd2 = new Random();
+                    while (salt.length() < 5) { // length of the random string.
+                        int index = (int) (rnd2.nextFloat() * SALTCHARS2.length());
+                        salt2.append(SALTCHARS2.charAt(index));
+                    }
+
+                    final String end2 = salt.toString();
+                    ownerid = first.toString() + position.toString() + year.toString() + "-" + end2;
+
+
+
+                }
 
 
 

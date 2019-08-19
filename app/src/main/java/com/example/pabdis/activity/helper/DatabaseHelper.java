@@ -701,6 +701,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = res.getInt(0);
         return count;
     }
+
+    public int getCountOwner(String ownerid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) from "+TABLE_OWNER+" WHERE "+SURVEYCOL_3+"='"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        res.moveToFirst();
+        int count = res.getInt(0);
+        return count;
+    }
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         String selectQuery = "SELECT  * FROM " + TABLE_OWNER;
@@ -726,6 +735,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery(query,null);
         return res;
 
+    }
+    public String getBrgy(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT barangay from "+TABLE_OWNER+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        res.moveToFirst();
+        String count = res.getString(0);
+        return count;
+
+    }
+
+    public String getMuni(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT municipality from "+TABLE_OWNER+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        res.moveToFirst();
+        String count = res.getString(0);
+        return count;
     }
     public Cursor getUserInfo(String ownerid)
     {

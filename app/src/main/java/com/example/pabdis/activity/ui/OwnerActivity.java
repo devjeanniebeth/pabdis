@@ -39,6 +39,7 @@ public class OwnerActivity extends AppCompatActivity
     ListAdapter listAdapter;
     EditText searchView;
     Cursor cursor;
+    Integer pos;
     ArrayList<Owner> OwnerList = new ArrayList<Owner>();
 
 
@@ -50,6 +51,7 @@ public class OwnerActivity extends AppCompatActivity
         myDB = new DatabaseHelper(getApplicationContext());
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
+        searchView.setFocusable(false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -60,13 +62,36 @@ public class OwnerActivity extends AppCompatActivity
 
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+        LISTVIEW.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                pos = null;
+            } else {
+                pos= extras.getInt("pos");
+            }
+        } else {
+            pos= (Integer) savedInstanceState.getSerializable("pos");
+        }
+
+        Toast.makeText(OwnerActivity.this, ""+ pos, Toast.LENGTH_SHORT).show();
+
+
+        if(pos != null) {
+            LISTVIEW.setSelection(pos);
+        }
+
+
 
 
         LISTVIEW.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(final AdapterView<?> adapterView, final View view, int position, long l) {
+            public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
 
                 final String code = listAdapter.getItem(position).getOwnerid();
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(OwnerActivity.this);
                 builder.setTitle("Choose option");
@@ -76,11 +101,13 @@ public class OwnerActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
                         //go to update activity
+                        Toast.makeText(OwnerActivity.this, "Check your input!"+ position, Toast.LENGTH_SHORT).show();
 
 //
                         Intent i = new Intent(OwnerActivity.this, ListUpdateActivity
                                 .class);
                         i.putExtra("ownerid", code);
+                        i.putExtra("position", position);
                         startActivity(i);
 
                     }
@@ -91,6 +118,7 @@ public class OwnerActivity extends AppCompatActivity
 
                         Intent i = new Intent(OwnerActivity.this, ListUpdateActivity.class);
                         i.putExtra("ownerid", code);
+                        i.putExtra("position", position);
                         startActivity(i);
 
                     }
@@ -180,9 +208,7 @@ public class OwnerActivity extends AppCompatActivity
                 String lati = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_12)));
                 String longi = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_13)));
                 String ownerid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_3)));
-                String r_full = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
-//                String h_full = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-//                String owner_info = ("House Head:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
+                String r_full = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + " " +cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
                 String contact = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_7)));
                 String muni =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                 String brgy =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
@@ -195,6 +221,7 @@ public class OwnerActivity extends AppCompatActivity
 
         listAdapter = new ListAdapter(OwnerActivity.this, R.layout.items, OwnerList);
         LISTVIEW.setAdapter(listAdapter);
+
         cursor.close();
     }
 

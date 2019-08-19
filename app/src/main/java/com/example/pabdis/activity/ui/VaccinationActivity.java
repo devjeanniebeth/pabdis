@@ -55,7 +55,7 @@ public class VaccinationActivity extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
-    String age,ownerid, petid, vacc, update, status;
+    String age,ownerid, petid, vacc, update, status, pet;
     Integer position, year, ctr;
     Character first;
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
@@ -207,6 +207,8 @@ public class VaccinationActivity extends AppCompatActivity {
                 txtGender.setSelection(spinnerPosition3);
             }
 
+
+
             sources = ArrayAdapter.createFromResource(this, R.array.source_pet, R.layout.support_simple_spinner_dropdown_item);
 
 
@@ -224,7 +226,6 @@ public class VaccinationActivity extends AppCompatActivity {
 
                 int spinnerPosition5 = sources.getPosition(sr);
                 txtsource.setSelection(spinnerPosition5);
-
                 txtsourceplace.setVisibility(View.VISIBLE);
                 txtsourceplace.setText(srcs);
             }
@@ -232,26 +233,53 @@ public class VaccinationActivity extends AppCompatActivity {
 
             colormarkings = ArrayAdapter.createFromResource(this, R.array.color_mark, R.layout.support_simple_spinner_dropdown_item);
 
-            if(color.equals("Others"))
+
+            if(color.equals("White"))
             {
 
-                if (color != null) {
                     int spinnerPosition6 = colormarkings.getPosition(color);
-                    txtsource.setSelection(spinnerPosition6);
-                }
-
-
-                othercolormark.setVisibility(View.VISIBLE);
-                othercolormark.setText(color);
-
-            }else
+                    txtColorMark.setSelection(spinnerPosition6);
+                    othercolormark.setVisibility(View.GONE);
+            }else if(color.equals("Black"))
             {
-                if (color != null) {
-                    int spinnerPosition7= colormarkings.getPosition(color);
-                    txtsource.setSelection(spinnerPosition7);
-                }
 
+                int spinnerPosition6 = colormarkings.getPosition(color);
+                txtColorMark.setSelection(spinnerPosition6);
                 othercolormark.setVisibility(View.GONE);
+            }else if(color.equals("Brown"))
+            {
+
+                int spinnerPosition6 = colormarkings.getPosition(color);
+                txtColorMark.setSelection(spinnerPosition6);
+                othercolormark.setVisibility(View.GONE);
+            }else if(color.equals("Orange"))
+            {
+
+                int spinnerPosition6 = colormarkings.getPosition(color);
+                txtColorMark.setSelection(spinnerPosition6);
+                othercolormark.setVisibility(View.GONE);
+            }else if(color.equals("Gray"))
+            {
+
+                int spinnerPosition6 = colormarkings.getPosition(color);
+                txtColorMark.setSelection(spinnerPosition6);
+                othercolormark.setVisibility(View.GONE);
+            }else if(color.equals("Tricolor"))
+            {
+
+                int spinnerPosition6 = colormarkings.getPosition(color);
+                txtColorMark.setSelection(spinnerPosition6);
+                othercolormark.setVisibility(View.GONE);
+
+            }
+            else
+            {
+
+                String col = "Others";
+                        int spinnerPosition7= colormarkings.getPosition(col);
+                        txtColorMark.setSelection(spinnerPosition7);
+                        othercolormark.setVisibility(View.VISIBLE);
+                        othercolormark.setText(color);
 
 
 
@@ -286,7 +314,7 @@ public class VaccinationActivity extends AppCompatActivity {
                     final String birthdate = dateSurvey.getText().toString();
                     final String agepet = age;
                     final String colormark = txtColorMark.getSelectedItem().toString();
-                    final String othercolor;
+                     String othercolors;
                     final String feat ;
                     final String dis  = txtdistinguish.getText().toString();
                     final String datevacc = txtxDateVacc.getText().toString();
@@ -326,14 +354,19 @@ public class VaccinationActivity extends AppCompatActivity {
                     String source2 = txtsource.getSelectedItem().toString();
                     final String place =  txtsourceplace.getText().toString();
 
-                    if(colormark == "Others")
+                    if(colormark.equals("Others"))
                     {
-                        othercolor = othercolormark.getText().toString();
+                        othercolors = othercolormark.getText().toString();
+
                     }else{
-                        othercolor = colormark;
+                        othercolors = colormark;
                     }
 
-                    if(breed == "Others")
+                    final String othercolor = othercolors;
+
+
+
+                    if(breed.equals("Others"))
                     {
                         other_breed =  otherbreed.getText().toString();
                     }else{
@@ -395,7 +428,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                     // User clicked the Yes button
 
                                     if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                        Toast.makeText(VaccinationActivity.this, "Check your input!" +petname + specie + other_breed + gender + birthdate + othercolor + feat + souces + petid , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(VaccinationActivity.this, "Check your input!"   , Toast.LENGTH_SHORT).show();
                                     }else{
 
                                         try {
@@ -517,7 +550,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
 
                 // Set a title for alert dialog
-                builder.setTitle("Skipping the process."+ownerid);
+                builder.setTitle("Skipping the process.");
 
                 // Ask the final question
                 builder.setMessage("Are you sure you want to skip this survey?");
@@ -593,7 +626,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 final String birthdate = dateSurvey.getText().toString();
                 final String agepet = age;
                 final String colormark = txtColorMark.getSelectedItem().toString();
-                final String othercolor;
+                String othercolors;
                 final String feat ;
                 final String dis  = txtdistinguish.getText().toString();
                 final String datevacc = txtxDateVacc.getText().toString();
@@ -633,12 +666,17 @@ public class VaccinationActivity extends AppCompatActivity {
                  String source2 = txtsource.getSelectedItem().toString();
                 final String place =  txtsourceplace.getText().toString();
 
-                if(colormark == "Others")
+                if(colormark.equals("Others"))
                 {
-                    othercolor = othercolormark.getText().toString();
+                    othercolors = othercolormark.getText().toString();
                 }else{
-                    othercolor = colormark;
+                    othercolors = colormark;
                 }
+
+
+
+                final String othercolor = othercolors;
+
 
                 if(breed == "Others")
                 {
@@ -686,7 +724,21 @@ public class VaccinationActivity extends AppCompatActivity {
                 ctr++;
 
                 first = specie.charAt(0);
-                final String pet = petid + end;
+
+                if (petid == null) {
+
+                    String muni = myDB.getMuni(ownerid);
+                    String brgy = myDB.getBrgy(ownerid);
+
+                    if(muni.equals("La Trinidad"))
+                    petid = String.valueOf((muni.charAt(0))) + muni.charAt(3);
+                    else{
+                        petid = String.valueOf((muni.charAt(0)));
+                    }
+
+                }
+
+                   pet = petid + end;
 
 
                 // Build an AlertDialog
@@ -708,7 +760,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!"+ petid + pet + vacc_by + datevacc + created_at, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
@@ -742,7 +794,7 @@ public class VaccinationActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_NEGATIVE:
 
                                 if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                    Toast.makeText(VaccinationActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(VaccinationActivity.this, "Check your input!" + petid , Toast.LENGTH_SHORT).show();
                                 }else{
 
                                     try {
@@ -785,6 +837,10 @@ public class VaccinationActivity extends AppCompatActivity {
             }
         });
 
+
+        if(petid == null || ownerid != null)
+        {
+
         txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -810,8 +866,6 @@ public class VaccinationActivity extends AppCompatActivity {
             }
         });
 
-        if(ownerid == null)
-        {
             txtSpecie.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -844,7 +898,7 @@ public class VaccinationActivity extends AppCompatActivity {
             });
 
 
-        }
+
 
 
         txtColorMark.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -899,6 +953,8 @@ public class VaccinationActivity extends AppCompatActivity {
 
             }
         });
+
+        }
 
 
 

@@ -28,6 +28,7 @@ public class ListUpdateActivity extends AppCompatActivity {
     Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnWeekly, btnPet;
     FloatingActionButton back;
     String ownerid;
+    Integer position;
 
 
     @Override
@@ -50,15 +51,7 @@ public class ListUpdateActivity extends AppCompatActivity {
         back = findViewById(R.id.fab);
 
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent i = new Intent(ListUpdateActivity.this, OwnerActivity.class);
-                startActivity(i);
-
-            }
-        });
 
 
 
@@ -66,12 +59,32 @@ public class ListUpdateActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
+                position = null;
             } else {
                 ownerid= extras.getString("ownerid");
+                position= extras.getInt("position");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            position= (Integer) savedInstanceState.getSerializable("position");
+
+
         }
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+
+                Intent i = new Intent(ListUpdateActivity.this, OwnerActivity.class);
+                i.putExtra("pos", position);
+                startActivity(i);
+
+            }
+        });
 
 
 
@@ -84,6 +97,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, MainActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
 
@@ -100,6 +115,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, VaccinationActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("add", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
 
@@ -116,6 +133,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, SwineActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
 
@@ -129,6 +148,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, ChickenActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
             }
@@ -141,6 +162,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, CattleActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
             }
@@ -153,6 +176,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, CarabaoActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
             }
@@ -165,6 +190,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, GoatActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
             }
@@ -176,6 +203,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, OtherActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
             }
@@ -188,6 +217,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, FisheryActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
             }
@@ -201,6 +232,8 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, HouseholdActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
+                i.putExtra("position", position);
+
                 startActivity(i);
 
             }

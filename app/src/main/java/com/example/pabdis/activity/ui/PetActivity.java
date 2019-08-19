@@ -66,6 +66,8 @@ public class PetActivity extends AppCompatActivity
             public void onItemClick(final AdapterView<?> adapterView, final View view, int position, long l) {
 
                 final String code = listAdapter.getItem(position).getPetid();
+                final String ownerid = listAdapter.getItem(position).getOwner_id();
+
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
                 builder.setTitle("Choose option");
@@ -81,6 +83,8 @@ public class PetActivity extends AppCompatActivity
 
                         Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
                         i.putExtra("petid", code);
+                        i.putExtra("ownerid", ownerid);
+
                         startActivity(i);
 
 
@@ -187,8 +191,13 @@ public class PetActivity extends AppCompatActivity
 
                 String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
 
-//                String owner_id = ("Owner ID: " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
-                String owner_id = "";
+
+
+                String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
+                if(owner_id.equals(null))
+                {
+                    owner_id = "";
+                }
                 String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
                 String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
                 String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_6)));

@@ -112,6 +112,7 @@
     <string-array name="color_mark">
         <item>White</item>
         <item>Black</item>
+        <item>Brown</item>
         <item>Orange</item>
         <item>Gray</item>
         <item>Tricolor</item>
