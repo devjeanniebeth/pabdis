@@ -54,6 +54,7 @@ public class SwineActivity extends AppCompatActivity {
     RadioButton rbyes, rbno, rby, rbn;
     Spinner vacc;
     String vaccstat, deworm;
+    Integer pos;
     TextView textView, txtincome;
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -116,15 +117,19 @@ public class SwineActivity extends AppCompatActivity {
                 ownerid= null;
                 petid = null;
                 update = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-                update = extras.getString("update");
+
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
         }
 
@@ -315,6 +320,8 @@ public class SwineActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
+
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -465,6 +472,7 @@ public class SwineActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
                 startActivity(intent);
 
 
@@ -535,6 +543,7 @@ public class SwineActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
                                         intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
+                                        intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

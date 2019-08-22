@@ -13,6 +13,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,7 +58,7 @@ public class VaccinationActivity extends AppCompatActivity {
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
     String age,ownerid, petid, vacc, update, status, pet;
-    Integer position, year, ctr;
+    Integer pos, year, ctr;
     Character first;
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
 
@@ -107,17 +109,22 @@ public class VaccinationActivity extends AppCompatActivity {
                 ownerid= null;
                 petid = null;
                 status = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
                 update= extras.getString("update");
                 status= extras.getString("add");
+                pos= extras.getInt("position");
+
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
             status = (String) savedInstanceState.getSerializable("add");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
 
         }
@@ -438,6 +445,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+
                                             startActivity(intent);
 
                                         } catch (Exception e) {
@@ -563,6 +571,7 @@ public class VaccinationActivity extends AppCompatActivity {
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                intent.putExtra("pos", pos);
                                 startActivity(intent);
                                 break;
 
@@ -1141,7 +1150,6 @@ public class VaccinationActivity extends AppCompatActivity {
         }
 
     }
-
 
 
 

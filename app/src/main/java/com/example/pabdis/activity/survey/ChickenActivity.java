@@ -40,6 +40,7 @@ public class ChickenActivity extends AppCompatActivity {
     ArrayList<String> mylistup = new ArrayList<String>();
     FloatingActionButton skip;
     Spinner vacc;
+    Integer pos;
     CheckBox cbncdls,cbfp,cbib,cbncdb1,cbncdcombo;
     String vaccstat, vacctype, deworm, petid;
     TextView textView, txtincome;
@@ -89,23 +90,25 @@ public class ChickenActivity extends AppCompatActivity {
         btnUpdate.setVisibility(View.GONE);
 
 
-
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
                 petid = null;
                 update = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-                update= extras.getString("update");
 
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
         }
 
@@ -299,6 +302,7 @@ public class ChickenActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid",ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -488,6 +492,7 @@ public class ChickenActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
                 startActivity(intent);
 
 
@@ -554,6 +559,7 @@ public class ChickenActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), CattleActivity.class);
                                         intent.putExtra("ownerid",ownerid);
                                         intent.putExtra("petid", petid);
+                                        intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

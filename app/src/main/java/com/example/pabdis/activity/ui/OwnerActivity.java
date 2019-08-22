@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +13,15 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +46,12 @@ public class OwnerActivity extends AppCompatActivity
     Cursor cursor;
     Integer pos;
     ArrayList<Owner> OwnerList = new ArrayList<Owner>();
+    LinearLayout btnLay;
+
+    public int TOTAL_LIST_ITEMS;
+    public int NUM_ITEMS_PAGE= 20;
+    private int noOfBtns;
+    private Button[] btns;
 
 
     @Override
@@ -51,10 +62,11 @@ public class OwnerActivity extends AppCompatActivity
         myDB = new DatabaseHelper(getApplicationContext());
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
-        searchView.setFocusable(false);
+//        searchView.setFocusable(false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -62,7 +74,9 @@ public class OwnerActivity extends AppCompatActivity
 
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        LISTVIEW.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+
+        TOTAL_LIST_ITEMS = myDB.getCountAll();
 
 
         if (savedInstanceState == null) {
@@ -76,20 +90,50 @@ public class OwnerActivity extends AppCompatActivity
             pos= (Integer) savedInstanceState.getSerializable("pos");
         }
 
-        Toast.makeText(OwnerActivity.this, ""+ pos, Toast.LENGTH_SHORT).show();
+
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                listAdapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
 
 
         if(pos != null) {
-            LISTVIEW.setSelection(pos);
+            LISTVIEW.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            LISTVIEW.post(new Runnable() {
+                @Override
+                public void run() {
+                    LISTVIEW.requestFocus();
+                    LISTVIEW.setSelection(pos);
+//                    LISTVIEW.setItemChecked(pos, true);
+//                    LISTVIEW.getChildAt(pos).setBackgroundColor(Color.GREEN);
+
+
+
+                }
+            });
+
+
+
+
         }
-
-
-
 
         LISTVIEW.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
-
                 final String code = listAdapter.getItem(position).getOwnerid();
 
 
@@ -101,9 +145,11 @@ public class OwnerActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
                         //go to update activity
-                        Toast.makeText(OwnerActivity.this, "Check your input!"+ position, Toast.LENGTH_SHORT).show();
-
-//
+                        Toast.makeText(OwnerActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                        if(pos != null) {
+                            LISTVIEW.setSelection(pos);
+                            view.setBackgroundColor(Color.BLUE);
+                        }
                         Intent i = new Intent(OwnerActivity.this, ListUpdateActivity
                                 .class);
                         i.putExtra("ownerid", code);
@@ -115,7 +161,6 @@ public class OwnerActivity extends AppCompatActivity
                 builder.setNegativeButton("View", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         Intent i = new Intent(OwnerActivity.this, ListUpdateActivity.class);
                         i.putExtra("ownerid", code);
                         i.putExtra("position", position);
@@ -187,6 +232,22 @@ public class OwnerActivity extends AppCompatActivity
         });
     }
 
+    private void Btnfooter()
+    {
+        int val = TOTAL_LIST_ITEMS % NUM_ITEMS_PAGE;
+        val = val == 0 ? 0 : 1;
+        noOfBtns = TOTAL_LIST_ITEMS/NUM_ITEMS_PAGE+val;
+
+        btns = new Button[noOfBtns];
+
+        for(int i = 0; i < noOfBtns;i++)
+        {
+
+        }
+
+
+    }
+
     @Override
     protected void onResume() {
 
@@ -197,7 +258,9 @@ public class OwnerActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_owner", null);
+
+
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_owner  ", null);
         Owner owner;
         OwnerList = new ArrayList<Owner>();
 
@@ -224,6 +287,9 @@ public class OwnerActivity extends AppCompatActivity
 
         cursor.close();
     }
+
+
+
 
     @Override
     public void onBackPressed() {

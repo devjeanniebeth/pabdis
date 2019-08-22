@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +13,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +40,7 @@ public class PetActivity extends AppCompatActivity
     PetAdapter listAdapter;
     EditText searchView;
     Cursor cursor;
+    Integer pos;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
 
 
@@ -60,10 +64,58 @@ public class PetActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                pos = null;
+            } else {
+                pos= extras.getInt("pos");
+            }
+        } else {
+            pos= (Integer) savedInstanceState.getSerializable("pos");
+        }
+
+
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                listAdapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        if(pos != null) {
+            LISTVIEW.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+            LISTVIEW.post(new Runnable() {
+                @Override
+                public void run() {
+                    LISTVIEW.requestFocus();
+                    LISTVIEW.setSelection(pos);
+//                    LISTVIEW.getChildAt(pos).setBackgroundColor(Color.GREEN);
+
+                }
+            });
+
+
+
+
+        }
+
+
+
 
         LISTVIEW.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(final AdapterView<?> adapterView, final View view, int position, long l) {
+            public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
 
                 final String code = listAdapter.getItem(position).getPetid();
                 final String ownerid = listAdapter.getItem(position).getOwner_id();
@@ -81,10 +133,12 @@ public class PetActivity extends AppCompatActivity
 
 //                        Toast.makeText(PetActivity.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
 
+                        LISTVIEW.setSelection(position);
+                        view.setBackgroundColor(Color.BLUE);
                         Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
                         i.putExtra("petid", code);
+                        i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
-
                         startActivity(i);
 
 
@@ -182,7 +236,7 @@ public class PetActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id", null);
         Pet pet;
         PetList = new ArrayList<Pet>();
 
@@ -190,18 +244,16 @@ public class PetActivity extends AppCompatActivity
             do {
 
                 String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
-
-
-
                 String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                 if(owner_id.equals(null))
                 {
                     owner_id = "";
                 }
-                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+
+                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
                 String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
                 String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_6)));
-                String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_7)));
+                String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
                 String birth =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                 String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
                 String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));

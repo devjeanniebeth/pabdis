@@ -30,6 +30,7 @@ public class HouseholdActivity extends AppCompatActivity {
     String ownerid, petid, update;
     FloatingActionButton skip;
     DatabaseHelper myDB;
+    Integer pos;
     EditText edtBeef,edtCarabeef,edtPork,edtChicken,edtFish,edtEgg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +53,19 @@ public class HouseholdActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 petid = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
-        }
+            pos = (Integer) savedInstanceState.getSerializable("position");
 
+
+        }
 
 
         Cursor rs = myDB.getHousehold(ownerid);
@@ -133,6 +137,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -173,6 +178,7 @@ public class HouseholdActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
                 startActivity(intent);
 
 
@@ -226,6 +232,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                         intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
+                                        intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -246,6 +253,7 @@ public class HouseholdActivity extends AppCompatActivity {
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
                                         Toast.makeText(HouseholdActivity.this, "Success survey!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                                        intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

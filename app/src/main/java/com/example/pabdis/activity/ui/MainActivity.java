@@ -202,6 +202,9 @@ public class MainActivity extends AppCompatActivity
             tvLatitude.setText(latitude);
             types = ArrayAdapter.createFromResource(this, R.array.ownertype, R.layout.support_simple_spinner_dropdown_item);
 
+            Toast.makeText(MainActivity.this, "Success!"+ type + mylist2 , Toast.LENGTH_LONG).show();
+
+
             if(type.equals("Household")) {
                 int spinnerPosition3 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition3);
@@ -210,21 +213,16 @@ public class MainActivity extends AppCompatActivity
                 edtTotalHousehold.setText(members);
             }else if(type.equals("Cooperative"))
             {
-                int spinnerPosition3 = types.getPosition(type);
-                ownertype.setSelection(spinnerPosition3);
-                ownertype.setSelection(1);
+                int spinnerPosition2 = types.getPosition(type);
+                ownertype.setSelection(spinnerPosition2);
                 edtCoop.setText(mylist2.get(0));
 
-            }else if(!type.equals("Establishment"))
+            }else if(type.equals("Establishment"))
             {
-                int spinnerPosition3 = types.getPosition(type);
-                ownertype.setSelection(spinnerPosition3);
-                ownertype.setSelection(2);
+                int spinnerPosition4 = types.getPosition(type);
+                ownertype.setSelection(spinnerPosition4);
                 edtEstab.setText(mylist2.get(0));
             }
-
-
-
 
 
             lastname2.setText(rlname);

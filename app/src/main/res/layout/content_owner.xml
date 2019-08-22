@@ -34,11 +34,9 @@
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="50dp"
-        tools:layout_editor_absoluteY="45dp">
+        android:paddingTop="50dp">
 
     </ListView>
+
 
 </android.support.constraint.ConstraintLayout>

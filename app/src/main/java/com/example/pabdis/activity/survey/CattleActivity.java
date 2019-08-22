@@ -36,7 +36,7 @@ public class CattleActivity extends AppCompatActivity {
     CheckBox cbbl;
     ArrayList<String> mylist = new ArrayList<String>();
     ArrayList<String> mylist2 = new ArrayList<String>();
-
+    Integer pos;
     ArrayList<String> mylistup = new ArrayList<String>();
     Spinner vacc;
     FloatingActionButton skip;
@@ -83,17 +83,19 @@ public class CattleActivity extends AppCompatActivity {
                 ownerid= null;
                 petid = null;
                 update = null;
-
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-                update= extras.getString("update");
 
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
         }
 
@@ -258,6 +260,7 @@ public class CattleActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid",ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -349,6 +352,7 @@ public class CattleActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
                 startActivity(intent);
 
 
@@ -419,6 +423,7 @@ public class CattleActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), CarabaoActivity.class);
                                         intent.putExtra("ownerid",ownerid);
                                         intent.putExtra("petid", petid);
+                                        intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

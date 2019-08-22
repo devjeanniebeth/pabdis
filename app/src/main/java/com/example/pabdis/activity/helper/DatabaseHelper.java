@@ -702,6 +702,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public int getCountAll() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) from "+TABLE_OWNER+"";
+        Cursor res =  db.rawQuery(query,null);
+        res.moveToFirst();
+        int count = res.getInt(0);
+        return count;
+    }
+
     public int getCountOwner(String ownerid) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT COUNT(*) from "+TABLE_OWNER+" WHERE "+SURVEYCOL_3+"='"+ownerid+"'";

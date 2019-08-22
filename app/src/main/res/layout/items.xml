@@ -86,7 +86,6 @@
             </TableRow>
         </TableLayout>
 
-
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -119,11 +118,6 @@
 
             </TableRow>
         </TableLayout>
-
-
-
-
-
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -160,8 +154,6 @@
             </TableRow>
         </TableLayout>
 
-
-
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -195,8 +187,6 @@
 
             </TableRow>
         </TableLayout>
-
-
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -233,8 +223,6 @@
             </TableRow>
         </TableLayout>
 
-
-
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -269,8 +257,6 @@
 
             </TableRow>
         </TableLayout>
-
-
 
         <TableLayout
             android:layout_width="fill_parent"
@@ -307,7 +293,6 @@
             </TableRow>
         </TableLayout>
 
-
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -339,7 +324,6 @@
 
             </TableRow>
         </TableLayout>
-
 
         <TableLayout
             android:layout_width="fill_parent"

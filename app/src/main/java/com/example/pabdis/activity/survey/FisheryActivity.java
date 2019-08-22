@@ -29,6 +29,7 @@ public class FisheryActivity extends AppCompatActivity {
     String ownerid, petid, api, fish, update;
     CheckBox withfishery, withapiary;
     DatabaseHelper myDB, myDB2;
+    Integer pos;
     FloatingActionButton skip;
     EditText edtTotalArea,edtProd,edtIncome,edtColonyNum,edtProdH,edtTotalIncome;
 
@@ -75,19 +76,21 @@ public class FisheryActivity extends AppCompatActivity {
                 ownerid= null;
                 petid = null;
                 update = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-                update= extras.getString("update");
 
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
         }
-
         Cursor rs = myDB.getFishery(ownerid);
         rs.moveToFirst();
 
@@ -195,6 +198,7 @@ public class FisheryActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
                                             startActivity(intent);
                                         }
 
@@ -212,6 +216,7 @@ public class FisheryActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("position", pos);
                                                 startActivity(intent);
                                             }
 
@@ -225,6 +230,7 @@ public class FisheryActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("position", pos);
                                                 startActivity(intent);
                                             }
                                         }
@@ -310,6 +316,7 @@ public class FisheryActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
                 startActivity(intent);
 
 
@@ -364,6 +371,7 @@ public class FisheryActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("pos", pos);
                                                 startActivity(intent);
                                             }
                                         }else if(fish.equals("true") && api.equals("false") )
@@ -376,6 +384,7 @@ public class FisheryActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("pos", pos);
                                                 startActivity(intent);
                                             }
                                         }else if(fish.equals("true") && api.equals("true"))
@@ -390,6 +399,7 @@ public class FisheryActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("pos", pos);
                                                 startActivity(intent);
                                             }
 

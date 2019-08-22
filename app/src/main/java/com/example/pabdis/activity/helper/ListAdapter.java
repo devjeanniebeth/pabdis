@@ -9,8 +9,10 @@ import android.widget.Filter;
 import android.widget.TextView;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.ui.OwnerActivity;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by Jinimon on 12/02/2018.
@@ -106,7 +108,6 @@ public class ListAdapter extends ArrayAdapter<Owner> {
 
         return child;
     }
-
 
 
     private class SubjectDataFilter extends Filter {

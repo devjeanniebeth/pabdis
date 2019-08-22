@@ -39,7 +39,7 @@ public class GoatActivity extends AppCompatActivity {
     CheckBox cbbl;
     ArrayList<String> mylist = new ArrayList<String>();
     ArrayList<String> mylist2 = new ArrayList<String>();
-
+    Integer pos;
     ArrayList<String> mylistup = new ArrayList<String>();
     TextView textView,txtincome;
     DatabaseHelper myDB;
@@ -86,16 +86,19 @@ public class GoatActivity extends AppCompatActivity {
                 ownerid= null;
                 petid = null;
                 update = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-                update= extras.getString("update");
 
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
         }
 
@@ -254,6 +257,7 @@ public class GoatActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -352,6 +356,7 @@ public class GoatActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
                 startActivity(intent);
 
 
@@ -418,6 +423,7 @@ public class GoatActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), OtherActivity.class);
                                         intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
+                                        intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

@@ -29,27 +29,33 @@ public class OtherActivity extends AppCompatActivity {
     FloatingActionButton skip;
     String ownerid, petid, update;
     DatabaseHelper myDB;
+    Integer pos;
     EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtGoose,edtOthersNum,edtTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_other);
+
+
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 ownerid= null;
                 petid = null;
                 update = null;
+                pos = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-                update= extras.getString("update");
 
+                pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
+            pos = (Integer) savedInstanceState.getSerializable("position");
+
 
         }
 
@@ -145,6 +151,7 @@ public class OtherActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -189,6 +196,7 @@ public class OtherActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
                 startActivity(intent);
 
 
@@ -248,6 +256,7 @@ public class OtherActivity extends AppCompatActivity {
                                         Intent intent = new Intent(getApplicationContext(), FisheryActivity.class);
                                         intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
+                                        intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

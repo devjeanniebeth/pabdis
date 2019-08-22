@@ -10,107 +10,370 @@
       android:layout_weight="1"
       android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtViewID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#050505"
-        android:textSize="18sp"
-        android:visibility="invisible"/>
-    <TextView
-        android:id="@+id/ownerID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#050505"
-        android:textSize="18sp"/>
-    <TextView
-        android:id="@+id/txtPetID"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#050505"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/txtPetName"
-        android:layout_width="match_parent"
+    <TableLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:text="UserID"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#050505"
-        android:textSize="18sp" />
+        android:stretchColumns="0,1">
 
-    <TextView
-        android:id="@+id/txtPetGender"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textViewID"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:text="Owner Name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#050505"
-        android:textSize="18sp" />
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/txtPetSpecie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:text="Date of Survey"
-        android:textColor="#050505"
-        android:textSize="18sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="ID: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"
+            android:visibility="invisible"/>
 
-    <TextView
-        android:id="@+id/txtPetBreed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:text="QRCode"
-        android:textColor="#050505"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/txtPetBirthdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:text="QRCode"
-        android:textColor="#050505"
-        android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/txtPetColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:text="QRCode"
-        android:textColor="#050505"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/txtViewID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"
+            android:visibility="invisible"/>
 
-    <TextView
-        android:id="@+id/txtCreatedat"
-        android:layout_width="match_parent"
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingLeft="10dp"
-        android:text="QRCode"
-        android:textColor="#050505"
-        android:textSize="18sp" />
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Owner ID: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/ownerID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Pet ID: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/txtPetID"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Owner Name: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/txtPetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="UserID"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Pet Name: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/txtPetGender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewID"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="Owner Name"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Species: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/txtPetSpecie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="Date of Survey"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Breed: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/txtPetBreed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Birthday: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/txtPetBirthdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Color Marking: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/txtPetColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+      </TableRow>
+    </TableLayout>
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="0,1">
+
+      <TableRow
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:layout_column="0"
+            android:text="Date Surveyed: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#050505"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/txtCreatedat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:text="QRCode"
+            android:textColor="#050505"
+            android:textSize="18sp" />
+
+      </TableRow>
+    </TableLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   </LinearLayout>
 

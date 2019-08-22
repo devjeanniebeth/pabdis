@@ -51,6 +51,10 @@ public class ListUpdateActivity extends AppCompatActivity {
         back = findViewById(R.id.fab);
 
 
+        Toast.makeText(ListUpdateActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+
+
+
 
 
 
@@ -91,7 +95,6 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnOwner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "Check your input!" + ownerid, Toast.LENGTH_SHORT).show();
 
 
                 Intent i = new Intent(ListUpdateActivity.this, MainActivity.class);
