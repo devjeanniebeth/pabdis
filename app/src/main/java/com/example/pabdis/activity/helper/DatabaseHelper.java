@@ -1128,4 +1128,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Log.d(TAG,"Successfully deleted user!");
 
     }
+
+    public Cursor viewInfo(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM pvet_owner INNER JOIN pvet_survey_swine ON pvet_owner.owner_id = pvet_survey_swine.owner_id " +
+                "INNER JOIN pvet_survey_chicken ON pvet_survey_chicken.owner_id = pvet_survey_swine.owner_id " +
+                "INNER JOIN pvet_survey_cattle ON pvet_survey_cattle.owner_id = pvet_survey_chicken.owner_id " +
+                "INNER JOIN pvet_survey_carabao ON pvet_survey_carabao.owner_id = pvet_survey_cattle.owner_id " +
+                "INNER JOIN pvet_survey_goat ON pvet_survey_goat.owner_id = pvet_survey_carabao.owner_id " +
+                "INNER JOIN pvet_survey_other ON pvet_survey_other.owner_id = pvet_survey_goat.owner_id " +
+                "INNER JOIN pvet_survey_fishery ON pvet_survey_fishery.owner_id = pvet_survey_other.owner_id " +
+                "INNER JOIN pvet_survey_apiary ON pvet_survey_apiary.owner_id = pvet_survey_fishery.owner_id " +
+                "INNER JOIN pvet_survey_household ON pvet_survey_household.owner_id = pvet_survey_apiary.owner_id " +
+                "WHERE pvet_owner.owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+
+
+    }
 }

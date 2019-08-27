@@ -4,5 +4,1065 @@
     android:layout_height="match_parent">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="Owner Information"
+                android:textColor="#fff"
+                android:textSize="18dp" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_owner_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp"
+                        android:visibility="invisible"/>
+
+                    <TextView
+                        android:id="@+id/txt_owner_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp"
+                        android:visibility="invisible"/>
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/txt_r_fname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp"/>
+
+
+                    <TextView
+                        android:id="@+id/txt_r_lname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp"/>
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_members"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_contact_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_full_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="UserID"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_full_geotagged"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="UserID"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="Swine Information"
+                android:textColor="#fff"
+                android:textSize="18dp" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_boar_n"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_boar_u"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_sowgit_n"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_sowgit_u"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_growers_n"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_growers_u"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_piglet_n"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_piglet_u"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_sw_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_sw_farm_kg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_sw_farm_hd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_sw_abb_kg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_sw_abb_hd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_sw_total_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_sw_total_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_sw_IsVaccinated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_sw_vaccination"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <TextView
+                        android:id="@+id/txt_sw_IsDewormed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="Chicken Information"
+                android:textColor="#fff"
+                android:textSize="18dp" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_broilers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_layers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_native"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_ch_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_ch_production"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_ch_farm_kg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_ch_ch_farm_hd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_ch_abb_kg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_ch_abb_hd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_ch_total_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_ch_total_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_ch_IsVaccinated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_ch_vaccination"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <TextView
+                        android:id="@+id/txt_ch_IsDewormed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+
+            <!-- CATTLE -->
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="Cattle Information"
+                android:textColor="#fff"
+                android:textSize="18dp" />
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_bull_d"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_bull_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_cow_d"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_cow_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_calf_d"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_calf_m"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_cat_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewID"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Owner Name"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                </TableRow>
+            </TableLayout>
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_cat_farm_kg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_cat_farm_hd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_cat_abb_kg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_cat_abb_hd"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_cat_total_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_cat_total_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txt_cat_IsVaccinated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txt_cat_vaccination"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1">
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+
+
+                    <TextView
+                        android:id="@+id/txt_cat_IsDewormed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingLeft="10dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#050505"
+                        android:textSize="18sp" />
+
+
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>
