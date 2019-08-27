@@ -33,6 +33,7 @@ import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
+import com.example.pabdis.activity.updates.ViewInfoActivity;
 
 import java.util.ArrayList;
 
@@ -161,7 +162,7 @@ public class OwnerActivity extends AppCompatActivity
                 builder.setNegativeButton("View", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(OwnerActivity.this, ListUpdateActivity.class);
+                        Intent i = new Intent(OwnerActivity.this, ViewInfoActivity.class);
                         i.putExtra("ownerid", code);
                         i.putExtra("position", position);
                         startActivity(i);
@@ -276,7 +277,7 @@ public class OwnerActivity extends AppCompatActivity
                 String muni =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                 String brgy =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
                 String createdat =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_15)));
-                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10));
+                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)) + "BRGY";
                 owner = new Owner(id,ownerid,r_full,contact,housenum, muni,brgy,lati,longi,createdat);
                 OwnerList.add(owner);
             } while (cursor.moveToNext());
