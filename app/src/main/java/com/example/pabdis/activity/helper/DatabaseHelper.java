@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TAG = DatabaseHelper.class.getSimpleName();
 
-    public static String DB_FILEPATH = "/data/data/{package_name}/databases/database.db";
+    public static String DB_FILEPATH = "/data/com.example.pabdis.activity.updates/databases/database.db";
 
 
     public static final String DATABASE_NAME = "PABDIS.db";
@@ -245,7 +246,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, 4);
     }
 
-    public boolean importDatabase(String dbPath) throws IOException {
+        public boolean importDatabase(String dbPath) throws IOException {
 
         // Close the SQLiteOpenHelper so it will commit the created empty
         // database to internal storage.
@@ -353,6 +354,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_VACC_TABLE);
         db.execSQL(CREATE_VACC_DATE_TABLE);
         db.execSQL(CREATE_LOGS_TABLE);
+
+
 
 
     }
@@ -1132,18 +1135,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor viewInfo(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM pvet_owner INNER JOIN pvet_survey_swine ON pvet_owner.owner_id = pvet_survey_swine.owner_id " +
-                "INNER JOIN pvet_survey_chicken ON pvet_survey_chicken.owner_id = pvet_survey_swine.owner_id " +
-                "INNER JOIN pvet_survey_cattle ON pvet_survey_cattle.owner_id = pvet_survey_chicken.owner_id " +
-                "INNER JOIN pvet_survey_carabao ON pvet_survey_carabao.owner_id = pvet_survey_cattle.owner_id " +
-                "INNER JOIN pvet_survey_goat ON pvet_survey_goat.owner_id = pvet_survey_carabao.owner_id " +
-                "INNER JOIN pvet_survey_other ON pvet_survey_other.owner_id = pvet_survey_goat.owner_id " +
-                "INNER JOIN pvet_survey_fishery ON pvet_survey_fishery.owner_id = pvet_survey_other.owner_id " +
-                "INNER JOIN pvet_survey_apiary ON pvet_survey_apiary.owner_id = pvet_survey_fishery.owner_id " +
-                "INNER JOIN pvet_survey_household ON pvet_survey_household.owner_id = pvet_survey_apiary.owner_id " +
+        String query = "SELECT * FROM pvet_owner LEFT JOIN pvet_survey_swine ON pvet_owner.owner_id = pvet_survey_swine.owner_id " +
+                "LEFT JOIN pvet_survey_chicken ON pvet_survey_chicken.owner_id = pvet_owner.owner_id  " +
+                "LEFT JOIN pvet_survey_cattle ON pvet_survey_cattle.owner_id = pvet_owner.owner_id " +
+                "LEFT JOIN pvet_survey_carabao ON pvet_survey_carabao.owner_id = pvet_owner.owner_id " +
+                "LEFT JOIN pvet_survey_goat ON pvet_survey_goat.owner_id = pvet_owner.owner_id " +
+                "LEFT JOIN pvet_survey_other ON pvet_survey_other.owner_id = pvet_owner.owner_id " +
+                "LEFT JOIN pvet_survey_fishery ON pvet_survey_fishery.owner_id = pvet_owner.owner_id " +
+                "LEFT JOIN pvet_survey_apiary ON pvet_survey_apiary.owner_id = pvet_owner.owner_id " +
+                "LEFT JOIN pvet_survey_household ON pvet_survey_household.owner_id = pvet_owner.owner_id " +
                 "WHERE pvet_owner.owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
+
         return res;
+
 
 
     }

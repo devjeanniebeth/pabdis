@@ -51,7 +51,7 @@ public class ListUpdateActivity extends AppCompatActivity {
         back = findViewById(R.id.fab);
 
 
-        Toast.makeText(ListUpdateActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+        Toast.makeText(ListUpdateActivity.this, "" , Toast.LENGTH_SHORT).show();
 
 
 

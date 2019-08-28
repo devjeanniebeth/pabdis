@@ -20,7 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_view" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -29,5 +28,8 @@
         android:layout_gravity="end|bottom"
         android:src="@drawable/skip"
         android:layout_margin="16dp" />
+
+    <include layout="@layout/content_view" />
+
 
 </android.support.design.widget.CoordinatorLayout>
