@@ -145,7 +145,7 @@ public class PetActivity extends AppCompatActivity
 
                     }
                 });
-                builder.setNegativeButton("Update Vaccination Info", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Update Pet Vaccination Info", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
