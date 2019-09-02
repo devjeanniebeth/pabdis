@@ -145,6 +145,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             intent.putExtra("position", pos);
+
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -186,6 +187,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("add", update);
                 startActivity(intent);
 
 
@@ -240,6 +242,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                                         intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         intent.putExtra("pos", pos);
+                                        intent.putExtra("add", update);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
