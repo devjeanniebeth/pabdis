@@ -60,7 +60,7 @@ public class VaccinationActivity extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
-    String age,ownerid, petid, vacc, update, status, pet;
+    String age,ownerid, petid, vacc, update, status, pet,add;
     Integer pos, year, ctr;
     Character first;
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
@@ -69,6 +69,9 @@ public class VaccinationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vacc);
+
+
+        add = "add";
 
         myDB = new DatabaseHelper(getApplicationContext());
         dateSurvey = findViewById(R.id.txtdatesurvey);
@@ -781,10 +784,6 @@ public class VaccinationActivity extends AppCompatActivity {
 
                                     try {
 
-
-
-
-
                                                 myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                         souces,pet,stat,created_at);
 
@@ -795,6 +794,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("add", add);
                                                 startActivity(intent);
 
                                             }
