@@ -34,7 +34,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
 
 
     Button btnDone,btnUpdate;
-    String ownerid, petid, update;
+    String ownerid, petid, update,add;
     FloatingActionButton skip;
     DatabaseHelper myDB;
     Integer pos;
@@ -54,6 +54,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
         edtFish = findViewById(R.id.edtFish);
         edtEgg = findViewById(R.id.edtEgg);
         btnUpdate.setVisibility(View.GONE);
+        add = "add";
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -187,7 +188,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
-                intent.putExtra("add", update);
+                intent.putExtra("add", add);
                 startActivity(intent);
 
 
@@ -239,10 +240,11 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
                                         Toast.makeText(HouseholdActivity.this, "Success!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+
                                         intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         intent.putExtra("pos", pos);
-                                        intent.putExtra("add", update);
+                                        intent.putExtra("add", add);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
