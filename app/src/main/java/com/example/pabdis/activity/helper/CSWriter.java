@@ -7,8 +7,6 @@ import java.io.Writer;
 
 public class CSWriter {
     private PrintWriter pw;
-    private String ts;
-
     private char separator;
 
     private char quotechar;
@@ -16,6 +14,7 @@ public class CSWriter {
     private char escapechar;
 
     private String lineEnd;
+
 
     /** The character used for escaping quotes. */
     public static final char DEFAULT_ESCAPE_CHARACTER = '"';

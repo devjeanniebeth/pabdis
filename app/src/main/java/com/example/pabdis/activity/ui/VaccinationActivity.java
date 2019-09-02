@@ -849,7 +849,7 @@ public class VaccinationActivity extends AppCompatActivity {
         });
 
 
-        if(ownerid != null && status == null)
+        if(ownerid != null && status != null)
         {
 
         txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
