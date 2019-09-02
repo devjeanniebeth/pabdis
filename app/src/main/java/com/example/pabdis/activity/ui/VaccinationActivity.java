@@ -143,10 +143,6 @@ public class VaccinationActivity extends AppCompatActivity {
             tbl1.setVisibility(View.GONE);
             txtvaccinatedby2.setVisibility(View.GONE);
             txtv4.setVisibility(View.GONE);
-
-
-
-
             btnUpdate.setVisibility(View.VISIBLE);
             btnVacc.setVisibility(View.GONE);
 
@@ -195,7 +191,6 @@ public class VaccinationActivity extends AppCompatActivity {
                     }
             }else if(specie.equals("Dog"))
             {
-                Toast.makeText(getApplicationContext(), "Doggo"+breed, Toast.LENGTH_LONG).show();
 
                 txtbreed.setVisibility(View.VISIBLE);
                 strngbreed.setVisibility(View.VISIBLE);
@@ -854,7 +849,7 @@ public class VaccinationActivity extends AppCompatActivity {
         });
 
 
-        if(petid == null && ownerid != null)
+        if(ownerid != null && status == null)
         {
 
         txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
