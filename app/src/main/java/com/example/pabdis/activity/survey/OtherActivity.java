@@ -35,7 +35,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
 
     Button btnNext, compute, btnUpdate;
     FloatingActionButton skip;
-    String ownerid, petid, update;
+    String ownerid, petid, update, add;
     DatabaseHelper myDB;
     Integer pos;
     EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtGoose,edtOthersNum,edtTotal;
@@ -66,6 +66,9 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
 
 
         }
+
+
+
 
 
 

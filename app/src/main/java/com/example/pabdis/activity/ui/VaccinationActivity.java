@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.survey.CattleActivity;
+import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.io.ByteArrayOutputStream;
@@ -131,11 +132,14 @@ public class VaccinationActivity extends AppCompatActivity {
 
         }
 
+        Toast.makeText(VaccinationActivity.this, "Success!"+status , Toast.LENGTH_LONG).show();
+
+
 
         Cursor rs = myDB.getVacc(petid);
         rs.moveToFirst();
 
-        if(rs.getCount() > 0 && status == null) {
+        if(rs.getCount() > 0 && status.equals("update")) {
 
 
             txtvaccinatedby.setVisibility(View.GONE);
@@ -178,7 +182,8 @@ public class VaccinationActivity extends AppCompatActivity {
            breedsc = ArrayAdapter.createFromResource(this, R.array.breed_cat, R.layout.support_simple_spinner_dropdown_item);
 
 
-            if(specie.equals("Cat")) {
+
+            if(specie.equals("Cat") || txtSpecie.getSelectedItem().toString().equals("Cat")) {
 
 
                 txtbreed.setVisibility(View.VISIBLE);
@@ -189,7 +194,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                         txtbreed.setSelection(spinnerPosition2);
                     }
-            }else if(specie.equals("Dog"))
+            }else if(specie.equals("Dog") || txtSpecie.getSelectedItem().toString().equals("Dog"))
             {
 
                 txtbreed.setVisibility(View.VISIBLE);
@@ -199,7 +204,7 @@ public class VaccinationActivity extends AppCompatActivity {
                     int spinnerPosition1 = breedsd.getPosition(breed);
                     txtbreed.setSelection(spinnerPosition1);
                 }
-            }else if(specie.equals("Monkey"))
+            }else if(specie.equals("Monkey")|| txtSpecie.getSelectedItem().toString().equals("Monkey"))
             {
                 txtbreed.setVisibility(View.GONE);
                 strngbreed.setVisibility(View.GONE);

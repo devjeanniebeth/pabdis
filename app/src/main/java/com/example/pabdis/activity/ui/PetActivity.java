@@ -41,6 +41,7 @@ public class PetActivity extends AppCompatActivity
     EditText searchView;
     Cursor cursor;
     Integer pos;
+    String update;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
 
 
@@ -62,6 +63,9 @@ public class PetActivity extends AppCompatActivity
 
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        update = "update";
 
 
         if (savedInstanceState == null) {
@@ -139,6 +143,8 @@ public class PetActivity extends AppCompatActivity
                         i.putExtra("petid", code);
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
+                        i.putExtra("add", update);
+
                         startActivity(i);
 
 

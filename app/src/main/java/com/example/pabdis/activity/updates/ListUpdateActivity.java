@@ -29,7 +29,7 @@ public class ListUpdateActivity extends AppCompatActivity {
 
     Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnWeekly, btnPet;
     FloatingActionButton back;
-    String ownerid;
+    String ownerid, update;
     Integer position;
 
 
@@ -116,11 +116,14 @@ public class ListUpdateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(ListUpdateActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
 
-
+                update = "add";
                 Intent i = new Intent(ListUpdateActivity.this, VaccinationActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("add", "true");
                 i.putExtra("position", position);
+                i.putExtra("add", update);
+
+
 
                 startActivity(i);
 
