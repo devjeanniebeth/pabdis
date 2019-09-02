@@ -169,7 +169,7 @@
                     android:layout_weight="1"
                     android:paddingLeft="10dp"
                     android:layout_column="0"
-                    android:text="House Number: "
+                    android:text="Address: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#050505"
                     android:textSize="18sp"/>
@@ -191,7 +191,8 @@
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="0,1">
+            android:stretchColumns="0,1"
+            android:visibility="gone">
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -206,7 +207,8 @@
                     android:text="Municipality: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#050505"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    />
 
 
                 <TextView
@@ -226,7 +228,8 @@
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="0,1">
+            android:stretchColumns="0,1"
+            android:visibility="gone">
 
             <TableRow
                 android:layout_width="fill_parent"
@@ -241,7 +244,8 @@
                     android:text="Barangay: "
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#050505"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    />
 
 
                 <TextView

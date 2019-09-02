@@ -185,6 +185,10 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
 
             }else{
 
+                txt_sw_IsDewormed.setVisibility(View.GONE);
+                txt_sw_IsVaccinated.setVisibility(View.GONE);
+                txt_sw_vaccination.setVisibility(View.GONE);
+
             }
 
 
@@ -203,6 +207,69 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_sw_abb_hd.setText(sw__a_hd);
             txt_sw_total_area.setText(sw_total_area);
             txt_sw_total_income.setText(sw_total_inc);
+
+
+
+            /*CHICKEN */
+
+            String broilers = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4)) != null) ? "Broilers: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4)) : "Broilers: N/A";
+            String layers = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_5)) != null) ? "Layers: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_5)) : "Layers: N/A";
+            String natives = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_6)) != null) ? "Native: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_6)) : "Native: N/A";
+            String ch_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_7)) != null) ? "Total Inventory: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_7)) : "Total Inventory: N/A";
+            String ch_total_prod = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_8)) != null) ? "Total Production: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_8)) : "Total Production: N/A";
+            String ch_f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_9)) != null) ? "Slaughtered in Farm (per kg): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_9)): "Slaughtered in Farm (per kg): N/A";
+            String ch_f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_10)) != null) ? "Slaughtered in Farm (per head): "  + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_10)) : "Slaughtered in Farm (per head): N/Aa ";
+            String ch_a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_11)) != null) ? "Slaughtered in Slaughterhouse (per kg): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_11)) : "Slaughtered in Slaughterhouse (per kg): N/A";
+            String ch_a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_12)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_12)): "Slaughtered in Slaughterhouse (per head): N/A";
+            String ch_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_13)) != null) ? "Total Area: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_13)): "Total Area: N/A";
+            String ch_total_inc =(rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_14)) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_14)): "Total Income: N/A";
+            String ch_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_15)) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_15)) : "N/A";
+            String ch_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_16)) != null) ? "Vaccination Type: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_16)) : " N/A";
+            String ch_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_17)) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_17)) : " N/A";
+
+
+            if(ch_vacc.equals(1) )
+            {
+
+                txt_ch_IsVaccinated.setText("Vaccinated: Yes");
+                txt_ch_vaccination.setText(ch_vacctype);
+                if(ch_dewormed.equals(1))
+                {
+                    txt_ch_IsDewormed.setText("Dewormed: Yes");
+                }else{
+                    txt_ch_IsDewormed.setText("Dewormed: No");
+                }
+
+
+            }else if(ch_vacc.equals(2)){
+                txt_ch_IsDewormed.setVisibility(View.GONE);
+                txt_ch_IsVaccinated.setVisibility(View.GONE);
+                txt_ch_vaccination.setVisibility(View.GONE);
+
+
+            }else{
+
+                txt_ch_IsDewormed.setVisibility(View.GONE);
+                txt_ch_IsVaccinated.setVisibility(View.GONE);
+                txt_ch_vaccination.setVisibility(View.GONE);
+
+            }
+
+
+            txt_broilers.setText(broilers);
+            txt_layers.setText(layers);
+            txt_native.setText(natives);
+            txt_ch_total.setText(ch_total_inv);
+            txt_ch_production.setText(ch_total_prod);
+            txt_ch_farm_kg.setText(ch_f_kg);
+            txt_ch_farm_hd.setText(ch_f_hd);
+            txt_ch_abb_kg.setText(ch_a_kg);
+            txt_ch_abb_hd.setText(ch_a_hd);
+            txt_ch_total_area.setText(ch_total_area);
+            txt_ch_total_income.setText(ch_total_inc);
+
+            /* */
+
 
 
 

@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,14 +20,17 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.ui.MainActivity;
+import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
+import com.example.pabdis.activity.ui.PetActivity;
+import com.example.pabdis.activity.ui.ProfileActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class HouseholdActivity extends AppCompatActivity {
+public class HouseholdActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
 
     Button btnDone,btnUpdate;
@@ -283,12 +290,50 @@ public class HouseholdActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        if(pos != null)
+        {
+            Intent i = new Intent(HouseholdActivity.this, ListUpdateActivity.class);
+            i.putExtra("position", pos);
+            startActivity(i);
+//        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.nav_survey) {
+            Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_profile) {
+            Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_map) {
+
+            Intent intent=new Intent(getApplicationContext(), MapActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_list_owner) {
+
+            Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_list_pet) {
+
+            Intent intent=new Intent(getApplicationContext(), PetActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_logout) {
+
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }

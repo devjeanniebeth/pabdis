@@ -63,7 +63,6 @@ public class OwnerActivity extends AppCompatActivity
         myDB = new DatabaseHelper(getApplicationContext());
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
-//        searchView.setFocusable(false);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -217,14 +216,6 @@ public class OwnerActivity extends AppCompatActivity
                         android.app.AlertDialog dialog2 = builder.create();
                         // Display the alert dialog on interface
                         dialog2.show();
-
-
-
-
-
-
-
-
                     }
                 });
 
@@ -277,7 +268,7 @@ public class OwnerActivity extends AppCompatActivity
                 String muni =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                 String brgy =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
                 String createdat =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_15)));
-                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)) + "BRGY";
+                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11)) + ", " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)) +"," +cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9));
                 owner = new Owner(id,ownerid,r_full,contact,housenum, muni,brgy,lati,longi,createdat);
                 OwnerList.add(owner);
             } while (cursor.moveToNext());

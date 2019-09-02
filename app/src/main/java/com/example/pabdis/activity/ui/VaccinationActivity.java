@@ -32,6 +32,8 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.survey.CattleActivity;
+import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
@@ -176,26 +178,30 @@ public class VaccinationActivity extends AppCompatActivity {
                 txtSpecie.setSelection(spinnerPosition);
             }
 
-            final ArrayAdapter<CharSequence> adapter =  ArrayAdapter.createFromResource(this, R.array.breed_dod, R.layout.support_simple_spinner_dropdown_item);
-            final ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this, R.array.breed_cat, R.layout.support_simple_spinner_dropdown_item);
-
+            breedsd=  ArrayAdapter.createFromResource(this, R.array.breed_dod, R.layout.support_simple_spinner_dropdown_item);
+           breedsc = ArrayAdapter.createFromResource(this, R.array.breed_cat, R.layout.support_simple_spinner_dropdown_item);
 
 
             if(specie.equals("Cat")) {
-                    txtbreed.setVisibility(View.VISIBLE);
+
+
+                txtbreed.setVisibility(View.VISIBLE);
                     strngbreed.setVisibility(View.VISIBLE);
                     if (breed != null) {
-                        txtbreed.setAdapter(adapter2);
-                        int spinnerPosition = adapter2.getPosition(breed);
-                        txtbreed.setSelection(spinnerPosition);
+                        txtbreed.setAdapter(breedsc);
+                        int spinnerPosition2 = breedsc.getPosition(breed);
+
+                        txtbreed.setSelection(spinnerPosition2);
                     }
             }else if(specie.equals("Dog"))
             {
+                Toast.makeText(getApplicationContext(), "Doggo"+breed, Toast.LENGTH_LONG).show();
+
                 txtbreed.setVisibility(View.VISIBLE);
                 strngbreed.setVisibility(View.VISIBLE);
                 if (breed != null) {
-                    txtbreed.setAdapter(adapter);
-                    int spinnerPosition1 = adapter.getPosition(breed);
+                    txtbreed.setAdapter(breedsd);
+                    int spinnerPosition1 = breedsd.getPosition(breed);
                     txtbreed.setSelection(spinnerPosition1);
                 }
             }else if(specie.equals("Monkey"))
@@ -435,7 +441,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                     // User clicked the Yes button
 
                                     if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                        Toast.makeText(VaccinationActivity.this, "Check your input!"   , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(VaccinationActivity.this, "Check your input!" + breed  , Toast.LENGTH_SHORT).show();
                                     }else{
 
                                         try {
@@ -445,6 +451,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                             Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("pos", pos);
 
                                             startActivity(intent);
 
@@ -847,7 +854,7 @@ public class VaccinationActivity extends AppCompatActivity {
         });
 
 
-        if(petid == null || ownerid != null)
+        if(petid == null && ownerid != null)
         {
 
         txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1161,5 +1168,18 @@ public class VaccinationActivity extends AppCompatActivity {
         byte[] byteArray = stream.toByteArray();
         return byteArray;
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(pos != null)
+        {
+            Intent i = new Intent(VaccinationActivity.this, PetActivity.class);
+            i.putExtra("pos", pos);
+            startActivity(i);
+//        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

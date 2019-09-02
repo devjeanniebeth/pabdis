@@ -69,6 +69,8 @@ public class ProfileActivity extends AppCompatActivity
 
 
                     exportDB();
+                    exportDB_PETS();
+                    exportDB_PetVacc();
 
 
             }
@@ -76,16 +78,71 @@ public class ProfileActivity extends AppCompatActivity
 
     }
 
-
-    private void exportDB() {
-
-
+    private void exportDB_PetVacc() {
         File exportDir = new File(Environment.getExternalStorageDirectory(), "");
         if (!exportDir.exists())
         {
             exportDir.mkdirs();
         }
+        File file = new File(exportDir, "PABDIS_PetVacc.csv");
+        try
+        {
+            file.createNewFile();
+            CSWriter csvWrite = new CSWriter(new FileWriter(file));
+            SQLiteDatabase db = mydb.getReadableDatabase();
+            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_pet_vaccination",null);
+            csvWrite.writeNext(curCSV.getColumnNames());
+            while(curCSV.moveToNext())
+            {
+                //Which column you want to exprort
+                String arrStr[] ={curCSV.getString(0),curCSV.getString(1), curCSV.getString(2)};
+                csvWrite.writeNext(arrStr);
+            }
+            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
+            csvWrite.close();
+            curCSV.close();
+        }
+        catch(Exception sqlEx)
+        {
+            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
+        }
+    }
 
+    private void exportDB_PETS() {
+        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
+        if (!exportDir.exists())
+        {
+            exportDir.mkdirs();
+        }
+        File file = new File(exportDir, "PABDIS_Pet.csv");
+        try
+        {
+            file.createNewFile();
+            CSWriter csvWrite = new CSWriter(new FileWriter(file));
+            SQLiteDatabase db = mydb.getReadableDatabase();
+            Cursor curCSV = db.rawQuery("SELECT id,owner_id,petname,species,breed,sex,birthday,color_marking,distinguish_feature,source,pet_id,status,created_at FROM pvet_pet",null);
+            csvWrite.writeNext(curCSV.getColumnNames());
+            while(curCSV.moveToNext())
+            {
+                //Which column you want to exprort
+                String arrStr[] ={curCSV.getString(0),curCSV.getString(1), curCSV.getString(2)};
+                csvWrite.writeNext(arrStr);
+            }
+            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
+            csvWrite.close();
+            curCSV.close();
+        }
+        catch(Exception sqlEx)
+        {
+            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
+        }
+    }
+    private void exportDB() {
+        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
+        if (!exportDir.exists())
+        {
+            exportDir.mkdirs();
+        }
         File file = new File(exportDir, "PABDIS.csv");
         try
         {
@@ -109,10 +166,8 @@ public class ProfileActivity extends AppCompatActivity
                 csvWrite.writeNext(arrStr);
             }
             Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-
             csvWrite.close();
             curCSV.close();
-
         }
         catch(Exception sqlEx)
         {

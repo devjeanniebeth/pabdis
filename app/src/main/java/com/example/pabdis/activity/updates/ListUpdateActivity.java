@@ -3,6 +3,8 @@ package com.example.pabdis.activity.updates;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -242,6 +244,16 @@ public class ListUpdateActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(ListUpdateActivity.this, OwnerActivity.class);
+        i.putExtra("pos", position);
+        startActivity(i);
+//        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
     }
 
 

@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity
         btnUpdate = findViewById(R.id.btnUpdate);
         btnUpdate.setVisibility(View.GONE);
 
+
 //        dateSurvey.setEnabled(false);
         muni = findViewById(R.id.muni);
         brgy = findViewById(R.id.brgy);

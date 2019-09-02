@@ -251,9 +251,9 @@ public class PetActivity extends AppCompatActivity
                 }
 
                 String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-                String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
-                String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_6)));
-                String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
+                String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                 String birth =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                 String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
                 String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
