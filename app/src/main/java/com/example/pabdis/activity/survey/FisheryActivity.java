@@ -102,23 +102,22 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         Cursor rs = myDB.getFishery(ownerid);
         rs.moveToFirst();
 
-        if(rs.getCount() > 0)
-
-        {
+        if(rs.getCount() > 0) {
             withfishery.setChecked(true);
             skip.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
             fish = "true";
 //            api= "false";
-
-
+            withapiary.setVisibility(View.GONE);
+            edtColonyNum.setVisibility(View.GONE);
+            edtProdH.setVisibility(View.GONE);
+            edtTotalIncome.setVisibility(View.GONE);
 
 
             edtTotalArea.setEnabled(true);
             edtProd.setEnabled(true);
             edtIncome.setEnabled(true);
-
 
 
             String t_area = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_4));
@@ -130,83 +129,73 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
             edtIncome.setText(t_inc);
 
 
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String f_area = edtTotalArea.getText().toString();
+                    final String f_prod = edtProd.getText().toString();
+                    final String f_inc = edtIncome.getText().toString();
 
 
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FisheryActivity.this);
 
+                    // Set a title for alert dialog
+                    builder.setTitle("UPDATE.");
 
+                    // Ask the final question
+                    builder.setMessage("Are you sure you want to update the data?");
+
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
+
+                                    try {
+
+                                        if (f_area.equals("") || f_prod.equals("") || f_inc.equals("")) {
+                                            Toast.makeText(FisheryActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            myDB.updateFishery(ownerid, f_area, f_prod, f_inc);
+                                            Toast.makeText(FisheryActivity.this, "Success!", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
+                                            intent.putExtra("position", pos);
+                                            startActivity(intent);
+                                        }
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+
+                                    }
+                                    break;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+                                    break;
+                            }
+                        }
+                    };
+
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No", dialogClickListener);
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+
+                }
+            });
 
         }
-
-
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                final String f_area = edtTotalArea.getText().toString();
-                final String f_prod = edtProd.getText().toString();
-                final String f_inc = edtIncome.getText().toString();
-
-
-
-                // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(FisheryActivity.this);
-
-                // Set a title for alert dialog
-                builder.setTitle("UPDATE.");
-
-                // Ask the final question
-                builder.setMessage("Are you sure you want to update the data?");
-
-                // Set click listener for alert dialog buttons
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch(which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                // User clicked the Yes button
-
-                                try {
-
-                                    if (f_area.equals("") || f_prod.equals("") || f_inc.equals("")) {
-                                        Toast.makeText(FisheryActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        myDB.updateFishery(ownerid, f_area, f_prod, f_inc);
-                                        Toast.makeText(FisheryActivity.this, "Success!", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
-                                        intent.putExtra("ownerid", ownerid);
-                                        intent.putExtra("petid", petid);
-                                        intent.putExtra("position", pos);
-                                        startActivity(intent);
-                                    }
-
-                                } catch (Exception e) {
-                                e.printStackTrace();
-
-                                }
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                // User clicked the No button
-                                break;
-                        }
-                    }
-                };
-
-                // Set the alert dialog yes button click listener
-                builder.setPositiveButton("Yes", dialogClickListener);
-
-                // Set the alert dialog no button click listener
-                builder.setNegativeButton("No",dialogClickListener);
-
-                AlertDialog dialog = builder.create();
-                // Display the alert dialog on interface
-                dialog.show();
-
-            }
-        });
-
-
 
 
 
