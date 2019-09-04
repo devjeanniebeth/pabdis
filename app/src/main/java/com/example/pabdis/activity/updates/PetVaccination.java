@@ -2,6 +2,8 @@ package com.example.pabdis.activity.updates;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -20,8 +22,14 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.helper.Pet;
+import com.example.pabdis.activity.helper.PetAdapter;
+import com.example.pabdis.activity.helper.PetVacc;
+import com.example.pabdis.activity.helper.PetVaccAdapter;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
+
+import java.util.ArrayList;
 
 public class PetVaccination extends AppCompatActivity {
 
@@ -29,6 +37,9 @@ public class PetVaccination extends AppCompatActivity {
     ListView LISTVIEW;
     EditText searchView;
     Integer pos;
+    Cursor cursor;
+    PetVaccAdapter vaccadapter;
+    ArrayList<PetVacc> PetList = new ArrayList<PetVacc>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +74,7 @@ public class PetVaccination extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                listAdapter.getFilter().filter(s.toString());
+                vaccadapter.getFilter().filter(s.toString());
             }
 
             @Override
@@ -96,11 +107,11 @@ public class PetVaccination extends AppCompatActivity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
 
-                final String code = listAdapter.getItem(position).getPetid();
-                final String ownerid = listAdapter.getItem(position).getOwner_id();
+                final String code = vaccadapter.getItem(position).getPetid();
+//                final String ownerid = vaccadapter.getItem(position).getOwner_id();
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(PetVaccination.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
                 builder.setPositiveButton("Update Pet Info", new DialogInterface.OnClickListener() {
@@ -114,11 +125,9 @@ public class PetVaccination extends AppCompatActivity {
 
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
-                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
+                        Intent i = new Intent(PetVaccination.this, VaccinationActivity.class);
                         i.putExtra("petid", code);
                         i.putExtra("position", position);
-                        i.putExtra("ownerid", ownerid);
-                        i.putExtra("add", update);
 
                         startActivity(i);
 
@@ -144,7 +153,7 @@ public class PetVaccination extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         // Build an AlertDialog
-                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetActivity.this);
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetVaccination.this);
 
                         // Set a title for alert dialog
                         builder.setTitle("DELETE.");
@@ -163,7 +172,7 @@ public class PetVaccination extends AppCompatActivity {
 
                                         myDB.deletePet(code);
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(PetActivity.this, PetActivity.class);
+                                        Intent i = new Intent(PetVaccination.this, PetVaccination.class);
                                         i.putExtra("ownerid", code);
                                         startActivity(i);
 
@@ -193,5 +202,42 @@ public class PetVaccination extends AppCompatActivity {
             }
         });
     }
+
+
+    @Override
+    protected void onResume() {
+
+        ShowSQLiteDBdata();
+        super.onResume();
+    }
+
+
+    private void ShowSQLiteDBdata() {
+
+        SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_pet_vaccination on pvet_pet.pet_id = pvet_pet_vaccination.pet_id", null);
+        PetVacc pet;
+        PetList = new ArrayList<PetVacc>();
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_1)));
+                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_2)));
+                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                String datevacc = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
+                String vaccby = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_4)));
+                String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_14));
+                pet = new PetVacc(id,petid,petname,datevacc,vaccby,created_at);
+                PetList.add(pet);
+            } while (cursor.moveToNext());
+        }
+
+        vaccadapter = new PetVaccAdapter(PetVaccination.this, R.layout.items_petvacc, PetList);
+        LISTVIEW.setAdapter(vaccadapter);
+        cursor.close();
+    }
+
+
 
 }

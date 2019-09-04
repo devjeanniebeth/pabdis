@@ -9,7 +9,7 @@ public class PetVacc {
     String vacc_by = null;
     String created_at = null;
 
-    public PetVacc(String id, String petid, String date_vacc,String vacc_by, String created_at)
+    public PetVacc(String id, String petid, String petname, String date_vacc,String vacc_by, String created_at)
     {
 
         super();
