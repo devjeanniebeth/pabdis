@@ -11,16 +11,13 @@ public class PetVacc {
 
     public PetVacc(String id, String petid, String petname, String date_vacc,String vacc_by, String created_at)
     {
-
         super();
-
         this.id = id;
         this.petid = petid;
         this.petname = petname;
         this.date_vacc = date_vacc;
         this.vacc_by = vacc_by;
         this.created_at = created_at;
-
     }
 
     public String getId(){
@@ -72,7 +69,6 @@ public class PetVacc {
     }
 
     public String getCreated_at(){
-
         return created_at;
     }
 
