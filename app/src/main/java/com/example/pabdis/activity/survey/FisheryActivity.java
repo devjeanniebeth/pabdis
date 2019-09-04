@@ -108,7 +108,6 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
             fish = "true";
-//            api= "false";
             withapiary.setVisibility(View.GONE);
             edtColonyNum.setVisibility(View.GONE);
             edtProdH.setVisibility(View.GONE);
