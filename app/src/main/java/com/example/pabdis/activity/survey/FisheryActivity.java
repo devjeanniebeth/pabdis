@@ -45,7 +45,6 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myDB = new DatabaseHelper(getApplicationContext());
-        myDB2 = new DatabaseHelper(getApplicationContext());
 
         setContentView(R.layout.activity_survey_fishery);
         btnNext = findViewById(R.id.btnProceedSurvey);
@@ -56,6 +55,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         edtTotalArea = findViewById(R.id.edtTotalArea);
         edtProd = findViewById(R.id.edtProd);
         edtIncome = findViewById(R.id.edtIncome);
+
         edtColonyNum = findViewById(R.id.edtColonyNum);
         edtProdH = findViewById(R.id.edtProdH);
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
@@ -102,23 +102,21 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         Cursor rs = myDB.getFishery(ownerid);
         rs.moveToFirst();
 
-        if(rs.getCount() > 0)
-
-        {
+        if(rs.getCount() > 0) {
             withfishery.setChecked(true);
             skip.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
             fish = "true";
-//            api= "false";
-
-
+            withapiary.setVisibility(View.GONE);
+            edtColonyNum.setVisibility(View.GONE);
+            edtProdH.setVisibility(View.GONE);
+            edtTotalIncome.setVisibility(View.GONE);
 
 
             edtTotalArea.setEnabled(true);
             edtProd.setEnabled(true);
             edtIncome.setEnabled(true);
-
 
 
             String t_area = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_4));
@@ -130,78 +128,38 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
             edtIncome.setText(t_inc);
 
 
+            btnUpdate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    final String f_area = edtTotalArea.getText().toString();
+                    final String f_prod = edtProd.getText().toString();
+                    final String f_inc = edtIncome.getText().toString();
 
 
+                    // Build an AlertDialog
+                    AlertDialog.Builder builder = new AlertDialog.Builder(FisheryActivity.this);
 
+                    // Set a title for alert dialog
+                    builder.setTitle("UPDATE.");
 
+                    // Ask the final question
+                    builder.setMessage("Are you sure you want to update the data?");
 
-        }
+                    // Set click listener for alert dialog buttons
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which) {
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
 
-        Cursor rss = myDB2.getApiary(ownerid);
-        rss.moveToFirst();
+                                    try {
 
-        if(rss.getCount() > 0)
-        {
-            withapiary.setChecked(true);
-
-            skip.setVisibility(View.GONE);
-            btnNext.setVisibility(View.GONE);
-            btnUpdate.setVisibility(View.VISIBLE);
-
-            edtColonyNum.setEnabled(true);
-            edtProdH.setEnabled(true);
-            edtTotalIncome.setEnabled(true);
-            api = "true";
-//            fish="false";
-
-            String total_a = rss.getString(rss.getColumnIndex(DatabaseHelper.SURVEY8COL_4));
-            String total_p = rss.getString(rss.getColumnIndex(DatabaseHelper.SURVEY8COL_5));
-            String total_i = rss.getString(rss.getColumnIndex(DatabaseHelper.SURVEY8COL_6));
-
-            edtColonyNum.setText(total_a);
-            edtProdH.setText(total_p);
-            edtTotalIncome.setText(total_i);
-
-
-        }
-
-        btnUpdate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                final String f_area = edtTotalArea.getText().toString();
-                final String f_prod = edtProd.getText().toString();
-                final String f_inc = edtIncome.getText().toString();
-                final String a_col = edtColonyNum.getText().toString();
-                final String a_prod = edtProdH.getText().toString();
-                final String a_inc = edtTotalIncome.getText().toString();
-
-
-                // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(FisheryActivity.this);
-
-                // Set a title for alert dialog
-                builder.setTitle("UPDATE.");
-
-                // Ask the final question
-                builder.setMessage("Are you sure you want to update the data?");
-
-                // Set click listener for alert dialog buttons
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch(which){
-                            case DialogInterface.BUTTON_POSITIVE:
-                                // User clicked the Yes button
-
-                                try {
-
-                                    if(api.equals("true") && fish.equals("false") ) {
-
-                                        if (a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
+                                        if (f_area.equals("") || f_prod.equals("") || f_inc.equals("")) {
                                             Toast.makeText(FisheryActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            myDB.updateApiary(ownerid, a_col, a_prod, a_inc);
+                                            myDB.updateFishery(ownerid, f_area, f_prod, f_inc);
                                             Toast.makeText(FisheryActivity.this, "Success!", Toast.LENGTH_LONG).show();
                                             Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                             intent.putExtra("ownerid", ownerid);
@@ -210,72 +168,33 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
                                             startActivity(intent);
                                         }
 
-                                        }else if (api.equals("true") && fish.equals("true")) {
-
-
-                                            if (a_col.equals("") || a_prod.equals("") || a_inc.equals("") || f_area.equals("") || f_prod.equals("") || f_inc.equals("")) {
-                                                Toast.makeText(FisheryActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                myDB.updateApiary(ownerid, a_col, a_prod, a_inc);
-
-
-                                                myDB2.updateFishery(ownerid, f_area, f_prod, f_inc);
-                                                Toast.makeText(FisheryActivity.this, "Success!", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
-                                                intent.putExtra("ownerid", ownerid);
-                                                intent.putExtra("petid", petid);
-                                                intent.putExtra("position", pos);
-                                                startActivity(intent);
-                                            }
-
-                                        } else if (api.equals("false") && fish.equals("true")) {
-
-                                            if (f_area.equals("") || f_prod.equals("") || f_inc.equals("")) {
-                                                Toast.makeText(FisheryActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                myDB.updateFishery(ownerid, f_area, f_prod, f_inc);
-                                                Toast.makeText(FisheryActivity.this, "Success!", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
-                                                intent.putExtra("ownerid", ownerid);
-                                                intent.putExtra("petid", petid);
-                                                intent.putExtra("position", pos);
-                                                startActivity(intent);
-                                            }
-                                        }
-
-
-
-
-
-
-
                                     } catch (Exception e) {
-                                    e.printStackTrace();
+                                        e.printStackTrace();
 
-                                }
-                                break;
+                                    }
+                                    break;
 
-                            case DialogInterface.BUTTON_NEGATIVE:
-                                // User clicked the No button
-                                break;
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    // User clicked the No button
+                                    break;
+                            }
                         }
-                    }
-                };
+                    };
 
-                // Set the alert dialog yes button click listener
-                builder.setPositiveButton("Yes", dialogClickListener);
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", dialogClickListener);
 
-                // Set the alert dialog no button click listener
-                builder.setNegativeButton("No",dialogClickListener);
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No", dialogClickListener);
 
-                AlertDialog dialog = builder.create();
-                // Display the alert dialog on interface
-                dialog.show();
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
 
-            }
-        });
+                }
+            });
 
-
+        }
 
 
 

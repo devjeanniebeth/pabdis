@@ -108,7 +108,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -163,8 +162,6 @@
 
                 </TableRow>
             </TableLayout>
-
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -821,7 +818,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -858,7 +854,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -895,7 +890,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -951,7 +945,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -984,8 +977,6 @@
 
                 </TableRow>
             </TableLayout>
-
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1018,8 +1009,6 @@
 
                 </TableRow>
             </TableLayout>
-
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1052,8 +1041,6 @@
 
                 </TableRow>
             </TableLayout>
-
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1082,15 +1069,12 @@
             <!-- CARABAO -->
 
 
-            <!-- CATTLE -->
-
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
-                android:text="Cattle Information"
+                android:text="Carabao Information"
                 android:textColor="#fff"
                 android:textSize="18dp" />
 
@@ -1130,7 +1114,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1167,7 +1150,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1204,7 +1186,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1260,7 +1241,6 @@
 
                 </TableRow>
             </TableLayout>
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1293,8 +1273,6 @@
 
                 </TableRow>
             </TableLayout>
-
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1327,8 +1305,6 @@
 
                 </TableRow>
             </TableLayout>
-
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1361,8 +1337,6 @@
 
                 </TableRow>
             </TableLayout>
-
-
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -1387,6 +1361,8 @@
 
                 </TableRow>
             </TableLayout>
+
+            <!-- 0 -->
 
         </LinearLayout>
     </ScrollView>

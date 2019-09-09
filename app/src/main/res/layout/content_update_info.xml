@@ -127,6 +127,16 @@
                     android:text="@string/fishery"
                     android:textColor="@android:color/white" />
 
+                <Button
+                    android:id="@+id/btnApiary"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+
+                    android:background="@color/colorPrimary"
+                    android:text="@string/fishery"
+                    android:textColor="@android:color/white" />
+
 
 
                 <Button

@@ -1,4 +1,4 @@
-package com.example.pabdis.activity.ui;
+package com.example.pabdis.activity.updates;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -15,8 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -25,25 +22,24 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
-import com.example.pabdis.activity.helper.ListAdapter;
-import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.helper.Pet;
 import com.example.pabdis.activity.helper.PetAdapter;
-import com.example.pabdis.activity.updates.ListUpdateActivity;
+import com.example.pabdis.activity.helper.PetVacc;
+import com.example.pabdis.activity.helper.PetVaccAdapter;
+import com.example.pabdis.activity.ui.PetActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.util.ArrayList;
 
-public class PetActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class PetVaccination extends AppCompatActivity {
+
     DatabaseHelper myDB;
     ListView LISTVIEW;
-    PetAdapter listAdapter;
     EditText searchView;
-    Cursor cursor;
     Integer pos;
-    String update;
-    ArrayList<Pet> PetList = new ArrayList<Pet>();
-
+    Cursor cursor;
+    PetVaccAdapter vaccadapter;
+    ArrayList<PetVacc> PetList = new ArrayList<PetVacc>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +51,7 @@ public class PetActivity extends AppCompatActivity
         searchView = findViewById(R.id.searchEdt);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
 
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
-
-
-        update = "update";
 
 
         if (savedInstanceState == null) {
@@ -88,7 +74,7 @@ public class PetActivity extends AppCompatActivity
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                listAdapter.getFilter().filter(s.toString());
+                vaccadapter.getFilter().filter(s.toString());
             }
 
             @Override
@@ -121,11 +107,11 @@ public class PetActivity extends AppCompatActivity
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
 
-                final String code = listAdapter.getItem(position).getPetid();
-                final String ownerid = listAdapter.getItem(position).getOwner_id();
+                final String code = vaccadapter.getItem(position).getPetid();
+//                final String ownerid = vaccadapter.getItem(position).getOwner_id();
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(PetVaccination.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
                 builder.setPositiveButton("Update Pet Info", new DialogInterface.OnClickListener() {
@@ -139,11 +125,9 @@ public class PetActivity extends AppCompatActivity
 
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
-                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
+                        Intent i = new Intent(PetVaccination.this, VaccinationActivity.class);
                         i.putExtra("petid", code);
                         i.putExtra("position", position);
-                        i.putExtra("ownerid", ownerid);
-                        i.putExtra("add", update);
 
                         startActivity(i);
 
@@ -169,7 +153,7 @@ public class PetActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
                         // Build an AlertDialog
-                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetActivity.this);
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetVaccination.this);
 
                         // Set a title for alert dialog
                         builder.setTitle("DELETE.");
@@ -188,7 +172,7 @@ public class PetActivity extends AppCompatActivity
 
                                         myDB.deletePet(code);
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(PetActivity.this, PetActivity.class);
+                                        Intent i = new Intent(PetVaccination.this, PetVaccination.class);
                                         i.putExtra("ownerid", code);
                                         startActivity(i);
 
@@ -219,15 +203,6 @@ public class PetActivity extends AppCompatActivity
         });
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
     @Override
     protected void onResume() {
@@ -236,101 +211,33 @@ public class PetActivity extends AppCompatActivity
         super.onResume();
     }
 
+
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id", null);
-        Pet pet;
-        PetList = new ArrayList<Pet>();
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_pet_vaccination on pvet_pet.pet_id = pvet_pet_vaccination.pet_id", null);
+        PetVacc pet;
+        PetList = new ArrayList<PetVacc>();
 
         if (cursor.moveToFirst()) {
             do {
 
-                String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
-                String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
-                if(owner_id.equals(null))
-                {
-                    owner_id = "";
-                }
-
-                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-                String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
-                String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
-                String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
-                String birth =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
-                String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
-                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+                String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_1)));
+                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_2)));
+                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                String datevacc = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
+                String vaccby = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_4)));
                 String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_14));
-                pet = new Pet(id,owner_id,petid,petname,specie,breed,sex, birth,color,created_at);
+                pet = new PetVacc(id,petid,petname,datevacc,vaccby,created_at);
                 PetList.add(pet);
             } while (cursor.moveToNext());
         }
 
-        listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
-        LISTVIEW.setAdapter(listAdapter);
+        vaccadapter = new PetVaccAdapter(PetVaccination.this, R.layout.items_petvacc, PetList);
+        LISTVIEW.setAdapter(vaccadapter);
         cursor.close();
     }
 
 
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_survey) {
-            Intent intent=new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_profile) {
-            Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_map) {
-
-            Intent intent=new Intent(getApplicationContext(), MapActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_list_owner) {
-
-            Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_list_pet) {
-
-            Intent intent=new Intent(getApplicationContext(), PetActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_logout) {
-
-        }
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 }

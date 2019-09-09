@@ -1,6 +1,7 @@
 package com.example.pabdis.activity.updates;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.survey.CarabaoActivity;
 import com.example.pabdis.activity.survey.CattleActivity;
@@ -27,19 +29,19 @@ import com.example.pabdis.activity.ui.VaccinationActivity;
 public class ListUpdateActivity extends AppCompatActivity {
 
 
-    Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnWeekly, btnPet;
+    Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnApiary,btnWeekly, btnPet;
     FloatingActionButton back;
     String ownerid, update;
     Integer position;
+    DatabaseHelper myDB;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_info);
-
-
-
+        myDB = new DatabaseHelper(getApplicationContext());
         btnOwner = findViewById(R.id.btnOwner);
         btnSwine = findViewById(R.id.btnSwine);
         btnChicken = findViewById(R.id.btnChicken);
@@ -48,18 +50,10 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnGoat = findViewById(R.id.btnGoat);
         btnOther = findViewById(R.id.btnOther);
         btnFishery = findViewById(R.id.btnFishery);
+        btnApiary = findViewById(R.id.btnApiary);
         btnWeekly = findViewById(R.id.btnWeekly);
         btnPet = findViewById(R.id.btnPet);
         back = findViewById(R.id.fab);
-
-
-        Toast.makeText(ListUpdateActivity.this, "" , Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -77,6 +71,33 @@ public class ListUpdateActivity extends AppCompatActivity {
 
 
         }
+
+        Cursor rs = myDB.getUserInfo(ownerid);
+
+        rs.moveToFirst();
+
+        if(rs.getCount() > 0 )
+        {
+            String ownertype = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_2));
+
+
+
+          if(ownertype.equals("Establishment"))
+            {
+                btnSwine.setVisibility(View.GONE);
+                btnChicken.setVisibility(View.GONE);
+                btnCattle.setVisibility(View.GONE);
+                btnCarabao.setVisibility(View.GONE);
+
+
+            }else if(ownertype.equals("Cooperative"))
+            {
+
+            }
+        }
+
+
+
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -213,6 +234,18 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
 
+                startActivity(i);
+
+            }
+        });
+
+        btnApiary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(ListUpdateActivity.this, ApiaryActivity.class);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("position", position);
                 startActivity(i);
 
             }
