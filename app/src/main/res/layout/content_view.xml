@@ -1108,12 +1108,13 @@
                         android:paddingLeft="10dp"
                         android:text="Owner Name"
                         android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#050505"
                         android:textSize="18sp" />
 
 
                 </TableRow>
             </TableLayout>
+
+            android:textColor="#050505"
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

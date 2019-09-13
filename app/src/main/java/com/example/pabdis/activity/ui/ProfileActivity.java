@@ -151,7 +151,6 @@ public class ProfileActivity extends AppCompatActivity
             SQLiteDatabase db = mydb.getReadableDatabase();
             Cursor curCSV = db.rawQuery("SELECT * FROM pvet_owner LEFT JOIN pvet_survey_swine ON pvet_owner.owner_id = pvet_survey_swine.owner_id " +
                     "LEFT JOIN pvet_survey_chicken ON pvet_survey_chicken.owner_id = pvet_owner.owner_id " +
-                    "LEFT JOIN pvet_survey_cattle ON pvet_survey_cattle.owner_id = pvet_owner.owner_id " +
                     "LEFT JOIN pvet_survey_carabao ON pvet_survey_carabao.owner_id = pvet_owner.owner_id " +
                     "LEFT JOIN pvet_survey_goat ON pvet_survey_goat.owner_id = pvet_owner.owner_id " +
                     "LEFT JOIN pvet_survey_other ON pvet_survey_other.owner_id = pvet_owner.owner_id " +

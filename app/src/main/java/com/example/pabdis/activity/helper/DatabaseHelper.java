@@ -363,23 +363,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_USER);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_OWNER);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY1);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY2);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY3);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY4);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY5);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY6);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY7);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY8);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY9);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_VACC);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_LOGS);
-        onCreate(db);
-
-
+  
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_USER);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_OWNER);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY1);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY2);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY3);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY4);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY5);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY6);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY7);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY8);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY9);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_VACC);
+//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_LOGS);
+//        onCreate(db);
+//
+//
 
 
     }
