@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dip"
                     android:background="@color/btn_login_bg"
-                    android:text="LOGIN"
+                    android:text="@string/login"
                     android:textColor="@color/btn_login" />
                 <!-- Link to Login Screen -->
             </LinearLayout>

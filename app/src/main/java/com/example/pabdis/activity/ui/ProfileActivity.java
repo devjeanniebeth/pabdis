@@ -236,6 +236,7 @@ public class ProfileActivity extends AppCompatActivity
             CSWriter csvWrite = new CSWriter(new FileWriter(file));
             SQLiteDatabase db = mydb.getReadableDatabase();
             Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_chicken",null);
+
             csvWrite.writeNext(curCSV.getColumnNames());
             while(curCSV.moveToNext())
             {
