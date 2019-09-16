@@ -114,7 +114,7 @@ public class PetVaccination extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(PetVaccination.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
-                builder.setPositiveButton("Update Pet Info", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -135,7 +135,7 @@ public class PetVaccination extends AppCompatActivity {
 
                     }
                 });
-                builder.setNegativeButton("Update Pet Vaccination Info", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -215,11 +215,12 @@ public class PetVaccination extends AppCompatActivity {
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_pet_vaccination on pvet_pet.pet_id = pvet_pet_vaccination.pet_id", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT p.id,p.owner_id,p.pet_id,p.petname,v.date_vaccination,v.vaccinated_by,v.created_at FROM pvet_pet as p INNER JOIN pvet_pet_vaccination as v on " +
+                "p.pet_id = v.pet_id", null);
         PetVacc pet;
         PetList = new ArrayList<PetVacc>();
 
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst() && cursor.getCount() > 0) {
             do {
 
                 String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_1)));
@@ -231,11 +232,18 @@ public class PetVaccination extends AppCompatActivity {
                 pet = new PetVacc(id,petid,petname,datevacc,vaccby,created_at);
                 PetList.add(pet);
             } while (cursor.moveToNext());
+
+
+            vaccadapter = new PetVaccAdapter(PetVaccination.this, R.layout.items_petvacc, PetList);
+            LISTVIEW.setAdapter(vaccadapter);
+            cursor.close();
+        }else{
+            Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
+
+
         }
 
-        vaccadapter = new PetVaccAdapter(PetVaccination.this, R.layout.items_petvacc, PetList);
-        LISTVIEW.setAdapter(vaccadapter);
-        cursor.close();
+
     }
 
 
