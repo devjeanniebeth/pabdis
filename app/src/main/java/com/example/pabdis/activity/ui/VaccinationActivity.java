@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -60,7 +61,8 @@ public class VaccinationActivity extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
     DatabaseHelper myDB;
-    String age,ownerid, petid, vacc, update, status, pet,add;
+    CheckBox cb;
+    String age,ownerid, petid, vacc, update, status, pet,add, petstat;
     Integer pos, year, ctr;
     Character first;
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
@@ -82,6 +84,8 @@ public class VaccinationActivity extends AppCompatActivity {
         txtvaccinatedby2= findViewById(R.id.txtvaccinatedby2);
         txtv4 = findViewById(R.id.textView4);
         dateVacc = findViewById(R.id.btnDateVacc);
+        cb = findViewById(R.id.cbstatus);
+        cb.setVisibility(View.GONE);
 
         tbl1 = findViewById(R.id.tableRow4);
 
@@ -145,6 +149,8 @@ public class VaccinationActivity extends AppCompatActivity {
         if(rs.getCount() > 0 && status.equals("update")) {
 
 
+            cb.setVisibility(View.VISIBLE);
+            cb.setText("Dead");
             txtvaccinatedby.setVisibility(View.GONE);
             dateVacc.setVisibility(View.GONE);
             tbl1.setVisibility(View.GONE);
@@ -152,6 +158,8 @@ public class VaccinationActivity extends AppCompatActivity {
             txtv4.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
             btnVacc.setVisibility(View.GONE);
+
+
 
 //            String id = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_1));
 //            String owner = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_3));
@@ -166,6 +174,23 @@ public class VaccinationActivity extends AppCompatActivity {
             String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
 //            final String petid = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_12));
             String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
+
+            boolean checked = cb.isChecked();
+
+                    if (checked) {
+
+                        petstat = "dead";
+
+
+                    }else{
+
+                        petstat = "alive";
+
+                    }
+
+                    // Pirates are the best
+
+
 
 
             dateSurvey.setText(birth);
@@ -449,7 +474,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                                         try {
                                             myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                    souces,petid);
+                                                    souces,petid,petstat);
                                             Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                             intent.putExtra("ownerid", ownerid);

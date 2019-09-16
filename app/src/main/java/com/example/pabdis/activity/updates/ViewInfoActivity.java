@@ -38,7 +38,9 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_cat_abb_kg,txt_cat_abb_hd,txt_cat_total_area,txt_cat_total_income,txt_cat_IsVaccinated,txt_cat_vaccination,txt_cat_IsDewormed;
     TextView txt_carabull_c,txt_carabull_n,txt_caracow_c,txt_caracow_n,txt_caracalf_c,txt_caracalf_n,txt_car_total,txt_car_farm_kg,txt_car_farm_hd,
             txt_car_abb_kg,txt_car_abb_hd,txt_car_total_area,txt_car_total_income,txt_car_IsVaccinated,txt_car_vaccination,txt_car_IsDewormed;
-
+    TextView txt_buck_d,txt_buck_m,txt_doe_d,txt_doe_m,txt_kids_d,txt_kids_m,txt_got_total,txt_got_farm_kg,txt_got_farm_hd,
+            txt_got_abb_kg,txt_got_abb_hd,txt_got_total_area,txt_got_total_income,txt_got_IsVaccinated,txt_got_vaccination,txt_got_IsDewormed;
+    TextView txt_sheep,txt_horse,txt_rabbit,txt_duck,txt_turkey,txt_goose,txt_other_total_inc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +126,32 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
         txt_car_IsVaccinated = findViewById(R.id.txt_car_IsVaccinated);
         txt_car_vaccination = findViewById(R.id.txt_car_vaccination);
         txt_car_IsDewormed = findViewById(R.id.txt_car_IsDewormed);
+
+        txt_buck_d = findViewById(R.id.txt_buck_d);
+        txt_buck_m = findViewById(R.id.txt_buck_m);
+        txt_doe_d = findViewById(R.id.txt_doe_d);
+        txt_doe_m = findViewById(R.id.txt_doe_m);
+        txt_kids_d = findViewById(R.id.txt_kids_d);
+        txt_kids_m = findViewById(R.id.txt_kids_m);
+        txt_got_total = findViewById(R.id.txt_got_total);
+        txt_got_farm_kg = findViewById(R.id.txt_got_farm_kg);
+        txt_got_farm_hd = findViewById(R.id.txt_got_farm_hd);
+        txt_got_abb_kg = findViewById(R.id.txt_got_abb_kg);
+        txt_got_abb_hd = findViewById(R.id.txt_got_abb_hd);
+        txt_got_total_area = findViewById(R.id.txt_got_total_area);
+        txt_got_total_income = findViewById(R.id.txt_got_total_income);
+        txt_got_IsVaccinated = findViewById(R.id.txt_got_IsVaccinated);
+        txt_got_vaccination = findViewById(R.id.txt_got_vaccination);
+        txt_got_IsDewormed = findViewById(R.id.txt_got_IsDewormed);
+
+
+        txt_sheep = findViewById(R.id.txt_sheep);
+        txt_horse = findViewById(R.id.txt_horse);
+        txt_rabbit = findViewById(R.id.txt_rabbit);
+        txt_duck = findViewById(R.id.txt_duck);
+        txt_turkey = findViewById(R.id.txt_turkey);
+        txt_goose = findViewById(R.id.txt_goose);
+        txt_other_total_inc = findViewById(R.id.txt_other_total_inc);
 
 
 
@@ -421,6 +449,72 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_car_abb_hd.setText(car_a_hd);
             txt_car_total_area.setText(car_total_area);
             txt_car_total_income.setText(car_total_inc);
+
+
+            /* GOAT */
+
+
+            String buckd =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_4)) != null) ? "Buck (Dairy): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_4)) : "Buck (Dairy): N/A";
+            String buckm = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_5)) != null) ? "Buck (Meat): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_5)) : "Buck (Meat ): N/A";
+            String doed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_6)) != null) ? "Doe (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_6)) : "Doe (Dairy): N/A";
+            String doem = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_7)) != null) ? "Doe (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_7)) : "Doe (Meat): N/A";
+            String kidsd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_8)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) : "Kids (Dairy): N/A";
+            String kidsm = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) != null) ? "Kids (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) : "Kids (Meat): N/A";
+
+            String got_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_10)) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_10)) : "Total Inventory: N/A";
+            String got_f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_11)) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_11)) : "Slaughtered in Farm (per kg): N/A";
+            String got_f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_12)) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_12)) : "Slaughtered in Farm (per head): N/A";
+            String got_a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_13)) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_13)) : "Slaughtered in Slaughterhouse (per kg): N/A";
+            String got_a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_14)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_14)) : "Slaughtered in Slaughterhouse (per head): N/A";
+            String got_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_15)) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_15)) : "Total Area: N/A" ;
+            String got_total_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_16   )) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_16)) : "Total Income: N/A";
+
+            String got_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_17   )) != null) ?  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_17)) : "N/A";
+            String got_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_18   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_18)): "N/A";
+            String got_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_19   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_19)) : "N/A";
+
+            if(got_vacc.equals(1) )
+            {
+
+                txt_got_IsVaccinated.setText("Vaccinated: Yes");
+                txt_got_vaccination.setText(got_vacctype);
+                if(got_dewormed.equals(1))
+                {
+                    txt_got_IsDewormed.setText("Dewormed: Yes");
+                }else{
+                    txt_got_IsDewormed.setText("Dewormed: No");
+                }
+
+
+            }else if(got_vacc.equals(2)){
+                txt_got_IsDewormed.setVisibility(View.GONE);
+                txt_got_IsVaccinated.setVisibility(View.GONE);
+                txt_got_vaccination.setVisibility(View.GONE);
+
+
+            }else{
+
+                txt_got_IsDewormed.setVisibility(View.GONE);
+                txt_got_IsVaccinated.setVisibility(View.GONE);
+                txt_got_vaccination.setVisibility(View.GONE);
+
+            }
+
+            txt_buck_d.setText(buckd);
+            txt_buck_m.setText(buckm);
+            txt_doe_d.setText(doed);
+            txt_doe_m.setText(doem);
+            txt_kids_d.setText(kidsd);
+            txt_kids_m.setText(kidsm);
+            txt_got_total.setText(got_total_inv);
+            txt_got_farm_kg.setText(got_f_kg);
+            txt_got_farm_hd.setText(got_f_hd);
+            txt_got_abb_kg.setText(got_a_kg);
+            txt_got_abb_hd.setText(got_a_hd);
+            txt_got_total_area.setText(got_total_area);
+            txt_got_total_income.setText(got_total_inc);
+
+
 
 
 

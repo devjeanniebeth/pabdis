@@ -37,6 +37,7 @@ public class PetVaccination extends AppCompatActivity {
     ListView LISTVIEW;
     EditText searchView;
     Integer pos;
+    String ownerid;
     Cursor cursor;
     PetVaccAdapter vaccadapter;
     ArrayList<PetVacc> PetList = new ArrayList<PetVacc>();
@@ -58,10 +59,13 @@ public class PetVaccination extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 pos = null;
+                ownerid= null;
             } else {
                 pos= extras.getInt("pos");
+                ownerid= extras.getString("ownerid");
             }
         } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
             pos= (Integer) savedInstanceState.getSerializable("pos");
         }
 
@@ -216,7 +220,7 @@ public class PetVaccination extends AppCompatActivity {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
         cursor = sqLiteDatabase.rawQuery("SELECT p.id,p.owner_id,p.pet_id,p.petname,v.date_vaccination,v.vaccinated_by,v.created_at FROM pvet_pet as p INNER JOIN pvet_pet_vaccination as v on " +
-                "p.pet_id = v.pet_id", null);
+                "p.pet_id = v.pet_id WHERE p.owner_id ="+ownerid+"''", null);
         PetVacc pet;
         PetList = new ArrayList<PetVacc>();
 
