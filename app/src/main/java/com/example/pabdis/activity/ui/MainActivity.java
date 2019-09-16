@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
     Button btnUpdate, proceedSurvey, btnRefresh;
     LocationManager locationManager;
     Double latitude, longitude;
-    Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+//    Geocoder geocoder = new Geocoder(this, Locale.getDefault());
     ArrayAdapter<CharSequence> types,munici, brgylt, brgy_kib, brgy_it, brgy_bug, brgy_kab, brgy_sab, brgy_man, brgy_bak, brgy_tba, brgy_tbl, brgy_at, brgy_bok, brgy_kap;
     final Calendar myCalendar = Calendar.getInstance();
 
@@ -808,7 +808,7 @@ public class MainActivity extends AppCompatActivity
                                 // User clicked the Yes button
 
                                 if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                    Toast.makeText(MainActivity.this, "Check your input!" + created_at, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Check your input!" + ownert, Toast.LENGTH_SHORT).show();
 
                                 }else{
 
@@ -819,9 +819,11 @@ public class MainActivity extends AppCompatActivity
 
                                         if(ownert.equals("Establishment"))
                                         {
+                                            String add = "add";
                                             Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
+                                            intent.putExtra("add",add);
                                             startActivity(intent);
 
                                         }else{
@@ -1022,13 +1024,13 @@ public class MainActivity extends AppCompatActivity
 
 //         latitude = location.getLatitude();
 //         longitude = location.getLongitude();
-//
-        try {
-            List<Address> addresses = geocoder.getFromLocation(lang, longi, 1);
-            add = addresses.get(0).getAddressLine(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+////
+//        try {
+//            List<Address> addresses = geocoder.getFromLocation(lang, longi, 1);
+//            add = addresses.get(0).getAddressLine(0);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         addrsss = add;
 
