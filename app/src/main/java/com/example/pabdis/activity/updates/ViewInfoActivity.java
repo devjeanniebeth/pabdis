@@ -322,7 +322,7 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
 
                 txt_cat_IsVaccinated.setText("Vaccinated: Yes");
                 txt_cat_vaccination.setText(cat_vacctype);
-                if(sw_dewormed.equals(1))
+                if(cat_dewormed.equals(1))
                 {
                     txt_cat_IsDewormed.setText("Dewormed: Yes");
                 }else{
@@ -357,6 +357,70 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_cat_abb_hd.setText(cat_a_hd);
             txt_cat_total_area.setText(cat_total_area);
             txt_cat_total_income.setText(cat_total_inc);
+
+
+            /* CARABAO */
+
+
+            String carabullc =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_4)) != null) ? "Carabull (Crossbreed): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_4)) : "Carabull (Crossbreed): N/A";
+            String carabulln = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_5)) != null) ? "Carabull (Native): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_5)) : "Carabull (Native ): N/A";
+            String caracowc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_6)) != null) ? "Caracow (Crossbreed): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_6)) : "Caracow (Crossbreed): N/A";
+            String caracown = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_7)) != null) ? "Caracow (Native): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_7)) : "Caracow (Native): N/A";
+            String caracalfc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_8)) != null) ? "Caracalf (Crossbreed): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) : "Caracalf (Crossbreed): N/A";
+            String caracalfn = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) != null) ? "Caracalf (Native): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) : "Caracalf (Native): N/A";
+
+            String car_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_10)) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_10)) : "Total Inventory: N/A";
+            String car_f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_11)) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_11)) : "Slaughtered in Farm (per kg): N/A";
+            String car_f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_12)) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_12)) : "Slaughtered in Farm (per head): N/A";
+            String car_a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_13)) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_13)) : "Slaughtered in Slaughterhouse (per kg): N/A";
+            String car_a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_14)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_14)) : "Slaughtered in Slaughterhouse (per head): N/A";
+            String car_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_15)) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_15)) : "Total Area: N/A" ;
+            String car_total_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_16   )) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_16)) : "Total Income: N/A";
+
+            String car_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_17   )) != null) ?  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_17)) : "N/A";
+            String car_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_18   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_18)): "N/A";
+            String car_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_19   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_19)) : "N/A";
+
+            if(car_vacc.equals(1) )
+            {
+
+                txt_car_IsVaccinated.setText("Vaccinated: Yes");
+                txt_car_vaccination.setText(car_vacctype);
+                if(car_dewormed.equals(1))
+                {
+                    txt_car_IsDewormed.setText("Dewormed: Yes");
+                }else{
+                    txt_car_IsDewormed.setText("Dewormed: No");
+                }
+
+
+            }else if(car_vacc.equals(2)){
+                txt_car_IsDewormed.setVisibility(View.GONE);
+                txt_car_IsVaccinated.setVisibility(View.GONE);
+                txt_car_vaccination.setVisibility(View.GONE);
+
+
+            }else{
+
+                txt_car_IsDewormed.setVisibility(View.GONE);
+                txt_car_IsVaccinated.setVisibility(View.GONE);
+                txt_car_vaccination.setVisibility(View.GONE);
+
+            }
+
+            txt_carabull_c.setText(carabullc);
+            txt_carabull_n.setText(carabulln);
+            txt_caracow_c.setText(caracowc);
+            txt_caracow_n.setText(caracown);
+            txt_caracalf_c.setText(caracalfc);
+            txt_caracalf_n.setText(caracalfn);
+            txt_car_total.setText(car_total_inv);
+            txt_car_farm_kg.setText(car_f_kg);
+            txt_car_farm_hd.setText(car_f_hd);
+            txt_car_abb_kg.setText(car_a_kg);
+            txt_car_abb_hd.setText(car_a_hd);
+            txt_car_total_area.setText(car_total_area);
+            txt_car_total_income.setText(car_total_inc);
 
 
 

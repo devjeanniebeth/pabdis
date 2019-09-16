@@ -64,7 +64,7 @@ public class PetVaccAdapter extends ArrayAdapter<PetVacc> {
             child = layoutInflater.inflate(R.layout.items_petvacc, null);
             holder = new PetVaccAdapter.ViewHolder();
             holder.ID = child.findViewById(R.id.txtViewID);
-            holder.PET_ID = child.findViewById(R.id.txtPetID);
+            holder.PET_ID = child.findViewById(R.id.petID);
             holder.PETNAME = child.findViewById(R.id.txtPetName);
             holder.DATEVACC = child.findViewById(R.id.txtDateVacc);
             holder.VACCBY = child.findViewById(R.id.txtVaccBy);
@@ -78,7 +78,7 @@ public class PetVaccAdapter extends ArrayAdapter<PetVacc> {
 
         final PetVacc pet = PetListTemp.get(position);
 
-        holder.ID.setText( pet.getId());
+        holder.ID.setText(pet.getId());
         holder.PET_ID.setText(pet.getPetid());
         holder.PETNAME.setText(pet.getPetname());
         holder.DATEVACC.setText(pet.getDate_vacc());

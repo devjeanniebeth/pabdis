@@ -30,6 +30,7 @@ import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.helper.Pet;
 import com.example.pabdis.activity.helper.PetAdapter;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
+import com.example.pabdis.activity.updates.PetVaccination;
 
 import java.util.ArrayList;
 
@@ -155,11 +156,13 @@ public class PetActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
+                        Intent i = new Intent(PetActivity.this, PetVaccination.class);
+                        i.putExtra("petid", code);
+                        i.putExtra("position", position);
+                        i.putExtra("ownerid", ownerid);
+                        i.putExtra("add", update);
 
-//                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
-//                        i.putExtra("petid", code);
-//                        startActivity(i);
-
+                        startActivity(i);
 
                     }
                 });
@@ -264,11 +267,16 @@ public class PetActivity extends AppCompatActivity
                 pet = new Pet(id,owner_id,petid,petname,specie,breed,sex, birth,color,created_at);
                 PetList.add(pet);
             } while (cursor.moveToNext());
+
+
+
+            listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
+            LISTVIEW.setAdapter(listAdapter);
+            cursor.close();
+        }else{
+
         }
 
-        listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
-        LISTVIEW.setAdapter(listAdapter);
-        cursor.close();
     }
 
 
