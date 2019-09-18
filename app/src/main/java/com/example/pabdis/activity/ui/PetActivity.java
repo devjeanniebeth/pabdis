@@ -29,6 +29,8 @@ import com.example.pabdis.activity.helper.ListAdapter;
 import com.example.pabdis.activity.helper.Owner;
 import com.example.pabdis.activity.helper.Pet;
 import com.example.pabdis.activity.helper.PetAdapter;
+import com.example.pabdis.activity.helper.SessionManager;
+import com.example.pabdis.activity.login.LoginActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 import com.example.pabdis.activity.updates.PetVaccination;
 
@@ -43,6 +45,7 @@ public class PetActivity extends AppCompatActivity
     Cursor cursor;
     Integer pos;
     String update;
+    private SessionManager session;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
 
 
@@ -52,6 +55,7 @@ public class PetActivity extends AppCompatActivity
         setContentView(R.layout.activity_pet);
         Toolbar toolbar = findViewById(R.id.toolbar);
         myDB = new DatabaseHelper(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
         setSupportActionBar(toolbar);
@@ -334,6 +338,10 @@ public class PetActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
+            session.logoutUser();
+            Intent i = new Intent(PetActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
 
         }
 

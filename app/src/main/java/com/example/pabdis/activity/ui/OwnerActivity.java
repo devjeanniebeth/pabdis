@@ -30,6 +30,8 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.ListAdapter;
 import com.example.pabdis.activity.helper.Owner;
+import com.example.pabdis.activity.helper.SessionManager;
+import com.example.pabdis.activity.login.LoginActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
@@ -40,6 +42,7 @@ import java.util.ArrayList;
 public class OwnerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private SessionManager session;
     DatabaseHelper myDB;
     ListView LISTVIEW;
     ListAdapter listAdapter;
@@ -61,6 +64,7 @@ public class OwnerActivity extends AppCompatActivity
         setContentView(R.layout.activity_owner);
         Toolbar toolbar = findViewById(R.id.toolbar);
         myDB = new DatabaseHelper(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
         setSupportActionBar(toolbar);
@@ -344,6 +348,11 @@ public class OwnerActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
+
+            session.logoutUser();
+            Intent i = new Intent(OwnerActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
 
         }
 

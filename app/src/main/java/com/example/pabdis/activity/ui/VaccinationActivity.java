@@ -33,6 +33,7 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.helper.SessionManager;
 import com.example.pabdis.activity.survey.CattleActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
@@ -65,6 +66,7 @@ public class VaccinationActivity extends AppCompatActivity {
     String age,ownerid, petid, vacc, update, status, pet,add, petstat;
     Integer pos, year, ctr;
     Character first;
+    private SessionManager session;
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
 
     @Override
@@ -76,6 +78,7 @@ public class VaccinationActivity extends AppCompatActivity {
         add = "add";
 
         myDB = new DatabaseHelper(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
         dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
         btnVacc = findViewById(R.id.btnVacc);

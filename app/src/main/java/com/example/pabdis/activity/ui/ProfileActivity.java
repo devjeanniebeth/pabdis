@@ -1,5 +1,6 @@
 package com.example.pabdis.activity.ui;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,12 +18,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.CSWriter;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.helper.SessionManager;
+import com.example.pabdis.activity.helper.User;
+import com.example.pabdis.activity.login.LoginActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
+
+import org.json.JSONException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,6 +46,9 @@ public class ProfileActivity extends AppCompatActivity
     DatabaseHelper mydb;
     Context context;
     String SAMPLE_DB_NAME = "pabdis";
+    private SessionManager session;
+    private ProgressDialog pDialog;
+    TextView user_profile_name,user_profile_short_bio,user_type;
 
 
     @Override
@@ -46,6 +56,15 @@ public class ProfileActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         mydb = new DatabaseHelper(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
+        User user = session.getUserDetails();
+        user_profile_name =  findViewById(R.id.user_profile_name);
+        user_profile_short_bio  = findViewById(R.id.user_profile_short_bio);
+        user_type  = findViewById(R.id.user_type);
+
+        user_profile_name.setText("Username: " + user.getUsername());
+        user_profile_short_bio.setText("User Type : Enumerator");
+        user_type.setText("Full Name: " + user.getFullName());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -67,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity
             public void onClick(View v) {
 
 
-
+                    displayLoader();
                     exportDB_Owner();
                     exportDB_Apiary();
                     exportDB_Carabao();
@@ -80,10 +99,21 @@ public class ProfileActivity extends AppCompatActivity
                     exportDB_Other();
                     exportDB_PETS();
                     exportDB_PetVacc();
+                    pDialog.dismiss();
 
 
             }
         });
+
+    }
+
+
+    private void displayLoader() {
+        pDialog = new ProgressDialog(ProfileActivity.this);
+        pDialog.setMessage("Exporting.. Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
 
     }
 
@@ -569,6 +599,11 @@ public class ProfileActivity extends AppCompatActivity
             Intent intent=new Intent(getApplicationContext(), PetActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
+            session.logoutUser();
+            Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+
 
         }
 

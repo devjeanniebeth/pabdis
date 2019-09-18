@@ -40,6 +40,8 @@ import android.widget.Toast;
 import com.example.pabdis.BuildConfig;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.helper.SessionManager;
+import com.example.pabdis.activity.login.LoginActivity;
 import com.example.pabdis.activity.survey.CarabaoActivity;
 import com.example.pabdis.activity.survey.CattleActivity;
 import com.example.pabdis.activity.survey.ChickenActivity;
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity
     TextView tvLatitude, tvLongitude;
     ArrayList<String> mylist2 = new ArrayList<String>();
     Double lang, longi;
+    private SessionManager session;
     Spinner muni, brgy, ownertype;
     public static String tvLongi;
     public static String tvLati;
@@ -90,6 +93,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         myDB = new DatabaseHelper(getApplicationContext());
+        session = new SessionManager(getApplicationContext());
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -961,6 +965,13 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
+
+            session.logoutUser();
+                Intent i = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+
+
 
         }
 

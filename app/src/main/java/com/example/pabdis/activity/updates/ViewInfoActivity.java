@@ -41,6 +41,8 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
     TextView txt_buck_d,txt_buck_m,txt_doe_d,txt_doe_m,txt_kids_d,txt_kids_m,txt_got_total,txt_got_farm_kg,txt_got_farm_hd,
             txt_got_abb_kg,txt_got_abb_hd,txt_got_total_area,txt_got_total_income,txt_got_IsVaccinated,txt_got_vaccination,txt_got_IsDewormed;
     TextView txt_sheep,txt_horse,txt_rabbit,txt_duck,txt_turkey,txt_goose,txt_other_total_inc;
+    TextView total_fish_area,txt_fish_prod,txt_food_inc,txt_ap_col,txt_ap_prod,txt_ap_inc;
+    TextView txt_beef,txt_carabeef,txt_pork,txt_chicken,txt_fish,txt_egg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +154,22 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
         txt_turkey = findViewById(R.id.txt_turkey);
         txt_goose = findViewById(R.id.txt_goose);
         txt_other_total_inc = findViewById(R.id.txt_other_total_inc);
+
+
+        total_fish_area  = findViewById(R.id.total_fish_area);
+        txt_fish_prod  = findViewById(R.id.txt_fish_prod);
+        txt_food_inc = findViewById(R.id.txt_food_inc);
+        txt_ap_col = findViewById(R.id.txt_ap_col);
+        txt_ap_prod  = findViewById(R.id.txt_ap_prod);
+        txt_ap_inc = findViewById(R.id.txt_ap_inc);
+
+
+        txt_beef  = findViewById(R.id.txt_beef);
+        txt_carabeef  = findViewById(R.id.txt_carabeef);
+        txt_pork  = findViewById(R.id.txt_pork);
+        txt_chicken  = findViewById(R.id.txt_chicken);
+        txt_fish  = findViewById(R.id.txt_fish);
+        txt_egg  = findViewById(R.id.txt_egg);
 
 
 
@@ -394,7 +412,7 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             String carabulln = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_5)) != null) ? "Carabull (Native): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_5)) : "Carabull (Native ): N/A";
             String caracowc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_6)) != null) ? "Caracow (Crossbreed): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_6)) : "Caracow (Crossbreed): N/A";
             String caracown = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_7)) != null) ? "Caracow (Native): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_7)) : "Caracow (Native): N/A";
-            String caracalfc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_8)) != null) ? "Caracalf (Crossbreed): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) : "Caracalf (Crossbreed): N/A";
+            String caracalfc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_8)) != null) ? "Caracalf (Crossbreed): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_8)) : "Caracalf (Crossbreed): N/A";
             String caracalfn = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) != null) ? "Caracalf (Native): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) : "Caracalf (Native): N/A";
 
             String car_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_10)) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_10)) : "Total Inventory: N/A";
@@ -458,7 +476,7 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             String buckm = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_5)) != null) ? "Buck (Meat): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_5)) : "Buck (Meat ): N/A";
             String doed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_6)) != null) ? "Doe (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_6)) : "Doe (Dairy): N/A";
             String doem = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_7)) != null) ? "Doe (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_7)) : "Doe (Meat): N/A";
-            String kidsd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_8)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) : "Kids (Dairy): N/A";
+            String kidsd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_8)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_8)) : "Kids (Dairy): N/A";
             String kidsm = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) != null) ? "Kids (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) : "Kids (Meat): N/A";
 
             String got_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_10)) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_10)) : "Total Inventory: N/A";
@@ -513,6 +531,64 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_got_abb_hd.setText(got_a_hd);
             txt_got_total_area.setText(got_total_area);
             txt_got_total_income.setText(got_total_inc);
+
+
+            String sheep =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_4)) != null) ? "Buck (Dairy): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_4)) : "Buck (Dairy): N/A";
+            String horse = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_5)) != null) ? "Buck (Meat): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_5)) : "Buck (Meat ): N/A";
+            String rabbit = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_6)) != null) ? "Doe (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_6)) : "Doe (Dairy): N/A";
+            String duck = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_7)) != null) ? "Doe (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_7)) : "Doe (Meat): N/A";
+            String turkey = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8)) : "Kids (Dairy): N/A";
+            String goose = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9)) != null) ? "Doe (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9)) : "Doe (Meat): N/A";
+            String total_other_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_10)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_10)) : "Kids (Dairy): N/A";
+
+            txt_sheep.setText(sheep);
+            txt_horse.setText(horse);
+            txt_rabbit.setText(rabbit);
+            txt_duck.setText(duck);
+            txt_turkey.setText(turkey);
+            txt_goose.setText(goose);
+            txt_other_total_inc.setText(total_other_inc);
+
+
+            String total_f_area =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_4)) != null) ? "Total Area: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_4)) : "Total Area: N/A";
+            String fish_prod = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_5)) != null) ? "Total Production in kg: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_5)) : "Total Production in kg: N/A";
+            String food_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_6)) != null) ? "Income from Fishery: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_6)) : "Income from Fishery: N/A";
+            String ap_col = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_4)) != null) ? "Number of Colonies: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_4)) : "Number of Colonies: N/A";
+            String ap_prod = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_5)) != null) ? "Total Production of HONEY in kg: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_5)) : "Total Production of HONEY in kg: N/A";
+            String ap_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_6)) != null) ? "Income from Apiary: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_6)) : "Income from Apiary: N/A";
+
+
+            total_fish_area.setText(total_f_area);
+            txt_fish_prod.setText(fish_prod);
+            txt_food_inc.setText(food_inc);
+            txt_ap_col.setText(ap_col);
+            txt_ap_prod.setText(ap_prod);
+            txt_ap_inc.setText(ap_inc);
+
+            String beef =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_4)) != null) ? "Beef: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_4)) : "Beef: N/A";
+            String carabeef = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_5)) != null) ? "Carabeef: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_5)) : "Carabeef: N/A";
+            String pork = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_6)) != null) ? "Pork: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_6)) : "Pork: N/A";
+            String chicken = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_7)) != null) ? "Chicken: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_7)) : "Chicken: N/A";
+            String fish = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_8)) != null) ? "Fish: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_8)) : "Fish: N/A";
+            String egg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_9)) != null) ? "Egg: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY9COL_9)) : "Egg: N/A";
+
+
+
+            txt_beef.setText(beef);
+            txt_carabeef.setText(carabeef);
+            txt_pork.setText(pork);
+            txt_chicken.setText(chicken);
+            txt_fish.setText(fish);
+            txt_egg.setText(egg);
+
+
+
+
+
+
+
+
+
 
 
 

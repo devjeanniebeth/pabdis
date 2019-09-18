@@ -12,15 +12,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.SessionManager;
+import com.example.pabdis.activity.login.LoginActivity;
 
 public class MapActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activitiy_map);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        session = new SessionManager(getApplicationContext());
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -92,6 +96,11 @@ public class MapActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
+
+            session.logoutUser();
+            Intent i = new Intent(MapActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
 
         }
 

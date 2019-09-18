@@ -41,7 +41,7 @@ public class LoginActivity extends Activity {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMPTY = "";
-    private String login_url = "http://tsipzettahosting.net/pvet/api/login.php";
+    private String login_url = "http://192.168.2.12/pabdis/api/login.php";
     private String username;
     private String password;
     private Button btnLogin;
@@ -134,7 +134,7 @@ public class LoginActivity extends Activity {
         }
 
         JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                (Request.Method.POST, login_url, request, new com.android.volley.Response.Listener<JSONObject>() {
+                (Request.Method.POST, login_url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         pDialog.dismiss();
@@ -144,6 +144,7 @@ public class LoginActivity extends Activity {
                             if (response.getInt(KEY_STATUS) == 0) {
                                 session.loginUser(username,response.getString(KEY_FULL_NAME));
                                 loadDashboard();
+
 
                             }else{
                                 Toast.makeText(getApplicationContext(),
