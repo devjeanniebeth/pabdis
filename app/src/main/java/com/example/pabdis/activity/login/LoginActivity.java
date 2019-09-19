@@ -41,7 +41,7 @@ public class LoginActivity extends Activity {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMPTY = "";
-    private String login_url = "http://192.168.2.12/pabdis/api/login.php";
+    private String login_url = "https://kenspeckle-confiden.000webhostapp.com/pabdis/login.php";
     private String username;
     private String password;
     private Button btnLogin;

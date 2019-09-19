@@ -232,7 +232,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VACCCOL_11 = "source";
     public static final String VACCCOL_12 = "pet_id";
     public static final String VACCCOL_13 = "status";
-    public static final String VACCCOL_14 = "created_at";
+    public static final String VACCCOL_14 = "date_died";
+    public static final String VACCCOL_15 = "created_at";
 
     public static final String TABLE_VACC_DATE = "pvet_pet_vaccination";
     public static final String VACC_DATE_1 = "id";
@@ -242,11 +243,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VACC_DATE_5 = "created_at";
 
 
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 4);
     }
 
-        public boolean importDatabase(String dbPath) throws IOException {
+    public boolean importDatabase(String dbPath) throws IOException {
 
         // Close the SQLiteOpenHelper so it will commit the created empty
         // database to internal storage.
@@ -330,8 +332,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_VACC_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC + "("
                 + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACCCOL_2 + " NONE," + VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
                 + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, "
-                + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, "
-                + VACCCOL_14 + " TEXT" +")";
+                + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, " + VACCCOL_14 + " TEXT, "
+                + VACCCOL_15 + " TEXT" +")";
 
         String CREATE_VACC_DATE_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC_DATE + "("
                 + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"  + VACC_DATE_3 + " TEXT,"  + VACC_DATE_4 + " TEXT,"   + VACC_DATE_5 + " TEXT" +")";
@@ -1136,16 +1138,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor viewInfo(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM pvet_owner LEFT JOIN pvet_survey_swine ON pvet_owner.owner_id = pvet_survey_swine.owner_id " +
-                "LEFT JOIN pvet_survey_chicken ON pvet_survey_chicken.owner_id = pvet_owner.owner_id  " +
-                "LEFT JOIN pvet_survey_cattle ON pvet_survey_cattle.owner_id = pvet_owner.owner_id " +
-                "LEFT JOIN pvet_survey_carabao ON pvet_survey_carabao.owner_id = pvet_owner.owner_id " +
-                "LEFT JOIN pvet_survey_goat ON pvet_survey_goat.owner_id = pvet_owner.owner_id " +
-                "LEFT JOIN pvet_survey_other ON pvet_survey_other.owner_id = pvet_owner.owner_id " +
-                "LEFT JOIN pvet_survey_fishery ON pvet_survey_fishery.owner_id = pvet_owner.owner_id " +
-                "LEFT JOIN pvet_survey_apiary ON pvet_survey_apiary.owner_id = pvet_owner.owner_id " +
-                "LEFT JOIN pvet_survey_household ON pvet_survey_household.owner_id = pvet_owner.owner_id " +
-                "WHERE pvet_owner.owner_id = '"+ownerid+"'";
+        String query = "SELECT o.*, " +
+                /*SWINE*/
+                "sw.owner_id, sw.boar_n, sw.boar_u, sw.sowgit_n, " +
+                "sw.sowgit_u, sw.growers_n, sw.growers_u, sw.piglet_n, sw.piglet_u," +
+                "sw.total as sw_total, sw.sl_farm_kg as sw_f_kg , sw.sl_farm_hd as sw_f_hd , sw.sl_abb_kg as sw_a_kg , sw.sl_abb_hd as sw_a_hd, " +
+                "sw.total_area as sw_area, sw.total_income as sw_income, sw.IsVaccinated as sw_vacc, sw.vaccination as sw_vacctype, " +
+                "sw.IsDewormed as sw_deworm, sw.created_at as sw_created," +
+                /*CHCKEN*/
+                "ch.broilers, ch.layers, ch.native," +
+                "ch.total as ch_total, ch.production as ch_prod,ch.sl_farm_kg as ch_f_kg , ch.sl_farm_hd as ch_f_hd , ch.sl_abb_kg as ch_a_kg , ch.sl_abb_hd as ch_a_hd, " +
+                "ch.total_area as ch_area, ch.total_income as ch_income, ch.IsVaccinated as ch_vacc, ch.vaccination as ch_vacctype, " +
+                "ch.IsDewormed as ch_deworm, ch.created_at as ch_created," +
+                /*CATTLE*/
+                "cat.bull_d, cat.bull_m, cat.cow_d, cat.cow_m, cat.calf_d, cat.calf_m,"+
+                "cat.total as cat_total, cat.sl_farm_kg as cat_f_kg , cat.sl_farm_hd as cat_f_hd , cat.sl_abb_kg as cat_a_kg , cat.sl_abb_hd as cat_a_hd, " +
+                "cat.total_area as cat_area, cat.total_income as cat_income, cat.IsVaccinated as cat_vacc, cat.vaccination as cat_vacctype, " +
+                "cat.IsDewormed as cat_deworm, cat.created_at as cat_created," +
+                /*CARABAO*/
+                "car.carabull_c, car.carabull_n, car.caracow_c, car.caracow_n, car.caracalf_c, car.caracalf_n,"+
+                "car.total as car_total, car.sl_farm_kg as car_f_kg , car.sl_farm_hd as car_f_hd , car.sl_abb_kg as car_a_kg , car.sl_abb_hd as car_a_hd, " +
+                "car.total_area as car_area, car.total_income as car_income, car.IsVaccinated as car_vacc, car.vaccination as car_vacctype, " +
+                "car.IsDewormed as car_deworm, car.created_at as car_created," +
+                /*GOAT*/
+                "got.buck_d, got.buck_m, got.doe_d, got.doe_m, got.kids_d, got.kids_m,"+
+                "got.total as got_total, got.sl_farm_kg as got_f_kg , got.sl_farm_hd as got_f_hd , got.sl_abb_kg as got_a_kg , got.sl_abb_hd as got_a_hd, " +
+                "got.total_area as got_area, got.total_income as got_income, got.IsVaccinated as got_vacc, got.vaccination as got_vacctype, " +
+                "got.IsDewormed as got_deworm, got.created_at as got_created," +
+                /*OTHER*/
+                "oth.sheep,oth.horse, oth.rabbit, oth.duck, oth.turkey, oth.goose, oth.total_income as oth_income,"+
+                /*FISHERY*/
+                "f.total_area as f_area, f.total_production as f_prod, f.total_income as f_income,"+
+                /*APIARY*/
+                "ap.total_area as ap_col, ap.total_production as ap_prod, ap.total_income as ap_income,"+
+                /*HOUSEHOLD*/
+                "hh.beef, hh.carabeef, hh.pork,hh.chicken,hh.fish,hh.egg"+
+                " FROM pvet_owner as o LEFT JOIN pvet_survey_swine as sw ON o.owner_id = sw.owner_id " +
+                "LEFT JOIN pvet_survey_chicken as ch ON ch.owner_id = o.owner_id  " +
+                "LEFT JOIN pvet_survey_cattle as cat ON cat.owner_id = o.owner_id " +
+                "LEFT JOIN pvet_survey_carabao as car ON car.owner_id = o.owner_id " +
+                "LEFT JOIN pvet_survey_goat as got ON  got.owner_id = o.owner_id " +
+                "LEFT JOIN pvet_survey_other as oth ON oth.owner_id = o.owner_id " +
+                "LEFT JOIN pvet_survey_fishery as f ON f.owner_id = o.owner_id " +
+                "LEFT JOIN pvet_survey_apiary as ap ON ap.owner_id = o.owner_id " +
+                "LEFT JOIN pvet_survey_household as hh ON hh.owner_id = o.owner_id " +
+                "WHERE o.owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
 
         return res;

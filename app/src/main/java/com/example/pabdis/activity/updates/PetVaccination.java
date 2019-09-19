@@ -128,12 +128,14 @@ public class PetVaccination extends AppCompatActivity {
 //                        Toast.makeText(PetActivity.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
 
                         LISTVIEW.setSelection(position);
-                        view.setBackgroundColor(Color.BLUE);
-                        Intent i = new Intent(PetVaccination.this, VaccinationActivity.class);
-                        i.putExtra("petid", code);
-                        i.putExtra("position", position);
+//                        view.setBackgroundColor(Color.BLUE);
+//                        Intent i = new Intent(PetVaccination.this, VaccinationActivity.class);
+//                        i.putExtra("petid", code);
+//                        i.putExtra("position", position);
+//
+//                        startActivity(i);
 
-                        startActivity(i);
+                        setContentView(R.layout.activity_petvacc);
 
 
 

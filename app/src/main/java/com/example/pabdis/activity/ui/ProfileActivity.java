@@ -62,9 +62,19 @@ public class ProfileActivity extends AppCompatActivity
         user_profile_short_bio  = findViewById(R.id.user_profile_short_bio);
         user_type  = findViewById(R.id.user_type);
 
-        user_profile_name.setText("Username: " + user.getUsername());
+        if(user != null)
+        {
+            user_profile_name.setText("Username: " + user.getUsername());
+            user_type.setText("Full Name: " + user.getFullName());
+        }else{
+
+            user_profile_name.setText("Username: ");
+            user_type.setText("Full Name: ");
+
+        }
+
         user_profile_short_bio.setText("User Type : Enumerator");
-        user_type.setText("Full Name: " + user.getFullName());
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
@@ -88,15 +98,6 @@ public class ProfileActivity extends AppCompatActivity
 
                     displayLoader();
                     exportDB_Owner();
-                    exportDB_Apiary();
-                    exportDB_Carabao();
-                    exportDB_Chicken();
-                    exportDB_Fishery();
-                    exportDB_Goat();
-                    exportDB_Household();
-                    exportDB_Other();
-                    exportDB_Swine();
-                    exportDB_Other();
                     exportDB_PETS();
                     exportDB_PetVacc();
                     pDialog.dismiss();
@@ -181,13 +182,56 @@ public class ProfileActivity extends AppCompatActivity
         {
             exportDir.mkdirs();
         }
-        File file = new File(exportDir, "pvet_owner.csv");
+        File file = new File(exportDir, "pabdis_survey.csv");
         try
         {
             file.createNewFile();
             CSWriter csvWrite = new CSWriter(new FileWriter(file));
             SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_owner",null);
+            Cursor curCSV = db.rawQuery( " SELECT o.*, " +
+                    /*SWINE*/
+                    "sw.owner_id, sw.boar_n, sw.boar_u, sw.sowgit_n, " +
+                    "sw.sowgit_u, sw.growers_n, sw.growers_u, sw.piglet_n, sw.piglet_u," +
+                    "sw.total as sw_total, sw.sl_farm_kg as sw_f_kg , sw.sl_farm_hd as sw_f_hd , sw.sl_abb_kg as sw_a_kg , sw.sl_abb_hd as sw_a_hd, " +
+                    "sw.total_area as sw_area, sw.total_income as sw_income, sw.IsVaccinated as sw_vacc, sw.vaccination as sw_vacctype, " +
+                    "sw.IsDewormed as sw_deworm, sw.created_at as sw_created," +
+                    /*CHCKEN*/
+                    "ch.broilers, ch.layers, ch.native," +
+                    "ch.total as ch_total, ch.production as ch_prod,ch.sl_farm_kg as ch_f_kg , ch.sl_farm_hd as ch_f_hd , ch.sl_abb_kg as ch_a_kg , ch.sl_abb_hd as ch_a_hd, " +
+                    "ch.total_area as ch_area, ch.total_income as ch_income, ch.IsVaccinated as ch_vacc, ch.vaccination as ch_vacctype, " +
+                    "ch.IsDewormed as ch_deworm, ch.created_at as ch_created," +
+                    /*CATTLE*/
+                    "cat.bull_d, cat.bull_m, cat.cow_d, cat.cow_m, cat.calf_d, cat.calf_m,"+
+                    "cat.total as cat_total, cat.sl_farm_kg as cat_f_kg , cat.sl_farm_hd as cat_f_hd , cat.sl_abb_kg as cat_a_kg , cat.sl_abb_hd as cat_a_hd, " +
+                    "cat.total_area as cat_area, cat.total_income as cat_income, cat.IsVaccinated as cat_vacc, cat.vaccination as cat_vacctype, " +
+                    "cat.IsDewormed as cat_deworm, cat.created_at as cat_created," +
+                    /*CARABAO*/
+                    "car.carabull_c, car.carabull_n, car.caracow_c, car.caracow_n, car.caracalf_c, car.caracalf_n,"+
+                    "car.total as car_total, car.sl_farm_kg as car_f_kg , car.sl_farm_hd as car_f_hd , car.sl_abb_kg as car_a_kg , car.sl_abb_hd as car_a_hd, " +
+                    "car.total_area as car_area, car.total_income as car_income, car.IsVaccinated as car_vacc, car.vaccination as car_vacctype, " +
+                    "car.IsDewormed as car_deworm, car.created_at as car_created," +
+                    /*GOAT*/
+                    "got.buck_d, got.buck_m, got.doe_d, got.doe_m, got.kids_d, got.kids_m,"+
+                    "got.total as got_total, got.sl_farm_kg as got_f_kg , got.sl_farm_hd as got_f_hd , got.sl_abb_kg as got_a_kg , got.sl_abb_hd as got_a_hd, " +
+                    "got.total_area as got_area, got.total_income as got_income, got.IsVaccinated as got_vacc, got.vaccination as got_vacctype, " +
+                    "got.IsDewormed as got_deworm, got.created_at as got_created," +
+                    /*OTHER*/
+                    "oth.sheep,oth.horse, oth.rabbit, oth.duck, oth.turkey, oth.goose, oth.total_income as oth_income,"+
+                    /*FISHERY*/
+                    "f.total_area as f_area, f.total_production as f_prod, f.total_income as f_income,"+
+                    /*APIARY*/
+                    "ap.total_area as ap_col, ap.total_production as ap_prod, ap.total_income as ap_income,"+
+                    /*HOUSEHOLD*/
+                    "hh.beef, hh.carabeef, hh.pork,hh.chicken,hh.fish,hh.egg"+
+                    " FROM pvet_owner as o LEFT JOIN pvet_survey_swine as sw ON o.owner_id = sw.owner_id " +
+                    "LEFT JOIN pvet_survey_chicken as ch ON ch.owner_id = o.owner_id  " +
+                    "LEFT JOIN pvet_survey_cattle as cat ON cat.owner_id = o.owner_id " +
+                    "LEFT JOIN pvet_survey_carabao as car ON car.owner_id = o.owner_id " +
+                    "LEFT JOIN pvet_survey_goat as got ON  got.owner_id = o.owner_id " +
+                    "LEFT JOIN pvet_survey_other as oth ON oth.owner_id = o.owner_id " +
+                    "LEFT JOIN pvet_survey_fishery as f ON f.owner_id = o.owner_id " +
+                    "LEFT JOIN pvet_survey_apiary as ap ON ap.owner_id = o.owner_id " +
+                    "LEFT JOIN pvet_survey_household as hh ON hh.owner_id = o.owner_id ",null);
             csvWrite.writeNext(curCSV.getColumnNames());
             while(curCSV.moveToNext())
             {
@@ -199,8 +243,12 @@ public class ProfileActivity extends AppCompatActivity
                         curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
                         curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
                         curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
+                        curCSV.getString(61),curCSV.getString(62), curCSV.getString(63), curCSV.getString(64), curCSV.getString(65), curCSV.getString(66), curCSV.getString(67), curCSV.getString(68), curCSV.getString(69), curCSV.getString(70),
+                        curCSV.getString(71),curCSV.getString(72), curCSV.getString(73), curCSV.getString(74), curCSV.getString(75), curCSV.getString(76), curCSV.getString(77), curCSV.getString(78), curCSV.getString(79), curCSV.getString(80),
+                        curCSV.getString(81),curCSV.getString(82), curCSV.getString(83), curCSV.getString(84), curCSV.getString(85), curCSV.getString(86), curCSV.getString(87), curCSV.getString(88), curCSV.getString(89), curCSV.getString(90),
+                        curCSV.getString(91),curCSV.getString(92), curCSV.getString(93), curCSV.getString(94), curCSV.getString(95), curCSV.getString(96), curCSV.getString(97), curCSV.getString(98), curCSV.getString(99), curCSV.getString(100),
+                        curCSV.getString(101),curCSV.getString(102), curCSV.getString(103), curCSV.getString(104), curCSV.getString(105), curCSV.getString(106), curCSV.getString(107), curCSV.getString(108), curCSV.getString(109), curCSV.getString(110),
+                        curCSV.getString(111),curCSV.getString(112), curCSV.getString(113), curCSV.getString(114), curCSV.getString(115), curCSV.getString(116), curCSV.getString(117), curCSV.getString(118), curCSV.getString(119), curCSV.getString(120)
 
                 };
                 csvWrite.writeNext(arrStr);
@@ -214,320 +262,6 @@ public class ProfileActivity extends AppCompatActivity
             Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
         }
     }
-    private void exportDB_Swine() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_swine.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_swine",null);
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-    private void exportDB_Chicken() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_chicken.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_chicken",null);
-
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-    private void exportDB_Carabao() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_carabao.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_carabao",null);
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-    private void exportDB_Goat() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_goat.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_goat",null);
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-    private void exportDB_Other() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_other.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_other",null);
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-    private void exportDB_Fishery() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_fishery.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_fishery",null);
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-    private void exportDB_Apiary() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_apiary.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_apiary",null);
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-    private void exportDB_Household() {
-        File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-        if (!exportDir.exists())
-        {
-            exportDir.mkdirs();
-        }
-        File file = new File(exportDir, "pvet_survey_household.csv");
-        try
-        {
-            file.createNewFile();
-            CSWriter csvWrite = new CSWriter(new FileWriter(file));
-            SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT * FROM pvet_survey_household",null);
-            csvWrite.writeNext(curCSV.getColumnNames());
-            while(curCSV.moveToNext())
-            {
-                //Which column you want to exprort
-                String arrStr[] ={
-                        curCSV.getString(0),curCSV.getString(1), curCSV.getString(2), curCSV.getString(3), curCSV.getString(4), curCSV.getString(5), curCSV.getString(6), curCSV.getString(7), curCSV.getString(8), curCSV.getString(9), curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12), curCSV.getString(13), curCSV.getString(14), curCSV.getString(15), curCSV.getString(16), curCSV.getString(17), curCSV.getString(18), curCSV.getString(19), curCSV.getString(20),
-                        curCSV.getString(21),curCSV.getString(22), curCSV.getString(23), curCSV.getString(24), curCSV.getString(25), curCSV.getString(26), curCSV.getString(27), curCSV.getString(28), curCSV.getString(29), curCSV.getString(30),
-                        curCSV.getString(31),curCSV.getString(32), curCSV.getString(33), curCSV.getString(34), curCSV.getString(35), curCSV.getString(36), curCSV.getString(37), curCSV.getString(38), curCSV.getString(39), curCSV.getString(40),
-                        curCSV.getString(41),curCSV.getString(42), curCSV.getString(43), curCSV.getString(44), curCSV.getString(45), curCSV.getString(46), curCSV.getString(47), curCSV.getString(48), curCSV.getString(49), curCSV.getString(50),
-                        curCSV.getString(51),curCSV.getString(52), curCSV.getString(53), curCSV.getString(54), curCSV.getString(55), curCSV.getString(56), curCSV.getString(57), curCSV.getString(58), curCSV.getString(59), curCSV.getString(60),
-                        curCSV.getString(61)
-
-
-                };
-                csvWrite.writeNext(arrStr);
-            }
-            Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-            csvWrite.close();
-            curCSV.close();
-        }
-        catch(Exception sqlEx)
-        {
-            Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
-        }
-    }
-
 
 
 

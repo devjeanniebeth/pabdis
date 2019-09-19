@@ -44,6 +44,7 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
     TextView total_fish_area,txt_fish_prod,txt_food_inc,txt_ap_col,txt_ap_prod,txt_ap_inc;
     TextView txt_beef,txt_carabeef,txt_pork,txt_chicken,txt_fish,txt_egg;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -227,16 +228,16 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             String growu = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_9)) != null) ? "Growers/Finishers (Upgrade): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_9)) : " Growers/Finishers Native:N/A";
             String pign = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_10)) != null) ? "Piglet/s (Native) : " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_10)) : " Piglet/s Native: N/A";
             String pigu = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_11)) != null) ?  "Piglet/s (Upgrade) : " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_11)) : " Piglet/s Upgrade: N/A";
-            String sw_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_12)) != null) ? "Total: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_12)) : " Total:N/A";
-            String sw__f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_13 )) != null) ? "Slaughtered in Farm (per kg): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_13)): " Slaughtered in Farm (per kg): N/A" ;
-            String sw__f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_14)) != null) ? "Slaughtered in Farm (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_14)) : " Slaughtered in Farm (per head): N/A";
-            String sw__a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_15)) != null) ? "Slaughtered in Slaughterhouse (per kg): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_15)) : " Slaughtered in Slaughterhouse (per kg): N/A";
-            String sw__a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_16)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_16)) : " Slaughtered in Slaughterhouse (per head): N/A";
-            String sw_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_17)) != null) ? "Total Area: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_17)) : " Total Area: N/A";
-            String sw_total_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_18)) != null) ? "Total Income: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_18)) : "Total Income: N/A";
-            String sw_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_19)) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_19)) : "N/A";
-            String sw_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_19)) != null) ? "Vaccination Type: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_20)) : " N/A";
-            String sw_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_19)) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEYCOL_21)) : " N/A";
+            String sw_total_inv = (rs.getString(rs.getColumnIndex("sw_total")) != null) ? "Total: " + rs.getString(rs.getColumnIndex("sw_total")) : " Total:N/A";
+            String sw__f_kg = (rs.getString(rs.getColumnIndex("sw_f_kg" )) != null) ? "Slaughtered in Farm (per kg): " + rs.getString(rs.getColumnIndex("sw_f_kg")): " Slaughtered in Farm (per kg): N/A" ;
+            String sw__f_hd = (rs.getString(rs.getColumnIndex("sw_f_hd")) != null) ? "Slaughtered in Farm (per head): " + rs.getString(rs.getColumnIndex("sw_f_hd")) : " Slaughtered in Farm (per head): N/A";
+            String sw__a_kg = (rs.getString(rs.getColumnIndex("sw_a_kg")) != null) ? "Slaughtered in Slaughterhouse (per kg): " + rs.getString(rs.getColumnIndex("sw_a_kg")) : " Slaughtered in Slaughterhouse (per kg): N/A";
+            String sw__a_hd = (rs.getString(rs.getColumnIndex("sw_a_hd")) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex("sw_a_hd")) : " Slaughtered in Slaughterhouse (per head): N/A";
+            String sw_total_area = (rs.getString(rs.getColumnIndex("sw_area")) != null) ? "Total Area: " + rs.getString(rs.getColumnIndex("sw_area")) : " Total Area: N/A";
+            String sw_total_inc = (rs.getString(rs.getColumnIndex("sw_income")) != null) ? "Total Income: " + rs.getString(rs.getColumnIndex("sw_income")) : "Total Income: N/A";
+            String sw_vacc = (rs.getString(rs.getColumnIndex("sw_vacc")) != null) ? rs.getString(rs.getColumnIndex("sw_vacc")) : "N/A";
+            String sw_vacctype = (rs.getString(rs.getColumnIndex("sw_vacctype")) != null) ? "Vaccination Type: " + rs.getString(rs.getColumnIndex("sw_vacctype")) : " N/A";
+            String sw_dewormed = (rs.getString(rs.getColumnIndex("sw_deworm")) != null) ? rs.getString(rs.getColumnIndex("sw_deworm")) : " N/A";
 
             if(sw_vacc.equals(1) )
             {
@@ -286,20 +287,20 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
 
             /*CHICKEN */
 
-            String broilers = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4)) != null) ? "Broilers: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4)) : "Broilers: N/A";
+           String broilers = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4)) != null) ? "Broilers: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_4)) : "Broilers: N/A";
             String layers = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_5)) != null) ? "Layers: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_5)) : "Layers: N/A";
             String natives = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_6)) != null) ? "Native: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_6)) : "Native: N/A";
-            String ch_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_7)) != null) ? "Total Inventory: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_7)) : "Total Inventory: N/A";
-            String ch_total_prod = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_8)) != null) ? "Total Production: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_8)) : "Total Production: N/A";
-            String ch_f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_9)) != null) ? "Slaughtered in Farm (per kg): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_9)): "Slaughtered in Farm (per kg): N/A";
-            String ch_f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_10)) != null) ? "Slaughtered in Farm (per head): "  + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_10)) : "Slaughtered in Farm (per head): N/Aa ";
-            String ch_a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_11)) != null) ? "Slaughtered in Slaughterhouse (per kg): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_11)) : "Slaughtered in Slaughterhouse (per kg): N/A";
-            String ch_a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_12)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_12)): "Slaughtered in Slaughterhouse (per head): N/A";
-            String ch_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_13)) != null) ? "Total Area: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_13)): "Total Area: N/A";
-            String ch_total_inc =(rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_14)) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_14)): "Total Income: N/A";
-            String ch_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_15)) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_15)) : "N/A";
-            String ch_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_16)) != null) ? "Vaccination Type: " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_16)) : " N/A";
-            String ch_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_17)) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY2COL_17)) : " N/A";
+            String ch_total_inv = (rs.getString(rs.getColumnIndex("ch_total")) != null) ? "Total Inventory: "+ rs.getString(rs.getColumnIndex("ch_total")) : "Total Inventory: N/A";
+            String ch_total_prod = (rs.getString(rs.getColumnIndex("ch_prod")) != null) ? "Total Production: " + rs.getString(rs.getColumnIndex("ch_prod")) : "Total Production: N/A";
+            String ch_f_kg = (rs.getString(rs.getColumnIndex("ch_f_kg")) != null) ? "Slaughtered in Farm (per kg): " + rs.getString(rs.getColumnIndex("ch_f_kg")): "Slaughtered in Farm (per kg): N/A";
+            String ch_f_hd = (rs.getString(rs.getColumnIndex("ch_f_hd")) != null) ? "Slaughtered in Farm (per head): "  + rs.getString(rs.getColumnIndex("ch_f_hd")) : "Slaughtered in Farm (per head): N/Aa ";
+            String ch_a_kg = (rs.getString(rs.getColumnIndex("ch_a_kg")) != null) ? "Slaughtered in Slaughterhouse (per kg): " + rs.getString(rs.getColumnIndex("ch_a_kg")) : "Slaughtered in Slaughterhouse (per kg): N/A";
+            String ch_a_hd = (rs.getString(rs.getColumnIndex("ch_a_hd")) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex("ch_a_hd")): "Slaughtered in Slaughterhouse (per head): N/A";
+            String ch_total_area = (rs.getString(rs.getColumnIndex("ch_area")) != null) ? "Total Area: " + rs.getString(rs.getColumnIndex("ch_area")): "Total Area: N/A";
+            String ch_total_inc =(rs.getString(rs.getColumnIndex("ch_income")) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex("ch_income")): "Total Income: N/A";
+            String ch_vacc = (rs.getString(rs.getColumnIndex("ch_vacc")) != null) ? rs.getString(rs.getColumnIndex("ch_vacc")) : "N/A";
+            String ch_vacctype = (rs.getString(rs.getColumnIndex("ch_vacctype")) != null) ? "Vaccination Type: " + rs.getString(rs.getColumnIndex("ch_vacctype")) : " N/A";
+            String ch_dewormed = (rs.getString(rs.getColumnIndex("ch_deworm")) != null) ? rs.getString(rs.getColumnIndex("ch_deworm")) : " N/A";
 
 
             if(ch_vacc.equals(1) )
@@ -351,17 +352,17 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             String calfd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_8)) != null) ? "Calf (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_8)) : "Calf (Dairy): N/A";
             String calfm = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_9)) != null) ? "Calf (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_9)) : "Calf (Meat): N/A";
 
-            String cat_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_10)) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_10)) : "Total Inventory: N/A";
-            String cat_f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_11)) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_11)) : "Slaughtered in Farm (per kg): N/A";
-            String cat_f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_12)) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_12)) : "Slaughtered in Farm (per head): N/A";
-            String cat_a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_13)) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_13)) : "Slaughtered in Slaughterhouse (per kg): N/A";
-            String cat_a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_14)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_14)) : "Slaughtered in Slaughterhouse (per head): N/A";
-            String cat_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_15)) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_15)) : "Total Area: N/A" ;
-            String cat_total_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_16   )) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_16)) : "Total Income: N/A";
+            String cat_total_inv = (rs.getString(rs.getColumnIndex("cat_total")) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex("cat_total")) : "Total Inventory: N/A";
+            String cat_f_kg = (rs.getString(rs.getColumnIndex("cat_f_kg")) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex("cat_f_kg")) : "Slaughtered in Farm (per kg): N/A";
+            String cat_f_hd = (rs.getString(rs.getColumnIndex("cat_f_hd")) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex("cat_f_hd")) : "Slaughtered in Farm (per head): N/A";
+            String cat_a_kg = (rs.getString(rs.getColumnIndex("cat_a_kg")) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex("cat_a_kg")) : "Slaughtered in Slaughterhouse (per kg): N/A";
+            String cat_a_hd = (rs.getString(rs.getColumnIndex("cat_a_hd")) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex("cat_a_hd")) : "Slaughtered in Slaughterhouse (per head): N/A";
+            String cat_total_area = (rs.getString(rs.getColumnIndex("cat_area")) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex("cat_area")) : "Total Area: N/A" ;
+            String cat_total_inc = (rs.getString(rs.getColumnIndex("cat_income")) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex("cat_income")) : "Total Income: N/A";
 
-            String cat_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_17   )) != null) ?  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_17)) : "N/A";
-            String cat_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_18   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_18)): "N/A";
-            String cat_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_19   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY3COL_19)) : "N/A";
+            String cat_vacc = (rs.getString(rs.getColumnIndex("cat_vacc")) != null) ?  rs.getString(rs.getColumnIndex("cat_vacc")) : "N/A";
+            String cat_vacctype = (rs.getString(rs.getColumnIndex("cat_deworm")) != null) ? rs.getString(rs.getColumnIndex("cat_deworm")): "N/A";
+            String cat_dewormed = (rs.getString(rs.getColumnIndex("cat_deworm")) != null) ? rs.getString(rs.getColumnIndex("cat_deworm")) : "N/A";
 
             if(cat_vacc.equals(1) )
             {
@@ -415,17 +416,17 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             String caracalfc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_8)) != null) ? "Caracalf (Crossbreed): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_8)) : "Caracalf (Crossbreed): N/A";
             String caracalfn = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) != null) ? "Caracalf (Native): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_9)) : "Caracalf (Native): N/A";
 
-            String car_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_10)) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_10)) : "Total Inventory: N/A";
-            String car_f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_11)) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_11)) : "Slaughtered in Farm (per kg): N/A";
-            String car_f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_12)) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_12)) : "Slaughtered in Farm (per head): N/A";
-            String car_a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_13)) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_13)) : "Slaughtered in Slaughterhouse (per kg): N/A";
-            String car_a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_14)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_14)) : "Slaughtered in Slaughterhouse (per head): N/A";
-            String car_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_15)) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_15)) : "Total Area: N/A" ;
-            String car_total_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_16   )) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_16)) : "Total Income: N/A";
+            String car_total_inv = (rs.getString(rs.getColumnIndex("car_total")) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex("car_total")) : "Total Inventory: N/A";
+            String car_f_kg = (rs.getString(rs.getColumnIndex("car_f_kg")) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex("car_f_kg")) : "Slaughtered in Farm (per kg): N/A";
+            String car_f_hd = (rs.getString(rs.getColumnIndex("car_f_hd")) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex("car_f_hd")) : "Slaughtered in Farm (per head): N/A";
+            String car_a_kg = (rs.getString(rs.getColumnIndex("car_a_kg")) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex("car_a_kg")) : "Slaughtered in Slaughterhouse (per kg): N/A";
+            String car_a_hd = (rs.getString(rs.getColumnIndex("car_a_hd")) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex("car_a_hd")) : "Slaughtered in Slaughterhouse (per head): N/A";
+            String car_total_area = (rs.getString(rs.getColumnIndex("car_area")) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex("car_area")) : "Total Area: N/A" ;
+            String car_total_inc = (rs.getString(rs.getColumnIndex("car_income")) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex("car_income")) : "Total Income: N/A";
 
-            String car_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_17   )) != null) ?  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_17)) : "N/A";
-            String car_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_18   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_18)): "N/A";
-            String car_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_19   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY4COL_19)) : "N/A";
+            String car_vacc = (rs.getString(rs.getColumnIndex("car_vacc")) != null) ?  rs.getString(rs.getColumnIndex("car_vacc")) : "N/A";
+            String car_vacctype = (rs.getString(rs.getColumnIndex("car_vacctype")) != null) ? rs.getString(rs.getColumnIndex("car_vacctype")): "N/A";
+            String car_dewormed = (rs.getString(rs.getColumnIndex("car_deworm")) != null) ? rs.getString(rs.getColumnIndex("car_deworm")) : "N/A";
 
             if(car_vacc.equals(1) )
             {
@@ -479,17 +480,17 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             String kidsd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_8)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_8)) : "Kids (Dairy): N/A";
             String kidsm = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) != null) ? "Kids (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_9)) : "Kids (Meat): N/A";
 
-            String got_total_inv = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_10)) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_10)) : "Total Inventory: N/A";
-            String got_f_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_11)) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_11)) : "Slaughtered in Farm (per kg): N/A";
-            String got_f_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_12)) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_12)) : "Slaughtered in Farm (per head): N/A";
-            String got_a_kg = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_13)) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_13)) : "Slaughtered in Slaughterhouse (per kg): N/A";
-            String got_a_hd = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_14)) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_14)) : "Slaughtered in Slaughterhouse (per head): N/A";
-            String got_total_area = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_15)) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_15)) : "Total Area: N/A" ;
-            String got_total_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_16   )) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_16)) : "Total Income: N/A";
+            String got_total_inv = (rs.getString(rs.getColumnIndex("got_total")) != null) ? "Total Inventory: "+rs.getString(rs.getColumnIndex("got_total")) : "Total Inventory: N/A";
+            String got_f_kg = (rs.getString(rs.getColumnIndex("got_f_kg")) != null) ? "Slaughtered in Farm (per kg): " +rs.getString(rs.getColumnIndex("got_f_kg")) : "Slaughtered in Farm (per kg): N/A";
+            String got_f_hd = (rs.getString(rs.getColumnIndex("got_f_hd")) != null) ? "Slaughtered in Farm (per head): " +rs.getString(rs.getColumnIndex("got_f_hd")) : "Slaughtered in Farm (per head): N/A";
+            String got_a_kg = (rs.getString(rs.getColumnIndex("got_a_kg")) != null) ? "Slaughtered in Slaughterhouse (per kg): " +rs.getString(rs.getColumnIndex("got_a_kg")) : "Slaughtered in Slaughterhouse (per kg): N/A";
+            String got_a_hd = (rs.getString(rs.getColumnIndex("got_a_hd")) != null) ? "Slaughtered in Slaughterhouse (per head): " + rs.getString(rs.getColumnIndex("got_a_hd")) : "Slaughtered in Slaughterhouse (per head): N/A";
+            String got_total_area = (rs.getString(rs.getColumnIndex("got_area")) != null) ? "Total Area: " +rs.getString(rs.getColumnIndex("got_area")) : "Total Area: N/A" ;
+            String got_total_inc = (rs.getString(rs.getColumnIndex("got_income")) != null) ? "Total Income: " +  rs.getString(rs.getColumnIndex("got_income")) : "Total Income: N/A";
 
-            String got_vacc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_17   )) != null) ?  rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_17)) : "N/A";
-            String got_vacctype = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_18   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_18)): "N/A";
-            String got_dewormed = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_19   )) != null) ? rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY5COL_19)) : "N/A";
+            String got_vacc = (rs.getString(rs.getColumnIndex("got_vacc")) != null) ?  rs.getString(rs.getColumnIndex("got_vacc")) : "N/A";
+            String got_vacctype = (rs.getString(rs.getColumnIndex("got_vacctype")) != null) ? rs.getString(rs.getColumnIndex("got_vacctype")): "N/A";
+            String got_dewormed = (rs.getString(rs.getColumnIndex("got_deworm")) != null) ? rs.getString(rs.getColumnIndex("got_deworm")) : "N/A";
 
             if(got_vacc.equals(1) )
             {
@@ -533,13 +534,13 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_got_total_income.setText(got_total_inc);
 
 
-            String sheep =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_4)) != null) ? "Buck (Dairy): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_4)) : "Buck (Dairy): N/A";
-            String horse = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_5)) != null) ? "Buck (Meat): "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_5)) : "Buck (Meat ): N/A";
-            String rabbit = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_6)) != null) ? "Doe (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_6)) : "Doe (Dairy): N/A";
-            String duck = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_7)) != null) ? "Doe (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_7)) : "Doe (Meat): N/A";
-            String turkey = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8)) : "Kids (Dairy): N/A";
-            String goose = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9)) != null) ? "Doe (Meat): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9)) : "Doe (Meat): N/A";
-            String total_other_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_10)) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_10)) : "Kids (Dairy): N/A";
+            String sheep =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_4)) != null) ? "Sheep: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_4)) : "Sheep: N/A";
+            String horse = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_5)) != null) ? "Horse: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_5)) : "Horse: N/A";
+            String rabbit = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_6)) != null) ? "Rabbit: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_6)) : "Rabbit: N/A";
+            String duck = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_7)) != null) ? "Duck: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_7)) : "Duck: N/A";
+            String turkey = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8)) != null) ? "Turkey: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_8)) : "Turkey: N/A";
+            String goose = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9)) != null) ? "Goose: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY6COL_9)) : "Goose: N/A";
+            String total_other_inc = (rs.getString(rs.getColumnIndex("oth_income")) != null) ? "Kids (Dairy): "+rs.getString(rs.getColumnIndex("oth_income")) : "Kids (Dairy): N/A";
 
             txt_sheep.setText(sheep);
             txt_horse.setText(horse);
@@ -550,12 +551,14 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_other_total_inc.setText(total_other_inc);
 
 
-            String total_f_area =  (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_4)) != null) ? "Total Area: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_4)) : "Total Area: N/A";
-            String fish_prod = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_5)) != null) ? "Total Production in kg: "+ rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_5)) : "Total Production in kg: N/A";
-            String food_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_6)) != null) ? "Income from Fishery: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_6)) : "Income from Fishery: N/A";
-            String ap_col = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_4)) != null) ? "Number of Colonies: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_4)) : "Number of Colonies: N/A";
-            String ap_prod = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_5)) != null) ? "Total Production of HONEY in kg: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_5)) : "Total Production of HONEY in kg: N/A";
-            String ap_inc = (rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_6)) != null) ? "Income from Apiary: "+rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY8COL_6)) : "Income from Apiary: N/A";
+            String total_f_area =  (rs.getString(rs.getColumnIndex("f_area")) != null) ? "Total Area: "+ rs.getString(rs.getColumnIndex("f_area")) : "Total Area: N/A";
+            String fish_prod = (rs.getString(rs.getColumnIndex("f_prod")) != null) ? "Total Production in kg: "+ rs.getString(rs.getColumnIndex("f_prod")) : "Total Production in kg: N/A";
+            String food_inc = (rs.getString(rs.getColumnIndex("f_income")) != null) ? "Income from Fishery: "+rs.getString(rs.getColumnIndex("f_income")) : "Income from Fishery: N/A";
+
+
+            String ap_col = (rs.getString(rs.getColumnIndex("ap_col")) != null) ? "Number of Colonies: "+rs.getString(rs.getColumnIndex("ap_col")) : "Number of Colonies: N/A";
+            String ap_prod = (rs.getString(rs.getColumnIndex("ap_prod")) != null) ? "Total Production of HONEY in kg: "+rs.getString(rs.getColumnIndex("ap_prod")) : "Total Production of HONEY in kg: N/A";
+            String ap_inc = (rs.getString(rs.getColumnIndex("ap_income")) != null) ? "Income from Apiary: "+rs.getString(rs.getColumnIndex("ap_income")) : "Income from Apiary: N/A";
 
 
             total_fish_area.setText(total_f_area);
@@ -580,8 +583,6 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             txt_chicken.setText(chicken);
             txt_fish.setText(fish);
             txt_egg.setText(egg);
-
-
 
 
 

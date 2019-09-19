@@ -247,6 +247,7 @@
     <string name="place">Place</string>
     <string name="number_of_household_member">Number of Household Member</string>
     <string name="login">LOGIN</string>
+    <string name="update">UPDATE</string>
 
     <string-array name="muni">
         <item>La Trinidad</item>
