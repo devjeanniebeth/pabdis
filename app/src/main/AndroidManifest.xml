@@ -109,6 +109,10 @@
             android:name=".activity.updates.UpdatePetVaccination"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.sign.SignatureActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

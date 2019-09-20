@@ -60,6 +60,13 @@ public class UpdatePetVaccination extends AppCompatActivity {
         Cursor rs = mydb.getVacc(petid);
         rs.moveToFirst();
 
+        if(rs.getCount() > 0)
+        {
+
+        }
+
+
+
 
 
 
