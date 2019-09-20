@@ -1135,6 +1135,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void deleteVacc(String ownerid)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_VACC_DATE, "pet_id = ?",new String[] { ownerid });
+        db.close();
+
+        Log.d(TAG,"Successfully deleted pet vaccination!");
+
+    }
+
     public Cursor viewInfo(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1190,4 +1200,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
-}
+
+
+    }
+

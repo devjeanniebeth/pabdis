@@ -111,7 +111,7 @@ public class PetVaccination extends AppCompatActivity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
 
-                final String code = vaccadapter.getItem(position).getPetid();
+                final String code = vaccadapter.getItem(position).getId();
 //                final String ownerid = vaccadapter.getItem(position).getOwner_id();
 
 
@@ -125,17 +125,19 @@ public class PetVaccination extends AppCompatActivity {
                         //go to update activity
                         //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
 
-//                        Toast.makeText(PetActivity.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
-
+//
+//
                         LISTVIEW.setSelection(position);
-//                        view.setBackgroundColor(Color.BLUE);
-//                        Intent i = new Intent(PetVaccination.this, VaccinationActivity.class);
+                        Toast.makeText(PetVaccination.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
+
+
+////                        view.setBackgroundColor(Color.BLUE);
+//                        Intent i = new Intent(PetVaccination.this, UpdatePetVaccination.class);
 //                        i.putExtra("petid", code);
 //                        i.putExtra("position", position);
 //
 //                        startActivity(i);
 
-                        setContentView(R.layout.activity_petvacc);
 
 
 
@@ -144,20 +146,6 @@ public class PetVaccination extends AppCompatActivity {
                 builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-
-//                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
-//                        i.putExtra("petid", code);
-//                        startActivity(i);
-
-
-                    }
-                });
-
-                builder.setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
                         // Build an AlertDialog
                         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetVaccination.this);
 
@@ -175,11 +163,10 @@ public class PetVaccination extends AppCompatActivity {
                                     case DialogInterface.BUTTON_POSITIVE:
                                         // User clicked the Yes button
 
-
-                                        myDB.deletePet(code);
+                                        myDB.deleteVacc(code);
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(PetVaccination.this, PetVaccination.class);
-                                        i.putExtra("ownerid", code);
+                                        i.putExtra("ownerid", ownerid);
                                         startActivity(i);
 
                                         break;
@@ -201,6 +188,8 @@ public class PetVaccination extends AppCompatActivity {
                         android.app.AlertDialog dialog2 = builder.create();
                         // Display the alert dialog on interface
                         dialog2.show();
+
+
                     }
                 });
 

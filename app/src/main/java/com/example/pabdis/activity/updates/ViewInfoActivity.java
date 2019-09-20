@@ -22,6 +22,7 @@ import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.ProfileActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 
 public class ViewInfoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -50,6 +51,24 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         myDB = new DatabaseHelper(getApplicationContext());
+
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                ownerid= null;
+                position = null;
+            } else {
+                ownerid= extras.getString("ownerid");
+                position= extras.getInt("position");
+
+            }
+        } else {
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            position= (Integer) savedInstanceState.getSerializable("position");
+
+
+        }
 
 
         txt_contact_no = findViewById(R.id.txt_contact_no);
@@ -613,7 +632,18 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
 
 
     }
-
+    @Override
+    public void onBackPressed() {
+        if(position != null)
+        {
+            Intent i = new Intent(ViewInfoActivity.this, OwnerActivity.class);
+            i.putExtra("pos", position);
+            startActivity(i);
+//        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -643,6 +673,8 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
+
+
 
         }
 
