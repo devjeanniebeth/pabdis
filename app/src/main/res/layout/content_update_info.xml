@@ -9,9 +9,6 @@
     tools:context=".activity.updates.ListUpdateActivity"
     tools:showIn="@layout/activity_survey_swine">
 
-
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -122,9 +119,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
-
                     android:background="@color/colorPrimary"
-                    android:text="@string/fishery"
                     android:textColor="@android:color/white" />
 
                 <Button
@@ -134,7 +129,7 @@
                     android:layout_marginTop="10dp"
 
                     android:background="@color/colorPrimary"
-                    android:text="@string/fishery"
+                    android:text="@string/apiary"
                     android:textColor="@android:color/white" />
 
 

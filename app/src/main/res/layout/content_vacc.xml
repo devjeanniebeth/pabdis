@@ -303,6 +303,30 @@
 
                 </android.support.design.widget.TextInputLayout>
 
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spstatus"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:entries="@array/pet_status"
+                        android:padding="10dp" />
+                </android.support.design.widget.TextInputLayout>
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
@@ -405,14 +429,6 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <CheckBox
-                    android:id="@+id/cbstatus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Dead"/>
-
-
 
                 <Button
                     android:id="@+id/btnUpdate"

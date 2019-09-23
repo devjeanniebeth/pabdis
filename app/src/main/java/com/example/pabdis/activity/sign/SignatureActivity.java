@@ -25,6 +25,10 @@ public class SignatureActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signature);
+        mSignaturePad = (SignaturePad) findViewById(R.id.signature_pad);
+
+
+
 
 
 

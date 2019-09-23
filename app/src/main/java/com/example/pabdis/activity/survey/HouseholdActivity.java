@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.Owner;
+import com.example.pabdis.activity.sign.SignatureActivity;
 import com.example.pabdis.activity.ui.MainActivity;
 import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
@@ -225,7 +226,8 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                 builder.setMessage("Do you have pets to be vaccinated?");
 
                 // Set click listener for alert dialog buttons
-                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                DialogInterface.OnClickListener dialogClickListener =
+                        new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch(which){
@@ -264,7 +266,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                                     try {
                                         myDB.addHousehold(ownerid, beef, carabeef, pork,chicken,fish,egg,created_at);
                                         Toast.makeText(HouseholdActivity.this, "Success survey!" , Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
                                         intent.putExtra("pos", pos);
                                         startActivity(intent);
                                     } catch (Exception e) {

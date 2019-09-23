@@ -52,7 +52,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
     EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
-    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2, txtv4;
+    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2, txtv4,txtstatus;
     Button btndate, chooseImg, btnVacc, dateVacc, btnUpdate;
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
@@ -60,7 +60,7 @@ public class VaccinationActivity extends AppCompatActivity {
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
-    Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource;
+    Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource, pet_status;
     DatabaseHelper myDB;
     CheckBox cb;
     String age,ownerid, petid, vacc, update, status, pet,add, petstat;
@@ -87,9 +87,8 @@ public class VaccinationActivity extends AppCompatActivity {
         txtvaccinatedby2= findViewById(R.id.txtvaccinatedby2);
         txtv4 = findViewById(R.id.textView4);
         dateVacc = findViewById(R.id.btnDateVacc);
-        cb = findViewById(R.id.cbstatus);
-        cb.setVisibility(View.GONE);
-
+        pet_status = findViewById(R.id.spstatus);
+        pet_status.setVisibility(View.GONE);
         tbl1 = findViewById(R.id.tableRow4);
 
 
@@ -152,8 +151,7 @@ public class VaccinationActivity extends AppCompatActivity {
         if(rs.getCount() > 0 && status.equals("update")) {
 
 
-            cb.setVisibility(View.VISIBLE);
-            cb.setText("Dead");
+            pet_status.setVisibility(View.VISIBLE);
             txtvaccinatedby.setVisibility(View.GONE);
             dateVacc.setVisibility(View.GONE);
             tbl1.setVisibility(View.GONE);
@@ -176,22 +174,9 @@ public class VaccinationActivity extends AppCompatActivity {
             String feature = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_10));
             String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
 //            final String petid = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_12));
-            String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
-
-            boolean checked = cb.isChecked();
-
-                    if (checked) {
-
-                        petstat = "dead";
+            final String status = txtSpecie.getSelectedItem().toString();
 
 
-                    }else{
-
-                        petstat = "alive";
-
-                    }
-
-                    // Pirates are the best
 
 
 
@@ -477,7 +462,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                                         try {
                                             myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                    souces,petid,petstat);
+                                                    souces,petid,status);
                                             Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                             intent.putExtra("ownerid", ownerid);

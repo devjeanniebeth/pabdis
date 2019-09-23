@@ -147,7 +147,6 @@
         <item>Government</item>
         <item>Private</item>
     </string-array>
-
     <string name="boar_native">Boar (Native)</string>
     <string name="boar_upgrade">Boar (Upgrade)</string>
     <string name="git_native">Sow/Git (Native)</string>
@@ -433,5 +432,11 @@
         <item>Pongayan</item>
         <item>Sagubo</item>
         <item>Taba-oa</item>
+    </string-array>
+    <string-array name="pet_status">
+        <item>Alive</item>
+        <item>Dead</item>
+        <item>Transferred</item>
+        <item>Lost</item>
     </string-array>
 </resources>

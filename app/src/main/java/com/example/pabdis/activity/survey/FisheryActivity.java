@@ -26,6 +26,7 @@ import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.ProfileActivity;
+import com.example.pabdis.activity.updates.ApiaryActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
@@ -56,25 +57,6 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         edtProd = findViewById(R.id.edtProd);
         edtIncome = findViewById(R.id.edtIncome);
 
-        edtColonyNum = findViewById(R.id.edtColonyNum);
-        edtProdH = findViewById(R.id.edtProdH);
-        edtTotalIncome = findViewById(R.id.edtTotalIncome);
-
-        withapiary = findViewById(R.id.withapiary);
-        withfishery = findViewById(R.id.withfishery);
-
-        edtTotalArea.setEnabled(false);
-        edtProd.setEnabled(false);
-        edtIncome.setEnabled(false);
-        edtColonyNum.setEnabled(false);
-        edtProdH.setEnabled(false);
-        edtTotalIncome.setEnabled(false);
-        withapiary.setChecked(false);
-        withfishery.setChecked(false);
-        fish = "false";
-        api = "false";
-
-
 
 
 
@@ -103,25 +85,20 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         rs.moveToFirst();
 
         if(rs.getCount() > 0) {
+
+
             withfishery.setChecked(true);
             skip.setVisibility(View.GONE);
             btnNext.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
             fish = "true";
             withapiary.setVisibility(View.GONE);
-            edtColonyNum.setVisibility(View.GONE);
-            edtProdH.setVisibility(View.GONE);
-            edtTotalIncome.setVisibility(View.GONE);
-
-
-            edtTotalArea.setEnabled(true);
-            edtProd.setEnabled(true);
-            edtIncome.setEnabled(true);
 
 
             String t_area = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_4));
             String t_prod = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_5));
             String t_inc = rs.getString(rs.getColumnIndex(DatabaseHelper.SURVEY7COL_6));
+
 
             edtTotalArea.setText(t_area);
             edtProd.setText(t_prod);
@@ -198,49 +175,12 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
 
 
 
-        withfishery.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
-                    fish = "true";
-                    edtTotalArea.setEnabled(true);
-                    edtProd.setEnabled(true);
-                    edtIncome.setEnabled(true);
-
-                }else{
-                    fish = "false";
-                    edtTotalArea.setEnabled(false);
-                    edtProd.setEnabled(false);
-                    edtIncome.setEnabled(false);
-
-                }
-
-            }
-        });
-
-        withapiary.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b) {
-                    api = "true";
-                    edtColonyNum.setEnabled(true);
-                    edtProdH.setEnabled(true);
-                    edtTotalIncome.setEnabled(true);
-                }else{
-                    api = "false";
-                    edtColonyNum.setEnabled(false);
-                    edtProdH.setEnabled(false);
-                    edtTotalIncome.setEnabled(false);
-                }
-
-            }
-        });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ApiaryActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
@@ -259,9 +199,6 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
                 final String f_area = edtTotalArea.getText().toString();
                 final String f_prod = edtProd.getText().toString();
                 final String f_inc = edtIncome.getText().toString();
-                final String a_col = edtColonyNum.getText().toString();
-                final String a_prod = edtProdH.getText().toString();
-                final String a_inc = edtTotalIncome.getText().toString();
 
 
 
@@ -288,54 +225,17 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
 
                                     try {
 
-                                        if(api.equals("true") && fish.equals("false") )
-                                        {
-                                            if ( a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
-                                                Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
-                                            }else {
-                                                myDB.addApiary(ownerid, a_col, a_prod, a_inc, created_at);
-                                                Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
-                                                intent.putExtra("ownerid", ownerid);
-                                                intent.putExtra("petid", petid);
-                                                intent.putExtra("pos", pos);
-                                                startActivity(intent);
-                                            }
-                                        }else if(fish.equals("true") && api.equals("false") )
-                                        {
                                             if ( (f_area.equals("") ||  f_prod.equals("") ||  f_inc.equals(""))) {
                                                 Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
                                             }else {
                                                 myDB.addFishery(ownerid, f_area, f_prod, f_inc, created_at);
                                                 Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                                Intent intent = new Intent(getApplicationContext(), ApiaryActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
                                                 intent.putExtra("pos", pos);
                                                 startActivity(intent);
                                             }
-                                        }else if(fish.equals("true") && api.equals("true"))
-                                        {
-
-                                            if ( f_area.equals("") ||  f_prod.equals("") ||  f_inc.equals("") ||  a_col.equals("") || a_prod.equals("") || a_inc.equals("")) {
-                                                Toast.makeText(FisheryActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
-                                            }else {
-                                                myDB.addApiary(ownerid, a_col, a_prod, a_inc, created_at);
-                                                myDB.addFishery(ownerid, f_area, f_prod, f_inc, created_at);
-                                                Toast.makeText(FisheryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
-                                                intent.putExtra("ownerid", ownerid);
-                                                intent.putExtra("petid", petid);
-                                                intent.putExtra("pos", pos);
-                                                startActivity(intent);
-                                            }
-
-
-                                        }
-
-
-
-
 
                                     } catch (Exception e) {
                                         e.printStackTrace();

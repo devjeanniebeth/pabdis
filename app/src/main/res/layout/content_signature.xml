@@ -8,6 +8,10 @@
     tools:context=".activity.sign.SignatureActivity"
     tools:showIn="@layout/activity_signature">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -62,6 +66,7 @@
             android:text="@string/save_signature"
             android:enabled="false" />
     </LinearLayout>
+    </RelativeLayout>-
 
 
 

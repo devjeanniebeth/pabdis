@@ -54,6 +54,9 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnWeekly = findViewById(R.id.btnWeekly);
         btnPet = findViewById(R.id.btnPet);
         back = findViewById(R.id.fab);
+        btnFishery.setText("Fishery");
+        btnApiary.setText("Apiary");
+
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -90,13 +93,11 @@ public class ListUpdateActivity extends AppCompatActivity {
                 btnCarabao.setVisibility(View.GONE);
 
 
-            }else if(ownertype.equals("Cooperative"))
-            {
-
             }
+
+
+
         }
-
-
 
 
 

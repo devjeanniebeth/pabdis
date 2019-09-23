@@ -303,6 +303,30 @@
 
                 </android.support.design.widget.TextInputLayout>
 
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtstatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/vaccinated_by"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Spinner
+                        android:id="@+id/spstatus"
+                        style="@style/spinner_style"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:entries="@array/pet_status"
+                        android:padding="10dp" />
+                </android.support.design.widget.TextInputLayout>
+
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
