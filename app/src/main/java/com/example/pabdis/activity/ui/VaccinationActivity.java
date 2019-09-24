@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.SessionManager;
+import com.example.pabdis.activity.sign.SignatureActivity;
 import com.example.pabdis.activity.survey.CattleActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
@@ -464,7 +465,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                             myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                     souces,petid,status);
                                             Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             intent.putExtra("pos", pos);

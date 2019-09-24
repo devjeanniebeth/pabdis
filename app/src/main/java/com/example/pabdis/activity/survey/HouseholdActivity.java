@@ -63,24 +63,33 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                 ownerid= null;
                 petid = null;
                 pos = null;
+                update = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
+                update= extras.getString("update");
                 pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             pos = (Integer) savedInstanceState.getSerializable("position");
+            update = (String) savedInstanceState.getSerializable("update");
+
 
 
         }
 
 
+
+
+
+        Toast.makeText(HouseholdActivity.this, "Success!"+ownerid , Toast.LENGTH_LONG).show();
+
         Cursor rs = myDB.getHousehold(ownerid);
         rs.moveToFirst();
 
-        if(rs.getCount() > 0)
+        if(rs.getCount() > 0  )
         {
             skip.setVisibility(View.GONE);
             btnDone.setVisibility(View.GONE);

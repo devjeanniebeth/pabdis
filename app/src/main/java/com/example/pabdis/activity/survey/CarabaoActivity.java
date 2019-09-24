@@ -29,6 +29,7 @@ import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.ProfileActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
@@ -99,7 +100,7 @@ public class CarabaoActivity extends AppCompatActivity implements NavigationView
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-
+                update= extras.getString("update");
                 pos= extras.getInt("position");
             }
         } else {
@@ -110,6 +111,8 @@ public class CarabaoActivity extends AppCompatActivity implements NavigationView
 
 
         }
+
+
 
 
         Cursor rs = myDB.getCarabao(ownerid);
