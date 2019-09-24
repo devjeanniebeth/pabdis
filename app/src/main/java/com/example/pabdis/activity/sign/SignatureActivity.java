@@ -126,6 +126,11 @@ public class SignatureActivity extends AppCompatActivity {
                 }
                 if (addSvgSignatureToGallery(mSignaturePad.getSignatureSvg())) {
                     Toast.makeText(SignatureActivity.this, "SVG Signature saved into the Gallery", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                    intent.putExtra("ownerid",ownerid);
+                    intent.putExtra("petid", petid);
+                    intent.putExtra("pos", pos);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(SignatureActivity.this, "Unable to store the SVG signature", Toast.LENGTH_SHORT).show();
                 }
@@ -170,7 +175,7 @@ public class SignatureActivity extends AppCompatActivity {
     public boolean addJpgSignatureToGallery(Bitmap signature) {
         boolean result = false;
         try {
-            File photo = new File(getAlbumStorageDir("SignaturePad"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
+            File photo = new File(getAlbumStorageDir("PabdisSignature"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
             saveBitmapToJPG(signature, photo);
             scanMediaFile(photo);
             result = true;
@@ -190,7 +195,7 @@ public class SignatureActivity extends AppCompatActivity {
     public boolean addSvgSignatureToGallery(String signatureSvg) {
         boolean result = false;
         try {
-            File svgFile = new File(getAlbumStorageDir("SignaturePad"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
+            File svgFile = new File(getAlbumStorageDir("PabdisSignature"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
             OutputStream stream = new FileOutputStream(svgFile);
             OutputStreamWriter writer = new OutputStreamWriter(stream);
             writer.write(signatureSvg);

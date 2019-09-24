@@ -594,7 +594,7 @@ public class VaccinationActivity extends AppCompatActivity {
                         switch(which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
-                                Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
                                 intent.putExtra("pos", pos);
                                 startActivity(intent);
                                 break;
@@ -836,8 +836,11 @@ public class VaccinationActivity extends AppCompatActivity {
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
                                                 myDB.addVaccinationDate(pet,datevacc,vacc_by.trim(),created_at);
-                                                Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                                Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
                                                 Toast.makeText(VaccinationActivity.this, "Sucess!" , Toast.LENGTH_SHORT).show();
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                intent.putExtra("add", add);
                                                 startActivity(intent);
 
                                             }
