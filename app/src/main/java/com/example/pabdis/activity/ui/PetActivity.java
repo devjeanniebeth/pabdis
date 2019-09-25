@@ -44,7 +44,7 @@ public class PetActivity extends AppCompatActivity
     EditText searchView;
     Cursor cursor;
     Integer pos;
-    String update;
+    String update, petid;
     private SessionManager session;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
 
@@ -145,7 +145,7 @@ public class PetActivity extends AppCompatActivity
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
                         Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
-                        i.putExtra("petid", code);
+                        i.putExtra("id", code);
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);
@@ -161,7 +161,7 @@ public class PetActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
                         Intent i = new Intent(PetActivity.this, PetVaccination.class);
-                        i.putExtra("petid", code);
+                        i.putExtra("id", code);
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);
@@ -267,7 +267,7 @@ public class PetActivity extends AppCompatActivity
                 String birth =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                 String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
                 String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
-                String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_14));
+                String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
                 pet = new Pet(id,owner_id,petid,petname,specie,breed,sex, birth,color,created_at);
                 PetList.add(pet);
             } while (cursor.moveToNext());

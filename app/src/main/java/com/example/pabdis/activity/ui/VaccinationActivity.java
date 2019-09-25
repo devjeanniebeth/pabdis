@@ -65,7 +65,7 @@ public class VaccinationActivity extends AppCompatActivity {
     DatabaseHelper myDB;
     CheckBox cb;
     String age,ownerid, petid, vacc, update, status, pet,add, petstat;
-    Integer pos, year, ctr;
+    Integer pos, uid, ctr;
     Character first;
     private SessionManager session;
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
@@ -123,12 +123,14 @@ public class VaccinationActivity extends AppCompatActivity {
                 petid = null;
                 status = null;
                 pos = null;
+                uid = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
                 update= extras.getString("update");
                 status= extras.getString("add");
                 pos= extras.getInt("position");
+                uid= extras.getInt("id");
 
             }
         } else {
@@ -137,16 +139,17 @@ public class VaccinationActivity extends AppCompatActivity {
             update = (String) savedInstanceState.getSerializable("update");
             status = (String) savedInstanceState.getSerializable("add");
             pos = (Integer) savedInstanceState.getSerializable("position");
+            uid = (Integer) savedInstanceState.getSerializable("id");
 
 
 
         }
 
-        Toast.makeText(VaccinationActivity.this, "Success!"+status , Toast.LENGTH_LONG).show();
+        Toast.makeText(VaccinationActivity.this, "Success!"+ownerid , Toast.LENGTH_LONG).show();
 
 
 
-        Cursor rs = myDB.getVacc(petid);
+        Cursor rs = myDB.getVacc(uid);
         rs.moveToFirst();
 
         if(rs.getCount() > 0 && status.equals("update")) {
@@ -465,7 +468,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                             myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                     souces,petid,status);
                                             Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
+                                            Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             intent.putExtra("pos", pos);
@@ -761,7 +764,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 if (petid == null) {
 
                     String muni = myDB.getMuni(ownerid);
-                    String brgy = myDB.getBrgy(ownerid);
+//                    String brgy = myDB.getBrgy(ownerid);
 
                     if(muni.equals("La Trinidad"))
                     petid = String.valueOf((muni.charAt(0))) + muni.charAt(3);
@@ -798,13 +801,12 @@ public class VaccinationActivity extends AppCompatActivity {
 
                                     try {
 
-                                                myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
+                                        myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                         souces,pet,stat,created_at);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
                                                 myDB.addVaccinationDate(pet,datevacc,vacc_by.trim(),created_at);
-
                                                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);

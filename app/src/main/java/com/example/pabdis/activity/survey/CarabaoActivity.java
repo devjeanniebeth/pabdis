@@ -373,6 +373,7 @@ public class CarabaoActivity extends AppCompatActivity implements NavigationView
                 Intent intent = new Intent(getApplicationContext(), GoatActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
+                intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
                 startActivity(intent);
 

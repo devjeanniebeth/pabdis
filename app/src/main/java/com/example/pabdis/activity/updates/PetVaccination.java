@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -26,6 +27,7 @@ import com.example.pabdis.activity.helper.Pet;
 import com.example.pabdis.activity.helper.PetAdapter;
 import com.example.pabdis.activity.helper.PetVacc;
 import com.example.pabdis.activity.helper.PetVaccAdapter;
+import com.example.pabdis.activity.survey.CarabaoActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 
@@ -37,19 +39,21 @@ public class PetVaccination extends AppCompatActivity {
     ListView LISTVIEW;
     EditText searchView;
     Integer pos;
-    String ownerid;
+    String ownerid, petid;
     Cursor cursor;
     PetVaccAdapter vaccadapter;
+    FloatingActionButton add;
     ArrayList<PetVacc> PetList = new ArrayList<PetVacc>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet);
+        setContentView(R.layout.activity_petvacc);
         Toolbar toolbar = findViewById(R.id.toolbar);
         myDB = new DatabaseHelper(getApplicationContext());
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
+        add  = findViewById(R.id.fab);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
@@ -60,12 +64,15 @@ public class PetVaccination extends AppCompatActivity {
             if(extras == null) {
                 pos = null;
                 ownerid= null;
+                petid= null;
             } else {
                 pos= extras.getInt("pos");
                 ownerid= extras.getString("ownerid");
+                petid= extras.getString("petid");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
+            petid= (String) savedInstanceState.getSerializable("petid");
             pos= (Integer) savedInstanceState.getSerializable("pos");
         }
 
@@ -99,10 +106,20 @@ public class PetVaccination extends AppCompatActivity {
                 }
             });
 
-
-
-
         }
+
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), UpdatePetVaccination.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -133,9 +150,9 @@ public class PetVaccination extends AppCompatActivity {
 
 ////                        view.setBackgroundColor(Color.BLUE);
 //                        Intent i = new Intent(PetVaccination.this, UpdatePetVaccination.class);
-//                        i.putExtra("petid", code);
+//                        i.putExtra("id", code);
 //                        i.putExtra("position", position);
-//
+//                        i.putExtra("petid", petid);
 //                        startActivity(i);
 
 
@@ -210,8 +227,8 @@ public class PetVaccination extends AppCompatActivity {
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT p.id,p.owner_id,p.pet_id,p.petname,v.date_vaccination,v.vaccinated_by,v.created_at FROM pvet_pet as p INNER JOIN pvet_pet_vaccination as v on " +
-                "p.pet_id = v.pet_id WHERE p.owner_id ="+ownerid+"''", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT p.id,p.pet_id,p.petname,v.date_vaccination,v.vaccinated_by,v.created_at FROM pvet_pet as p INNER JOIN pvet_pet_vaccination as v on " +
+                "p.pet_id = v.pet_id WHERE p.pet_id ='"+petid+"'", null);
         PetVacc pet;
         PetList = new ArrayList<PetVacc>();
 
@@ -223,7 +240,7 @@ public class PetVaccination extends AppCompatActivity {
                 String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
                 String datevacc = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
                 String vaccby = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_4)));
-                String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_14));
+                String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
                 pet = new PetVacc(id,petid,petname,datevacc,vaccby,created_at);
                 PetList.add(pet);
             } while (cursor.moveToNext());

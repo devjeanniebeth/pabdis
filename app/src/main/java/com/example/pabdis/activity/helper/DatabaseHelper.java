@@ -332,7 +332,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_VACC_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC + "("
                 + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACCCOL_2 + " NONE," + VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
                 + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, "
-                + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, " + VACCCOL_14 + " TEXT, "
+                + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, "
                 + VACCCOL_15 + " TEXT" +")";
 
         String CREATE_VACC_DATE_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC_DATE + "("
@@ -669,7 +669,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_11,source);
         contentValues.put(VACCCOL_12,petid);
         contentValues.put(VACCCOL_13,status);
-        contentValues.put(VACCCOL_14,createdAt);
+        contentValues.put(VACCCOL_15,createdAt);
         long result = db.insert(TABLE_VACC,null ,contentValues);
         if(result == -1)
             return false;
@@ -865,13 +865,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
-    public Cursor getVacc(String ownerid)
+    public Cursor getVacc(Integer ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_VACC+" WHERE pet_id = '"+ownerid+"'";
+        String query = "SELECT * from "+TABLE_VACC+" WHERE id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
+
+
+    public Cursor getVaccMain(Integer ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * from "+TABLE_VACC_DATE+" WHERE id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
+
+
+
+
+
 
     public boolean updateSwine(String owner_id, String boar_n, String boar_u, String sow_n, String sow_u, String grow_n,
                               String grow_u, String wean_n, String wean_u, String total, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd,

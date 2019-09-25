@@ -25,9 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/skip"
+        android:src="@drawable/add"
         android:layout_margin="16dp" />
 
-    <include layout="@layout/content_pet_vacc" />
+    <include layout="@layout/content_petvacc" />
 
 </android.support.design.widget.CoordinatorLayout>
