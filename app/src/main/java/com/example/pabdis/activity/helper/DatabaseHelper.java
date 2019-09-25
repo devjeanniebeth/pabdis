@@ -865,14 +865,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
-    public Cursor getVacc(Integer ownerid)
+    public Cursor getVacc(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_VACC+" WHERE id = '"+ownerid+"'";
+        String query = "SELECT * from "+TABLE_VACC+" WHERE pet_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
-
 
     public Cursor getVaccMain(Integer ownerid)
     {

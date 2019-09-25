@@ -123,14 +123,12 @@ public class VaccinationActivity extends AppCompatActivity {
                 petid = null;
                 status = null;
                 pos = null;
-                uid = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
                 update= extras.getString("update");
                 status= extras.getString("add");
                 pos= extras.getInt("position");
-                uid= extras.getInt("id");
 
             }
         } else {
@@ -139,7 +137,6 @@ public class VaccinationActivity extends AppCompatActivity {
             update = (String) savedInstanceState.getSerializable("update");
             status = (String) savedInstanceState.getSerializable("add");
             pos = (Integer) savedInstanceState.getSerializable("position");
-            uid = (Integer) savedInstanceState.getSerializable("id");
 
 
 
@@ -149,7 +146,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-        Cursor rs = myDB.getVacc(uid);
+        Cursor rs = myDB.getVacc(petid);
         rs.moveToFirst();
 
         if(rs.getCount() > 0 && status.equals("update")) {

@@ -149,11 +149,11 @@ public class PetVaccination extends AppCompatActivity {
 
 
 ////                        view.setBackgroundColor(Color.BLUE);
-//                        Intent i = new Intent(PetVaccination.this, UpdatePetVaccination.class);
-//                        i.putExtra("id", code);
-//                        i.putExtra("position", position);
-//                        i.putExtra("petid", petid);
-//                        startActivity(i);
+                        Intent i = new Intent(PetVaccination.this, UpdatePetVaccination.class);
+                        i.putExtra("id", code);
+                        i.putExtra("position", position);
+                        i.putExtra("petid", petid);
+                        startActivity(i);
 
 
 

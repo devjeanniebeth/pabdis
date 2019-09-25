@@ -145,7 +145,7 @@ public class PetActivity extends AppCompatActivity
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
                         Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
-                        i.putExtra("id", code);
+                        i.putExtra("petid", code);
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);
@@ -161,7 +161,7 @@ public class PetActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
                         Intent i = new Intent(PetActivity.this, PetVaccination.class);
-                        i.putExtra("id", code);
+                        i.putExtra("petid", code);
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);

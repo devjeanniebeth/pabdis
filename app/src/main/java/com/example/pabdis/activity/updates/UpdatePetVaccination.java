@@ -2,8 +2,11 @@ package com.example.pabdis.activity.updates;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -45,7 +48,6 @@ public class UpdatePetVaccination extends AppCompatActivity {
         btnDateVacc = findViewById(R.id.btnDateVacc);
         btnUpdate = findViewById(R.id.btnUpdate);
         txtxDateVacc = findViewById(R.id.txtxDateVacc);
-        txtvaccinatedby2 = findViewById(R.id.txtvaccinatedby2);
         txtvaccinatedby = findViewById(R.id.txtvaccinatedby);
 
         btnUpdate.setText("Add");
@@ -121,6 +123,127 @@ public class UpdatePetVaccination extends AppCompatActivity {
 
 
         }
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                final String datevacc = txtxDateVacc.getText().toString();
+                final String vaccby = txtvaccinatedby.getSelectedItem().toString();
+
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, 0);
+                SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                final String created_at = format1.format(cal.getTime());
+
+
+
+
+
+
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(UpdatePetVaccination.this);
+                builder.setTitle("Choose option");
+                builder.setMessage("Update or delete user?");
+                builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Build an AlertDialog
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(UpdatePetVaccination.this);
+
+                        // Set a title for alert dialog
+                        builder.setTitle("ADD.");
+
+                        // Ask the final question
+                        builder.setMessage("Do you want to add the data?");
+
+                        // Set click listener for alert dialog buttons
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch(which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        // User clicked the Yes button
+
+
+                                        mydb.addVaccinationDate(petid,datevacc,vaccby,created_at);
+                                        
+
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        // User clicked the No button
+
+
+                                }
+                            }
+                        };
+
+                        // Set the alert dialog yes button click listener
+                        builder.setPositiveButton("Yes", dialogClickListener);
+
+                        // Set the alert dialog no button click listener
+                        builder.setNegativeButton("No",dialogClickListener);
+
+                        android.app.AlertDialog dialog2 = builder.create();
+                        // Display the alert dialog on interface
+                        dialog2.show();
+
+
+
+                    }
+                });
+                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Build an AlertDialog
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(UpdatePetVaccination.this);
+
+                        // Set a title for alert dialog
+                        builder.setTitle("DELETE.");
+
+                        // Ask the final question
+                        builder.setMessage("Do you want to delete the data?");
+
+                        // Set click listener for alert dialog buttons
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch(which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        // User clicked the Yes button
+
+
+                                        break;
+
+                                    case DialogInterface.BUTTON_NEGATIVE:
+                                        // User clicked the No button
+
+
+                                }
+                            }
+                        };
+
+                        // Set the alert dialog yes button click listener
+                        builder.setPositiveButton("Yes", dialogClickListener);
+
+                        // Set the alert dialog no button click listener
+                        builder.setNegativeButton("No",dialogClickListener);
+
+                        android.app.AlertDialog dialog2 = builder.create();
+                        // Display the alert dialog on interface
+                        dialog2.show();
+
+
+                    }
+                });
+
+                builder.create().show();
+            }
+        });
 
 
 
