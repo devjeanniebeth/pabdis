@@ -873,7 +873,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getVaccMain(Integer ownerid)
+    public Cursor getVaccMain(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * from "+TABLE_VACC_DATE+" WHERE id = '"+ownerid+"'";
@@ -1129,6 +1129,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+
+
+    public boolean updateVaccinationDate(String id, String datevacc, String vaccby)
+    {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(VACC_DATE_3,datevacc);
+        contentValues.put(VACC_DATE_4,vaccby);
+        db.update(TABLE_VACC_DATE, contentValues, "id = ?",new String[] { id });
+        return true;
+
+
+
+    }
+
     public void deleteUser(String ownerid)
     {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1152,7 +1168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteVacc(String ownerid)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_VACC_DATE, "pet_id = ?",new String[] { ownerid });
+        db.delete(TABLE_VACC_DATE, "id = ?",new String[] { ownerid });
         db.close();
 
         Log.d(TAG,"Successfully deleted pet vaccination!");

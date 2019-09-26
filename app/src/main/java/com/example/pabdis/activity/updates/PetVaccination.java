@@ -146,11 +146,9 @@ public class PetVaccination extends AppCompatActivity {
 //
                         LISTVIEW.setSelection(position);
                         Toast.makeText(PetVaccination.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
-
-
 ////                        view.setBackgroundColor(Color.BLUE);
                         Intent i = new Intent(PetVaccination.this, UpdatePetVaccination.class);
-                        i.putExtra("id", code);
+                        i.putExtra("uid", code);
                         i.putExtra("position", position);
                         i.putExtra("petid", petid);
                         startActivity(i);
@@ -183,7 +181,7 @@ public class PetVaccination extends AppCompatActivity {
                                         myDB.deleteVacc(code);
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(PetVaccination.this, PetVaccination.class);
-                                        i.putExtra("ownerid", ownerid);
+                                        i.putExtra("petid", petid);
                                         startActivity(i);
 
                                         break;
