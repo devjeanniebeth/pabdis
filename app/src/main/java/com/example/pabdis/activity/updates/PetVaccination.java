@@ -85,7 +85,12 @@ public class PetVaccination extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                vaccadapter.getFilter().filter(s.toString());
+
+                Integer ctr = LISTVIEW.getAdapter().getCount();
+                if(ctr > 0)
+                {
+                    vaccadapter.getFilter().filter(s.toString());
+                }
             }
 
             @Override
@@ -128,7 +133,7 @@ public class PetVaccination extends AppCompatActivity {
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
 
-                final String code = vaccadapter.getItem(position).getId();
+                final Integer code = Integer.valueOf(vaccadapter.getItem(position).getId());
 //                final String ownerid = vaccadapter.getItem(position).getOwner_id();
 
 
@@ -146,7 +151,6 @@ public class PetVaccination extends AppCompatActivity {
 //
                         LISTVIEW.setSelection(position);
                         Toast.makeText(PetVaccination.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
-////                        view.setBackgroundColor(Color.BLUE);
                         Intent i = new Intent(PetVaccination.this, UpdatePetVaccination.class);
                         i.putExtra("uid", code);
                         i.putExtra("position", position);
@@ -178,7 +182,10 @@ public class PetVaccination extends AppCompatActivity {
                                     case DialogInterface.BUTTON_POSITIVE:
                                         // User clicked the Yes button
 
-                                        myDB.deleteVacc(code);
+                                        String puid = code.toString();
+
+                                        Toast.makeText(PetVaccination.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
+                                        myDB.deleteVacc(puid);
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(PetVaccination.this, PetVaccination.class);
                                         i.putExtra("petid", petid);
@@ -225,7 +232,7 @@ public class PetVaccination extends AppCompatActivity {
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT p.id,p.pet_id,p.petname,v.date_vaccination,v.vaccinated_by,v.created_at FROM pvet_pet as p INNER JOIN pvet_pet_vaccination as v on " +
+        cursor = sqLiteDatabase.rawQuery("SELECT v.id,p.pet_id,p.petname,v.date_vaccination,v.vaccinated_by,v.created_at FROM pvet_pet as p INNER JOIN pvet_pet_vaccination as v on " +
                 "p.pet_id = v.pet_id WHERE p.pet_id ='"+petid+"'", null);
         PetVacc pet;
         PetList = new ArrayList<PetVacc>();

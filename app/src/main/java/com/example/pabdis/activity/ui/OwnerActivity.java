@@ -103,7 +103,13 @@ public class OwnerActivity extends AppCompatActivity
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                listAdapter.getFilter().filter(s.toString());
+
+                Integer ctr = LISTVIEW.getAdapter().getCount();
+                if(ctr > 0)
+                {
+                    listAdapter.getFilter().filter(s.toString());
+                }
+
             }
 
             @Override

@@ -87,7 +87,7 @@ public class PetAdapter extends ArrayAdapter<Pet> {
 
     final Pet pet = PetListTemp.get(position);
 
-    holder.ID.setText( pet.getId());
+    holder.ID.setText(pet.getId());
     holder.OWNER_ID.setText(pet.getOwner_id());
     holder.PET_ID.setText(pet.getPetid());
     holder.PETNAME.setText(pet.getPetname());

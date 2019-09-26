@@ -33,8 +33,8 @@ public class UpdatePetVaccination extends AppCompatActivity {
     Button btnDateVacc,btnUpdate;
     TextView txtxDateVacc,txtvaccinatedby2;
     Spinner txtvaccinatedby;
-    Integer position;
-    String petid,uid;
+    Integer position,uid;
+    String petid;
     final Calendar myCalendar = Calendar.getInstance();
     ArrayAdapter<CharSequence> vaccby;
 
@@ -61,13 +61,13 @@ public class UpdatePetVaccination extends AppCompatActivity {
                 position = null;
                 uid = null;
             } else {
-                uid= extras.getString("uid");
+                uid= extras.getInt("uid");
                 position= extras.getInt("position");
                 petid= extras.getString("petid");
 
             }
         } else {
-            uid= (String) savedInstanceState.getSerializable("uid");
+            uid= (Integer) savedInstanceState.getSerializable("uid");
             position= (Integer) savedInstanceState.getSerializable("position");
             petid= (String) savedInstanceState.getSerializable("petid");
 
@@ -170,7 +170,9 @@ public class UpdatePetVaccination extends AppCompatActivity {
                                         case DialogInterface.BUTTON_POSITIVE:
                                             // User clicked the Yes button
 
-                                            mydb.updateVaccinationDate(uid,datevacc,vaccby);
+                                            String puid = uid.toString();
+
+                                            mydb.updateVaccinationDate(puid,datevacc,vaccby);
                                             Toast.makeText(UpdatePetVaccination.this, "Successfully updated vaccination!", Toast.LENGTH_SHORT).show();
                                             Intent i = new Intent(UpdatePetVaccination.this, PetVaccination.class);
                                             i.putExtra("position", position);
