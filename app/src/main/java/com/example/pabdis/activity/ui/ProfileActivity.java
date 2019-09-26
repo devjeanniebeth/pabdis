@@ -166,7 +166,7 @@ public class ProfileActivity extends AppCompatActivity
                 //Which column you want to exprort
                 String arrStr[] ={curCSV.getString(0),curCSV.getString(1), curCSV.getString(2),curCSV.getString(3),curCSV.getString(4),curCSV.getString(5),
                         curCSV.getString(6),curCSV.getString(7),curCSV.getString(8),curCSV.getString(9),curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12),curCSV.getString(13),};
+                        curCSV.getString(11),curCSV.getString(12),curCSV.getString(13)};
                 csvWrite.writeNext(arrStr);
             }
             Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
