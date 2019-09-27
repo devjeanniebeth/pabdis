@@ -17,7 +17,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,13 +45,16 @@ public class ProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    Button export;
+    Button export,sync;
     DatabaseHelper mydb;
     Context context;
     String SAMPLE_DB_NAME = "pabdis";
     private SessionManager session;
     private ProgressDialog pDialog;
     TextView user_profile_name,user_profile_short_bio,user_type;
+    Spinner muni, brgy;
+    ArrayAdapter<CharSequence> types,munici, brgylt, brgy_kib, brgy_it, brgy_bug, brgy_kab, brgy_sab, brgy_man, brgy_bak, brgy_tba, brgy_tbl, brgy_at, brgy_bok, brgy_kap;
+
 
 
     @Override
@@ -79,7 +85,27 @@ public class ProfileActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
 
+
+        brgylt = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_lt, R.layout.support_simple_spinner_dropdown_item);
+        brgy_at = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_at, R.layout.support_simple_spinner_dropdown_item);
+        brgy_bak = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_bak, R.layout.support_simple_spinner_dropdown_item);
+        brgy_bok = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_bok, R.layout.support_simple_spinner_dropdown_item);
+        brgy_bug = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_bug, R.layout.support_simple_spinner_dropdown_item);
+        brgy_it = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_it, R.layout.support_simple_spinner_dropdown_item);
+        brgy_kab = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_kab, R.layout.support_simple_spinner_dropdown_item);
+        brgy_kap = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_kap, R.layout.support_simple_spinner_dropdown_item);
+        brgy_kib = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_kib, R.layout.support_simple_spinner_dropdown_item);
+        brgy_man = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_man, R.layout.support_simple_spinner_dropdown_item);
+        brgy_sab = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_sab, R.layout.support_simple_spinner_dropdown_item);
+        brgy_tba = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_tba, R.layout.support_simple_spinner_dropdown_item);
+        brgy_tbl = ArrayAdapter.createFromResource(ProfileActivity.this, R.array.brgy_tbl, R.layout.support_simple_spinner_dropdown_item);
+        muni = findViewById(R.id.muni);
+        brgy = findViewById(R.id.brgy);
+
+
+
         export = findViewById(R.id.export);
+        sync = findViewById(R.id.sync);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -89,6 +115,62 @@ public class ProfileActivity extends AppCompatActivity
 
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        muni.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selectedItem = adapterView.getItemAtPosition(i).toString();
+
+                switch (selectedItem) {
+                    case "La Trinidad":
+                        brgy.setAdapter(brgylt);
+                        break;
+                    case "Itogon":
+                        brgy.setAdapter(brgy_it);
+                        break;
+                    case "Buguias":
+                        brgy.setAdapter(brgy_bug);
+                        break;
+                    case "Kabayan":
+                        brgy.setAdapter(brgy_kab);
+                        break;
+                    case "Sablan":
+                        brgy.setAdapter(brgy_sab);
+                        break;
+                    case "Mankayan":
+                        brgy.setAdapter(brgy_man);
+                        break;
+                    case "Kapangan":
+                        brgy.setAdapter(brgy_kap);
+                        break;
+                    case "Bokod":
+                        brgy.setAdapter(brgy_bok);
+                        break;
+                    case "Atok":
+                        brgy.setAdapter(brgy_at);
+                        break;
+                    case "Kibungan":
+                        brgy.setAdapter(brgy_kib);
+                        break;
+                    case "Tublay":
+                        brgy.setAdapter(brgy_tbl);
+                        break;
+                    case "Tuba":
+                        brgy.setAdapter(brgy_tba);
+                        break;
+                    case "Bakun":
+                        brgy.setAdapter(brgy_bak);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
 
         export.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +188,12 @@ public class ProfileActivity extends AppCompatActivity
             }
         });
 
+        sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
