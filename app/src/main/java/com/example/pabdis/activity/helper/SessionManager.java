@@ -79,6 +79,9 @@ public class SessionManager {
         user.setFullName(mPreferences.getString(KEY_FULL_NAME, KEY_EMPTY));
         user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
 
+
+
+
         return user;
     }
 

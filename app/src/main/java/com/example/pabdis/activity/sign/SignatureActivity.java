@@ -74,10 +74,11 @@ public class SignatureActivity extends AppCompatActivity {
             update = (String) savedInstanceState.getSerializable("update");
             status = (String) savedInstanceState.getSerializable("add");
             pos = (Integer) savedInstanceState.getSerializable("position");
-
-
-
         }
+
+
+        Toast.makeText(SignatureActivity.this, ""+ ownerid, Toast.LENGTH_SHORT).show();
+
 
         mClearButton = findViewById(R.id.clear_button);
         mSaveButton = findViewById(R.id.save_button);
@@ -140,13 +141,17 @@ public class SignatureActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[], @NonNull int[] grantResults) {
+                                            String permissions[],  int[] grantResults) {
         switch (requestCode) {
             case REQUEST_EXTERNAL_STORAGE: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length <= 0
                         || grantResults[0] != PackageManager.PERMISSION_GRANTED) {
                     Toast.makeText(SignatureActivity.this, "Cannot write images to external storage", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Toast.makeText(SignatureActivity.this, "Can write images to external storage", Toast.LENGTH_SHORT).show();
+
                 }
             }
         }
@@ -156,8 +161,12 @@ public class SignatureActivity extends AppCompatActivity {
         // Get the directory for the user's public pictures directory.
         File file = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), albumName);
-        if (!file.mkdirs()) {
+        if (file.mkdirs()) {
+            Log.e("SignaturePad", "Directory created");
+
+        }else{
             Log.e("SignaturePad", "Directory not created");
+
         }
         return file;
     }
@@ -175,7 +184,7 @@ public class SignatureActivity extends AppCompatActivity {
     public boolean addJpgSignatureToGallery(Bitmap signature) {
         boolean result = false;
         try {
-            File photo = new File(getAlbumStorageDir("PabdisSignature"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
+            File photo = new File(getAlbumStorageDir("Pabdis"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
             saveBitmapToJPG(signature, photo);
             scanMediaFile(photo);
             result = true;
@@ -195,7 +204,7 @@ public class SignatureActivity extends AppCompatActivity {
     public boolean addSvgSignatureToGallery(String signatureSvg) {
         boolean result = false;
         try {
-            File svgFile = new File(getAlbumStorageDir("PabdisSignature"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
+            File svgFile = new File(getAlbumStorageDir("Pabdis"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
             OutputStream stream = new FileOutputStream(svgFile);
             OutputStreamWriter writer = new OutputStreamWriter(stream);
             writer.write(signatureSvg);

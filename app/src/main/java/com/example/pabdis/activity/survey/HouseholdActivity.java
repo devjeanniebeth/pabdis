@@ -277,6 +277,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                                         Toast.makeText(HouseholdActivity.this, "Success survey!" , Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
                                         intent.putExtra("pos", pos);
+                                        intent.putExtra("ownerid", ownerid);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
