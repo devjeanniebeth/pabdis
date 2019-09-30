@@ -28,6 +28,7 @@ import com.example.pabdis.activity.helper.PetAdapter;
 import com.example.pabdis.activity.helper.PetVacc;
 import com.example.pabdis.activity.helper.PetVaccAdapter;
 import com.example.pabdis.activity.survey.CarabaoActivity;
+import com.example.pabdis.activity.ui.MainActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 
@@ -262,6 +263,20 @@ public class PetVaccination extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if(pos != null)
+        {
+            Intent i = new Intent(PetVaccination.this, PetActivity.class);
+            i.putExtra("pos", pos);
+            startActivity(i);
+//        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 

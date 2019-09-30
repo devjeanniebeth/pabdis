@@ -906,13 +906,16 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-         findViewById(R.id.drawer_layout);
-//        if (drawer.isDrawerOpen(GravityCompat.START)) {
-//            drawer.closeDrawer(GravityCompat.START);
-//        } else {
-//            super.onBackPressed();
-//        }
-        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        if(pos != null)
+        {
+            Intent i = new Intent(MainActivity.this, ListUpdateActivity.class);
+            i.putExtra("position", pos);
+            i.putExtra("ownerid", ownerid);
+            startActivity(i);
+//        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
