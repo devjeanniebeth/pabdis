@@ -45,6 +45,7 @@ public class PetVaccination extends AppCompatActivity {
     PetVaccAdapter vaccadapter;
     FloatingActionButton add;
     ArrayList<PetVacc> PetList = new ArrayList<PetVacc>();
+    Integer ctr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,11 @@ public class PetVaccination extends AppCompatActivity {
         add  = findViewById(R.id.fab);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+
+      
+
+
+
 
 
 
@@ -87,7 +93,7 @@ public class PetVaccination extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                Integer ctr = LISTVIEW.getAdapter().getCount();
+
                 if(ctr > 0)
                 {
                     vaccadapter.getFilter().filter(s.toString());
@@ -239,6 +245,7 @@ public class PetVaccination extends AppCompatActivity {
         PetList = new ArrayList<PetVacc>();
 
         if (cursor.moveToFirst() && cursor.getCount() > 0) {
+            ctr = 1;
             do {
 
                 String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_1)));
@@ -256,12 +263,8 @@ public class PetVaccination extends AppCompatActivity {
             LISTVIEW.setAdapter(vaccadapter);
             cursor.close();
         }else{
-            Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
-
-
+            ctr = 0;
         }
-
-
     }
 
     @Override
