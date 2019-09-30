@@ -163,10 +163,8 @@ public class SignatureActivity extends AppCompatActivity {
                 Environment.DIRECTORY_PICTURES), albumName);
         if (file.mkdirs()) {
             Log.e("SignaturePad", "Directory created");
-
         }else{
             Log.e("SignaturePad", "Directory not created");
-
         }
         return file;
     }
@@ -204,7 +202,7 @@ public class SignatureActivity extends AppCompatActivity {
     public boolean addSvgSignatureToGallery(String signatureSvg) {
         boolean result = false;
         try {
-            File svgFile = new File(getAlbumStorageDir("Pabdis"), String.format("Signature_"+ ownerid +".jpg", System.currentTimeMillis()));
+            File svgFile = new File(getAlbumStorageDir("Pabdis"), String.format("Signature_"+ ownerid +".svg", System.currentTimeMillis()));
             OutputStream stream = new FileOutputStream(svgFile);
             OutputStreamWriter writer = new OutputStreamWriter(stream);
             writer.write(signatureSvg);
