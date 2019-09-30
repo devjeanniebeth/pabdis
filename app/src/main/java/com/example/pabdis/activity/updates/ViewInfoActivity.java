@@ -638,6 +638,7 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
         {
             Intent i = new Intent(ViewInfoActivity.this, OwnerActivity.class);
             i.putExtra("pos", position);
+            i.putExtra("ownerid", ownerid);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

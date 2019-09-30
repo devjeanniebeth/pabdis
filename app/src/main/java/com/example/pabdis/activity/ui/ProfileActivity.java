@@ -1,7 +1,9 @@
 package com.example.pabdis.activity.ui;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -45,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    Button export,sync;
+    Button export,sync,clear;
     DatabaseHelper mydb;
     Context context;
     String SAMPLE_DB_NAME = "pabdis";
@@ -67,6 +69,8 @@ public class ProfileActivity extends AppCompatActivity
         user_profile_name =  findViewById(R.id.user_profile_name);
         user_profile_short_bio  = findViewById(R.id.user_profile_short_bio);
         user_type  = findViewById(R.id.user_type);
+
+
 
         if(user != null)
         {
@@ -106,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity
 
         export = findViewById(R.id.export);
         sync = findViewById(R.id.sync);
+        clear = findViewById(R.id.clear);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -170,13 +175,9 @@ public class ProfileActivity extends AppCompatActivity
 
             }
         });
-
-
-
         export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                     displayLoader();
                     exportDB_Owner();
@@ -191,7 +192,100 @@ public class ProfileActivity extends AppCompatActivity
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            }
+        });
 
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+
+                // Set a title for alert dialog
+                builder.setTitle("DELETE ALL.");
+
+                // Ask the final question
+                builder.setMessage("Do you want to clear the data? ");
+
+                // Set click listener for alert dialog buttons
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+
+
+                                            // Build an AlertDialog
+                                            AlertDialog.Builder builder2 = new AlertDialog.Builder(ProfileActivity.this);
+
+                                            // Set a title for alert dialog
+                                            builder2.setTitle("DELETE ALL.");
+
+                                            // Ask the final question
+                                            builder2.setMessage("After clicking Yes, you cannot retrieve the cleared data.");
+
+                                            // Set click listener for alert dialog buttons
+
+                                            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    switch(which){
+                                                        case DialogInterface.BUTTON_POSITIVE:
+                                                            // User clicked the Yes button
+
+                                                            try {
+                                                                mydb.deleteAll();
+                                                                Toast.makeText(ProfileActivity.this, "Success cleared the database!" , Toast.LENGTH_SHORT).show();
+
+                                                            } catch (Exception e) {
+                                                                e.printStackTrace();
+                                                            }
+
+                                                            break;
+
+                                                        case DialogInterface.BUTTON_NEGATIVE:
+
+
+                                                            break;
+                                                    }
+                                                }
+                                            };
+
+                                            // Set the alert dialog yes button click listener
+                                            builder2.setPositiveButton("Yes", dialogClickListener);
+
+                                            // Set the alert dialog no button click listener
+                                            builder2.setNegativeButton("No",dialogClickListener);
+
+                                            AlertDialog dialog2 = builder2.create();
+                                            // Display the alert dialog on interface
+                                            dialog2.show();
+
+
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+
+                                break;
+                        }
+                    }
+                };
+
+                // Set the alert dialog yes button click listener
+                builder.setPositiveButton("Yes", dialogClickListener);
+
+                // Set the alert dialog no button click listener
+                builder.setNegativeButton("No",dialogClickListener);
+
+                AlertDialog dialog = builder.create();
+                // Display the alert dialog on interface
+                dialog.show();
 
 
             }

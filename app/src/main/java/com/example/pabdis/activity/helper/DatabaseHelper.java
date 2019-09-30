@@ -366,22 +366,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
   
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_USER);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_OWNER);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY1);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY2);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY3);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY4);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY5);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY6);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY7);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY8);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY9);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_VACC);
-//        db.execSQL("DROP TABLE IF EXISTS "+TABLE_LOGS);
-//        onCreate(db);
-//
-//
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_OWNER);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY1);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY2);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY3);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY4);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY5);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY6);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY7);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY8);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SURVEY9);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_VACC);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_VACC_DATE);
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_LOGS);
+        onCreate(db);
+
+
 
 
     }
@@ -1229,6 +1230,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
+    }
+
+    public void deleteAll()
+    {
+        SQLiteDatabase db = this.getWritableDatabase(); //delete all rows in a table
+        db.execSQL("DELETE FROM "+TABLE_USER);
+        db.execSQL("DELETE FROM "+TABLE_OWNER);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY1);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY2);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY3);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY4);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY5);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY6);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY7);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY8);
+        db.execSQL("DELETE FROM "+TABLE_SURVEY9);
+        db.execSQL("DELETE FROM "+TABLE_VACC);
+        db.execSQL("DELETE FROM "+TABLE_VACC_DATE);
+        db.execSQL("DELETE FROM "+TABLE_LOGS);
+        db.close();
     }
 
 

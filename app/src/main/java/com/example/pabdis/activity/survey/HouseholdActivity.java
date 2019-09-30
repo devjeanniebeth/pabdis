@@ -60,7 +60,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                ownerid= null;
+                ownerid = null;
                 petid = null;
                 pos = null;
                 update = null;
@@ -311,6 +311,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
         {
             Intent i = new Intent(HouseholdActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
+            i.putExtra("ownerid", ownerid);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

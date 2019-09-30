@@ -289,6 +289,7 @@ public class ListUpdateActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent i = new Intent(ListUpdateActivity.this, OwnerActivity.class);
         i.putExtra("pos", position);
+        i.putExtra("ownerid", ownerid);
         startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
     }

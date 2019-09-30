@@ -512,6 +512,7 @@ public class CattleActivity extends AppCompatActivity implements NavigationView.
         {
             Intent i = new Intent(CattleActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
+            i.putExtra("ownerid", ownerid);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

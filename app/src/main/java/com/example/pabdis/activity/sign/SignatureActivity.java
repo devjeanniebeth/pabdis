@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
@@ -41,7 +42,7 @@ public class SignatureActivity extends AppCompatActivity {
     private Button mSaveButton;
     String ownerid, petid, update, status;
     Integer pos;
-
+    TextView signature_pad_description;
 
 
     @Override
@@ -51,6 +52,7 @@ public class SignatureActivity extends AppCompatActivity {
         verifyStoragePermissions(this);
         setContentView(R.layout.activity_signature);
         mSignaturePad = findViewById(R.id.signature_pad);
+        signature_pad_description = findViewById(R.id.signature_pad_description);
 
 
         if (savedInstanceState == null) {

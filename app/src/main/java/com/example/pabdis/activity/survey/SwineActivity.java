@@ -649,6 +649,7 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
         {
             Intent i = new Intent(SwineActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
+            i.putExtra("ownerid", ownerid);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

@@ -511,6 +511,7 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
         {
             Intent i = new Intent(GoatActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
+            i.putExtra("ownerid", ownerid);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

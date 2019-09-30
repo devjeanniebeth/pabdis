@@ -307,6 +307,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
         {
             Intent i = new Intent(OtherActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
+            i.putExtra("ownerid", ownerid);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

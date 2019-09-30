@@ -260,6 +260,7 @@ public class ApiaryActivity extends AppCompatActivity {
         {
             Intent i = new Intent(ApiaryActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
+            i.putExtra("ownerid", ownerid);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{
