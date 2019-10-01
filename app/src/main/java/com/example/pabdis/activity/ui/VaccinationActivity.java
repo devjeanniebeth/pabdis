@@ -162,7 +162,6 @@ public class VaccinationActivity extends AppCompatActivity {
         if(rs.getCount() > 0 && status.equals("update")) {
 
 
-            pet_status.setVisibility(View.VISIBLE);
             txtvaccinatedby.setVisibility(View.GONE);
             dateVacc.setVisibility(View.GONE);
             tbl1.setVisibility(View.GONE);
@@ -175,6 +174,9 @@ public class VaccinationActivity extends AppCompatActivity {
             spstatus.setVisibility(View.VISIBLE);
             btnDateStatus.setVisibility(View.VISIBLE);
             txtDateStatus.setVisibility(View.VISIBLE);
+
+
+
 
 
 
