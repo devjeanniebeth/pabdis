@@ -36,9 +36,11 @@ import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
@@ -250,6 +252,8 @@ public class ProfileActivity extends AppCompatActivity
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
             }
         });
 
@@ -389,6 +393,8 @@ public class ProfileActivity extends AppCompatActivity
             Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
         }
     }
+
+    
     private void exportDB_PETS() {
         File exportDir = new File(Environment.getExternalStorageDirectory(), "");
         if (!exportDir.exists())
