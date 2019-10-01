@@ -53,15 +53,15 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
     EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
-    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2, txtv4,txtstatus;
-    Button btndate, chooseImg, btnVacc, dateVacc, btnUpdate;
+    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2, txtv4,txtstatus,txtDateStatus;
+    Button btndate, chooseImg, btnVacc, dateVacc, btnUpdate,btnDateStatus;
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
     TableRow tbl1;
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
-    Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource, pet_status;
+    Spinner txtbreed, txtGender, txtSpecie, txtColorMark, txtvaccinatedby,txtsource, pet_status,spstatus;
     DatabaseHelper myDB;
     CheckBox cb;
     String age,ownerid, petid, vacc, update, status, pet,add, petstat;
@@ -91,6 +91,16 @@ public class VaccinationActivity extends AppCompatActivity {
         pet_status = findViewById(R.id.spstatus);
         pet_status.setVisibility(View.GONE);
         tbl1 = findViewById(R.id.tableRow4);
+
+        txtstatus =  findViewById(R.id.txtstatus);
+        spstatus =  findViewById(R.id.spstatus);
+        btnDateStatus =  findViewById(R.id.btnDateStatus);
+        txtDateStatus =  findViewById(R.id.txtDateStatus);
+
+        txtstatus.setVisibility(View.GONE);
+        spstatus.setVisibility(View.GONE);
+        btnDateStatus.setVisibility(View.GONE);
+        txtDateStatus.setVisibility(View.GONE);
 
 
         txtsourceplace = findViewById(R.id.txtsourceplace);
@@ -160,6 +170,11 @@ public class VaccinationActivity extends AppCompatActivity {
             txtv4.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
             btnVacc.setVisibility(View.GONE);
+
+            txtstatus.setVisibility(View.VISIBLE);
+            spstatus.setVisibility(View.VISIBLE);
+            btnDateStatus.setVisibility(View.VISIBLE);
+            txtDateStatus.setVisibility(View.VISIBLE);
 
 
 

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.SessionManager;
+import com.example.pabdis.activity.ui.ProfileActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.text.SimpleDateFormat;
@@ -175,7 +176,8 @@ public class UpdatePetVaccination extends AppCompatActivity {
                                             mydb.updateVaccinationDate(puid,datevacc,vaccby);
                                             Toast.makeText(UpdatePetVaccination.this, "Successfully updated vaccination!", Toast.LENGTH_SHORT).show();
                                             Intent i = new Intent(UpdatePetVaccination.this, PetVaccination.class);
-                                            i.putExtra("position", position);
+                                            i.putExtra("pos", position);
+                                            i.putExtra("petid", petid);
                                             startActivity(i);
 
 
@@ -219,7 +221,7 @@ public class UpdatePetVaccination extends AppCompatActivity {
         }
 
 
-        if( uid == null) {
+        if( uid == 0) {
             btnUpdate.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -234,59 +236,64 @@ public class UpdatePetVaccination extends AppCompatActivity {
                     final String created_at = format1.format(cal.getTime());
 
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdatePetVaccination.this);
 
-                    builder.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    // Build an AlertDialog
+                    android.app.AlertDialog.Builder builder2 = new android.app.AlertDialog.Builder(UpdatePetVaccination.this);
+
+                    // Set a title for alert dialog
+                    builder2.setTitle("Add.");
+
+                    // Ask the final question
+                    builder2.setMessage("Do you want to add the data? ");
+
+                    // Set click listener for alert dialog buttons
+
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            switch(which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    // User clicked the Yes button
 
-                            // Build an AlertDialog
-                            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(UpdatePetVaccination.this);
+                                    try {
 
-                            // Set a title for alert dialog
-                            builder.setTitle("ADD.");
+                                        mydb.addVaccinationDate(petid, datevacc, vaccby, created_at);
+                                        Toast.makeText(UpdatePetVaccination.this, "Successfully added vaccination!", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(UpdatePetVaccination.this, PetVaccination.class);
+                                        i.putExtra("pos", position);
+                                        i.putExtra("petid", petid);
+                                        startActivity(i);
 
-                            // Ask the final question
-                            builder.setMessage("Do you want to add the data?");
-
-                            // Set click listener for alert dialog buttons
-                            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    switch (which) {
-                                        case DialogInterface.BUTTON_POSITIVE:
-                                            // User clicked the Yes button
-
-                                            mydb.addVaccinationDate(petid, datevacc, vaccby, created_at);
-                                            Toast.makeText(UpdatePetVaccination.this, "Successfully added vaccination!", Toast.LENGTH_SHORT).show();
-                                            Intent i = new Intent(UpdatePetVaccination.this, PetVaccination.class);
-                                            i.putExtra("position", position);
-                                            startActivity(i);
-
-
-                                            break;
-
-                                        case DialogInterface.BUTTON_NEGATIVE:
-                                            // User clicked the No button
-
-
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
-                                }
-                            };
 
-                            // Set the alert dialog yes button click listener
-                            builder.setPositiveButton("Yes", dialogClickListener);
+                                    break;
 
-                            // Set the alert dialog no button click listener
-                            builder.setNegativeButton("No", dialogClickListener);
+                                case DialogInterface.BUTTON_NEGATIVE:
 
-                            android.app.AlertDialog dialog2 = builder.create();
-                            // Display the alert dialog on interface
-                            dialog2.show();
+
+                                    break;
+                            }
                         }
-                    });
+                    };
 
-                    builder.create().show();
+                    // Set the alert dialog yes button click listener
+                    builder2.setPositiveButton("Yes", dialogClickListener);
+
+                    // Set the alert dialog no button click listener
+                    builder2.setNegativeButton("No",dialogClickListener);
+
+                    android.app.AlertDialog dialog2 = builder2.create();
+                    // Display the alert dialog on interface
+                    dialog2.show();
+
+
+
+
+
+
+
                 }
             });
         }
