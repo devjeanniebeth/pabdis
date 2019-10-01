@@ -88,8 +88,8 @@ public class VaccinationActivity extends AppCompatActivity {
         txtvaccinatedby2= findViewById(R.id.txtvaccinatedby2);
         txtv4 = findViewById(R.id.textView4);
         dateVacc = findViewById(R.id.btnDateVacc);
-        pet_status = findViewById(R.id.spstatus);
-        pet_status.setVisibility(View.GONE);
+//        pet_status = findViewById(R.id.spstatus);
+//        pet_status.setVisibility(View.GONE);
         tbl1 = findViewById(R.id.tableRow4);
 
         txtstatus =  findViewById(R.id.txtstatus);
@@ -175,6 +175,9 @@ public class VaccinationActivity extends AppCompatActivity {
             spstatus.setVisibility(View.VISIBLE);
             btnDateStatus.setVisibility(View.VISIBLE);
             txtDateStatus.setVisibility(View.VISIBLE);
+
+
+
 
 
 

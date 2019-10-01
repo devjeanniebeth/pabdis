@@ -110,7 +110,13 @@ public class ProfileActivity extends AppCompatActivity
 
         export = findViewById(R.id.export);
         sync = findViewById(R.id.sync);
+        sync.setVisibility(View.GONE);
+//        muni.setVisibility(View.GONE);
+//        brgy.setVisibility(View.GONE);
         clear = findViewById(R.id.clear);
+
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -175,15 +181,67 @@ public class ProfileActivity extends AppCompatActivity
 
             }
         });
+
+
+
+
         export.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                    displayLoader();
-                    exportDB_Owner();
-                    exportDB_PETS();
-                    exportDB_PetVacc();
-                    pDialog.dismiss();
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(ProfileActivity.this);
+
+                // Set a title for alert dialog
+                builder2.setTitle("Export.");
+
+                // Ask the final question
+                builder2.setMessage("Do you want to export the data? ");
+
+                // Set click listener for alert dialog buttons
+
+                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+
+                                try {
+                                    displayLoader();
+                                    exportDB_Owner();
+                                    exportDB_PETS();
+                                    exportDB_PetVacc();
+                                    pDialog.dismiss();
+                                    Toast.makeText(ProfileActivity.this, "Success EXPORTING the data!" , Toast.LENGTH_SHORT).show();
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+
+                                break;
+                        }
+                    }
+                };
+
+                // Set the alert dialog yes button click listener
+                builder2.setPositiveButton("Yes", dialogClickListener1);
+
+                // Set the alert dialog no button click listener
+                builder2.setNegativeButton("No",dialogClickListener1);
+
+                AlertDialog dialog4 = builder2.create();
+                // Display the alert dialog on interface
+                dialog4.show();
+
+
 
 
             }
@@ -350,7 +408,7 @@ public class ProfileActivity extends AppCompatActivity
                 //Which column you want to exprort
                 String arrStr[] ={curCSV.getString(0),curCSV.getString(1), curCSV.getString(2),curCSV.getString(3),curCSV.getString(4),curCSV.getString(5),
                         curCSV.getString(6),curCSV.getString(7),curCSV.getString(8),curCSV.getString(9),curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12),curCSV.getString(13)};
+                        curCSV.getString(11),curCSV.getString(12)};
                 csvWrite.writeNext(arrStr);
             }
             Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
