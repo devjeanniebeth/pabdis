@@ -242,13 +242,16 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-            if(status.equals("alive") || spstatus.getSelectedItem().toString().equals("Alive") ) {
+            if(status.equals("alive") && spstatus.getSelectedItem().toString().equals("Alive") ) {
 
                 btnDateStatus.setVisibility(View.GONE);
                 txtDateStatus.setVisibility(View.GONE);
 
-                if(!mylistup.contains("alive"))
+                if(mylistup.contains("alive") && mylistup.size() > 0)
                 {
+                    mylistup.remove("lost");
+                    mylistup.remove("dead");
+                    mylistup.remove("transferred");
                     mylistup.add("alive");
                 }
 
@@ -269,7 +272,9 @@ public class VaccinationActivity extends AppCompatActivity {
 
                 if (mylist2.contains("dead") || spstatus.getSelectedItem().toString().equals("Dead")) {
 
-
+                    mylistup.remove("lost");
+                    mylistup.remove("alive");
+                    mylistup.remove("transferred");
                     mylistup.add("dead");
 
                     Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
@@ -277,7 +282,9 @@ public class VaccinationActivity extends AppCompatActivity {
 
                 } else if (mylist2.contains("lost") || spstatus.getSelectedItem().toString().equals("Lost")) {
 
-
+                    mylistup.remove("dead");
+                    mylistup.remove("alive");
+                    mylistup.remove("transferred");
                     mylistup.add("lost");
 
                     Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
@@ -285,7 +292,9 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
                 } else if (mylist2.contains("transferred") || spstatus.getSelectedItem().toString().equals("Transferred")) {
-
+                    mylistup.remove("dead");
+                    mylistup.remove("alive");
+                    mylistup.remove("lost");
                     mylistup.add("transferred");
                     Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
 
