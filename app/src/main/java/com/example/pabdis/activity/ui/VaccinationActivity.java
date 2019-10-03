@@ -213,11 +213,10 @@ public class VaccinationActivity extends AppCompatActivity {
                     txtDateStatus.setText(sdf.format(myCalendar.getTime()));
                     if(mylistup.size() > 1)
                     {
-                        mylistup.remove(1);
+//                        mylistup.remove(1);
                         mylistup.add(txtDateStatus.getText().toString());
                     }else{
                         mylistup.add(txtDateStatus.getText().toString());
-
                     }
 
 
@@ -242,18 +241,16 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-            if(status.equals("alive") && spstatus.getSelectedItem().toString().equals("Alive") ) {
+
+
+
+            if(status.equals("alive") && spstatus.getSelectedItem().toString().equals("Alive")) {
+
+
 
                 btnDateStatus.setVisibility(View.GONE);
                 txtDateStatus.setVisibility(View.GONE);
 
-                if(mylistup.contains("alive") && mylistup.size() > 0)
-                {
-                    mylistup.remove("lost");
-                    mylistup.remove("dead");
-                    mylistup.remove("transferred");
-                    mylistup.add("alive");
-                }
 
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Alive");
@@ -264,63 +261,54 @@ public class VaccinationActivity extends AppCompatActivity {
                 status = status.replace("[", "");
                 status = status.replace("]", "");
                 status = status.replace(", ", ",");
+
+
                 mylist2 = new ArrayList<String>(Arrays.asList(status.split(",")));
 
 
+                if (mylist2.contains("dead")) {
+
+                    spstatus.setAdapter(vaccinatedby);
+                    int spinnerPosition2 = vaccinatedby.getPosition("Dead");
+                    spstatus.setSelection(spinnerPosition2);
+
+
+                    txtxDateVacc.setText(mylist2.get(1));
 
 
 
-                if (mylist2.contains("dead") || spstatus.getSelectedItem().toString().equals("Dead")) {
-
-                    mylistup.remove("lost");
-                    mylistup.remove("alive");
-                    mylistup.remove("transferred");
-                    mylistup.add("dead");
-
-                    Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
 
 
-                } else if (mylist2.contains("lost") || spstatus.getSelectedItem().toString().equals("Lost")) {
+                } else if (mylist2.contains("lost")) {
 
-                    mylistup.remove("dead");
-                    mylistup.remove("alive");
-                    mylistup.remove("transferred");
-                    mylistup.add("lost");
-
-                    Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
+                    spstatus.setAdapter(vaccinatedby);
+                    int spinnerPosition2 = vaccinatedby.getPosition("Lost");
+                    spstatus.setSelection(spinnerPosition2);
+                    txtxDateVacc.setText(mylist2.get(1));
 
 
+                } else if (mylist2.contains("transferred")) {
 
-                } else if (mylist2.contains("transferred") || spstatus.getSelectedItem().toString().equals("Transferred")) {
-                    mylistup.remove("dead");
-                    mylistup.remove("alive");
-                    mylistup.remove("lost");
-                    mylistup.add("transferred");
-                    Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
-
+                    spstatus.setAdapter(vaccinatedby);
+                    int spinnerPosition2 = vaccinatedby.getPosition("Transferred");
+                    spstatus.setSelection(spinnerPosition2);
+                    txtxDateVacc.setText(mylist2.get(1));
 
 
                 }
             }
 
-
             dateSurvey.setText(birth);
             txtpetname.setText(petname);
-
             chooseImg.setVisibility(View.GONE);
-
-
 
             species = ArrayAdapter.createFromResource(this, R.array.species, R.layout.support_simple_spinner_dropdown_item);
             if (specie != null) {
                 int spinnerPosition = species.getPosition(specie);
                 txtSpecie.setSelection(spinnerPosition);
             }
-
             breedsd=  ArrayAdapter.createFromResource(this, R.array.breed_dod, R.layout.support_simple_spinner_dropdown_item);
            breedsc = ArrayAdapter.createFromResource(this, R.array.breed_cat, R.layout.support_simple_spinner_dropdown_item);
-
-
 
             if(specie.equals("Cat") || txtSpecie.getSelectedItem().toString().equals("Cat")) {
 
@@ -350,20 +338,13 @@ public class VaccinationActivity extends AppCompatActivity {
 
             }
 
-
-
-
             sex = ArrayAdapter.createFromResource(this, R.array.gender, R.layout.support_simple_spinner_dropdown_item);
             if (gender != null) {
                 int spinnerPosition3 = sex.getPosition(gender);
                 txtGender.setSelection(spinnerPosition3);
             }
 
-
-
             sources = ArrayAdapter.createFromResource(this, R.array.source_pet, R.layout.support_simple_spinner_dropdown_item);
-
-
             if(srcs.equals("Indigenous"))
             {
                 if (srcs != null) {
@@ -381,11 +362,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 txtsourceplace.setVisibility(View.VISIBLE);
                 txtsourceplace.setText(srcs);
             }
-
-
             colormarkings = ArrayAdapter.createFromResource(this, R.array.color_mark, R.layout.support_simple_spinner_dropdown_item);
-
-
             if(color.equals("White"))
             {
 
@@ -484,6 +461,11 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
                     if(imgView.getDrawable() == null)
                     {
                         imgv = nulla.getBytes();
@@ -558,6 +540,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
                     final byte imgv2[] = imgv;
+                    final String stats  = mylistup.toString();
 
 
 
@@ -581,19 +564,38 @@ public class VaccinationActivity extends AppCompatActivity {
                                     // User clicked the Yes button
 
                                     if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                        Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup  , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(VaccinationActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
                                     }else{
 
                                         try {
-                                            myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                    souces,petid,status);
-                                            Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
-                                            Intent intent = new Intent(getApplicationContext(), PetActivity.class);
-                                            intent.putExtra("ownerid", ownerid);
-                                            intent.putExtra("petid", petid);
-                                            intent.putExtra("pos", pos);
 
-                                            startActivity(intent);
+                                            if(mylistup.size() == 1)
+                                            {
+
+                                                myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
+                                                        souces,petid,mylistup.get(0));
+                                                Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                intent.putExtra("pos", pos);
+
+                                                startActivity(intent);
+
+                                            }else{
+
+                                                myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
+                                                        souces,petid,stats);
+                                                Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(getApplicationContext(), PetActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                intent.putExtra("pos", pos);
+
+                                                startActivity(intent);
+
+                                            }
+
 
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -1125,12 +1127,32 @@ public class VaccinationActivity extends AppCompatActivity {
                         btnDateStatus.setVisibility(View.GONE);
                         txtDateStatus.setVisibility(View.GONE);
 
+                        mylistup.clear();
+                        mylistup.add("alive");
+                        Toast.makeText(VaccinationActivity.this, "Check your input!" + selectedItem, Toast.LENGTH_SHORT).show();
                         break;
                     case "Dead":
+                        btnDateStatus.setVisibility(View.VISIBLE);
+                        txtDateStatus.setVisibility(View.VISIBLE);
+                        mylistup.clear();
+                        mylistup.add("dead");
+                        break;
+
                     case "Transferred":
+                        btnDateStatus.setVisibility(View.VISIBLE);
+                        txtDateStatus.setVisibility(View.VISIBLE);
+                        mylistup.clear();
+
+                        mylistup.add("transferred");
+                        break;
+
                     case "Lost":
                         btnDateStatus.setVisibility(View.VISIBLE);
                         txtDateStatus.setVisibility(View.VISIBLE);
+                        mylistup.clear();
+                        mylistup.add("lost");
+                        Toast.makeText(VaccinationActivity.this, "Check your input!" + selectedItem, Toast.LENGTH_SHORT).show();
+
                         break;
 
                 }
