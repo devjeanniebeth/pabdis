@@ -273,7 +273,7 @@ public class VaccinationActivity extends AppCompatActivity {
                     spstatus.setSelection(spinnerPosition2);
 
 
-                    txtxDateVacc.setText(mylist2.get(1));
+                    txtDateStatus.setText(mylist2.get(1));
 
 
 
@@ -284,7 +284,7 @@ public class VaccinationActivity extends AppCompatActivity {
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Lost");
                     spstatus.setSelection(spinnerPosition2);
-                    txtxDateVacc.setText(mylist2.get(1));
+                    txtDateStatus.setText(mylist2.get(1));
 
 
                 } else if (mylist2.contains("transferred")) {
@@ -292,7 +292,7 @@ public class VaccinationActivity extends AppCompatActivity {
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Transferred");
                     spstatus.setSelection(spinnerPosition2);
-                    txtxDateVacc.setText(mylist2.get(1));
+                    txtDateStatus.setText(mylist2.get(1));
 
 
                 }
