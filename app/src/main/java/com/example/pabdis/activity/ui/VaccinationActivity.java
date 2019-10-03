@@ -68,6 +68,8 @@ public class VaccinationActivity extends AppCompatActivity {
     Integer pos, uid, ctr;
     Character first;
     private SessionManager session;
+    ArrayList<String> mylist2 = new ArrayList<String>();
+    ArrayList<String> mylistup = new ArrayList<String>();
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
 
     @Override
@@ -172,15 +174,6 @@ public class VaccinationActivity extends AppCompatActivity {
 
             txtstatus.setVisibility(View.VISIBLE);
             spstatus.setVisibility(View.VISIBLE);
-            btnDateStatus.setVisibility(View.VISIBLE);
-            txtDateStatus.setVisibility(View.VISIBLE);
-
-
-
-
-
-
-
 
 
 //            String id = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_1));
@@ -195,11 +188,111 @@ public class VaccinationActivity extends AppCompatActivity {
             String feature = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_10));
             String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
 //            final String petid = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_12));
-            final String status = txtSpecie.getSelectedItem().toString();
+            String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
+
+            vaccinatedby = ArrayAdapter.createFromResource(this, R.array.pet_status, R.layout.support_simple_spinner_dropdown_item);
+
+
+            txtstatus.setText(status);
 
 
 
 
+            final DatePickerDialog.OnDateSetListener date5 = new DatePickerDialog.OnDateSetListener() {
+
+                @Override
+                public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                      int dayOfMonth) {
+                    myCalendar.set(Calendar.YEAR, year);
+                    myCalendar.set(Calendar.MONTH, monthOfYear);
+                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                    String myFormat = "MM/dd/yyyy"; //In which you need put here
+                    SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                    txtDateStatus.setText(sdf.format(myCalendar.getTime()));
+                    if(mylistup.size() > 1)
+                    {
+                        mylistup.remove(1);
+                        mylistup.add(txtDateStatus.getText().toString());
+                    }else{
+                        mylistup.add(txtDateStatus.getText().toString());
+
+                    }
+
+
+
+
+                }
+
+            };
+
+
+            btnDateStatus.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    new DatePickerDialog(VaccinationActivity.this, date5, myCalendar
+                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+                }
+
+            });
+
+
+
+            if(status.equals("alive") || spstatus.getSelectedItem().toString().equals("Alive") ) {
+
+                btnDateStatus.setVisibility(View.GONE);
+                txtDateStatus.setVisibility(View.GONE);
+
+                if(!mylistup.contains("alive"))
+                {
+                    mylistup.add("alive");
+                }
+
+                    spstatus.setAdapter(vaccinatedby);
+                    int spinnerPosition2 = vaccinatedby.getPosition("Alive");
+                    spstatus.setSelection(spinnerPosition2);
+
+            }else {
+
+                status = status.replace("[", "");
+                status = status.replace("]", "");
+                status = status.replace(", ", ",");
+                mylist2 = new ArrayList<String>(Arrays.asList(status.split(",")));
+
+
+
+
+
+                if (mylist2.contains("dead") || spstatus.getSelectedItem().toString().equals("Dead")) {
+
+
+                    mylistup.add("dead");
+
+                    Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
+
+
+                } else if (mylist2.contains("lost") || spstatus.getSelectedItem().toString().equals("Lost")) {
+
+
+                    mylistup.add("lost");
+
+                    Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
+
+
+
+                } else if (mylist2.contains("transferred") || spstatus.getSelectedItem().toString().equals("Transferred")) {
+
+                    mylistup.add("transferred");
+                    Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup, Toast.LENGTH_SHORT).show();
+
+
+
+                }
+            }
 
 
             dateSurvey.setText(birth);
@@ -326,10 +419,10 @@ public class VaccinationActivity extends AppCompatActivity {
             {
 
                 String col = "Others";
-                        int spinnerPosition7= colormarkings.getPosition(col);
-                        txtColorMark.setSelection(spinnerPosition7);
-                        othercolormark.setVisibility(View.VISIBLE);
-                        othercolormark.setText(color);
+                    int spinnerPosition7= colormarkings.getPosition(col);
+                    txtColorMark.setSelection(spinnerPosition7);
+                    othercolormark.setVisibility(View.VISIBLE);
+                    othercolormark.setText(color);
 
 
 
@@ -345,6 +438,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
                     final String petname = txtpetname.getText().toString();
                     final String specie = txtSpecie.getSelectedItem().toString();
+                    final String status = spstatus.getSelectedItem().toString();
                     final String breed;
 
 
@@ -478,7 +572,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                     // User clicked the Yes button
 
                                     if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
-                                        Toast.makeText(VaccinationActivity.this, "Check your input!" + breed  , Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(VaccinationActivity.this, "Check your input!" + mylistup  , Toast.LENGTH_SHORT).show();
                                     }else{
 
                                         try {
@@ -586,7 +680,6 @@ public class VaccinationActivity extends AppCompatActivity {
                 new DatePickerDialog(VaccinationActivity.this, date2, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-
 
             }
 
@@ -989,6 +1082,9 @@ public class VaccinationActivity extends AppCompatActivity {
         });
 
 
+
+
+
         txtbreed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -1008,6 +1104,35 @@ public class VaccinationActivity extends AppCompatActivity {
         });
 
         }
+
+
+        spstatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                switch (selectedItem)
+                {
+                    case "Alive":
+                        btnDateStatus.setVisibility(View.GONE);
+                        txtDateStatus.setVisibility(View.GONE);
+
+                        break;
+                    case "Dead":
+                    case "Transferred":
+                    case "Lost":
+                        btnDateStatus.setVisibility(View.VISIBLE);
+                        txtDateStatus.setVisibility(View.VISIBLE);
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
 
 
