@@ -261,8 +261,10 @@ public class ProfileActivity extends AppCompatActivity
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("text/csv|text/comma|-separated-values|application/cvs");
-                startActivityForResult(Intent.createChooser(intent, "Open CSV"), ACTIVITY_CHOOSE_FILE1);
+                intent.setType("*/*");
+                String[] mimetypes = {"text/csv", "text/comma-separated-values", "application/csv"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
+                startActivityForResult(Intent.createChooser( intent , "Open CSV"), ACTIVITY_CHOOSE_FILE1);
             }
         });
 
