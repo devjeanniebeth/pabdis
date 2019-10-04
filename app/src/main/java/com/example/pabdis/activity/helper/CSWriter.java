@@ -5,7 +5,8 @@ import java.io.PrintWriter;
 import java.io.Writer;
 
 
-public class CSWriter {
+public class
+CSWriter {
     private PrintWriter pw;
     private char separator;
 

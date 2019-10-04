@@ -2,6 +2,8 @@ package com.example.pabdis.activity.ui;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.pabdis.R;
+import com.example.pabdis.activity.helper.CSReader;
 import com.example.pabdis.activity.helper.CSWriter;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.SessionManager;
@@ -44,6 +47,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -55,6 +60,8 @@ public class ProfileActivity extends AppCompatActivity
     String SAMPLE_DB_NAME = "pabdis";
     private SessionManager session;
     private ProgressDialog pDialog;
+    public static final int requestcode = 1;
+    static final int ACTIVITY_CHOOSE_FILE1 = 1;
     TextView user_profile_name,user_profile_short_bio,user_type;
     Spinner muni, brgy;
     ArrayAdapter<CharSequence> types,munici, brgylt, brgy_kib, brgy_it, brgy_bug, brgy_kab, brgy_sab, brgy_man, brgy_bak, brgy_tba, brgy_tbl, brgy_at, brgy_bok, brgy_kap;
@@ -112,9 +119,9 @@ public class ProfileActivity extends AppCompatActivity
 
         export = findViewById(R.id.export);
         sync = findViewById(R.id.sync);
-        sync.setVisibility(View.GONE);
-//        muni.setVisibility(View.GONE);
-//        brgy.setVisibility(View.GONE);
+//        sync.setVisibility(View.GONE);
+        muni.setVisibility(View.GONE);
+        brgy.setVisibility(View.GONE);
         clear = findViewById(R.id.clear);
 
 
@@ -252,10 +259,18 @@ public class ProfileActivity extends AppCompatActivity
         sync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("text/csv|text/comma|-separated-values|application/cvs");
+                startActivityForResult(Intent.createChooser(intent, "Open CSV"), ACTIVITY_CHOOSE_FILE1);
             }
         });
+
+
+
+
+
+
 
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -353,6 +368,56 @@ public class ProfileActivity extends AppCompatActivity
             }
         });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+
+        switch(requestCode) {
+
+            case ACTIVITY_CHOOSE_FILE1: {
+                if (resultCode == RESULT_OK){
+//                    proImportCSV(new File(data.getData().getPath()));
+                }
+            }
+        }
+    }
+
+
+    private void proImportCSV(File from){
+        try {
+            // Delete everything above here since we're reading from the File we already have
+            ContentValues cv = new ContentValues();
+            // reading CSV and writing table
+            CSReader dataRead = new CSReader(new FileReader(from)); // <--- This line is key, and why it was reading the wrong file
+
+            SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
+            String[] vv = null;
+            while((vv = dataRead.readNext())!=null) {
+                cv.clear();
+                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
+
+                String eDDte;
+                try {
+                    Date nDate = currFormater.parse(vv[0]);
+                    eDDte = postFormater.format(nDate);
+                    cv.put(DatabaseHelper.SURVEY6COL_9,eDDte);
+                }
+                catch (Exception e) {
+                }
+                cv.put(DatabaseHelper.SURVEY6COL_9,vv[1]);
+                cv.put(DatabaseHelper.SURVEY6COL_9,vv[2]);
+                cv.put(DatabaseHelper.SURVEY6COL_9,vv[3]);
+                cv.put(DatabaseHelper.SURVEY6COL_9,vv[4]);
+                db.insert(DatabaseHelper.TABLE_VACC_DATE,null,cv);
+            } dataRead.close();
+
+        } catch (Exception e) { Log.e("TAG",e.toString());
+
+        }
+    }
+
+
 
 
     private void displayLoader() {
