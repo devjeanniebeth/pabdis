@@ -12,10 +12,7 @@
             android:id="@+id/nav_profile"
             android:icon="@drawable/person"
             android:title="@string/menu_profile" />
-        <item
-            android:id="@+id/nav_map"
-            android:icon="@drawable/place"
-            android:title="@string/menu_map" />
+
         <item
             android:id="@+id/nav_list_owner"
             android:icon="@drawable/list"

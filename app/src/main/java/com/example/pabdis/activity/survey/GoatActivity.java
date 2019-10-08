@@ -531,12 +531,7 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_map) {
-
-            Intent intent=new Intent(getApplicationContext(), MapActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_list_owner) {
+        }  else if (id == R.id.nav_list_owner) {
 
             Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
             startActivity(intent);

@@ -9,8 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -49,6 +51,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -257,12 +260,13 @@ public class ProfileActivity extends AppCompatActivity
         });
 
         sync.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.setType("*/*");
-                String[] mimetypes = {"text/csv", "text/comma-separated-values", "application/csv"};
+                String[] mimetypes = {"text/csv", "text/comma-separated-values", "application/csv", "application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
                 intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
                 startActivityForResult(Intent.createChooser( intent , "Open CSV"), ACTIVITY_CHOOSE_FILE1);
             }
@@ -378,7 +382,11 @@ public class ProfileActivity extends AppCompatActivity
 
             case ACTIVITY_CHOOSE_FILE1: {
                 if (resultCode == RESULT_OK){
-//                    proImportCSV(new File(data.getData().getPath()));
+
+
+//                    Log.e("FROM",data.getData().getPath().toString());
+
+                    proImportCSV(new File(data.getData().getPath()));
                 }
             }
         }
@@ -386,40 +394,50 @@ public class ProfileActivity extends AppCompatActivity
 
 
     private void proImportCSV(File from){
+
+
+        Log.e("FROM",from.toString());
+
         try {
             // Delete everything above here since we're reading from the File we already have
             ContentValues cv = new ContentValues();
             // reading CSV and writing table
             CSReader dataRead = new CSReader(new FileReader(from)); // <--- This line is key, and why it was reading the wrong file
 
-            SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
-            String[] vv = null;
-            while((vv = dataRead.readNext())!=null) {
-                cv.clear();
-                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
-                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
+//            SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
+//            String[] vv = null;
+//            while((vv = dataRead.readNext())!=null) {
+//                cv.clear();
+//                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
+//                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
 
-                String eDDte;
-                try {
-                    Date nDate = currFormater.parse(vv[0]);
-                    eDDte = postFormater.format(nDate);
-                    cv.put(DatabaseHelper.SURVEY6COL_9,eDDte);
-                }
-                catch (Exception e) {
-                }
-                cv.put(DatabaseHelper.SURVEY6COL_9,vv[1]);
-                cv.put(DatabaseHelper.SURVEY6COL_9,vv[2]);
-                cv.put(DatabaseHelper.SURVEY6COL_9,vv[3]);
-                cv.put(DatabaseHelper.SURVEY6COL_9,vv[4]);
-                db.insert(DatabaseHelper.TABLE_VACC_DATE,null,cv);
-            } dataRead.close();
+//                String eDDte;
+//                try {
+//                    Date nDate = currFormater.parse(vv[0]);
+//                    eDDte = postFormater.format(nDate);
+//                    cv.put(DatabaseHelper.VACC_DATE_5,eDDte);
+//                }
+//                catch (Exception e) {
+//                }
+//                Log.e("TAG",vv[1]);
+//                Log.e("TAG",vv[1]);
+//
+
+
+//                cv.put(DatabaseHelper.VACC_DATE_5,vv[1]);
+//                cv.put(DatabaseHelper.VACC_DATE_5,vv[2]);
+//                cv.put(DatabaseHelper.VACC_DATE_5,vv[3]);
+//                cv.put(DatabaseHelper.VACC_DATE_5,vv[4]);
+
+
+
+//                db.insert(DatabaseHelper.TABLE_VACC,null,cv);
+//            } dataRead.close();
 
         } catch (Exception e) { Log.e("TAG",e.toString());
 
         }
     }
-
-
 
 
     private void displayLoader() {
@@ -460,8 +478,6 @@ public class ProfileActivity extends AppCompatActivity
             Log.e("MainActivity", sqlEx.getMessage(), sqlEx);
         }
     }
-
-    
     private void exportDB_PETS() {
         File exportDir = new File(Environment.getExternalStorageDirectory(), "");
         if (!exportDir.exists())
@@ -580,10 +596,6 @@ public class ProfileActivity extends AppCompatActivity
         }
     }
 
-
-
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -639,9 +651,6 @@ public class ProfileActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_map) {
-            Intent intent=new Intent(getApplicationContext(), MapActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_list_owner) {
             Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
