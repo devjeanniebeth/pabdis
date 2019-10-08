@@ -46,6 +46,7 @@ public class PetAdapter extends ArrayAdapter<Pet> {
     TextView ID;
     TextView OWNER_ID;
     TextView PET_ID;
+    TextView RESPONDENT;
     TextView PETNAME;
     TextView SPECIES;
     TextView BREED;
@@ -69,6 +70,7 @@ public class PetAdapter extends ArrayAdapter<Pet> {
       holder.ID = child.findViewById(R.id.txtViewID);
       holder.OWNER_ID = child.findViewById(R.id.ownerID);
       holder.PET_ID = child.findViewById(R.id.txtPetID);
+      holder.RESPONDENT = child.findViewById(R.id.txtRespondent);
       holder.PETNAME = child.findViewById(R.id.txtPetName);
       holder.SPECIES = child.findViewById(R.id.txtPetSpecie);
       holder.BREED = child.findViewById(R.id.txtPetBreed);
@@ -90,6 +92,7 @@ public class PetAdapter extends ArrayAdapter<Pet> {
     holder.ID.setText(pet.getId());
     holder.OWNER_ID.setText(pet.getOwner_id());
     holder.PET_ID.setText(pet.getPetid());
+    holder.RESPONDENT.setText(pet.getRespondent());
     holder.PETNAME.setText(pet.getPetname());
     holder.SPECIES.setText(pet.getSpecies());
     holder.BREED.setText(pet.getBreed());

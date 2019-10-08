@@ -261,6 +261,7 @@ public class PetActivity extends AppCompatActivity
                 }
 
                 String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
+                String respondent =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)));
                 String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
                 String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
                 String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
@@ -268,7 +269,7 @@ public class PetActivity extends AppCompatActivity
                 String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
                 String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
                 String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
-                pet = new Pet(id,owner_id,petid,petname,specie,breed,sex, birth,color,created_at);
+                pet = new Pet(id,owner_id,petid,respondent,petname,specie,breed,sex, birth,color,created_at);
                 PetList.add(pet);
             } while (cursor.moveToNext());
 

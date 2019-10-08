@@ -8,13 +8,13 @@ public class Pet {
     String species = null;
     String breed = null;
     String sex = null;
-    
+    String respondent = null;
     String birthday = null;
     String color_marking = null;
     String Pet_ID = null;
     String created_at = null;
 
-    public Pet(String id,String owner_id, String petid, String petname, String species,
+    public Pet(String id,String owner_id, String petid, String respondent, String petname, String species,
                String breed, String sex, String birthday, String color_marking,
                String created_at){
 
@@ -23,6 +23,7 @@ public class Pet {
         this.id = id;
         this.owner_id = owner_id;
         this.petid = petid;
+        this.respondent = respondent;
         this.petname = petname;
         this.species = species;
         this.breed = breed;
@@ -56,6 +57,17 @@ public class Pet {
 
         return owner_id;
 
+    }
+
+    public String getRespondent()
+    {
+
+        return respondent;
+    }
+
+    public void setRespondent(String respondent)
+    {
+        this.respondent = respondent;
     }
 
     public void setOwner_id(String owner_id) {
