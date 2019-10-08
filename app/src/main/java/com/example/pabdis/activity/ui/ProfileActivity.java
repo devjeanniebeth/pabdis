@@ -384,9 +384,9 @@ public class ProfileActivity extends AppCompatActivity
                 if (resultCode == RESULT_OK){
 
 
-//                    Log.e("FROM",data.getData().getPath().toString());
+    //                   Log.e("FROM",data.getData().getPath().toString());
 
-                    proImportCSV(new File(data.getData().getPath()));
+                        proImportCSV(new File(Environment.getExternalStorageDirectory() + data.getData().toString()));
                 }
             }
         }

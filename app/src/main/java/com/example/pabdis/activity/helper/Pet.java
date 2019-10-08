@@ -8,6 +8,7 @@ public class Pet {
     String species = null;
     String breed = null;
     String sex = null;
+    
     String birthday = null;
     String color_marking = null;
     String Pet_ID = null;
