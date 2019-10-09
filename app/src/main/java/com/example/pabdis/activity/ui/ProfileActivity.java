@@ -37,21 +37,14 @@ import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.helper.SessionManager;
 import com.example.pabdis.activity.helper.User;
 import com.example.pabdis.activity.login.LoginActivity;
-import com.example.pabdis.activity.updates.ListUpdateActivity;
-
-import org.json.JSONException;
-
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -263,12 +256,13 @@ public class ProfileActivity extends AppCompatActivity
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.addCategory(Intent.CATEGORY_OPENABLE);
-                intent.setType("*/*");
-                String[] mimetypes = {"text/csv", "text/comma-separated-values", "application/csv", "application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
-                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
-                startActivityForResult(Intent.createChooser( intent , "Open CSV"), ACTIVITY_CHOOSE_FILE1);
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.addCategory(Intent.CATEGORY_OPENABLE);
+//                intent.setType("*/*");
+//                String[] mimetypes = {"text/csv", "text/comma-separated-values", "application/csv", "application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
+//                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
+//                startActivityForResult(Intent.createChooser( intent , "Open CSV"), ACTIVITY_CHOOSE_FILE1);
+                  proImportCSV();
             }
         });
 
@@ -386,31 +380,54 @@ public class ProfileActivity extends AppCompatActivity
 
     //                   Log.e("FROM",data.getData().getPath().toString());
 
-                        proImportCSV(new File(Environment.getExternalStorageDirectory() + data.getData().toString()));
+//                        proImportCSV(new File(Environment.getExternalStorageDirectory() + "/sample.csv"));
                 }
             }
         }
     }
 
 
-    private void proImportCSV(File from){
-
-
-        Log.e("FROM",from.toString());
+    private void proImportCSV(){
 
         try {
+
+            File exportDir = new File(Environment.getExternalStorageDirectory(), "");
+            if (!exportDir.exists())
+            {
+                exportDir.mkdirs();
+            }
+            File file = new File(exportDir, "PABDIS_Pet.csv");
             // Delete everything above here since we're reading from the File we already have
             ContentValues cv = new ContentValues();
             // reading CSV and writing table
-            CSReader dataRead = new CSReader(new FileReader(from)); // <--- This line is key, and why it was reading the wrong file
 
-//            SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
-//            String[] vv = null;
-//            while((vv = dataRead.readNext())!=null) {
+
+
+            File csvfile = new File(Environment.getExternalStorageDirectory() + "/sample.xlsx");
+            CSReader dataRead = new CSReader(new FileReader(csvfile.getAbsolutePath()));
+
+            Log.e("TAG",dataRead.toString());
+//
+//
+//            CSReader dataRead = new CSReader(new FileReader(Environment.getExternalStorageDirectory() + "/" + "sample.xlsx")); // <--- This line is key, and why it was reading the wrong file
+
+            SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
+            String[] vv = null;
+
+
+            List<String[]> rows = new ArrayList<>();
+
+
+
+            while((vv = dataRead.readNext())!=null) {
+
+                Log.d("TAG", vv[1]);
+
+
 //                cv.clear();
 //                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
 //                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
-
+//
 //                String eDDte;
 //                try {
 //                    Date nDate = currFormater.parse(vv[0]);
@@ -419,20 +436,20 @@ public class ProfileActivity extends AppCompatActivity
 //                }
 //                catch (Exception e) {
 //                }
-//                Log.e("TAG",vv[1]);
+//                Log.e("TAG",vv[0]);
 //                Log.e("TAG",vv[1]);
 //
-
-
+//
+//
 //                cv.put(DatabaseHelper.VACC_DATE_5,vv[1]);
 //                cv.put(DatabaseHelper.VACC_DATE_5,vv[2]);
 //                cv.put(DatabaseHelper.VACC_DATE_5,vv[3]);
 //                cv.put(DatabaseHelper.VACC_DATE_5,vv[4]);
-
-
-
+//
+//
+//
 //                db.insert(DatabaseHelper.TABLE_VACC,null,cv);
-//            } dataRead.close();
+            } dataRead.close();
 
         } catch (Exception e) { Log.e("TAG",e.toString());
 
@@ -627,17 +644,6 @@ public class ProfileActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
     @SuppressWarnings("StatementWithEmptyBody")
