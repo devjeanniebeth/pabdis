@@ -427,8 +427,7 @@ public class ProfileActivity extends AppCompatActivity
                 Log.d("TAG", vv[4]);
                 Log.d("TAG", vv[5]);
                 Log.d("TAG", vv[6]);
-
-
+                
 
 //                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
 //                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
