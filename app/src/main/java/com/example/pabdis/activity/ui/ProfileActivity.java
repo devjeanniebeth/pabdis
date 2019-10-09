@@ -403,10 +403,9 @@ public class ProfileActivity extends AppCompatActivity
 
 
 
-            File csvfile = new File(Environment.getExternalStorageDirectory() + "/sample.xlsx");
+            File csvfile = new File(Environment.getExternalStorageDirectory() + "/pabdis_survey.csv");
             CSReader dataRead = new CSReader(new FileReader(csvfile.getAbsolutePath()));
 
-            Log.e("TAG",dataRead.toString());
 //
 //
 //            CSReader dataRead = new CSReader(new FileReader(Environment.getExternalStorageDirectory() + "/" + "sample.xlsx")); // <--- This line is key, and why it was reading the wrong file
@@ -420,11 +419,17 @@ public class ProfileActivity extends AppCompatActivity
 
 
             while((vv = dataRead.readNext())!=null) {
-
+                cv.clear();
+                Log.d("TAG", vv[0]);
                 Log.d("TAG", vv[1]);
+                Log.d("TAG", vv[2]);
+                Log.d("TAG", vv[3]);
+                Log.d("TAG", vv[4]);
+                Log.d("TAG", vv[5]);
+                Log.d("TAG", vv[6]);
 
 
-//                cv.clear();
+
 //                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
 //                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
 //
