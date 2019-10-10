@@ -388,76 +388,96 @@ public class ProfileActivity extends AppCompatActivity
 
 
     private void proImportCSV(){
-
+        displayLoader();
         try {
 
-            File exportDir = new File(Environment.getExternalStorageDirectory(), "");
-            if (!exportDir.exists())
-            {
-                exportDir.mkdirs();
-            }
-            File file = new File(exportDir, "PABDIS_Pet.csv");
+
             // Delete everything above here since we're reading from the File we already have
-            ContentValues cv = new ContentValues();
+            ContentValues cv_owner = new ContentValues();
+            ContentValues cv_pet = new ContentValues();
+            ContentValues cv_vacc = new ContentValues();
             // reading CSV and writing table
 
-
-
-            File csvfile = new File(Environment.getExternalStorageDirectory() + "/pabdis_survey.csv");
+            File csvfile = new File(Environment.getExternalStorageDirectory() + "/sample.csv");
             CSReader dataRead = new CSReader(new FileReader(csvfile.getAbsolutePath()));
-
-//
-//
-//            CSReader dataRead = new CSReader(new FileReader(Environment.getExternalStorageDirectory() + "/" + "sample.xlsx")); // <--- This line is key, and why it was reading the wrong file
 
             SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
             String[] vv = null;
 
 
-            List<String[]> rows = new ArrayList<>();
-
-
-
             while((vv = dataRead.readNext())!=null) {
-                cv.clear();
-                Log.d("TAG", vv[0]);
-                Log.d("TAG", vv[1]);
-                Log.d("TAG", vv[2]);
-                Log.d("TAG", vv[3]);
-                Log.d("TAG", vv[4]);
-                Log.d("TAG", vv[5]);
-                Log.d("TAG", vv[6]);
-                
+                cv_owner.clear();
+                cv_pet.clear();
+                cv_vacc.clear();
 
-//                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
-//                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
-//
-//                String eDDte;
-//                try {
-//                    Date nDate = currFormater.parse(vv[0]);
-//                    eDDte = postFormater.format(nDate);
-//                    cv.put(DatabaseHelper.VACC_DATE_5,eDDte);
-//                }
-//                catch (Exception e) {
-//                }
-//                Log.e("TAG",vv[0]);
-//                Log.e("TAG",vv[1]);
-//
-//
-//
-//                cv.put(DatabaseHelper.VACC_DATE_5,vv[1]);
-//                cv.put(DatabaseHelper.VACC_DATE_5,vv[2]);
-//                cv.put(DatabaseHelper.VACC_DATE_5,vv[3]);
-//                cv.put(DatabaseHelper.VACC_DATE_5,vv[4]);
-//
-//
-//
-//                db.insert(DatabaseHelper.TABLE_VACC,null,cv);
+                SimpleDateFormat currFormater  = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat postFormater = new SimpleDateFormat("yyyy-MM-dd");
+
+                String eDDte;
+                try {
+                    Date nDate = currFormater.parse(vv[0]);
+                    eDDte = postFormater.format(nDate);
+                }
+                catch (Exception e) {
+                }
+
+
+
+                cv_pet.put(DatabaseHelper.VACCCOL_3,vv[0]);
+                cv_pet.put(DatabaseHelper.VACCCOL_4,vv[1]);
+                cv_pet.put(DatabaseHelper.VACCCOL_5,vv[2]);
+                cv_pet.put(DatabaseHelper.VACCCOL_6,vv[3]);
+                cv_pet.put(DatabaseHelper.VACCCOL_7,vv[4]);
+                cv_pet.put(DatabaseHelper.VACCCOL_8,vv[5]);
+                cv_pet.put(DatabaseHelper.VACCCOL_9,vv[6]);
+                cv_pet.put(DatabaseHelper.VACCCOL_10,vv[7]);
+                cv_pet.put(DatabaseHelper.VACCCOL_11,vv[8]);
+                cv_pet.put(DatabaseHelper.VACCCOL_12,vv[9]);
+                cv_pet.put(DatabaseHelper.VACCCOL_13,vv[10]);
+                cv_pet.put(DatabaseHelper.VACCCOL_15,vv[11]);
+                db.insert(DatabaseHelper.TABLE_VACC,null,cv_pet);
+
+
+
+                cv_owner.put(DatabaseHelper.OWNERCOL_2,vv[12]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_3,vv[13]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_4,vv[14]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_5,vv[15]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_6,vv[16]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_7,vv[17]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_8,vv[18]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_9,vv[19]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_10,vv[20]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_11,vv[21]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_12,vv[22]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_13,vv[23]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_14,vv[24]);
+                cv_owner.put(DatabaseHelper.OWNERCOL_15,vv[25]);
+                db.insert(DatabaseHelper.TABLE_OWNER,null,cv_owner);
+
+
+                cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[26]);
+                cv_owner.put(DatabaseHelper.VACC_DATE_3,vv[27]);
+                cv_owner.put(DatabaseHelper.VACC_DATE_4,vv[28]);
+                cv_owner.put(DatabaseHelper.VACC_DATE_5,vv[29]);
+                db.insert(DatabaseHelper.TABLE_VACC_DATE,null,cv_vacc);
+
+
+
+
+
+
+
             } dataRead.close();
 
-        } catch (Exception e) { Log.e("TAG",e.toString());
+        } catch (Exception e) {
+            Log.e("TAG",e.toString());
+            Toast.makeText(ProfileActivity.this, "File not found!" , Toast.LENGTH_SHORT).show();
+
 
         }
+
+        pDialog.dismiss();
     }
 
 
