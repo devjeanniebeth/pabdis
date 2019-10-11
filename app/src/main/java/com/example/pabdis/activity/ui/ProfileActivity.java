@@ -258,17 +258,71 @@ public class ProfileActivity extends AppCompatActivity
         });
 
         sync.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//                intent.addCategory(Intent.CATEGORY_OPENABLE);
-//                intent.setType("*/*");
-//                String[] mimetypes = {"text/csv", "text/comma-separated-values", "application/csv", "application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"};
-//                intent.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes);
-//                startActivityForResult(Intent.createChooser( intent , "Open CSV"), ACTIVITY_CHOOSE_FILE1);
-                  proImportCSV();
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(ProfileActivity.this);
+
+                // Set a title for alert dialog
+                builder2.setTitle("Import.");
+
+                // Ask the final question
+                builder2.setMessage("Do you want to import the data? ");
+
+                // Set click listener for alert dialog buttons
+
+                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+
+
+
+
+                                try {
+
+                                    displayLoader2();
+                                    proImportCSV();
+                                    pDialog.dismiss();
+
+                                    Toast.makeText(ProfileActivity.this, "Success IMPORTING the data!" , Toast.LENGTH_SHORT).show();
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+
+                                break;
+                        }
+                    }
+                };
+
+                // Set the alert dialog yes button click listener
+                builder2.setPositiveButton("Yes", dialogClickListener1);
+
+                // Set the alert dialog no button click listener
+                builder2.setNegativeButton("No",dialogClickListener1);
+
+                AlertDialog dialog4 = builder2.create();
+                // Display the alert dialog on interface
+                dialog4.show();
+
+
+
+
             }
+
+
+
         });
 
 
@@ -393,7 +447,6 @@ public class ProfileActivity extends AppCompatActivity
 
 
     private void proImportCSV(){
-        displayLoader();
         try {
 
 
@@ -433,7 +486,7 @@ public class ProfileActivity extends AppCompatActivity
 
                 int rs = mydb.getCountPetAll(vv[0]);
 
-                if(rs == 0)
+                if(rs == 0 && !vv[0].equals("owner_id"))
                 {
                     cv_pet.put(DatabaseHelper.VACCCOL_3,vv[0]);
                     cv_pet.put(DatabaseHelper.VACCCOL_4,vv[1]);
@@ -454,7 +507,7 @@ public class ProfileActivity extends AppCompatActivity
 
                 int rs2 = mydb.getCountOwner(vv[13]);
 
-                if(rs2 == 0)
+                if(rs2 == 0 && !vv[13].equals("owner_id"))
                 {
 
                     cv_owner.put(DatabaseHelper.OWNERCOL_2,vv[12]);
@@ -475,18 +528,17 @@ public class ProfileActivity extends AppCompatActivity
 
                 }
 
+                int rs3 = mydb.getCountVacc(vv[26],vv[27],vv[28]);
+                if(rs3 == 0 && !vv[26].equals("pet_id"))
+                {
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[26]);
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_3,vv[27]);
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_4,vv[28]);
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_5,vv[29]);
+                    db.insert(DatabaseHelper.TABLE_VACC_DATE,null,cv_vacc);
 
+                }
 
-
-
-
-
-
-                cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[26]);
-                cv_owner.put(DatabaseHelper.VACC_DATE_3,vv[27]);
-                cv_owner.put(DatabaseHelper.VACC_DATE_4,vv[28]);
-                cv_owner.put(DatabaseHelper.VACC_DATE_5,vv[29]);
-                db.insert(DatabaseHelper.TABLE_VACC_DATE,null,cv_vacc);
 
 
 
@@ -500,13 +552,24 @@ public class ProfileActivity extends AppCompatActivity
 
         }
 
-        pDialog.dismiss();
+
+
     }
 
 
     private void displayLoader() {
         pDialog = new ProgressDialog(ProfileActivity.this);
         pDialog.setMessage("Exporting.. Please wait...");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+    }
+
+
+    private void displayLoader2() {
+        pDialog = new ProgressDialog(ProfileActivity.this);
+        pDialog.setMessage("Importing.. Please wait...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
@@ -670,9 +733,9 @@ public class ProfileActivity extends AppCompatActivity
         }
     }
 
+    // Inflate the menu; this adds items to the action bar if it is present.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }

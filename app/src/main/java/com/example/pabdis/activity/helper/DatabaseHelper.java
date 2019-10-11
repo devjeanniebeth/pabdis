@@ -810,6 +810,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+
+    public int getCountVacc(String petid, String datevacc ,String vaccby) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) from "+TABLE_VACC_DATE+" WHERE "+VACC_DATE_2+"='"+petid+"'"
+                + " AND "+VACC_DATE_3+"='"+datevacc+"'" + " AND "+VACC_DATE_4+"='"+vaccby+"'";
+        Cursor res =  db.rawQuery(query,null);
+        res.moveToFirst();
+        int count = res.getInt(0);
+        return count;
+    }
+
     public Cursor getSwine(String petid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
