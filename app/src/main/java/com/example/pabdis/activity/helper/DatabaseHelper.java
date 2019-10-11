@@ -799,12 +799,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * from "+TABLE_OWNER+" WHERE owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
-
     }
-    public Cursor getSwine(String ownerid)
+
+    public int getCountPetAll(String ownerid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) from "+TABLE_VACC+" WHERE "+VACCCOL_12+"='"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        res.moveToFirst();
+        int count = res.getInt(0);
+        return count;
+    }
+
+    public Cursor getSwine(String petid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * from "+TABLE_SURVEY1+" WHERE owner_id = '"+ownerid+"'";
+        String query = "SELECT * from "+TABLE_SURVEY1+" WHERE owner_id = '"+petid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
 

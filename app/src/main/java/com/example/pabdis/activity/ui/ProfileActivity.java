@@ -34,6 +34,7 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.CSReader;
 import com.example.pabdis.activity.helper.CSWriter;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.helper.MySingleton;
 import com.example.pabdis.activity.helper.SessionManager;
 import com.example.pabdis.activity.helper.User;
 import com.example.pabdis.activity.login.LoginActivity;
@@ -213,17 +214,21 @@ public class ProfileActivity extends AppCompatActivity
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
 
+                                displayLoader();
+
+
                                 try {
-                                    displayLoader();
                                     exportDB_Owner();
                                     exportDB_PETS();
                                     exportDB_PetVacc();
-                                    pDialog.dismiss();
+
                                     Toast.makeText(ProfileActivity.this, "Success EXPORTING the data!" , Toast.LENGTH_SHORT).show();
 
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+
+                                pDialog.dismiss();
 
 
                                 break;
@@ -404,8 +409,13 @@ public class ProfileActivity extends AppCompatActivity
             SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
             String[] vv = null;
 
+            int inter = 0;
+            while((vv = dataRead.readNext())!= null) {
 
-            while((vv = dataRead.readNext())!=null) {
+                if(inter == 0)
+                {
+                    inter++;
+                }
                 cv_owner.clear();
                 cv_pet.clear();
                 cv_vacc.clear();
@@ -421,39 +431,55 @@ public class ProfileActivity extends AppCompatActivity
                 catch (Exception e) {
                 }
 
+                int rs = mydb.getCountPetAll(vv[0]);
+
+                if(rs == 0)
+                {
+                    cv_pet.put(DatabaseHelper.VACCCOL_3,vv[0]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_4,vv[1]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_5,vv[2]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_6,vv[3]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_7,vv[4]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_8,vv[5]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_9,vv[6]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_10,vv[7]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_11,vv[8]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_12,vv[9]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_13,vv[10]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_15,vv[11]);
+                    db.insert(DatabaseHelper.TABLE_VACC,null,cv_pet);
+                }
 
 
-                cv_pet.put(DatabaseHelper.VACCCOL_3,vv[0]);
-                cv_pet.put(DatabaseHelper.VACCCOL_4,vv[1]);
-                cv_pet.put(DatabaseHelper.VACCCOL_5,vv[2]);
-                cv_pet.put(DatabaseHelper.VACCCOL_6,vv[3]);
-                cv_pet.put(DatabaseHelper.VACCCOL_7,vv[4]);
-                cv_pet.put(DatabaseHelper.VACCCOL_8,vv[5]);
-                cv_pet.put(DatabaseHelper.VACCCOL_9,vv[6]);
-                cv_pet.put(DatabaseHelper.VACCCOL_10,vv[7]);
-                cv_pet.put(DatabaseHelper.VACCCOL_11,vv[8]);
-                cv_pet.put(DatabaseHelper.VACCCOL_12,vv[9]);
-                cv_pet.put(DatabaseHelper.VACCCOL_13,vv[10]);
-                cv_pet.put(DatabaseHelper.VACCCOL_15,vv[11]);
-                db.insert(DatabaseHelper.TABLE_VACC,null,cv_pet);
+
+                int rs2 = mydb.getCountOwner(vv[13]);
+
+                if(rs2 == 0)
+                {
+
+                    cv_owner.put(DatabaseHelper.OWNERCOL_2,vv[12]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_3,vv[13]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_4,vv[14]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_5,vv[15]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_6,vv[16]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_7,vv[17]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_8,vv[18]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_9,vv[19]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_10,vv[20]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_11,vv[21]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_12,vv[22]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_13,vv[23]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_14,vv[24]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_15,vv[25]);
+                    db.insert(DatabaseHelper.TABLE_OWNER,null,cv_owner);
+
+                }
 
 
 
-                cv_owner.put(DatabaseHelper.OWNERCOL_2,vv[12]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_3,vv[13]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_4,vv[14]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_5,vv[15]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_6,vv[16]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_7,vv[17]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_8,vv[18]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_9,vv[19]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_10,vv[20]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_11,vv[21]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_12,vv[22]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_13,vv[23]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_14,vv[24]);
-                cv_owner.put(DatabaseHelper.OWNERCOL_15,vv[25]);
-                db.insert(DatabaseHelper.TABLE_OWNER,null,cv_owner);
+
+
+
 
 
                 cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[26]);
@@ -461,9 +487,6 @@ public class ProfileActivity extends AppCompatActivity
                 cv_owner.put(DatabaseHelper.VACC_DATE_4,vv[28]);
                 cv_owner.put(DatabaseHelper.VACC_DATE_5,vv[29]);
                 db.insert(DatabaseHelper.TABLE_VACC_DATE,null,cv_vacc);
-
-
-
 
 
 
