@@ -434,11 +434,11 @@ public class ProfileActivity extends AppCompatActivity
         switch(requestCode) {
 
             case ACTIVITY_CHOOSE_FILE1: {
-                if (resultCode == RESULT_OK){
 
 
     //                   Log.e("FROM",data.getData().getPath().toString());
 
+                    if (resultCode == RESULT_OK){
 //                        proImportCSV(new File(Environment.getExternalStorageDirectory() + "/sample.csv"));
                 }
             }
@@ -456,7 +456,7 @@ public class ProfileActivity extends AppCompatActivity
             ContentValues cv_vacc = new ContentValues();
             // reading CSV and writing table
 
-            File csvfile = new File(Environment.getExternalStorageDirectory() + "/sample.csv");
+            File csvfile = new File(Environment.getExternalStorageDirectory() + "/pabdis.csv");
             CSReader dataRead = new CSReader(new FileReader(csvfile.getAbsolutePath()));
 
             SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once

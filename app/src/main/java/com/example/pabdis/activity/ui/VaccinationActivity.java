@@ -535,15 +535,10 @@ public class VaccinationActivity extends AppCompatActivity {
                         int index = (int) (rnd.nextFloat() * SALTCHARS.length());
                         salt.append(SALTCHARS.charAt(index));
                     }
-
                     final String end = salt.toString();
-
 
                     final byte imgv2[] = imgv;
                     final String stats  = mylistup.toString();
-
-
-
 
                     // Build an AlertDialog
                     AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
@@ -563,7 +558,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 case DialogInterface.BUTTON_POSITIVE:
                                     // User clicked the Yes button
 
-                                    if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
+                                    if (petname.equals("") || feat.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
                                         Toast.makeText(VaccinationActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
                                     }else{
 
