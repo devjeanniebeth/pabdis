@@ -705,13 +705,13 @@ public class ProfileActivity extends AppCompatActivity
                     "got.total_area as got_area, got.total_income as got_income, got.IsVaccinated as got_vacc, got.vaccination as got_vacctype, " +
                     "got.IsDewormed as got_deworm, got.created_at as got_created," +
                     /*OTHER*/
-                    "oth.sheep,oth.horse, oth.rabbit, oth.duck, oth.turkey, oth.goose, oth.total_income as oth_income,"+
+                    "oth.sheep,oth.horse, oth.rabbit, oth.duck, oth.turkey, oth.goose, oth.total_income as oth_income, oth.created_at as oth_created,"+
                     /*FISHERY*/
-                    "f.total_area as f_area, f.total_production as f_prod, f.total_income as f_income,"+
+                    "f.total_area as f_area, f.total_production as f_prod, f.total_income as f_income, f.created_at as f_created,"+
                     /*APIARY*/
-                    "ap.total_area as ap_col, ap.total_production as ap_prod, ap.total_income as ap_income,"+
+                    "ap.total_area as ap_col, ap.total_production as ap_prod, ap.total_income as ap_income, ap.created_at as ap_created,"+
                     /*HOUSEHOLD*/
-                    "hh.beef, hh.carabeef, hh.pork,hh.chicken,hh.fish,hh.egg"+
+                    "hh.beef, hh.carabeef, hh.pork,hh.chicken,hh.fish,hh.egg,hh.created_at as hh_created"+
                     " FROM pvet_owner as o LEFT JOIN pvet_survey_swine as sw ON o.owner_id = sw.owner_id " +
                     "LEFT JOIN pvet_survey_chicken as ch ON ch.owner_id = o.owner_id  " +
                     "LEFT JOIN pvet_survey_cattle as cat ON cat.owner_id = o.owner_id " +
@@ -737,7 +737,7 @@ public class ProfileActivity extends AppCompatActivity
                         curCSV.getString(81),curCSV.getString(82), curCSV.getString(83), curCSV.getString(84), curCSV.getString(85), curCSV.getString(86), curCSV.getString(87), curCSV.getString(88), curCSV.getString(89), curCSV.getString(90),
                         curCSV.getString(91),curCSV.getString(92), curCSV.getString(93), curCSV.getString(94), curCSV.getString(95), curCSV.getString(96), curCSV.getString(97), curCSV.getString(98), curCSV.getString(99), curCSV.getString(100),
                         curCSV.getString(101),curCSV.getString(102), curCSV.getString(103), curCSV.getString(104), curCSV.getString(105), curCSV.getString(106), curCSV.getString(107), curCSV.getString(108), curCSV.getString(109), curCSV.getString(110),
-                        curCSV.getString(111),curCSV.getString(112), curCSV.getString(113), curCSV.getString(114), curCSV.getString(115), curCSV.getString(116), curCSV.getString(117), curCSV.getString(118), curCSV.getString(119)
+                        curCSV.getString(111),curCSV.getString(112), curCSV.getString(113), curCSV.getString(114), curCSV.getString(115), curCSV.getString(116), curCSV.getString(117), curCSV.getString(118), curCSV.getString(119), curCSV.getString(120), curCSV.getString(121), curCSV.getString(122), curCSV.getString(123)
 
                 };
                 csvWrite.writeNext(arrStr);
