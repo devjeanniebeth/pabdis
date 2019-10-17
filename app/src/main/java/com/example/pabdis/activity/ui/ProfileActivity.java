@@ -285,7 +285,8 @@ public class ProfileActivity extends AppCompatActivity
                                 try {
 
                                     displayLoader2();
-                                    proImportCSV();
+                                    selectCSVFile();
+
                                     pDialog.dismiss();
 
                                     Toast.makeText(ProfileActivity.this, "Success IMPORTING the data!" , Toast.LENGTH_SHORT).show();
@@ -427,6 +428,15 @@ public class ProfileActivity extends AppCompatActivity
             }
         });
     }
+
+
+    private void selectCSVFile(){
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        startActivityForResult(Intent.createChooser(intent, "Open CSV"), ACTIVITY_CHOOSE_FILE1);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -440,13 +450,14 @@ public class ProfileActivity extends AppCompatActivity
 
                     if (resultCode == RESULT_OK){
 //                        proImportCSV(new File(Environment.getExternalStorageDirectory() + "/sample.csv"));
+                        proImportCSV(new File(data.getData().getPath()));
                 }
             }
         }
     }
 
 
-    private void proImportCSV(){
+    private void proImportCSV(File from){
         try {
 
 
@@ -454,10 +465,28 @@ public class ProfileActivity extends AppCompatActivity
             ContentValues cv_owner = new ContentValues();
             ContentValues cv_pet = new ContentValues();
             ContentValues cv_vacc = new ContentValues();
+
+            String path = from.getPath();
+                               Log.e("PATH",path);
+
+
+
+
+            String filename=path.substring(path.lastIndexOf("/")+1);
+                               Log.e("FILENAME",filename);
+
             // reading CSV and writing table
 
-            File csvfile = new File(Environment.getExternalStorageDirectory() + "/pabdis.csv");
+            File csvfile = new File(Environment.getExternalStorageDirectory() + "/Download/"+ filename);
+
+
+            Log.e("csvfile",csvfile.getAbsolutePath());
+
+
             CSReader dataRead = new CSReader(new FileReader(csvfile.getAbsolutePath()));
+
+
+//            CSReader dataRead = new CSReader(new FileReader(from.getAbsolutePath()));
 
             SQLiteDatabase db = mydb.getWritableDatabase(); // LEt's just put this here since you'll probably be using it a lot more than once
             String[] vv = null;
