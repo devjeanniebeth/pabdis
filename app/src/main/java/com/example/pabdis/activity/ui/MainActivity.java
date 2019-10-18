@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity
 
             proceedSurvey.setVisibility(View.GONE);
             btnUpdate.setVisibility(View.VISIBLE);
-            btnRefresh.setVisibility(View.GONE);
+//            btnRefresh.setVisibility(View.GONE);
 
 
             String id = rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_1));
@@ -205,6 +205,9 @@ public class MainActivity extends AppCompatActivity
 
             tvLongitude.setText(longitude);
             tvLatitude.setText(latitude);
+
+
+
             types = ArrayAdapter.createFromResource(this, R.array.ownertype, R.layout.support_simple_spinner_dropdown_item);
 
             Toast.makeText(MainActivity.this, "Success!"+ type + mylist2 , Toast.LENGTH_LONG).show();
@@ -390,9 +393,27 @@ public class MainActivity extends AppCompatActivity
                     final String brg = brgy.getSelectedItem().toString();
                     final String ownert = ownertype.getSelectedItem().toString();
                     final String member;
-
+                    final String lat;
+                    final String longi;
                     final String ownerin;
                     final String contact;
+
+                    if(tvLatitude == null){
+
+                        lat = "N/A";
+                    }else{
+                        lat = tvLati;
+                    }
+
+                    if(tvLongitude == null)
+                    {
+                        longi = "N/A";
+
+                    }else{
+
+                        longi = tvLongi;
+                    }
+
 
 
                     if(num.equals(""))
@@ -441,24 +462,6 @@ public class MainActivity extends AppCompatActivity
 
                     final String end = salt.toString();
 
-                    final String lat;
-                    final String longi;
-
-                    if(tvLati == null){
-
-                        lat = "N/A";
-                    }else{
-                        lat = tvLati;
-                    }
-
-                    if(tvLongi == null)
-                    {
-                        longi = "N/A";
-
-                    }else{
-
-                        longi = tvLongi;
-                    }
 
 
 
@@ -485,12 +488,12 @@ public class MainActivity extends AppCompatActivity
                                     // User clicked the Yes button
 
                                     if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                        Toast.makeText(MainActivity.this, "Check your input!" +ownerid, Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(MainActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
 
                                     }else{
 
                                         try {
-                                            myDB.updateOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(), mun.trim(), brg.trim(),  house.trim());
+                                            myDB.updateOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(), mun.trim(), brg.trim(),  house.trim(), lat.trim(), longi.trim());
                                             Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
 //                                        showDebugDBAddressLogToast(MainActivity.this);
 
