@@ -146,7 +146,7 @@ public class PetVaccination extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(PetVaccination.this);
                 builder.setTitle("Choose option");
-                builder.setMessage("Update or delete user?");
+                builder.setMessage("Update or delete pet vaccination?");
                 builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

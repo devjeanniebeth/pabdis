@@ -91,6 +91,12 @@ public class ListUpdateActivity extends AppCompatActivity {
                 btnChicken.setVisibility(View.GONE);
                 btnCattle.setVisibility(View.GONE);
                 btnCarabao.setVisibility(View.GONE);
+                btnGoat.setVisibility(View.GONE);
+                btnOther.setVisibility(View.GONE);
+                btnFishery.setVisibility(View.GONE);
+                btnApiary.setVisibility(View.GONE);
+                btnWeekly.setVisibility(View.GONE);
+
 
 
             }
