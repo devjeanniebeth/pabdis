@@ -85,8 +85,12 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
         textView = findViewById(R.id.textView);
         btnUpdate.setVisibility(View.GONE);
 
+        Calendar now = Calendar.getInstance();
+        now = Calendar.getInstance();
+        now.add(Calendar.YEAR, -1);
+
         txtincome = findViewById(R.id.txtincome);
-        txtincome.setText("Total Income for 2018");
+        txtincome.setText("Total Income for " + now.get(Calendar.YEAR));
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -98,7 +102,6 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-
                 pos= extras.getInt("position");
             }
         } else {

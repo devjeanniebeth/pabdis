@@ -108,8 +108,12 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
         textView = findViewById(R.id.textView);
 
         edtSwineTotal.setEnabled(false);
+        Calendar now = Calendar.getInstance();
+        now = Calendar.getInstance();
+        now.add(Calendar.YEAR, -1);
+
         txtincome = findViewById(R.id.txtincome);
-        txtincome.setText("Total Income for 2018");
+        txtincome.setText("Total Income for " + now.get(Calendar.YEAR));
 
         btnUpdate.setVisibility(View.GONE);
 

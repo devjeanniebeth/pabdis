@@ -82,8 +82,12 @@ public class CarabaoActivity extends AppCompatActivity implements NavigationView
         rbn = findViewById(R.id.rbn);
         rby = findViewById(R.id.rby);
         textView = findViewById(R.id.textView);
+        Calendar now = Calendar.getInstance();
+        now = Calendar.getInstance();
+        now.add(Calendar.YEAR, -1);
+
         txtincome = findViewById(R.id.txtincome);
-        txtincome.setText("Total Income for 2018");
+        txtincome.setText("Total Income for " + now.get(Calendar.YEAR));
         edtTotal.setEnabled(false);
         btnUpdate.setVisibility(View.GONE);
 
