@@ -53,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
-    Button export,sync,clear;
+    Button export,sync,clear, export2;
     DatabaseHelper mydb;
     Context context;
     String SAMPLE_DB_NAME = "pabdis";
@@ -168,6 +168,7 @@ public class ProfileActivity extends AppCompatActivity
         muni.setVisibility(View.GONE);
         brgy.setVisibility(View.GONE);
         clear = findViewById(R.id.clear);
+        export2 = findViewById(R.id.export2);
 
 
 
@@ -267,6 +268,69 @@ public class ProfileActivity extends AppCompatActivity
 
                                 try {
                                     exportDB_Owner();
+
+                                    Toast.makeText(ProfileActivity.this, "Success EXPORTING the data!" , Toast.LENGTH_SHORT).show();
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                                pDialog.dismiss();
+
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+
+                                break;
+                        }
+                    }
+                };
+
+                // Set the alert dialog yes button click listener
+                builder2.setPositiveButton("Yes", dialogClickListener1);
+
+                // Set the alert dialog no button click listener
+                builder2.setNegativeButton("No",dialogClickListener1);
+
+                AlertDialog dialog4 = builder2.create();
+                // Display the alert dialog on interface
+                dialog4.show();
+
+
+
+
+            }
+        });
+
+        export2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // Build an AlertDialog
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(ProfileActivity.this);
+
+                // Set a title for alert dialog
+                builder2.setTitle("Export.");
+
+                // Ask the final question
+                builder2.setMessage("Do you want to export the data? ");
+
+                // Set click listener for alert dialog buttons
+
+                DialogInterface.OnClickListener dialogClickListener1 = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                // User clicked the Yes button
+
+                                displayLoader();
+
+
+                                try {
                                     exportDB_PETS();
                                     exportDB_PetVacc();
 

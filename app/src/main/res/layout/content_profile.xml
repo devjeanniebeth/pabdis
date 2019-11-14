@@ -96,7 +96,17 @@
                     android:layout_marginTop="10dp"
                     android:layout_height="50dp"
                     android:background="@color/colorPrimary"
-                    android:text="EXPORT"
+                    android:text="EXPORT SURVEY"
+                    android:textColor="@android:color/white" />
+
+
+                <Button
+                    android:id="@+id/export2"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="50dp"
+                    android:background="@color/colorPrimary"
+                    android:text="EXPORT PET"
                     android:textColor="@android:color/white" />
 
 
