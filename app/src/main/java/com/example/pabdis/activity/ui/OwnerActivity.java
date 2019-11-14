@@ -48,7 +48,7 @@ public class OwnerActivity extends AppCompatActivity
     ListAdapter listAdapter;
     EditText searchView;
     Cursor cursor;
-    Integer pos;
+    Integer pos,stat;
     ArrayList<Owner> OwnerList = new ArrayList<Owner>();
     LinearLayout btnLay;
 
@@ -87,11 +87,14 @@ public class OwnerActivity extends AppCompatActivity
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 pos = null;
+                stat = 0;
             } else {
                 pos= extras.getInt("pos");
+                stat= extras.getInt("stat");
             }
         } else {
             pos= (Integer) savedInstanceState.getSerializable("pos");
+            stat= (Integer) savedInstanceState.getSerializable("stat");
         }
 
 
@@ -160,11 +163,25 @@ public class OwnerActivity extends AppCompatActivity
                             LISTVIEW.setSelection(pos);
                             view.setBackgroundColor(Color.BLUE);
                         }
-                        Intent i = new Intent(OwnerActivity.this, ListUpdateActivity
-                                .class);
-                        i.putExtra("ownerid", code);
-                        i.putExtra("position", position);
-                        startActivity(i);
+
+                        if(stat.equals(1))
+                        {
+                            Intent i = new Intent(OwnerActivity.this, MainActivity
+                                    .class);
+                            i.putExtra("ownerid", code);
+                            i.putExtra("update", "true");
+                            i.putExtra("position", position);
+                            startActivity(i);
+
+                        }else{
+                            Intent i = new Intent(OwnerActivity.this, ListUpdateActivity
+                                    .class);
+                            i.putExtra("ownerid", code);
+                            i.putExtra("position", position);
+                            startActivity(i);
+
+                        }
+
 
                     }
                 });

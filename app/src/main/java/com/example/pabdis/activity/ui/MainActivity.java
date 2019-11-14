@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
     Spinner muni, brgy, ownertype;
     public static String tvLongi;
     public static String tvLati;
-    Integer position, year, ctr, pos;
+    Integer position, year, ctr, pos,stat;
     DatabaseHelper myDB;
     Context mContext;
     Character first;
@@ -151,16 +151,18 @@ public class MainActivity extends AppCompatActivity
                 ownerid= null;
                 petid = null;
                 pos = null;
+                stat = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
                 pos= extras.getInt("position");
+                stat= extras.getInt("stat");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
             pos = (Integer) savedInstanceState.getSerializable("position");
-
+            stat = (Integer) savedInstanceState.getSerializable("stat");
 
         }
 
@@ -834,10 +836,22 @@ public class MainActivity extends AppCompatActivity
                                             startActivity(intent);
 
                                         }else{
-                                            Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
-                                            intent.putExtra("ownerid", ownerid);
-                                            intent.putExtra("petid", petid);
-                                            startActivity(intent);
+                                            if(stat == 1)
+                                            {
+                                                String add = "add";
+                                                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                intent.putExtra("add",add);
+                                                startActivity(intent);
+
+                                            }else{
+                                                Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
+                                                intent.putExtra("ownerid", ownerid);
+                                                intent.putExtra("petid", petid);
+                                                startActivity(intent);
+                                            }
+
                                         }
 
 
@@ -950,19 +964,23 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_survey) {
             Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
 
         }  else if (id == R.id.nav_list_owner) {
 
             Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
 
         } else if (id == R.id.nav_list_pet) {
 
             Intent intent=new Intent(getApplicationContext(), PetActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {

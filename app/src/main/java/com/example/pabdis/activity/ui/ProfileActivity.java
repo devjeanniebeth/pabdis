@@ -26,7 +26,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +63,8 @@ public class ProfileActivity extends AppCompatActivity
     static final int ACTIVITY_CHOOSE_FILE1 = 1;
     TextView user_profile_name,user_profile_short_bio,user_type;
     Spinner muni, brgy;
+    Switch stch;
+    Integer stat = 0;
     ArrayAdapter<CharSequence> types,munici, brgylt, brgy_kib, brgy_it, brgy_bug, brgy_kab, brgy_sab, brgy_man, brgy_bak, brgy_tba, brgy_tbl, brgy_at, brgy_bok, brgy_kap;
 
 
@@ -75,6 +79,50 @@ public class ProfileActivity extends AppCompatActivity
         user_profile_name =  findViewById(R.id.user_profile_name);
         user_profile_short_bio  = findViewById(R.id.user_profile_short_bio);
         user_type  = findViewById(R.id.user_type);
+        stch = findViewById(R.id.switch_brgy);
+
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+
+                stat = 0;
+            } else {
+
+                stat= extras.getInt("stat");
+            }
+        } else {
+
+            stat = (Integer) savedInstanceState.getSerializable("stat");
+
+        }
+
+
+        stch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    Toast.makeText(ProfileActivity.this, "Barangay Setting is on!" , Toast.LENGTH_SHORT).show();
+                    stch.setChecked(true);
+                    stat = 1;
+                }else{
+                    Toast.makeText(ProfileActivity.this, "Barangay Setting is off!" , Toast.LENGTH_SHORT).show();
+                    stch.setChecked(false);
+
+
+
+
+                }
+            }
+        });
+
+        if(stat.equals(1))
+        {
+            stch.setChecked(true);
+
+        }else{
+            stch.setChecked(false);
+        }
 
 
 
@@ -646,14 +694,24 @@ public class ProfileActivity extends AppCompatActivity
             file.createNewFile();
             CSWriter csvWrite = new CSWriter(new FileWriter(file));
             SQLiteDatabase db = mydb.getReadableDatabase();
-            Cursor curCSV = db.rawQuery("SELECT id,owner_id,petname,species,breed,sex,birthday,color_marking,distinguish_feature,source,pet_id,status,created_at FROM pvet_pet",null);
+            Cursor curCSV = db.rawQuery("" +
+                    "SELECT " +
+                    "p.id," +
+                    "p.owner_id as pet_owner," +
+                    "p.petname,p.species,p.breed,p.sex,p.birthday,p.color_marking,p.distinguish_feature,p.source,p.pet_id,p.status," +
+                    "p.created_at as pet_created," +
+                    "o.onwer_type,o.owner_info,o.r_lname,o.r_fname,o.members,o.contact_no, " +
+                    "o.municipality,o.barangay, o.house, o.latitude, o.longitude, o.full_add,o.created_at as owner_created" +
+                    " FROM pvet_pet as p INNER JOIN pvet_owner as o WHERE p.owner_id = o.owner_id",null);
             csvWrite.writeNext(curCSV.getColumnNames());
             while(curCSV.moveToNext())
             {
                 //Which column you want to exprort
                 String arrStr[] ={curCSV.getString(0),curCSV.getString(1), curCSV.getString(2),curCSV.getString(3),curCSV.getString(4),curCSV.getString(5),
                         curCSV.getString(6),curCSV.getString(7),curCSV.getString(8),curCSV.getString(9),curCSV.getString(10),
-                        curCSV.getString(11),curCSV.getString(12)};
+                        curCSV.getString(11),curCSV.getString(12),curCSV.getString(13),curCSV.getString(14),curCSV.getString(15),curCSV.getString(16)
+                        ,curCSV.getString(17),curCSV.getString(18),curCSV.getString(19),curCSV.getString(20),curCSV.getString(21),curCSV.getString(22),
+                        curCSV.getString(23),curCSV.getString(24),curCSV.getString(25),curCSV.getString(26)};
                 csvWrite.writeNext(arrStr);
             }
             Toast.makeText(ProfileActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
@@ -793,15 +851,19 @@ public class ProfileActivity extends AppCompatActivity
 
         if (id == R.id.nav_survey) {
             Intent intent=new Intent(getApplicationContext(), MainActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_list_owner) {
             Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_list_pet) {
             Intent intent=new Intent(getApplicationContext(), PetActivity.class);
+            intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
             session.logoutUser();

@@ -13,6 +13,7 @@ public class SessionManager {
     private static final String KEY_EXPIRES = "expires";
     private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_EMPTY = "";
+    private static final String KEY_STATUS = "";
     private Context mContext;
     private SharedPreferences.Editor mEditor;
     private SharedPreferences mPreferences;
