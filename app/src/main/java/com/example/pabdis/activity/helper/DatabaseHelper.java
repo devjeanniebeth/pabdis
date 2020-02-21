@@ -48,6 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String OWNERCOL_13 = "longitude";
     public static final String OWNERCOL_14 = "full_add";
     public static final String OWNERCOL_15 = "created_at";
+    public static final String OWNERCOL_16 = "updated_at";
 
 
 
@@ -82,6 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEYCOL_20 = "vaccination";
     public static final String SURVEYCOL_21 = "IsDewormed";
     public static final String SURVEYCOL_22 = "created_at";
+    public static final String SURVEYCOL_23 = "updated_at";
 
     public static final String TABLE_SURVEY2 = "pvet_survey_chicken";
     public static final String SURVEY2COL_1 = "id";
@@ -102,6 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY2COL_16 = "vaccination";
     public static final String SURVEY2COL_17 = "IsDewormed";
     public static final String SURVEY2COL_18 = "created_at";
+    public static final String SURVEY2COL_19 = "updated_at";
 
     public static final String TABLE_SURVEY3 = "pvet_survey_cattle";
     public static final String SURVEY3COL_1 = "id";
@@ -124,6 +127,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY3COL_18 = "vaccination";
     public static final String SURVEY3COL_19 = "IsDewormed";
     public static final String SURVEY3COL_20= "created_at";
+    public static final String SURVEY3COL_21 = "updated_at";
 
     public static final String TABLE_SURVEY4 = "pvet_survey_carabao";
     public static final String SURVEY4COL_1 = "id";
@@ -146,6 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY4COL_18 = "vaccination";
     public static final String SURVEY4COL_19 = "IsDewormed";
     public static final String SURVEY4COL_20 = "created_at";
+    public static final String SURVEY4COL_21 = "updated_at";
 
     public static final String TABLE_SURVEY5 = "pvet_survey_goat";
     public static final String SURVEY5COL_1 = "id";
@@ -168,6 +173,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY5COL_18 = "vaccination";
     public static final String SURVEY5COL_19 = "IsDewormed";
     public static final String SURVEY5COL_20 = "created_at";
+    public static final String SURVEY5COL_21 = "updated_at";
 
     public static final String TABLE_SURVEY6 = "pvet_survey_other";
     public static final String SURVEY6COL_1 = "id";
@@ -181,6 +187,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY6COL_9 = "goose";
     public static final String SURVEY6COL_10 = "total_income";
     public static final String SURVEY6COL_11 = "created_at";
+    public static final String SURVEY6COL_12 = "updated_at";
 
     public static final String TABLE_SURVEY7= "pvet_survey_fishery";
     public static final String SURVEY7COL_1 = "id";
@@ -190,6 +197,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY7COL_5 = "total_production";
     public static final String SURVEY7COL_6 = "total_income";
     public static final String SURVEY7COL_7 = "created_at";
+    public static final String SURVEY7COL_8 = "updated_at";
 
     public static final String TABLE_SURVEY8= "pvet_survey_apiary";
     public static final String SURVEY8COL_1 = "id";
@@ -199,6 +207,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY8COL_5 = "total_production";
     public static final String SURVEY8COL_6 = "total_income";
     public static final String SURVEY8COL_7 = "created_at";
+    public static final String SURVEY8COL_8 = "updated_at";
 
     public static final String TABLE_SURVEY9= "pvet_survey_household";
     public static final String SURVEY9COL_1 = "id";
@@ -211,6 +220,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURVEY9COL_8 = "fish";
     public static final String SURVEY9COL_9 = "egg";
     public static final String SURVEY9COL_10 = "created_at";
+    public static final String SURVEY9COL_11 = "updated_at";
 
 
 
@@ -232,6 +242,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VACCCOL_13 = "status";
     public static final String VACCCOL_14 = "date_died";
     public static final String VACCCOL_15 = "created_at";
+    public static final String VACCCOL_16 = "updated_at";
 
     public static final String TABLE_VACC_DATE = "pvet_pet_vaccination";
     public static final String VACC_DATE_1 = "id";
@@ -239,6 +250,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VACC_DATE_3 = "date_vaccination";
     public static final String VACC_DATE_4 = "vaccinated_by";
     public static final String VACC_DATE_5 = "created_at";
+    public static final String VACC_DATE_6 = "updated_at";
 
 
 
@@ -272,69 +284,72 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + OWNERCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + OWNERCOL_2 + " TEXT," + OWNERCOL_3 + " TEXT,"  + OWNERCOL_4 + " TEXT,"
                 + OWNERCOL_5 + " TEXT," + OWNERCOL_6 + " TEXT," + OWNERCOL_7 + " TEXT," + OWNERCOL_8 + " TEXT,"
                 + OWNERCOL_9 + " TEXT," + OWNERCOL_10 + " TEXT,"  + OWNERCOL_11 + " TEXT,"  + OWNERCOL_12 + " TEXT,"
-                + OWNERCOL_13 + " TEXT,"  + OWNERCOL_14 + " TEXT,"   + OWNERCOL_15 + " TEXT" +  ")";
+                + OWNERCOL_13 + " TEXT,"  + OWNERCOL_14 + " TEXT,"   + OWNERCOL_15 + " TEXT,"  + OWNERCOL_16 + " TEXT" +  ")";
 
         String CREATE_SURVEY1_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY1 + "("
                 + SURVEYCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEYCOL_3 + " TEXT,"  + SURVEYCOL_4 + " TEXT,"
                 + SURVEYCOL_5 + " TEXT, " + SURVEYCOL_6 + " TEXT, " + SURVEYCOL_7 + " TEXT, " + SURVEYCOL_8 + " TEXT, " + SURVEYCOL_9 + " TEXT , "
                 + SURVEYCOL_10 + " TEXT ," + SURVEYCOL_11 + " TEXT , " +SURVEYCOL_12 + " TEXT, " +SURVEYCOL_13 + " TEXT, " + SURVEYCOL_14 + " TEXT , "
                 + SURVEYCOL_15 + " TEXT , " + SURVEYCOL_16 + " TEXT , " +  SURVEYCOL_17 + " TEXT , " + SURVEYCOL_18
-                + " TEXT , " + SURVEYCOL_19 + " TEXT , "+ SURVEYCOL_20 + " TEXT , "+ SURVEYCOL_21 + " TEXT , " +SURVEYCOL_22 + " TEXT" +")";
+                + " TEXT , " + SURVEYCOL_19 + " TEXT , "+ SURVEYCOL_20 + " TEXT , "+ SURVEYCOL_21 + " TEXT , " +SURVEYCOL_22 + " TEXT,"
+                +SURVEYCOL_23 + " TEXT" +")";
 
         String CREATE_SURVEY2_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY2 + "("
                 + SURVEY2COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEY2COL_3 + " TEXT,"  + SURVEY2COL_4 + " TEXT,"
                 + SURVEY2COL_5 + " TEXT, " + SURVEY2COL_6 + " TEXT, " + SURVEY2COL_7 + " TEXT, " + SURVEY2COL_8 + " TEXT, " + SURVEY2COL_9 + " TEXT, "
                 + SURVEY2COL_10 + " TEXT, " +  SURVEY2COL_11 + " TEXT, " +  SURVEY2COL_12 + " TEXT, " +  SURVEY2COL_13 + " TEXT , " + SURVEY2COL_14
                 + " TEXT , " + SURVEY2COL_15 + " TEXT , " + SURVEY2COL_16 + " TEXT , "+ SURVEY2COL_17 + " TEXT , "
-                +  SURVEY2COL_18 + " TEXT " +  ")";
+                +  SURVEY2COL_18 + " TEXT, "  +  SURVEY2COL_19 + " TEXT " +  ")";
 
         String CREATE_SURVEY3_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY3 + "("
                 + SURVEY3COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY3COL_3 + " TEXT,"  + SURVEY3COL_4 + " TEXT,"
                 + SURVEY3COL_5 + " TEXT," +  SURVEY3COL_6 + " TEXT," +  SURVEY3COL_7 + " TEXT," +  SURVEY3COL_8 + " TEXT," +  SURVEY3COL_9 + " TEXT,"
                 + SURVEY3COL_10 + " TEXT," +  SURVEY3COL_11 + " TEXT," +  SURVEY3COL_12 + " TEXT," + SURVEY3COL_13
                 + " TEXT," + SURVEY3COL_14  + " TEXT,"  + SURVEY3COL_15 + " TEXT," + SURVEY3COL_16 + " TEXT , "
-                + SURVEY3COL_17 + " TEXT , "  + SURVEY3COL_18 + " TEXT , "  + SURVEY3COL_19 + " TEXT , "  +   SURVEY3COL_20 + " TEXT" +  ")";
+                + SURVEY3COL_17 + " TEXT , "  + SURVEY3COL_18 + " TEXT , "  + SURVEY3COL_19 + " TEXT , "  +   SURVEY3COL_20 + " TEXT,"  +   SURVEY3COL_21 + " TEXT" +  ")";
 
         String CREATE_SURVEY4_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY4 + "("
                 + SURVEY4COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY4COL_3 + " TEXT,"  + SURVEY4COL_4 + " TEXT,"
                 + SURVEY4COL_5 + " TEXT, " + SURVEY4COL_6 + " TEXT, " +  SURVEY4COL_7 + " TEXT, " +  SURVEY4COL_8 + " TEXT, " +  SURVEY4COL_9 + " TEXT, "
                 + SURVEY4COL_10 + " TEXT, " +  SURVEY4COL_11 + " TEXT, " +  SURVEY4COL_12 + " TEXT, " +  SURVEY4COL_13 + " TEXT, " +  SURVEY4COL_14 + " TEXT, "
                 + SURVEY4COL_15  + " TEXT,"  + SURVEY4COL_16 + " TEXT," +  SURVEY4COL_17 + " TEXT, "
-                + SURVEY4COL_18 + " TEXT , " + SURVEY4COL_19 + " TEXT , " +  SURVEY4COL_20 + " TEXT " + ")";
+                + SURVEY4COL_18 + " TEXT , " + SURVEY4COL_19 + " TEXT , " +  SURVEY4COL_20 + " TEXT, " +  SURVEY4COL_21 + " TEXT " + ")";
 
         String CREATE_SURVEY5_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY5 + "("
                 + SURVEY5COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY5COL_3 + " TEXT,"  + SURVEY5COL_4 + " TEXT,"
                 + SURVEY5COL_5 + " TEXT, " + SURVEY5COL_6 + " TEXT, " +  SURVEY5COL_7 + " TEXT, " +  SURVEY5COL_8 + " TEXT, " +  SURVEY5COL_9 + " TEXT, "
                 + SURVEY5COL_10 + " TEXT, " +  SURVEY5COL_11 + " TEXT, " +  SURVEY5COL_12 + " TEXT, " +  SURVEY5COL_13 + " TEXT, "
                 + SURVEY5COL_14  + " TEXT,"  + SURVEY5COL_15 + " TEXT,"+ SURVEY5COL_16
-                + " TEXT,"  + SURVEY5COL_17 + " TEXT," + SURVEY5COL_18 + " TEXT , " + SURVEY5COL_19 + " TEXT , " + SURVEY5COL_20 + " TEXT " + ")";
+                + " TEXT,"  + SURVEY5COL_17 + " TEXT," + SURVEY5COL_18 + " TEXT , " + SURVEY5COL_19 + " TEXT , " + SURVEY5COL_20 + " TEXT, "
+                + SURVEY5COL_21 + " TEXT " + ")";
 
         String CREATE_SURVEY6_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY6 + "("
                 + SURVEY6COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY6COL_3 + " TEXT,"  + SURVEY6COL_4 + " TEXT,"
                 + SURVEY6COL_5 + " TEXT, " + SURVEY6COL_6 + " TEXT, " + SURVEY6COL_7 + " TEXT, " + SURVEY6COL_8 + " TEXT, " + SURVEY6COL_9 + " TEXT, " + SURVEY6COL_10 + " TEXT, "
-                + SURVEY6COL_11 + " TEXT " +" )";
+                + SURVEY6COL_11 + " TEXT, " + SURVEY6COL_12 + " TEXT " +" )";
 
         String CREATE_SURVEY7_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY7 + "("
                 + SURVEY7COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + SURVEY7COL_3 + " TEXT,"  + SURVEY7COL_4 + " TEXT,"
-                + SURVEY7COL_5 + " TEXT, " +  SURVEY7COL_6 + " TEXT, " + SURVEY7COL_7 + " TEXT " + ")";
+                + SURVEY7COL_5 + " TEXT, " +  SURVEY7COL_6 + " TEXT, " + SURVEY7COL_7 + " TEXT, " + SURVEY7COL_8 + " TEXT " + ")";
 
         String CREATE_SURVEY8_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY8 + "("
                 + SURVEY8COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEY8COL_3 + " TEXT,"  + SURVEY8COL_4 + " TEXT,"
-                + SURVEY8COL_5 + " TEXT, " + SURVEY8COL_6 + " TEXT, " +  SURVEY8COL_7 + " TEXT" + ")";
+                + SURVEY8COL_5 + " TEXT, " + SURVEY8COL_6 + " TEXT, " +  SURVEY8COL_7 + " TEXT," +  SURVEY8COL_8 + " TEXT"  + ")";
 
         String CREATE_SURVEY9_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_SURVEY9 + "("
                 + SURVEY9COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +  SURVEY9COL_3 + " TEXT,"  + SURVEY9COL_4 + " TEXT,"
                 + SURVEY9COL_5 + " TEXT, " + SURVEY9COL_6 + " TEXT, " +  SURVEY9COL_7 + " TEXT, " +  SURVEY9COL_8 + " TEXT, " +  SURVEY9COL_9 + " TEXT, "
-                + SURVEY9COL_10 + " TEXT" +  ")";
+                + SURVEY9COL_10 + " TEXT," + SURVEY9COL_11 + " TEXT" +  ")";
 
         String CREATE_VACC_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC + "("
                 + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACCCOL_2 + " NONE," + VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
                 + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, "
                 + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, "
-                + VACCCOL_15 + " TEXT" +")";
+                + VACCCOL_15 + " TEXT," + VACCCOL_16 + " TEXT" +")";
 
         String CREATE_VACC_DATE_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC_DATE + "("
-                + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"  + VACC_DATE_3 + " TEXT,"  + VACC_DATE_4 + " TEXT,"   + VACC_DATE_5 + " TEXT" +")";
+                + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"
+                + VACC_DATE_3 + " TEXT,"  + VACC_DATE_4 + " TEXT,"   + VACC_DATE_5 + " TEXT," + VACC_DATE_6 + " TEXT" +")";
 
         String CREATE_LOGS_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_LOGS + "("
                 + LOGSCOL1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + LOGSCOL2 + " TEXT,"  + LOGSCOL3 + " TEXT,"  + LOGSCOL4 + " TEXT" +")";
@@ -745,6 +760,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         int count = res.getInt(0);
         return count;
     }
+
+    public int getCountSwine(String ownerid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT COUNT(*) from "+TABLE_SURVEY1+" WHERE "+SURVEYCOL_3+"='"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        res.moveToFirst();
+        int count = res.getInt(0);
+        return count;
+    }
+
+
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         String selectQuery = "SELECT  * FROM " + TABLE_OWNER;

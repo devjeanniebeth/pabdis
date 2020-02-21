@@ -577,6 +577,7 @@ public class ProfileActivity extends AppCompatActivity
             ContentValues cv_owner = new ContentValues();
             ContentValues cv_pet = new ContentValues();
             ContentValues cv_vacc = new ContentValues();
+            ContentValues cv_swine = new ContentValues();
 
             String path = from.getPath();
                                Log.e("PATH",path);
@@ -625,57 +626,89 @@ public class ProfileActivity extends AppCompatActivity
                 catch (Exception e) {
                 }
 
-                int rs = mydb.getCountPetAll(vv[0]);
+                int rs2 = mydb.getCountOwner(vv[1]);
 
-                if(rs == 0 && !vv[0].equals("owner_id"))
-                {
-                    cv_pet.put(DatabaseHelper.VACCCOL_3,vv[0]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_4,vv[1]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_5,vv[2]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_6,vv[3]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_7,vv[4]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_8,vv[5]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_9,vv[6]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_10,vv[7]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_11,vv[8]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_12,vv[9]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_13,vv[10]);
-                    cv_pet.put(DatabaseHelper.VACCCOL_15,vv[11]);
-                    db.insert(DatabaseHelper.TABLE_VACC,null,cv_pet);
-                }
-
-
-
-                int rs2 = mydb.getCountOwner(vv[13]);
-
-                if(rs2 == 0 && !vv[13].equals("owner_id"))
+                if(rs2 == 0 && !vv[1].equals("owner_id"))
                 {
 
-                    cv_owner.put(DatabaseHelper.OWNERCOL_2,vv[12]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_3,vv[13]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_4,vv[14]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_5,vv[15]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_6,vv[16]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_7,vv[17]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_8,vv[18]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_9,vv[19]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_10,vv[20]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_11,vv[21]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_12,vv[22]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_13,vv[23]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_14,vv[24]);
-                    cv_owner.put(DatabaseHelper.OWNERCOL_15,vv[25]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_2,vv[0]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_3,vv[1]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_4,vv[2]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_5,vv[3]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_6,vv[4]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_7,vv[5]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_8,vv[6]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_9,vv[7]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_10,vv[8]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_11,vv[9]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_12,vv[10]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_13,vv[11]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_14,vv[12]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_15,vv[13]);
+                    cv_owner.put(DatabaseHelper.OWNERCOL_16,vv[14]);
                     db.insert(DatabaseHelper.TABLE_OWNER,null,cv_owner);
 
                 }
 
-                int rs3 = mydb.getCountVacc(vv[26],vv[27],vv[28]);
-                if(rs3 == 0 && !vv[26].equals("pet_id"))
+
+
+
+                int rs4 = mydb.getCountSwine(vv[1]);
+
+                if(rs4 == 0 && !vv[1].equals("owner_id"))
                 {
-                    cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[26]);
-                    cv_vacc.put(DatabaseHelper.VACC_DATE_3,vv[27]);
-                    cv_vacc.put(DatabaseHelper.VACC_DATE_4,vv[28]);
-                    cv_vacc.put(DatabaseHelper.VACC_DATE_5,vv[29]);
+                    cv_swine.put(DatabaseHelper.VACCCOL_3,vv[0]);
+
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_4,vv[15]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_5,vv[16]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_6,vv[17]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_7,vv[18]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_8,vv[19]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_9,vv[20]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_10,vv[21]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_11,vv[22]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_12,vv[23]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_13,vv[24]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_14,vv[25]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_15,vv[26]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_16,vv[27]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_17,vv[28]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_18,vv[29]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_19,vv[30]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_20,vv[31]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_21,vv[32]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_22,vv[33]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_23,vv[34]);
+                    db.insert(DatabaseHelper.TABLE_SURVEY1,null,cv_swine);
+                }
+                int rs = mydb.getCountPetAll(vv[1]);
+
+                if(rs == 0 && !vv[1].equals("owner_id"))
+                {
+                    cv_pet.put(DatabaseHelper.VACCCOL_3,vv[1]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_4,vv[35]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_5,vv[36]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_6,vv[37]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_7,vv[38]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_8,vv[39]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_9,vv[40]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_10,vv[41]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_11,vv[42]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_12,vv[43]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_13,vv[44]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_15,vv[45]);
+                    cv_pet.put(DatabaseHelper.VACCCOL_16,vv[46]);
+                    db.insert(DatabaseHelper.TABLE_VACC,null,cv_pet);
+                }
+
+                int rs3 = mydb.getCountVacc(vv[43],vv[47],vv[48]);
+                if(rs3 == 0 && !vv[43].equals("pet_id"))
+                {
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[43]);
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_3,vv[47]);
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_4,vv[48]);
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_5,vv[49]);
+                    cv_vacc.put(DatabaseHelper.VACC_DATE_6,vv[50]);
                     db.insert(DatabaseHelper.TABLE_VACC_DATE,null,cv_vacc);
 
                 }
