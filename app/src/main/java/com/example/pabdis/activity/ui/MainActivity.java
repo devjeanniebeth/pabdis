@@ -64,6 +64,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+import static android.icu.lang.UCharacter.toUpperCase;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LocationListener {
 
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity
     Context mContext;
     Character first;
     SwipeRefreshLayout mSwipeRefreshLayout;
-    String ownerid, petid, ownerinfo, add, addrsss;
+    String ownerid, petid, ownerinfo, add, addrsss, ownerin, member;
     Button btnUpdate, proceedSurvey, btnRefresh;
     LocationManager locationManager;
     Double latitude, longitude;
@@ -215,19 +217,19 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "Success!"+ type + mylist2 , Toast.LENGTH_LONG).show();
 
 
-            if(type.equals("Household")) {
+            if(toUpperCase(type).equals("HOUSEHOLD")) {
                 int spinnerPosition3 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition3);
                 lastname.setText(mylist2.get(0));
                 firstname.setText(mylist2.get(1));
                 edtTotalHousehold.setText(members);
-            }else if(type.equals("Cooperative"))
+            }else if(toUpperCase(type).equals("COOPERATIVE"))
             {
                 int spinnerPosition2 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition2);
                 edtCoop.setText(mylist2.get(0));
 
-            }else if(type.equals("Establishment"))
+            }else if(toUpperCase(type).equals("ESTABLISHMENT"))
             {
                 int spinnerPosition4 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition4);
@@ -394,10 +396,9 @@ public class MainActivity extends AppCompatActivity
                     final String mun = muni.getSelectedItem().toString();
                     final String brg = brgy.getSelectedItem().toString();
                     final String ownert = ownertype.getSelectedItem().toString();
-                    final String member;
+
                     final String lat;
                     final String longi;
-                    final String ownerin;
                     final String contact;
 
                     if(tvLatitude == null){
@@ -426,17 +427,17 @@ public class MainActivity extends AppCompatActivity
                         contact = num;
                     }
 
-                    if(ownert.equals("Household"))
+                    if(toUpperCase(ownert).equals("HOUSEHOLD"))
                     {
 
                         ownerin = lastname.getText().toString() + "," + firstname.getText().toString();
                         member =  edtTotalHousehold.getText().toString();
 
-                    }else if(ownert.equals("Establishment")){
+                    }else if(toUpperCase(ownert).equals("ESTABLISHMENT")){
                         ownerin = edtEstab.getText().toString();
                         member = "";
 
-                    }else{
+                    }else if(toUpperCase(ownert).equals("COOPERATIVE")){
 
                         ownerin = edtCoop.getText().toString();
                         member = "";
@@ -834,6 +835,7 @@ public class MainActivity extends AppCompatActivity
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             intent.putExtra("add",add);
+                                            intent.putExtra("stat",stat);
                                             startActivity(intent);
 
                                         }else{

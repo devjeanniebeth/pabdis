@@ -65,7 +65,7 @@ public class VaccinationActivity extends AppCompatActivity {
     DatabaseHelper myDB;
     CheckBox cb;
     String age,ownerid, petid, vacc, update, status, pet,add, petstat;
-    Integer pos, uid, ctr;
+    Integer pos, stat, ctr;
     Character first;
     private SessionManager session;
     ArrayList<String> mylist2 = new ArrayList<String>();
@@ -135,12 +135,14 @@ public class VaccinationActivity extends AppCompatActivity {
                 petid = null;
                 status = null;
                 pos = null;
+                stat = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
                 update= extras.getString("update");
                 status= extras.getString("add");
                 pos= extras.getInt("position");
+                stat= extras.getInt("stat");
 
             }
         } else {
@@ -149,6 +151,7 @@ public class VaccinationActivity extends AppCompatActivity {
             update = (String) savedInstanceState.getSerializable("update");
             status = (String) savedInstanceState.getSerializable("add");
             pos = (Integer) savedInstanceState.getSerializable("position");
+            stat = (Integer) savedInstanceState.getSerializable("stat");
 
 
 
