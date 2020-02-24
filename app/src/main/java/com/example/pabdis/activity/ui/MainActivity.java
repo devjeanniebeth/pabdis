@@ -217,19 +217,19 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "Success!"+ type + mylist2 , Toast.LENGTH_LONG).show();
 
 
-            if(toUpperCase(type).equals("HOUSEHOLD")) {
+            if(type.toUpperCase().equals("HOUSEHOLD")) {
                 int spinnerPosition3 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition3);
                 lastname.setText(mylist2.get(0));
                 firstname.setText(mylist2.get(1));
                 edtTotalHousehold.setText(members);
-            }else if(toUpperCase(type).equals("COOPERATIVE"))
+            }else if(type.toUpperCase().equals("COOPERATIVE"))
             {
                 int spinnerPosition2 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition2);
                 edtCoop.setText(mylist2.get(0));
 
-            }else if(toUpperCase(type).equals("ESTABLISHMENT"))
+            }else if(type.toUpperCase().equals("ESTABLISHMENT"))
             {
                 int spinnerPosition4 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition4);
@@ -427,17 +427,17 @@ public class MainActivity extends AppCompatActivity
                         contact = num;
                     }
 
-                    if(toUpperCase(ownert).equals("HOUSEHOLD"))
+                    if(ownert.toUpperCase().equals("HOUSEHOLD"))
                     {
 
                         ownerin = lastname.getText().toString() + "," + firstname.getText().toString();
                         member =  edtTotalHousehold.getText().toString();
 
-                    }else if(toUpperCase(ownert).equals("ESTABLISHMENT")){
+                    }else if(ownert.toUpperCase().equals("ESTABLISHMENT")){
                         ownerin = edtEstab.getText().toString();
                         member = "";
 
-                    }else if(toUpperCase(ownert).equals("COOPERATIVE")){
+                    }else if(ownert.toUpperCase().equals("COOPERATIVE")){
 
                         ownerin = edtCoop.getText().toString();
                         member = "";
