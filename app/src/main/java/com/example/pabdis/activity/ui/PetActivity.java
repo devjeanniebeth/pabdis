@@ -43,7 +43,7 @@ public class PetActivity extends AppCompatActivity
     PetAdapter listAdapter;
     EditText searchView;
     Cursor cursor;
-    Integer pos;
+    Integer pos,stat;
     String update, petid;
     private SessionManager session;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
@@ -77,11 +77,14 @@ public class PetActivity extends AppCompatActivity
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 pos = null;
+                stat = null;
             } else {
                 pos= extras.getInt("pos");
+                stat= extras.getInt("stat");
             }
         } else {
             pos= (Integer) savedInstanceState.getSerializable("pos");
+            stat= (Integer) savedInstanceState.getSerializable("stat");
         }
 
 
@@ -149,7 +152,7 @@ public class PetActivity extends AppCompatActivity
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);
-
+                        i.putExtra("stat", stat);
                         startActivity(i);
 
 
@@ -165,7 +168,7 @@ public class PetActivity extends AppCompatActivity
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);
-
+                        i.putExtra("stat", stat);
                         startActivity(i);
 
                     }
@@ -197,6 +200,7 @@ public class PetActivity extends AppCompatActivity
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(PetActivity.this, PetActivity.class);
                                         i.putExtra("ownerid", code);
+                                        i.putExtra("stat", stat);
                                         startActivity(i);
 
                                         break;

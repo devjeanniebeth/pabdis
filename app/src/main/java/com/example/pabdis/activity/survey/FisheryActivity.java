@@ -38,7 +38,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
     String ownerid, petid, api, fish, update;
     CheckBox withfishery, withapiary;
     DatabaseHelper myDB, myDB2;
-    Integer pos;
+    Integer pos, stat;
     FloatingActionButton skip;
     EditText edtTotalArea,edtProd,edtIncome,edtColonyNum,edtProdH,edtTotalIncome;
 
@@ -67,10 +67,11 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
                 petid = null;
                 update = null;
                 pos = null;
+                stat = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-
+                stat= extras.getInt("stat");
                 pos= extras.getInt("position");
             }
         } else {
@@ -78,9 +79,11 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
             pos = (Integer) savedInstanceState.getSerializable("position");
-
+            stat= (Integer) savedInstanceState.getSerializable("stat");
 
         }
+
+
         Cursor rs = myDB.getFishery(ownerid);
         rs.moveToFirst();
 
@@ -142,6 +145,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             intent.putExtra("position", pos);
+                                            intent.putExtra("stat", stat);
                                             startActivity(intent);
                                         }
 
@@ -184,6 +188,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("stat", stat);
                 startActivity(intent);
 
 
@@ -234,6 +239,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
                                                 intent.putExtra("pos", pos);
+                                                intent.putExtra("stat", stat);
                                                 startActivity(intent);
                                             }
 
@@ -274,6 +280,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
             Intent i = new Intent(FisheryActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
             i.putExtra("ownerid", ownerid);
+            i.putExtra("stat", stat);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

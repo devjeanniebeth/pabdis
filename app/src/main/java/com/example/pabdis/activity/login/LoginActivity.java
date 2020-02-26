@@ -41,7 +41,7 @@ public class LoginActivity extends Activity {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMPTY = "";
-    private String login_url = "http://192.168.4.160:5000/sharing/zO2kCUc40";
+    private String login_url = "http://192.168.4.160/capitol_pabdis/api/login.php";
     private String username;
     private String password;
     private Button btnLogin;
@@ -86,8 +86,8 @@ public class LoginActivity extends Activity {
                 // Check for empty data in the form
                 if (!username.isEmpty() && !password.isEmpty()) {
                     // login user
-//                  login();
-                    loadDashboard();
+                    login();
+//                    loadDashboard();
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),

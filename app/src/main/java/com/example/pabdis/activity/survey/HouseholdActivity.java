@@ -38,7 +38,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
     String ownerid, petid, update,add;
     FloatingActionButton skip;
     DatabaseHelper myDB;
-    Integer pos;
+    Integer pos,stat;
     EditText edtBeef,edtCarabeef,edtPork,edtChicken,edtFish,edtEgg;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,23 +60,23 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                ownerid = null;
+                ownerid= null;
                 petid = null;
-                pos = null;
                 update = null;
+                pos = null;
+                stat = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-                update= extras.getString("update");
+                stat= extras.getInt("stat");
                 pos= extras.getInt("position");
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             petid = (String) savedInstanceState.getSerializable("petid");
-            pos = (Integer) savedInstanceState.getSerializable("position");
             update = (String) savedInstanceState.getSerializable("update");
-
-
+            pos = (Integer) savedInstanceState.getSerializable("position");
+            stat= (Integer) savedInstanceState.getSerializable("stat");
 
         }
 
@@ -156,7 +156,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             intent.putExtra("position", pos);
-
+                                            intent.putExtra("stat", stat);
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -199,6 +199,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
                 intent.putExtra("add", add);
+                intent.putExtra("stat", stat);
                 startActivity(intent);
 
 
@@ -256,6 +257,7 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
                                         intent.putExtra("petid", petid);
                                         intent.putExtra("pos", pos);
                                         intent.putExtra("add", add);
+                                        intent.putExtra("stat", stat);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();

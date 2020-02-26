@@ -41,7 +41,7 @@ public class SignatureActivity extends AppCompatActivity {
     private Button mClearButton;
     private Button mSaveButton;
     String ownerid, petid, update, status;
-    Integer pos;
+    Integer pos, stat;
     TextView signature_pad_description;
 
 
@@ -62,12 +62,14 @@ public class SignatureActivity extends AppCompatActivity {
                 petid = null;
                 status = null;
                 pos = null;
+                stat = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
                 update= extras.getString("update");
                 status= extras.getString("add");
                 pos= extras.getInt("position");
+                stat= extras.getInt("stat");
 
             }
         } else {
@@ -76,6 +78,7 @@ public class SignatureActivity extends AppCompatActivity {
             update = (String) savedInstanceState.getSerializable("update");
             status = (String) savedInstanceState.getSerializable("add");
             pos = (Integer) savedInstanceState.getSerializable("position");
+            stat= (Integer) savedInstanceState.getSerializable("stat");
         }
 
 
@@ -123,6 +126,7 @@ public class SignatureActivity extends AppCompatActivity {
                     intent.putExtra("ownerid",ownerid);
                     intent.putExtra("petid", petid);
                     intent.putExtra("pos", pos);
+                    intent.putExtra("stat", stat);
                     startActivity(intent);
                 } else {
                     Toast.makeText(SignatureActivity.this, "Unable to store the signature", Toast.LENGTH_SHORT).show();
@@ -133,6 +137,7 @@ public class SignatureActivity extends AppCompatActivity {
                     intent.putExtra("ownerid",ownerid);
                     intent.putExtra("petid", petid);
                     intent.putExtra("pos", pos);
+                    intent.putExtra("stat", stat);
                     startActivity(intent);
                 } else {
                     Toast.makeText(SignatureActivity.this, "Unable to store the SVG signature", Toast.LENGTH_SHORT).show();

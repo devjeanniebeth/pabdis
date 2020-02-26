@@ -503,6 +503,7 @@ public class MainActivity extends AppCompatActivity
                                                 Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("stat", stat);
                                                 startActivity(intent);
 
 
@@ -846,12 +847,14 @@ public class MainActivity extends AppCompatActivity
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
                                                 intent.putExtra("add",add);
+                                                intent.putExtra("stat", stat);
                                                 startActivity(intent);
 
                                             }else{
                                                 Intent intent = new Intent(getApplicationContext(), SwineActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
+                                                intent.putExtra("stat", stat);
                                                 startActivity(intent);
                                             }
 
@@ -931,6 +934,8 @@ public class MainActivity extends AppCompatActivity
             Intent i = new Intent(MainActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
             i.putExtra("ownerid", ownerid);
+            i.putExtra("stat", stat);
+
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

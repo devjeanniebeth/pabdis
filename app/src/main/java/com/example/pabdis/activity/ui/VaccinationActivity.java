@@ -116,8 +116,10 @@ public class VaccinationActivity extends AppCompatActivity {
         txtColorMark = findViewById(R.id.txtcolormark);
         otherbreed = findViewById(R.id.txtbreedother);
         othercolormark = findViewById(R.id.txtcolorother);
+
         txtxDateVacc = findViewById(R.id.txtxDateVacc);
         txtvaccinatedby = findViewById(R.id.txtvaccinatedby);
+
         strngbreed = findViewById(R.id.strngbreed);
         txtAge = findViewById(R.id.txtAge);
         skip = findViewById(R.id.fab);
@@ -157,7 +159,17 @@ public class VaccinationActivity extends AppCompatActivity {
 
         }
 
-        Toast.makeText(VaccinationActivity.this, "Success!"+ownerid , Toast.LENGTH_LONG).show();
+        if(stat == 1)
+        {
+            dateVacc.setVisibility(View.GONE);
+            txtvaccinatedby.setVisibility(View.GONE);
+            txtvaccinatedby2.setVisibility(View.GONE);
+
+
+
+        }
+
+        Toast.makeText(VaccinationActivity.this, "Success!"+ stat , Toast.LENGTH_LONG).show();
 
 
 
@@ -577,6 +589,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
                                                 intent.putExtra("pos", pos);
+                                                intent.putExtra("stat", stat);
 
                                                 startActivity(intent);
 
@@ -589,7 +602,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
                                                 intent.putExtra("pos", pos);
-
+                                                intent.putExtra("stat", stat);
                                                 startActivity(intent);
 
                                             }
@@ -718,6 +731,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                 // User clicked the Yes button
                                 Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
                                 intent.putExtra("pos", pos);
+                                intent.putExtra("stat", stat);
                                 startActivity(intent);
                                 break;
 
@@ -930,6 +944,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
                                                 intent.putExtra("add", add);
+                                                intent.putExtra("stat", stat);
                                                 startActivity(intent);
 
                                             }
@@ -962,6 +977,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                                 intent.putExtra("ownerid", ownerid);
                                                 intent.putExtra("petid", petid);
                                                 intent.putExtra("add", add);
+                                                intent.putExtra("stat", stat);
                                                 startActivity(intent);
 
                                             }
@@ -1367,6 +1383,7 @@ public class VaccinationActivity extends AppCompatActivity {
         {
             Intent i = new Intent(VaccinationActivity.this, PetActivity.class);
             i.putExtra("pos", pos);
+            i.putExtra("stat", stat);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

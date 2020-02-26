@@ -37,7 +37,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
     FloatingActionButton skip;
     String ownerid, petid, update, add;
     DatabaseHelper myDB;
-    Integer pos;
+    Integer pos,stat;
     EditText edtSheep,edtHorse,edtRabbit,edtDuck,edtPigeon,edtQuail,edtTurkey,edtGoose,edtOthersNum,edtTotal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +52,11 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
                 petid = null;
                 update = null;
                 pos = null;
+                stat = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
-
+                stat= extras.getInt("stat");
                 pos= extras.getInt("position");
             }
         } else {
@@ -63,7 +64,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
             petid = (String) savedInstanceState.getSerializable("petid");
             update = (String) savedInstanceState.getSerializable("update");
             pos = (Integer) savedInstanceState.getSerializable("position");
-
+            stat= (Integer) savedInstanceState.getSerializable("stat");
 
         }
 
@@ -163,6 +164,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
                                             intent.putExtra("ownerid", ownerid);
                                             intent.putExtra("petid", petid);
                                             intent.putExtra("position", pos);
+                                            intent.putExtra("stat", stat);
                                             startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
@@ -208,6 +210,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("stat", stat);
                 startActivity(intent);
 
 
@@ -268,6 +271,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
                                         intent.putExtra("ownerid", ownerid);
                                         intent.putExtra("petid", petid);
                                         intent.putExtra("pos", pos);
+                                        intent.putExtra("stat", stat);
                                         startActivity(intent);
                                     } catch (Exception e) {
                                         e.printStackTrace();
@@ -308,6 +312,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
             Intent i = new Intent(OtherActivity.this, ListUpdateActivity.class);
             i.putExtra("position", pos);
             i.putExtra("ownerid", ownerid);
+            i.putExtra("stat", stat);
             startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }else{

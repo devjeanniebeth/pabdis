@@ -32,7 +32,7 @@ public class ListUpdateActivity extends AppCompatActivity {
     Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnApiary,btnWeekly, btnPet;
     FloatingActionButton back;
     String ownerid, update;
-    Integer position;
+    Integer position,stat;
     DatabaseHelper myDB;
 
 
@@ -63,17 +63,23 @@ public class ListUpdateActivity extends AppCompatActivity {
             if(extras == null) {
                 ownerid= null;
                 position = null;
+                stat = null;
             } else {
                 ownerid= extras.getString("ownerid");
                 position= extras.getInt("position");
+                stat= extras.getInt("stat");
 
             }
         } else {
             ownerid= (String) savedInstanceState.getSerializable("ownerid");
             position= (Integer) savedInstanceState.getSerializable("position");
+            stat = (Integer) savedInstanceState.getSerializable("stat");
 
 
         }
+
+
+
 
         Cursor rs = myDB.getUserInfo(ownerid);
 
@@ -115,6 +121,7 @@ public class ListUpdateActivity extends AppCompatActivity {
 
                 Intent i = new Intent(ListUpdateActivity.this, OwnerActivity.class);
                 i.putExtra("pos", position);
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -126,12 +133,12 @@ public class ListUpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                Toast.makeText(ListUpdateActivity.this, "Check your input!" + stat, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(ListUpdateActivity.this, MainActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
 
@@ -142,7 +149,7 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(ListUpdateActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListUpdateActivity.this, "Check your input!"+ stat, Toast.LENGTH_SHORT).show();
 
                 update = "add";
                 Intent i = new Intent(ListUpdateActivity.this, VaccinationActivity.class);
@@ -150,7 +157,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("add", "true");
                 i.putExtra("position", position);
                 i.putExtra("add", update);
-
+                i.putExtra("stat", stat);
 
 
                 startActivity(i);
@@ -170,7 +177,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
 
@@ -185,7 +192,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -199,7 +206,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -213,7 +220,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -227,7 +234,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -240,7 +247,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -253,6 +260,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(ListUpdateActivity.this, ApiaryActivity.class);
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("position", position);
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -266,7 +274,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -281,7 +289,7 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("ownerid", ownerid);
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
-
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }
@@ -296,6 +304,7 @@ public class ListUpdateActivity extends AppCompatActivity {
         Intent i = new Intent(ListUpdateActivity.this, OwnerActivity.class);
         i.putExtra("pos", position);
         i.putExtra("ownerid", ownerid);
+        i.putExtra("stat", stat);
         startActivity(i);
 //        Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
     }

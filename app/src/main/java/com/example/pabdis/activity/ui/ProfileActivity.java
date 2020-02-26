@@ -108,10 +108,7 @@ public class ProfileActivity extends AppCompatActivity
                 }else{
                     Toast.makeText(ProfileActivity.this, "Barangay Setting is off!" , Toast.LENGTH_SHORT).show();
                     stch.setChecked(false);
-
-
-
-
+                    stat = 0;
                 }
             }
         });

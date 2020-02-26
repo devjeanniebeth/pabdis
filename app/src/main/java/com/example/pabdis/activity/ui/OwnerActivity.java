@@ -87,7 +87,7 @@ public class OwnerActivity extends AppCompatActivity
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 pos = null;
-                stat = 0;
+                stat = null;
             } else {
                 pos= extras.getInt("pos");
                 stat= extras.getInt("stat");
@@ -171,6 +171,7 @@ public class OwnerActivity extends AppCompatActivity
                             i.putExtra("ownerid", code);
                             i.putExtra("update", "true");
                             i.putExtra("position", position);
+                            i.putExtra("stat", stat);
                             startActivity(i);
 
                         }else{
@@ -178,6 +179,7 @@ public class OwnerActivity extends AppCompatActivity
                                     .class);
                             i.putExtra("ownerid", code);
                             i.putExtra("position", position);
+                            i.putExtra("stat", stat);
                             startActivity(i);
 
                         }
@@ -191,6 +193,7 @@ public class OwnerActivity extends AppCompatActivity
                         Intent i = new Intent(OwnerActivity.this, ViewInfoActivity.class);
                         i.putExtra("ownerid", code);
                         i.putExtra("position", position);
+                        i.putExtra("stat", stat);
                         startActivity(i);
 
                     }
@@ -222,6 +225,7 @@ public class OwnerActivity extends AppCompatActivity
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(OwnerActivity.this, OwnerActivity.class);
                                         i.putExtra("ownerid", code);
+                                        i.putExtra("stat", stat);
                                         startActivity(i);
 
                                         break;
