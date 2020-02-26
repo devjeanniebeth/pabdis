@@ -246,42 +246,33 @@ public class PetActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id WHERE pet_id NOT NULL", null);
         Pet pet;
         PetList = new ArrayList<Pet>();
-
         if (cursor.moveToFirst()) {
-            do {
+                do {
+                    String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
+                    String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+                    String id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
+                    String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
+                    if (owner_id.equals(null)) {
+                        owner_id = "";
+                    }
+                    String respondent = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)));
+                    String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                    String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
+                    String sex = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
+                    String birth = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
+                    String color = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
+                    String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
+                    pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at);
+                    PetList.add(pet);
+                } while (cursor.moveToNext());
 
-                String id =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
-                String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
-                if(owner_id.equals(null))
-                {
-                    owner_id = "";
-                }
-
-                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-                String respondent =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)));
-                String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
-                String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
-                String sex =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
-                String birth =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
-                String color =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
-                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
-                String created_at =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
-                pet = new Pet(id,owner_id,petid,respondent,petname,specie,breed,sex, birth,color,created_at);
-                PetList.add(pet);
-            } while (cursor.moveToNext());
-
-
-
-            listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
-            LISTVIEW.setAdapter(listAdapter);
-            cursor.close();
-        }else{
-
+                listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
+                LISTVIEW.setAdapter(listAdapter);
+                cursor.close();
         }
-
     }
 
 
