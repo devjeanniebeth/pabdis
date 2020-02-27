@@ -243,6 +243,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String VACCCOL_14 = "date_died";
     public static final String VACCCOL_15 = "created_at";
     public static final String VACCCOL_16 = "updated_at";
+    public static final String VACCCOL_17 = "latitude";
+    public static final String VACCCOL_18 = "longitude";
 
     public static final String TABLE_VACC_DATE = "pvet_pet_vaccination";
     public static final String VACC_DATE_1 = "id";
@@ -345,7 +347,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + VACCCOL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACCCOL_2 + " NONE," + VACCCOL_3 + " TEXT,"  + VACCCOL_4 + " TEXT,"
                 + VACCCOL_5 + " TEXT, " + VACCCOL_6 + " TEXT, " + VACCCOL_7 + " TEXT, " + VACCCOL_8 + " TEXT, " + VACCCOL_9 + " TEXT, "
                 + VACCCOL_10 + " TEXT, " + VACCCOL_11 + " TEXT, " + VACCCOL_12 + " TEXT, " + VACCCOL_13 + " TEXT, "
-                + VACCCOL_15 + " TEXT," + VACCCOL_16 + " TEXT" +")";
+                + VACCCOL_15 + " TEXT," + VACCCOL_16 + " TEXT," + VACCCOL_17 + " TEXT,"+ VACCCOL_18 + " TEXT" +")";
 
         String CREATE_VACC_DATE_TABLE = " CREATE TABLE IF NOT EXISTS " + TABLE_VACC_DATE + "("
                 + VACC_DATE_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," + VACC_DATE_2 + " TEXT,"
