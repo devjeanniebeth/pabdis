@@ -63,6 +63,9 @@ public class VaccinationActivity extends AppCompatActivity {
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
     TableRow tbl1;
+    Double lang, longi;
+    Double latitude, longitude;
+    TextView tvLatitude, tvLongitude;
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
@@ -78,6 +81,8 @@ public class VaccinationActivity extends AppCompatActivity {
     ArrayList<String> mylistup = new ArrayList<String>();
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
     LocationManager locationManager;
+    public static String tvLongi;
+    public static String tvLati;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +93,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
         myDB = new DatabaseHelper(getApplicationContext());
         session = new SessionManager(getApplicationContext());
-        btnRefresh = findViewById(R.id.btnRefresh);
+        btnRefresh = findViewById(R.id.btnRefresh2);
         dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
         btnVacc = findViewById(R.id.btnVacc);
@@ -123,7 +128,8 @@ public class VaccinationActivity extends AppCompatActivity {
         txtColorMark = findViewById(R.id.txtcolormark);
         otherbreed = findViewById(R.id.txtbreedother);
         othercolormark = findViewById(R.id.txtcolorother);
-
+        tvLongitude = findViewById(R.id.tv_longitude2);
+        tvLatitude = findViewById(R.id.tv_latitude2);
         txtxDateVacc = findViewById(R.id.txtxDateVacc);
         txtvaccinatedby = findViewById(R.id.txtvaccinatedby);
 
@@ -671,10 +677,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
                 updateLabel();
-//                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
-//                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
             }
 
 
@@ -689,29 +692,22 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
                 txtxDateVacc.setText(sdf.format(myCalendar.getTime()));
                 updateLabel2();
-//                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
-//                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
             }
 
         };
 
 
         dateVacc.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(VaccinationActivity.this, date2, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-
             }
-
         });
 
         btnRefresh.setOnClickListener(new View.OnClickListener() {
@@ -723,24 +719,15 @@ public class VaccinationActivity extends AppCompatActivity {
 
             }
         });
-
-
-
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
-
                 // Set a title for alert dialog
                 builder.setTitle("Skipping the process.");
-
                 // Ask the final question
                 builder.setMessage("Are you sure you want to skip this survey?");
-
                 // Set click listener for alert dialog buttons
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
@@ -753,30 +740,21 @@ public class VaccinationActivity extends AppCompatActivity {
                                 intent.putExtra("stat", stat);
                                 startActivity(intent);
                                 break;
-
                             case DialogInterface.BUTTON_NEGATIVE:
                                 // User clicked the No button
                                 break;
                         }
                     }
                 };
-
                 // Set the alert dialog yes button click listener
                 builder.setPositiveButton("Yes", dialogClickListener);
-
                 // Set the alert dialog no button click listener
                 builder.setNegativeButton("No",dialogClickListener);
-
                 AlertDialog dialog = builder.create();
                 // Display the alert dialog on interface
                 dialog.show();
-
-
-
             }
         });
-
-
 
         btndate.setOnClickListener(new View.OnClickListener() {
 
