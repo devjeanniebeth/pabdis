@@ -668,7 +668,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public boolean addVaccination(byte[]  imgPet,String owner_id,
                                   String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
-                                  String source, String petid, String status, String createdAt )
+                                  String source, String petid, String status, String createdAt, String lat, String longt )
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -686,6 +686,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_12,petid);
         contentValues.put(VACCCOL_13,status);
         contentValues.put(VACCCOL_15,createdAt);
+        contentValues.put(VACCCOL_17,lat);
+        contentValues.put(VACCCOL_18,longt);
         long result = db.insert(TABLE_VACC,null ,contentValues);
         if(result == -1)
             return false;
@@ -1157,7 +1159,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean updateVaccination(String petname, String species,String breed, String sex,String birthday, String colormarking, String distinctfeat,
-                                     String source, String petid, String status)
+                                     String source, String petid, String status, String lang, String longi)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1171,6 +1173,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_10,distinctfeat);
         contentValues.put(VACCCOL_11,source);
         contentValues.put(VACCCOL_13,status);
+        contentValues.put(VACCCOL_17,status);
+        contentValues.put(VACCCOL_18,status);
         db.update(TABLE_VACC, contentValues, "pet_id = ?",new String[] { petid });
         return true;
 
