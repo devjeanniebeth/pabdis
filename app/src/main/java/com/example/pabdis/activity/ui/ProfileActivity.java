@@ -83,6 +83,7 @@ public class ProfileActivity extends AppCompatActivity
         user_profile_short_bio  = findViewById(R.id.user_profile_short_bio);
         user_type  = findViewById(R.id.user_type);
         stch = findViewById(R.id.switch_brgy);
+        CheckPermission();
 
 
         if (savedInstanceState == null) {
@@ -396,8 +397,8 @@ public class ProfileActivity extends AppCompatActivity
 
                                 try {
 
+
                                     displayLoader2();
-                                    CheckPermission();
                                     selectCSVFile();
 
                                     pDialog.dismiss();

@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
-public class VaccinationActivity extends AppCompatActivity {
+public class VaccinationActivity extends AppCompatActivity implements LocationListener {
 
 
     EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
@@ -63,6 +64,9 @@ public class VaccinationActivity extends AppCompatActivity {
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
     TableRow tbl1;
+    Double lang, longi;
+    Double latitude, longitude;
+    TextView tvLatitude, tvLongitude;
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
@@ -78,6 +82,8 @@ public class VaccinationActivity extends AppCompatActivity {
     ArrayList<String> mylistup = new ArrayList<String>();
     ArrayAdapter<CharSequence> species, breedsd,breedsc, sex,sources,colormarkings, vaccinatedby;
     LocationManager locationManager;
+    public static String tvLongi;
+    public static String tvLati;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +94,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
         myDB = new DatabaseHelper(getApplicationContext());
         session = new SessionManager(getApplicationContext());
-        btnRefresh = findViewById(R.id.btnRefresh);
+        btnRefresh = findViewById(R.id.btnRefresh2);
         dateSurvey = findViewById(R.id.txtdatesurvey);
         btndate = findViewById(R.id.btnDate);
         btnVacc = findViewById(R.id.btnVacc);
@@ -123,7 +129,8 @@ public class VaccinationActivity extends AppCompatActivity {
         txtColorMark = findViewById(R.id.txtcolormark);
         otherbreed = findViewById(R.id.txtbreedother);
         othercolormark = findViewById(R.id.txtcolorother);
-
+        tvLongitude = findViewById(R.id.tv_longitude2);
+        tvLatitude = findViewById(R.id.tv_latitude2);
         txtxDateVacc = findViewById(R.id.txtxDateVacc);
         txtvaccinatedby = findViewById(R.id.txtvaccinatedby);
 
@@ -211,11 +218,15 @@ public class VaccinationActivity extends AppCompatActivity {
             String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
 //            final String petid = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_12));
             String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
+            String latitude = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_17));
+            String longitude = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_18));
 
             vaccinatedby = ArrayAdapter.createFromResource(this, R.array.pet_status, R.layout.support_simple_spinner_dropdown_item);
 
 
             txtstatus.setText(status);
+            tvLongitude.setText(longitude);
+            tvLatitude.setText(latitude);
 
 
 
@@ -562,6 +573,25 @@ public class VaccinationActivity extends AppCompatActivity {
                     final byte imgv2[] = imgv;
                     final String stats  = mylistup.toString();
 
+                    final String lat;
+                    final String longi;
+
+                    if(tvLati == null){
+
+                        lat = "N/A";
+                    }else{
+                        lat = tvLati;
+                    }
+
+                    if(tvLongi == null)
+                    {
+                        longi = "N/A";
+
+                    }else{
+
+                        longi = tvLongi;
+                    }
+
                     // Build an AlertDialog
                     AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
 
@@ -590,7 +620,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                             {
 
                                                 myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                        souces,petid,mylistup.get(0));
+                                                        souces,petid,mylistup.get(0), lat, longi);
                                                 Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
@@ -603,7 +633,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                             }else{
 
                                                 myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                        souces,petid,stats);
+                                                        souces,petid,stats, lat, longi);
                                                 Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
@@ -671,10 +701,7 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
                 updateLabel();
-//                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
-//                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
             }
 
 
@@ -689,29 +716,22 @@ public class VaccinationActivity extends AppCompatActivity {
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
                 txtxDateVacc.setText(sdf.format(myCalendar.getTime()));
                 updateLabel2();
-//                txtAge.setText("Age is: "+ calculateAge(myCalendar.getTimeInMillis()));
-//                age = Integer.toString(calculateAge(myCalendar.getTimeInMillis()));
             }
 
         };
 
 
         dateVacc.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 new DatePickerDialog(VaccinationActivity.this, date2, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-
             }
-
         });
 
         btnRefresh.setOnClickListener(new View.OnClickListener() {
@@ -723,24 +743,15 @@ public class VaccinationActivity extends AppCompatActivity {
 
             }
         });
-
-
-
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
-
                 // Set a title for alert dialog
                 builder.setTitle("Skipping the process.");
-
                 // Ask the final question
                 builder.setMessage("Are you sure you want to skip this survey?");
-
                 // Set click listener for alert dialog buttons
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
@@ -753,30 +764,21 @@ public class VaccinationActivity extends AppCompatActivity {
                                 intent.putExtra("stat", stat);
                                 startActivity(intent);
                                 break;
-
                             case DialogInterface.BUTTON_NEGATIVE:
                                 // User clicked the No button
                                 break;
                         }
                     }
                 };
-
                 // Set the alert dialog yes button click listener
                 builder.setPositiveButton("Yes", dialogClickListener);
-
                 // Set the alert dialog no button click listener
                 builder.setNegativeButton("No",dialogClickListener);
-
                 AlertDialog dialog = builder.create();
                 // Display the alert dialog on interface
                 dialog.show();
-
-
-
             }
         });
-
-
 
         btndate.setOnClickListener(new View.OnClickListener() {
 
@@ -906,6 +908,25 @@ public class VaccinationActivity extends AppCompatActivity {
 
                 final byte imgv2[] = imgv;
 
+                final String lat;
+                final String longi;
+
+                if(tvLati == null){
+
+                    lat = "N/A";
+                }else{
+                    lat = tvLati;
+                }
+
+                if(tvLongi == null)
+                {
+                    longi = "N/A";
+
+                }else{
+
+                    longi = tvLongi;
+                }
+
 
 
                 ctr = myDB.getCountPet(ownerid,specie);
@@ -954,7 +975,7 @@ public class VaccinationActivity extends AppCompatActivity {
                                     try {
 
                                         myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                        souces,pet,stat,created_at);
+                                                        souces,pet,stat,created_at, lat, longi);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
@@ -986,7 +1007,7 @@ public class VaccinationActivity extends AppCompatActivity {
 
 
 
-                                            myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at);
+                                            myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at, lat, longi);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
 
@@ -1222,34 +1243,39 @@ public class VaccinationActivity extends AppCompatActivity {
     private void isLocationEnabled() {
 
         if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-            AlertDialog.Builder alertDialog=new AlertDialog.Builder(mContext);
-            alertDialog.setTitle("Enable Location");
-            alertDialog.setMessage("Your locations setting is not enabled. Please enabled it in settings menu.");
-            alertDialog.setPositiveButton("Location Settings", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int which){
-                    Intent intent=new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(intent);
-                }
-            });
-            alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int which){
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alert=alertDialog.create();
-            alert.show();
+
+            if(mContext != null) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+                alertDialog.setTitle("Enable Location");
+                alertDialog.setMessage("Your locations setting is not enabled. Please enabled it in settings menu.");
+                alertDialog.setPositiveButton("Location Settings", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        startActivity(intent);
+                    }
+                });
+                alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alert = alertDialog.create();
+                alert.show();
+            }
         }
-        else{
-            AlertDialog.Builder alertDialog=new AlertDialog.Builder(mContext);
-            alertDialog.setTitle("Confirm Location");
-            alertDialog.setMessage("Your Location is enabled, please enjoy");
-            alertDialog.setNegativeButton("Back to interface",new DialogInterface.OnClickListener(){
-                public void onClick(DialogInterface dialog, int which){
-                    dialog.cancel();
-                }
-            });
-            AlertDialog alert=alertDialog.create();
-            alert.show();
+        else {
+            if (mContext != null) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+                alertDialog.setTitle("Confirm Location");
+                alertDialog.setMessage("Your Location is enabled, please enjoy");
+                alertDialog.setNegativeButton("Back to interface", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alert = alertDialog.create();
+                alert.show();
+            }
         }
     }
 
@@ -1458,5 +1484,56 @@ public class VaccinationActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getApplicationContext(), "Back press disabled!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+//
+//
+        tvLongi = String.valueOf(location.getLongitude());
+        longi = location.getLongitude();
+        tvLati= String.valueOf(location.getLatitude());
+        lang = location.getLatitude();
+//
+//        // Setting Current Longitude
+        tvLongitude.setText("Longitude:" + tvLongi);
+//        // Setting Current Latitude
+        tvLatitude.setText("Latitude:" + tvLati);
+//
+//        Toast.makeText(this, "Your location is set!" + longi,
+//                Toast.LENGTH_SHORT).show();
+
+//         latitude = location.getLatitude();
+//         longitude = location.getLongitude();
+////
+//        try {
+//            List<Address> addresses = geocoder.getFromLocation(lang, longi, 1);
+//            add = addresses.get(0).getAddressLine(0);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+        String msg="New Latitude: "+tvLati + "New Longitude: "+tvLongi;
+
+        Toast.makeText(this, "Your location is set!" + msg,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Toast.makeText(this, "Enabled new provider!" + provider,
+                Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(VaccinationActivity.this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+
     }
 }
