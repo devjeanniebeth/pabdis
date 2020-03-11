@@ -86,8 +86,8 @@ public class LoginActivity extends Activity {
                 // Check for empty data in the form
                 if (!username.isEmpty() && !password.isEmpty()) {
                     // login user
-                    login();
-//                    loadDashboard();
+//                    login();
+                    loadDashboard();
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getApplicationContext(),
