@@ -685,7 +685,7 @@ public class ProfileActivity extends AppCompatActivity
                 }
                 int rs = mydb.getCountPetAll(vv[1]);
 
-                if(rs == 0 && !vv[1].equals("owner_id"))
+                if(rs == 0 && !vv[1].equals("owner_id") && !vv[35].equals(""))
                 {
                     cv_pet.put(DatabaseHelper.VACCCOL_3,vv[1]);
                     cv_pet.put(DatabaseHelper.VACCCOL_4,vv[35]);
@@ -704,7 +704,7 @@ public class ProfileActivity extends AppCompatActivity
                 }
 
                 int rs3 = mydb.getCountVacc(vv[43],vv[47],vv[48]);
-                if(rs3 == 0 && !vv[43].equals("pet_id"))
+                if(rs3 == 0 && !vv[43].equals("pet_id") )
                 {
                     cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[43]);
                     cv_vacc.put(DatabaseHelper.VACC_DATE_3,vv[47]);
