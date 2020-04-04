@@ -659,7 +659,7 @@ public class ProfileActivity extends AppCompatActivity
 
                 if(rs4 == 0 && !vv[1].equals("owner_id"))
                 {
-                    cv_swine.put(DatabaseHelper.VACCCOL_3,vv[0]);
+                    cv_swine.put(DatabaseHelper.SURVEYCOL_3,vv[1]);
 
                     cv_swine.put(DatabaseHelper.SURVEYCOL_4,vv[15]);
                     cv_swine.put(DatabaseHelper.SURVEYCOL_5,vv[16]);
