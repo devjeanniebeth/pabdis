@@ -294,12 +294,14 @@ public class OwnerActivity extends AppCompatActivity
                 String lati = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_12)));
                 String longi = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_13)));
                 String ownerid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_3)));
-                String r_full = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + " " +cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
+            //  String r_full = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)) + " " +cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5)) );
+                String r_full = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
+                r_full = r_full.replace(",", ", ");
                 String contact = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_7)));
                 String muni =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                 String brgy =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)));
                 String createdat =  (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_15)));
-                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11)) + ", " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)) +"," +cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9));
+                String housenum =  cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11)) + ", " + cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10)) +", " +cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9));
                 owner = new Owner(id,ownerid,r_full,contact,housenum, muni,brgy,lati,longi,createdat);
                 OwnerList.add(owner);
             } while (cursor.moveToNext());
