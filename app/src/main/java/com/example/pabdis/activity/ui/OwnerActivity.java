@@ -65,8 +65,11 @@ public class OwnerActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         myDB = new DatabaseHelper(getApplicationContext());
         session = new SessionManager(getApplicationContext());
+
+
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
+        searchView.clearFocus();
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -355,29 +358,30 @@ public class OwnerActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_survey) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
             startActivity(intent);
 
         }  else if (id == R.id.nav_list_owner) {
 
-            Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+            finish();
+            startActivity(getIntent());
 
         } else if (id == R.id.nav_list_pet) {
-
+            finish();
             Intent intent=new Intent(getApplicationContext(), PetActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_logout) {
-
             session.logoutUser();
             Intent i = new Intent(OwnerActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

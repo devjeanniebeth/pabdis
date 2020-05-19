@@ -295,19 +295,21 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
 
         if (id == R.id.nav_survey) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
             startActivity(intent);
 
         }  else if (id == R.id.nav_list_owner) {
-
+            finish();
             Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_list_pet) {
-
+            finish();
             Intent intent=new Intent(getApplicationContext(), PetActivity.class);
             startActivity(intent);
 
