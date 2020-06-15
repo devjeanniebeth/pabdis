@@ -1173,8 +1173,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(VACCCOL_10,distinctfeat);
         contentValues.put(VACCCOL_11,source);
         contentValues.put(VACCCOL_13,status);
-        contentValues.put(VACCCOL_17,status);
-        contentValues.put(VACCCOL_18,status);
+        contentValues.put(VACCCOL_17,lang);
+        contentValues.put(VACCCOL_18,longi);
         db.update(TABLE_VACC, contentValues, "pet_id = ?",new String[] { petid });
         return true;
 

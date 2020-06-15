@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity
                 ownerid= null;
                 petid = null;
                 pos = null;
-                stat = null;
+                stat = 0;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
