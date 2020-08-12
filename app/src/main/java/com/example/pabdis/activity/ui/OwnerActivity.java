@@ -65,6 +65,8 @@ public class OwnerActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         myDB = new DatabaseHelper(getApplicationContext());
         session = new SessionManager(getApplicationContext());
+
+
         LISTVIEW = findViewById(R.id.listView1);
         searchView = findViewById(R.id.searchEdt);
         setSupportActionBar(toolbar);
@@ -87,14 +89,14 @@ public class OwnerActivity extends AppCompatActivity
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 pos = null;
-                stat = null;
+                stat = 0;
             } else {
                 pos= extras.getInt("pos");
                 stat= extras.getInt("stat");
             }
         } else {
             pos= (Integer) savedInstanceState.getSerializable("pos");
-            stat= (Integer) savedInstanceState.getSerializable("stat");
+        stat= (Integer) savedInstanceState.getSerializable("stat");
         }
 
 
@@ -133,8 +135,6 @@ public class OwnerActivity extends AppCompatActivity
                     LISTVIEW.setSelection(pos);
 //                    LISTVIEW.setItemChecked(pos, true);
 //                    LISTVIEW.getChildAt(pos).setBackgroundColor(Color.GREEN);
-
-
 
                 }
             });
@@ -357,27 +357,28 @@ public class OwnerActivity extends AppCompatActivity
         if (id == R.id.nav_survey) {
             Intent intent=new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
+
         } else if (id == R.id.nav_profile) {
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
             startActivity(intent);
 
+
         }  else if (id == R.id.nav_list_owner) {
 
-            Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
+            Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_list_pet) {
 
+
+        } else if (id == R.id.nav_list_pet) {
             Intent intent=new Intent(getApplicationContext(), PetActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_logout) {
 
+        } else if (id == R.id.nav_logout) {
             session.logoutUser();
             Intent i = new Intent(OwnerActivity.this, LoginActivity.class);
             startActivity(i);
-            finish();
-
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

@@ -153,7 +153,7 @@ public class MainActivity extends AppCompatActivity
                 ownerid= null;
                 petid = null;
                 pos = null;
-                stat = null;
+                stat = 0;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
@@ -397,25 +397,27 @@ public class MainActivity extends AppCompatActivity
                     final String brg = brgy.getSelectedItem().toString();
                     final String ownert = ownertype.getSelectedItem().toString();
 
-                    final String lat;
-                    final String longi;
+                    final String lati;
+                    final String longit;
                     final String contact;
 
                     if(tvLatitude == null){
 
-                        lat = "N/A";
+                        lati = "N/A";
                     }else{
-                        lat = tvLati;
+                        lati = String.valueOf(tvLatitude.getText());
                     }
 
                     if(tvLongitude == null)
                     {
-                        longi = "N/A";
+                        longit = "N/A";
 
                     }else{
 
-                        longi = tvLongi;
+                        longit = String.valueOf(tvLatitude.getText());
                     }
+
+
 
 
 
@@ -490,15 +492,15 @@ public class MainActivity extends AppCompatActivity
                                 case DialogInterface.BUTTON_POSITIVE:
                                     // User clicked the Yes button
 
-                                    if (rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
-                                        Toast.makeText(MainActivity.this, "Check your input!" , Toast.LENGTH_SHORT).show();
+                                    if (ownert.equals("") || rfname.equals("") || rlname.equals("") || house.equals("") || ownerin.equals("") ) {
+                                        Toast.makeText(MainActivity.this, "Check your input!" + ownert , Toast.LENGTH_SHORT).show();
 
                                     }else{
 
                                         try {
-                                            myDB.updateOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(), mun.trim(), brg.trim(),  house.trim(), lat.trim(), longi.trim());
+                                            Toast.makeText(MainActivity.this, "Check your input!" +  longit + lati, Toast.LENGTH_SHORT).show();
+                                            myDB.updateOwner(ownerid.trim(),ownert.trim(),ownerin.trim(),rfname.trim(),rlname.trim(),member.trim(),contact.trim(), mun.trim(), brg.trim(),  house.trim(), lati.trim(), longit.trim());
                                             Toast.makeText(MainActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-//                                        showDebugDBAddressLogToast(MainActivity.this);
 
                                                 Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
                                                 intent.putExtra("ownerid", ownerid);

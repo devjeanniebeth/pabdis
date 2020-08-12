@@ -257,13 +257,16 @@ public class UpdatePetVaccination extends AppCompatActivity {
 
                                     try {
 
-                                        mydb.addVaccinationDate(petid, datevacc, vaccby, created_at);
-                                        Toast.makeText(UpdatePetVaccination.this, "Successfully added vaccination!", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(UpdatePetVaccination.this, PetVaccination.class);
-                                        i.putExtra("pos", position);
-                                        i.putExtra("petid", petid);
-                                        startActivity(i);
-
+                                        if(!datevacc.isEmpty()){
+                                            mydb.addVaccinationDate(petid, datevacc, vaccby, created_at);
+                                            Toast.makeText(UpdatePetVaccination.this, "Successfully added vaccination!", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(UpdatePetVaccination.this, PetVaccination.class);
+                                            i.putExtra("pos", position);
+                                            i.putExtra("petid", petid);
+                                            startActivity(i);
+                                        }else{
+                                            Toast.makeText(UpdatePetVaccination.this, "Empty date vaccination!", Toast.LENGTH_SHORT).show();
+                                        }
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }

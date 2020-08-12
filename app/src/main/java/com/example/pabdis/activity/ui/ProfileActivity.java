@@ -704,7 +704,7 @@ public class ProfileActivity extends AppCompatActivity
                 }
 
                 int rs3 = mydb.getCountVacc(vv[43],vv[47],vv[48]);
-                if(rs3 == 0 && !vv[43].equals("pet_id") )
+                if(rs3 == 0 && !vv[43].equals("pet_id")  && !vv[47].equals(""))
                 {
                     cv_vacc.put(DatabaseHelper.VACC_DATE_2,vv[43]);
                     cv_vacc.put(DatabaseHelper.VACC_DATE_3,vv[47]);
@@ -956,22 +956,27 @@ public class ProfileActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_survey) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), MainActivity.class);
             intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_profile) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), ProfileActivity.class);
             intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_list_owner) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), OwnerActivity.class);
             intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_list_pet) {
+            finish();
             Intent intent=new Intent(getApplicationContext(), PetActivity.class);
             intent.putExtra("stat", stat);
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
+
             session.logoutUser();
             Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
             startActivity(i);

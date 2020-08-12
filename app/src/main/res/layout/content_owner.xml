@@ -8,8 +8,6 @@
     tools:context=".activity.ui.OwnerActivity"
     tools:showIn="@layout/app_bar_owner">
 
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -27,41 +25,7 @@
                 android:inputType="textPersonName"
                 android:textAlignment="center"
                 android:textAllCaps="false" />
-
-
-            <TableLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="0,1">
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content">
-
-                    <Spinner
-                        android:id="@+id/muni"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:animateLayoutChanges="true"
-                        android:entries="@array/ownertype"
-                        android:padding="10dp"
-                        style="@style/spinner_style" />
-
-                    <Spinner
-                        android:id="@+id/brgy"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:animateLayoutChanges="true"
-                        android:entries="@array/ownertype"
-                        android:padding="10dp"/>
-
-
-                </TableRow>
-            </TableLayout>
         </LinearLayout>
-
-
-
     </ScrollView>
 
     <ListView
@@ -71,6 +35,7 @@
         android:paddingTop="50dp">
 
     </ListView>
+
 
 
 </android.support.constraint.ConstraintLayout>
