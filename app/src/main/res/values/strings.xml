@@ -141,7 +141,7 @@
     <string-array name="ownertype">
         <item>Household</item>
         <item>Establishment</item>
-        <item>Cooperative</item>
+        <item>Cooperative/ Association</item>
     </string-array>
     <string-array name="vaccinated_by">
         <item>Government</item>
