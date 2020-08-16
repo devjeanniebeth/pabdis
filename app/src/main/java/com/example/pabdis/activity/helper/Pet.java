@@ -13,10 +13,13 @@ public class Pet {
     String color_marking = null;
     String Pet_ID = null;
     String created_at = null;
+    String pet_latitude = null;
+    String pet_longitude = null;
 
-    public Pet(String id,String owner_id, String petid, String respondent, String petname, String species,
+
+    public Pet( String id, String owner_id, String petid, String respondent, String petname, String species,
                String breed, String sex, String birthday, String color_marking,
-               String created_at){
+               String created_at, String pet_latitude, String pet_longitude){
 
         super();
 
@@ -31,6 +34,8 @@ public class Pet {
         this.birthday = birthday;
         this.color_marking = color_marking;
         this.created_at = created_at;
+        this.pet_latitude= pet_latitude;
+        this.pet_longitude = pet_longitude;
 
     }
 
@@ -157,12 +162,36 @@ public class Pet {
 
     }
 
+    public String getPet_latitude(){
+
+        return pet_latitude;
+
+    }
+
+    public void setPet_latitude(String pet_latitude){
+
+        this.pet_latitude = pet_latitude;
+
+    }
+
+    public String getPet_longitude(){
+
+        return pet_longitude;
+
+    }
+
+    public void setPet_longitude(String pet_longitude){
+
+        this.pet_longitude = pet_longitude;
+
+    }
+
     @Override
     public String toString(){
 
         return id  + " " + owner_id + " " + petname
-                + " " + species + " " + breed + " " + sex + " " + birthday
-                + " " + color_marking + " " + Pet_ID + " " + created_at;
+                + " " + species + " " + breed + " " + sex + " " + birthday + " " + color_marking
+                + " " + Pet_ID + " " + created_at + " " + pet_latitude + " " + pet_longitude;
     }
 
 }
