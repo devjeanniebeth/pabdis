@@ -292,7 +292,7 @@ public class ProfileActivity extends AppCompatActivity
                 // Set the alert dialog yes button click listener
                 builder2.setPositiveButton("Yes", dialogClickListener1);
 
-                // Set the alert dialog no button click listener
+                  // Set the alert dialog no button click listener
                 builder2.setNegativeButton("No",dialogClickListener1);
 
                 AlertDialog dialog4 = builder2.create();

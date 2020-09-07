@@ -13,13 +13,14 @@ public class Pet {
     String color_marking = null;
     String Pet_ID = null;
     String created_at = null;
+    String last_vacc = null;
     String pet_latitude = null;
     String pet_longitude = null;
 
 
     public Pet( String id, String owner_id, String petid, String respondent, String petname, String species,
                String breed, String sex, String birthday, String color_marking,
-               String created_at, String pet_latitude, String pet_longitude){
+               String created_at, String last_vacc, String pet_latitude, String pet_longitude){
 
         super();
 
@@ -34,6 +35,7 @@ public class Pet {
         this.birthday = birthday;
         this.color_marking = color_marking;
         this.created_at = created_at;
+        this.last_vacc = last_vacc;
         this.pet_latitude= pet_latitude;
         this.pet_longitude = pet_longitude;
 
@@ -147,6 +149,15 @@ public class Pet {
     public void setColor_marking(String color_marking){
 
         this.color_marking = color_marking;
+    }
+
+    public void setLast_vacc(String last_vacc)
+    {
+        this.last_vacc = last_vacc;
+    }
+    public String getLast_vacc()
+    {
+        return last_vacc;
     }
 
 

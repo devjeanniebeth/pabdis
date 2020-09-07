@@ -63,10 +63,7 @@ public class ApiaryActivity extends AppCompatActivity {
             petid = (String) savedInstanceState.getSerializable("petid");
 
         }
-
-
-
-
+        
         Cursor rss = myDB.getApiary(ownerid);
         rss.moveToFirst();
 

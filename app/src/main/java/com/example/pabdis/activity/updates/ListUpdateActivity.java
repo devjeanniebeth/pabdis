@@ -24,12 +24,13 @@ import com.example.pabdis.activity.survey.OtherActivity;
 import com.example.pabdis.activity.survey.SwineActivity;
 import com.example.pabdis.activity.ui.MainActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
+import com.example.pabdis.activity.ui.PetListActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 
 public class ListUpdateActivity extends AppCompatActivity {
 
 
-    Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnApiary,btnWeekly, btnPet;
+    Button btnOwner,btnSwine,btnChicken,btnCattle,btnCarabao,btnGoat,btnOther,btnFishery,btnApiary,btnWeekly, btnPet, btnPetView;
     FloatingActionButton back;
     String ownerid, update;
     Integer position,stat;
@@ -53,6 +54,7 @@ public class ListUpdateActivity extends AppCompatActivity {
         btnApiary = findViewById(R.id.btnApiary);
         btnWeekly = findViewById(R.id.btnWeekly);
         btnPet = findViewById(R.id.btnPet);
+        btnPetView = findViewById(R.id.btnPetView);
         back = findViewById(R.id.fab);
         btnFishery.setText("Fishery");
         btnApiary.setText("Apiary");
@@ -290,6 +292,17 @@ public class ListUpdateActivity extends AppCompatActivity {
                 i.putExtra("update", "true");
                 i.putExtra("position", position);
                 i.putExtra("stat", stat);
+                startActivity(i);
+
+            }
+        });
+
+        btnPetView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(ListUpdateActivity.this, PetListActivity.class);
+                i.putExtra("ownerid", ownerid);
                 startActivity(i);
 
             }
