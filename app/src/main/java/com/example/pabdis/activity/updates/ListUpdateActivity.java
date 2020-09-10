@@ -303,6 +303,10 @@ public class ListUpdateActivity extends AppCompatActivity {
 
                 Intent i = new Intent(ListUpdateActivity.this, PetListActivity.class);
                 i.putExtra("ownerid", ownerid);
+                i.putExtra("position", position);
+                i.putExtra("ownerid", ownerid);
+                i.putExtra("add", update);
+                i.putExtra("stat", stat);
                 startActivity(i);
 
             }

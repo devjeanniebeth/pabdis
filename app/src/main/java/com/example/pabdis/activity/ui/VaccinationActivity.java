@@ -697,6 +697,18 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
         };
 
+
+        btndate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(VaccinationActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
         final DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -770,15 +782,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             }
         });
 
-        btndate.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(VaccinationActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
 
 
         btnVacc.setOnClickListener(new View.OnClickListener() {

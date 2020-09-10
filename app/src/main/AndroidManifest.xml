@@ -109,6 +109,9 @@
         <activity
             android:name=".activity.sign.SignatureActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.ui.PetListActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
