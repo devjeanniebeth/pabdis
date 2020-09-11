@@ -297,20 +297,20 @@ public class ListUpdateActivity extends AppCompatActivity {
             }
         });
 
-        btnPetView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent i = new Intent(ListUpdateActivity.this, PetListActivity.class);
-                i.putExtra("ownerid", ownerid);
-                i.putExtra("position", position);
-                i.putExtra("ownerid", ownerid);
-                i.putExtra("add", update);
-                i.putExtra("stat", stat);
-                startActivity(i);
-
-            }
-        });
+//        btnPetView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent i = new Intent(ListUpdateActivity.this, PetListActivity.class);
+//                i.putExtra("ownerid", ownerid);
+//                i.putExtra("position", position);
+//                i.putExtra("ownerid", ownerid);
+//                i.putExtra("add", update);
+//                i.putExtra("stat", stat);
+//                startActivity(i);
+//
+//            }
+//        });
 
     }
 

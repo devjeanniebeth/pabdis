@@ -250,7 +250,7 @@ public class PetActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id WHERE pet_id NOT NULL", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id LEFT JOIN pvet_pet_vaccination on pvet_pet.pet_id = pvet_pet_vaccination.pet_id WHERE pvet_pet.pet_id NOT NULL ", null);
         Pet pet;
         PetList = new ArrayList<Pet>();
         if (cursor.moveToFirst()) {
@@ -268,7 +268,7 @@ public class PetActivity extends AppCompatActivity
                     String sex = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                     String birth = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                     String color = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
-                    String lastvacc = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
+                    String lastvacc = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
                     String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
                     String pet_latitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_17)));
                     String pet_longitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
