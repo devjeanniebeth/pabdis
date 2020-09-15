@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity
                 lastname.setText(mylist2.get(0));
                 firstname.setText(mylist2.get(1));
                 edtTotalHousehold.setText(members);
-            }else if(type.toUpperCase().equals("COOPERATIVE"))
+            }else if(type.toUpperCase().equals("COOPERATIVE/ ASSOCIATION"))
             {
                 int spinnerPosition2 = types.getPosition(type);
                 ownertype.setSelection(spinnerPosition2);
@@ -439,7 +439,7 @@ public class MainActivity extends AppCompatActivity
                         ownerin = edtEstab.getText().toString();
                         member = "";
 
-                    }else if(ownert.toUpperCase().equals("COOPERATIVE")){
+                    }else if(ownert.toUpperCase().equals("COOPERATIVE/ ASSOCIATION")){
 
                         ownerin = edtCoop.getText().toString();
                         member = "";
@@ -587,7 +587,7 @@ public class MainActivity extends AppCompatActivity
 //                        Toast.makeText(MainActivity.this, ""+ selectedItem + ownerinfo , Toast.LENGTH_SHORT).show();
 
                         break;
-                    case "Cooperative":
+                    case "Cooperative/ Association":
                         edtCoop.setVisibility(View.VISIBLE);
                         lastname.setVisibility(View.GONE);
                         firstname.setVisibility(View.GONE);

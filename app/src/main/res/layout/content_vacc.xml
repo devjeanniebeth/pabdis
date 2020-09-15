@@ -188,6 +188,7 @@
                     <TextView
                         android:id="@+id/txtdatesurvey"
                         android:layout_width="match_parent"
+                        android:hint="YYYY-MM-DD"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="20dp"

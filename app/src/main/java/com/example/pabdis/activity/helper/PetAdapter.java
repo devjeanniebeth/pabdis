@@ -54,6 +54,9 @@ public class PetAdapter extends ArrayAdapter<Pet> {
     TextView BIRTH;
     TextView COLOR;
     TextView CREATED;
+    TextView LASTVACC;
+    TextView PETLATITUDE;
+    TextView PETLONGITUDE;
   }
 
 
@@ -78,6 +81,9 @@ public class PetAdapter extends ArrayAdapter<Pet> {
       holder.BIRTH = child.findViewById(R.id.txtPetBirthdate);
       holder.COLOR = child.findViewById(R.id.txtPetColor);
       holder.CREATED = child.findViewById(R.id.txtCreatedat);
+      holder.LASTVACC = child.findViewById(R.id.txtLastVacc);
+      holder.PETLATITUDE = child.findViewById(R.id.txtPetLati);
+      holder.PETLONGITUDE = child.findViewById(R.id.txtPetLongi);
       child.setTag(holder);
 
 
@@ -100,6 +106,9 @@ public class PetAdapter extends ArrayAdapter<Pet> {
     holder.BIRTH.setText(pet.getBirthday());
     holder.COLOR.setText(pet.getColor_marking());
     holder.CREATED.setText(pet.getCreated_at());
+    holder.LASTVACC.setText(pet.getLast_vacc());
+    holder.PETLATITUDE.setText(pet.getPet_latitude());
+    holder.PETLONGITUDE.setText(pet.getPet_longitude());
 
     return child;
   }

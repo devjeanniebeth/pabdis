@@ -110,7 +110,7 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
         edtSwineTotal.setEnabled(false);
         Calendar now = Calendar.getInstance();
         now = Calendar.getInstance();
-        now.add(Calendar.YEAR, -1);
+        now.add(Calendar.YEAR, 1);
 
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for " + now.get(Calendar.YEAR));
@@ -454,25 +454,14 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
                 final Integer pign = Integer.parseInt(edtPigN.getText().toString());
                 final Integer pigu = Integer.parseInt(edtPigU.getText().toString());
 
-
                 if(edtboarn.equals("") || edtboaru.equals("") || edtGrowN.equals("") || edtGrowU.equals("")
                         || edtSowN.equals("") || edtSowU.equals("") || edtPigN.equals("") || edtPigU.equals("") )
                 {
-
                     Toast.makeText(SwineActivity.this, "Empty input!" + ownerid , Toast.LENGTH_SHORT).show();
-
-
-
                 }else {
                     final Integer total = boarn + boaru + grown + growu +  sown + sowu + pign + pigu;
                     edtSwineTotal.setText(String.valueOf(total));
                 }
-
-
-
-
-
-
 
             }
         });
@@ -487,9 +476,6 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
                 startActivity(intent);
-
-
-
             }
         });
 

@@ -36,7 +36,7 @@ import com.example.pabdis.activity.updates.PetVaccination;
 
 import java.util.ArrayList;
 
-public class PetActivity extends AppCompatActivity
+public class PetListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     DatabaseHelper myDB;
     ListView LISTVIEW;
@@ -44,15 +44,14 @@ public class PetActivity extends AppCompatActivity
     EditText searchView;
     Cursor cursor;
     Integer pos,stat;
-    String update, petid;
+    String update, petid,ownerid;
     private SessionManager session;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet);
+        setContentView(R.layout.activity_estbpetlist);
         Toolbar toolbar = findViewById(R.id.toolbar);
         myDB = new DatabaseHelper(getApplicationContext());
         session = new SessionManager(getApplicationContext());
@@ -77,13 +76,16 @@ public class PetActivity extends AppCompatActivity
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 pos = null;
+                ownerid= null;
                 stat = null;
             } else {
                 pos= extras.getInt("pos");
+                ownerid= extras.getString("ownerid");
                 stat= extras.getInt("stat");
             }
         } else {
             pos= (Integer) savedInstanceState.getSerializable("pos");
+            ownerid= (String) savedInstanceState.getSerializable("ownerid");
             stat= (Integer) savedInstanceState.getSerializable("stat");
         }
 
@@ -133,7 +135,7 @@ public class PetActivity extends AppCompatActivity
                 final String ownerid = listAdapter.getItem(position).getOwner_id();
 
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(PetListActivity.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
                 builder.setPositiveButton("Update Pet Info", new DialogInterface.OnClickListener() {
@@ -147,9 +149,9 @@ public class PetActivity extends AppCompatActivity
 
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
-                        Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
+                        Intent i = new Intent(PetListActivity.this, VaccinationActivity.class);
                         i.putExtra("petid", code);
-                          i.putExtra("position", position);
+                        i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);
                         i.putExtra("stat", stat);
@@ -163,7 +165,7 @@ public class PetActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Intent i = new Intent(PetActivity.this, PetVaccination.class);
+                        Intent i = new Intent(PetListActivity.this, PetVaccination.class);
                         i.putExtra("petid", code);
                         i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
@@ -179,7 +181,7 @@ public class PetActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
                         // Build an AlertDialog
-                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetActivity.this);
+                        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(PetListActivity.this);
 
                         // Set a title for alert dialog
                         builder.setTitle("DELETE.");
@@ -198,7 +200,7 @@ public class PetActivity extends AppCompatActivity
 
                                         myDB.deletePet(code);
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(PetActivity.this, PetActivity.class);
+                                        Intent i = new Intent(PetListActivity.this, PetActivity.class);
                                         i.putExtra("ownerid", code);
                                         i.putExtra("stat", stat);
                                         startActivity(i);
@@ -250,35 +252,37 @@ public class PetActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id LEFT JOIN pvet_pet_vaccination on pvet_pet.pet_id = pvet_pet_vaccination.pet_id WHERE pvet_pet.pet_id NOT NULL ", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet LEFT JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id  LEFT M      JOIN pvet_pet_vaccination on  " +
+                "pvet_pet_vaccination.pet_id =  pvet_pet.pet_id  WHERE pvet_pet.pet_id NOT NULL AND pvet_pet.pet_id = '"+petid+"'", null);
+
         Pet pet;
         PetList = new ArrayList<Pet>();
         if (cursor.moveToFirst()) {
-                do {
-                    String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
-                    String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
-                    String id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
-                    String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-                    if (owner_id.equals(null)) {
-                        owner_id = "";
-                    }
-                    String respondent = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)));
-                    String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
-                    String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
-                    String sex = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
-                    String birth = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
-                    String color = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
-                    String lastvacc = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
-                    String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
-                    String pet_latitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_17)));
-                    String pet_longitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
-                    pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude);
-                    PetList.add(pet);
-                } while (cursor.moveToNext());
+            do {
+                String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
+                String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+                String id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
+                String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
+                if (owner_id.equals(null)) {
+                    owner_id = "";
+                }
+                String respondent = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)));
+                String specie = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_4)));
+                String breed = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_5)));
+                String sex = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
+                String birth = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
+                String color = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
+                String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
+                String lastvacc = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3));
+                String pet_latitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_17)));
+                String pet_longitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
+                pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude);
+                PetList.add(pet);
+            } while (cursor.moveToNext());
 
-                listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
-                LISTVIEW.setAdapter(listAdapter);
-                cursor.close();
+            listAdapter = new PetAdapter(PetListActivity.this, R.layout.items_pet, PetList);
+            LISTVIEW.setAdapter(listAdapter);
+            cursor.close();
         }
     }
 
@@ -335,7 +339,7 @@ public class PetActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_logout) {
             session.logoutUser();
-            Intent i = new Intent(PetActivity.this, LoginActivity.class);
+            Intent i = new Intent(PetListActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
 

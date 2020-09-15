@@ -58,8 +58,8 @@ import java.util.Random;
 public class VaccinationActivity extends AppCompatActivity implements LocationListener {
 
 
-    EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace;
-    TextView dateSurvey,txtAge, txtxDateVacc,strngbreed,txtvaccinatedby2, txtv4,txtstatus,txtDateStatus;
+    EditText otherbreed, othercolormark, txtpetname, txtdistinguish,txtsourceplace,txtxDateVacc;
+    TextView dateSurvey,txtAge,strngbreed,txtvaccinatedby2, txtv4,txtstatus,txtDateStatus;
     Button btndate, chooseImg, btnVacc, dateVacc, btnUpdate,btnDateStatus, btnRefresh;
     FloatingActionButton skip;
     final Calendar myCalendar = Calendar.getInstance();
@@ -460,7 +460,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final String status = spstatus.getSelectedItem().toString();
                     final String breed;
 
-
                     if(specie == "Monkey"){
                         breed = "N/A";
                     }else{
@@ -470,9 +469,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
                     final String gender = txtGender.getSelectedItem().toString();
                     final String vacc_by;
-
-
-
 
                     final String birthdate = dateSurvey.getText().toString();
                     final String agepet = age;
@@ -491,13 +487,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final String stat = "alive";
                     final byte imgv[]  ;
                     final String nulla = "N/A";
-
-
-
-
-
-
-
 
                     if(imgView.getDrawable() == null)
                     {
@@ -708,6 +697,18 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
         };
 
+
+        btndate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(VaccinationActivity.this, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
         final DatePickerDialog.OnDateSetListener date2 = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -716,6 +717,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                 txtxDateVacc.setText(sdf.format(myCalendar.getTime()));
@@ -780,15 +782,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             }
         });
 
-        btndate.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(VaccinationActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
 
 
         btnVacc.setOnClickListener(new View.OnClickListener() {
