@@ -146,6 +146,9 @@
     <string-array name="vaccinated_by">
         <item>Government</item>
         <item>Private</item>
+        <item>PLGU</item>
+        <item>MLGU</item>
+        <item>BSU</item>
     </string-array>
     <string name="boar_native">Boar (Native)</string>
     <string name="boar_upgrade">Boar (Upgrade)</string>
