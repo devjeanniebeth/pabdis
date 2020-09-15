@@ -379,7 +379,7 @@
             android:layout_weight="1"
             android:paddingLeft="10dp"
             android:layout_column="0"
-            android:text="Longitude: "
+            android:text="Created At: "
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#050505"
             android:textSize="18sp"/>
