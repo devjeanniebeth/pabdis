@@ -34,6 +34,7 @@ import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.ProfileActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import org.json.JSONArray;
@@ -50,7 +51,7 @@ import java.util.List;
 public class SwineActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     Button btnNext, compute, btnUpdate;
-    FloatingActionButton skip;
+    FloatingActionButton skip, skip_vacc;
     ArrayList<String> mylist = new ArrayList<String>();
     ArrayList<String> mylist2 = new ArrayList<String>();
 
@@ -77,6 +78,7 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
         btnNext = findViewById(R.id.btnProceedSurvey);
         btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
+        skip_vacc = findViewById(R.id.fab2);
         cbhog = findViewById(R.id.cbhog);
         cbpcv2 = findViewById(R.id.cbpcv2);
         cbmyco = findViewById(R.id.cbmyco);
@@ -472,6 +474,19 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(), ChickenActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
+            }
+        });
+
+
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
