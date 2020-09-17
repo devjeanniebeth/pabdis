@@ -28,6 +28,7 @@ import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.ProfileActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
@@ -48,7 +49,7 @@ public class CattleActivity extends AppCompatActivity implements NavigationView.
     Integer pos;
     ArrayList<String> mylistup = new ArrayList<String>();
     Spinner vacc;
-    FloatingActionButton skip;
+    FloatingActionButton skip, skip_vacc;
     TextView textView, txtincome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class CattleActivity extends AppCompatActivity implements NavigationView.
         btnNext = findViewById(R.id.btnProceedSurvey);
         btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
+        skip_vacc = findViewById(R.id.fab2);
         cbbl = findViewById(R.id.cbbl);
         cbbl.setVisibility(View.GONE);
         compute = findViewById(R.id.btnCompute);
@@ -367,9 +369,18 @@ public class CattleActivity extends AppCompatActivity implements NavigationView.
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
                 startActivity(intent);
+            }
+        });
 
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
             }
         });
 

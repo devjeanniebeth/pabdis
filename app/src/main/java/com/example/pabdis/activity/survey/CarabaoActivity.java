@@ -51,15 +51,16 @@ public class CarabaoActivity extends AppCompatActivity implements NavigationView
     ArrayList<String> mylist2 = new ArrayList<String>();
     Integer pos;
     ArrayList<String> mylistup = new ArrayList<String>();
-    FloatingActionButton skip;
+    FloatingActionButton skip, skip_vacc;
     TextView textView, txtincome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_carabao);
+        setContentView(R.layout.activity_survey_carabao);
         myDB = new DatabaseHelper(getApplicationContext());
         btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
+        skip_vacc = findViewById(R.id.fab2);
         cbbl = findViewById(R.id.cbbl);
         cbbl.setVisibility(View.GONE);
         edtTotal = findViewById(R.id.edtTotal);
@@ -381,8 +382,18 @@ public class CarabaoActivity extends AppCompatActivity implements NavigationView
                 intent.putExtra("pos", pos);
                 startActivity(intent);
 
+            }
+        });
 
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
             }
         });
         btnNext.setOnClickListener(new View.OnClickListener() {

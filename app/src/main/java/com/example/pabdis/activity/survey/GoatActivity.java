@@ -42,7 +42,7 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
     Button btnNext,compute,btnUpdate;
     String ownerid,vaccstat, vacctype, deworm, petid, update;
     RadioButton rbyes, rbno, rby, rbn;
-    FloatingActionButton skip;
+    FloatingActionButton skip, skip_vacc;
     Spinner vacc;
     CheckBox cbbl;
     ArrayList<String> mylist = new ArrayList<String>();
@@ -61,6 +61,7 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
         btnNext = findViewById(R.id.btnProceedSurvey);
         btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
+        skip_vacc = findViewById(R.id.fab2);
         cbbl = findViewById(R.id.cbbl);
         cbbl.setVisibility(View.GONE);
         compute = findViewById(R.id.btnCompute);
@@ -372,6 +373,19 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+            }
+        });
+
+
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
             }
         });
 

@@ -691,6 +691,8 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
+
+
             }
 
 
@@ -702,9 +704,12 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
             @Override
             public void onClick(View v) {
+
+
                 new DatePickerDialog(VaccinationActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).getDatePicker().setMaxDate(new Date().getTime());
+
             }
         });
 
@@ -717,6 +722,11 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+
+
+
+
 
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);

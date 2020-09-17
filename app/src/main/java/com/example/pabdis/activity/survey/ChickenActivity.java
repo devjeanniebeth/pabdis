@@ -28,6 +28,7 @@ import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.ProfileActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
 import java.text.SimpleDateFormat;
@@ -46,7 +47,7 @@ public class ChickenActivity extends AppCompatActivity implements NavigationView
     ArrayList<String> mylist = new ArrayList<String>();
     ArrayList<String> mylist2 = new ArrayList<String>();
     ArrayList<String> mylistup = new ArrayList<String>();
-    FloatingActionButton skip;
+    FloatingActionButton skip, skip_vacc;
     Spinner vacc;
     Integer pos;
     CheckBox cbncdls,cbfp,cbib,cbncdb1,cbncdcombo;
@@ -73,6 +74,7 @@ public class ChickenActivity extends AppCompatActivity implements NavigationView
 
 
         skip = findViewById(R.id.fab);
+        skip_vacc = findViewById(R.id.fab2);
         edtBroiler = findViewById(R.id.edtBroiler);
         edtLayers = findViewById(R.id.edtLayers);
         edtNative = findViewById(R.id.edtNative);
@@ -507,6 +509,18 @@ public class ChickenActivity extends AppCompatActivity implements NavigationView
 
 
 
+            }
+        });
+
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
             }
         });
 

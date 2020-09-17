@@ -481,7 +481,6 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
             }
         });
 
-
         skip_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -493,6 +492,7 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
                 startActivity(intent);
             }
         });
+
 
 
 

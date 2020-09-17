@@ -34,7 +34,7 @@ import java.util.Calendar;
 public class OtherActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Button btnNext, compute, btnUpdate;
-    FloatingActionButton skip;
+    FloatingActionButton skip, skip_vacc;
     String ownerid, petid, update, add;
     DatabaseHelper myDB;
     Integer pos,stat;
@@ -81,6 +81,7 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
         btnNext = findViewById(R.id.btnProceedSurvey);
         btnUpdate = findViewById(R.id.btnUpdate);
         skip = findViewById(R.id.fab);
+        skip_vacc = findViewById(R.id.fab2);
         edtSheep = findViewById(R.id.edtSheep);
         edtHorse = findViewById(R.id.edtHorse);
         edtRabbit = findViewById(R.id.edtRabbit);
@@ -215,6 +216,18 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
 
 
 
+            }
+        });
+
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
             }
         });
 

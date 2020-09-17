@@ -17,6 +17,7 @@ import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
 import com.example.pabdis.activity.survey.FisheryActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -27,7 +28,7 @@ public class ApiaryActivity extends AppCompatActivity {
     EditText edtColonyNum,edtProdH,edtTotalIncome;
     String ownerid, petid;
     Integer pos;
-    FloatingActionButton skip;
+    FloatingActionButton skip_vacc,skip;
     Button btnUpdate;
 
 
@@ -43,6 +44,7 @@ public class ApiaryActivity extends AppCompatActivity {
         edtProdH = findViewById(R.id.edtProdH);
         edtTotalIncome = findViewById(R.id.edtTotalIncome);
         skip = findViewById(R.id.fab);
+        skip_vacc = findViewById(R.id.fab2);
         btnUpdate = findViewById(R.id.btnUpdate);
         btnUpdate.setText("PROCEED SURVEY");
 
@@ -168,6 +170,18 @@ public class ApiaryActivity extends AppCompatActivity {
 
 
 
+            }
+        });
+
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
             }
         });
 
