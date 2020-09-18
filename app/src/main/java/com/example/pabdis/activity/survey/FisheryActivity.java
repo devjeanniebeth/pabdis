@@ -26,6 +26,7 @@ import com.example.pabdis.activity.ui.MapActivity;
 import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.PetActivity;
 import com.example.pabdis.activity.ui.ProfileActivity;
+import com.example.pabdis.activity.ui.VaccinationActivity;
 import com.example.pabdis.activity.updates.ApiaryActivity;
 import com.example.pabdis.activity.updates.ListUpdateActivity;
 
@@ -39,7 +40,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
     CheckBox withfishery, withapiary;
     DatabaseHelper myDB, myDB2;
     Integer pos, stat;
-    FloatingActionButton skip;
+    FloatingActionButton skip, skip_vacc;
     EditText edtTotalArea,edtProd,edtIncome,edtColonyNum,edtProdH,edtTotalIncome;
 
     @Override
@@ -52,7 +53,7 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         btnUpdate = findViewById(R.id.btnUpdate);
         btnUpdate.setVisibility(View.GONE);
         skip = findViewById(R.id.fab);
-
+        skip_vacc = findViewById(R.id.fab2);
         edtTotalArea = findViewById(R.id.edtTotalArea);
         edtProd = findViewById(R.id.edtProd);
         edtIncome = findViewById(R.id.edtIncome);
@@ -193,6 +194,18 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
 
 
 
+            }
+        });
+
+        skip_vacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
+                intent.putExtra("ownerid",ownerid);
+                intent.putExtra("petid", petid);
+                intent.putExtra("pos", pos);
+                startActivity(intent);
             }
         });
 

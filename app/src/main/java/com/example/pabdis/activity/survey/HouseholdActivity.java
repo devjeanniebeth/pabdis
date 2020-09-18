@@ -207,6 +207,8 @@ public class HouseholdActivity extends AppCompatActivity implements NavigationVi
             }
         });
 
+
+
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
