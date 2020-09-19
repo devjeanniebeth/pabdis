@@ -616,6 +616,8 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                                             if(mylistup.size() == 1)
                                             {
 
+                                                Toast.makeText(VaccinationActivity.this, "TRYING 1!" , Toast.LENGTH_SHORT).show();
+
                                                 myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                         souces,petid,mylistup.get(0), lat, longi);
                                                 Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
@@ -628,6 +630,8 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                                                 startActivity(intent);
 
                                             }else{
+
+                                                Toast.makeText(VaccinationActivity.this, "TRYING 2!" , Toast.LENGTH_SHORT).show();
 
                                                 myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                         souces,petid,stats, lat, longi);
