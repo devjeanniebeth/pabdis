@@ -97,7 +97,7 @@ public class ChickenActivity extends AppCompatActivity implements NavigationView
         edtTotal.setEnabled(false);
         Calendar now = Calendar.getInstance();
         now = Calendar.getInstance();
-        now.add(Calendar.YEAR, 1);
+        now.add(Calendar.YEAR, -1);
 
         txtincome = findViewById(R.id.txtincome);
         txtincome.setText("Total Income for " + now.get(Calendar.YEAR));
