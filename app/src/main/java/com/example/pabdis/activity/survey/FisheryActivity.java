@@ -36,7 +36,7 @@ import java.util.Calendar;
 public class FisheryActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     Button btnNext,btnUpdate;
-    String ownerid, petid, api, fish, update;
+    String ownerid, petid, add, fish, update;
     CheckBox withfishery, withapiary;
     DatabaseHelper myDB, myDB2;
     Integer pos, stat;
@@ -200,11 +200,12 @@ public class FisheryActivity extends AppCompatActivity implements NavigationView
         skip_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                add = "add";
                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("add", add);
                 startActivity(intent);
             }
         });

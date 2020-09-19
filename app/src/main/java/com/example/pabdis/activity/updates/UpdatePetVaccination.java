@@ -24,6 +24,7 @@ import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class UpdatePetVaccination extends AppCompatActivity {
@@ -100,11 +101,17 @@ public class UpdatePetVaccination extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(UpdatePetVaccination.this, date2, myCalendar
+//                new DatePickerDialog(UpdatePetVaccination.this, date2, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog dialog = new DatePickerDialog(UpdatePetVaccination.this, date2, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                dialog.getDatePicker().setMaxDate(new Date().getTime());
 
-
+                dialog.show();
             }
 
         });

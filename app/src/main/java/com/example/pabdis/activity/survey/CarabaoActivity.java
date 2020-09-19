@@ -40,7 +40,7 @@ import java.util.Calendar;
 public class CarabaoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Button btnNext, compute,btnUpdate;
-    String ownerid,vaccstat, vacctype, deworm, petid, update;
+    String ownerid,vaccstat, vacctype, deworm, petid, update,add;
     DatabaseHelper myDB;
     EditText edtCarabullC,edtCarabullN,edtCaracowC,edtCaracowN,edtCaracalfC,edtCaracalfN, edtTotal,
             edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
@@ -388,11 +388,12 @@ public class CarabaoActivity extends AppCompatActivity implements NavigationView
         skip_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                add = "add";
                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("add", add);
                 startActivity(intent);
             }
         });

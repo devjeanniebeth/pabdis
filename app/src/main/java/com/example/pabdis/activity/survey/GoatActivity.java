@@ -40,10 +40,9 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
 
 
     Button btnNext,compute,btnUpdate;
-    String ownerid,vaccstat, vacctype, deworm, petid, update;
+    String ownerid,vaccstat,add, vacctype, deworm, petid, update;
     RadioButton rbyes, rbno, rby, rbn;
     FloatingActionButton skip, skip_vacc;
-    Spinner vacc;
     CheckBox cbbl;
     ArrayList<String> mylist = new ArrayList<String>();
     ArrayList<String> mylist2 = new ArrayList<String>();
@@ -380,11 +379,12 @@ public class GoatActivity extends AppCompatActivity implements NavigationView.On
         skip_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                add = "add";
                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("add", add);
                 startActivity(intent);
             }
         });

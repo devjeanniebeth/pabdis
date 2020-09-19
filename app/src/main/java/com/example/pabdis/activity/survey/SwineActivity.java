@@ -58,7 +58,7 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
     ArrayList<String> mylistup = new ArrayList<String>();
     EditText edtboarn, edtboaru, edtGrowN, edtGrowU, edtSowN, edtSowU, edtPigN,edtPigU,
             edtSwineTotal,edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
-    String ownerid, petid, update;
+    String ownerid, petid, update, add;
     CheckBox cbhog, cbpcv2, cbmyco;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno, rby, rbn;
@@ -484,11 +484,12 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
         skip_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                add = "add";
                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("add", add);
                 startActivity(intent);
             }
         });
