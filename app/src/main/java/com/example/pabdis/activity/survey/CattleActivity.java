@@ -40,7 +40,7 @@ public class CattleActivity extends AppCompatActivity implements NavigationView.
 
     Button btnNext, compute,btnUpdate;
     EditText edtBullD,edtBullM,edtCowD,edtCowM,edtCalfD,edtCalfM,edtTotal, edtSF_sw_kg,edtSF_sw_hd,edtSA_sw_kg,edtSA_sw_hd,edtSwineTotalArea,edtSwineTotalIncome;
-    String ownerid, vaccstat, vacctype, deworm, petid, update;
+    String ownerid, vaccstat, vacctype, deworm, petid, update,add;
     DatabaseHelper myDB;
     RadioButton rbyes, rbno, rbn, rby;
     CheckBox cbbl;
@@ -375,11 +375,12 @@ public class CattleActivity extends AppCompatActivity implements NavigationView.
         skip_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                add = "add";
                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("add", add);
                 startActivity(intent);
             }
         });

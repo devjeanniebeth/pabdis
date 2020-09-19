@@ -264,9 +264,17 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
                 @Override
                 public void onClick(View v) {
-                    new DatePickerDialog(VaccinationActivity.this, date5, myCalendar
+//                    new DatePickerDialog(VaccinationActivity.this, date5, myCalendar
+//                            .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                    DatePickerDialog dialog = new DatePickerDialog(VaccinationActivity.this, date5, myCalendar
                             .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                            myCalendar.get(Calendar.DAY_OF_MONTH));
+                    dialog.getDatePicker().setMaxDate(new Date().getTime());
+
+                    dialog.show();
 
                 }
 
@@ -691,12 +699,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
                 updateLabel();
-
-
             }
-
-
-
         };
 
 
@@ -705,10 +708,22 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             @Override
             public void onClick(View v) {
 
-
-                new DatePickerDialog(VaccinationActivity.this, date, myCalendar
+                DatePickerDialog dialog = new DatePickerDialog(VaccinationActivity.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).getDatePicker().setMaxDate(new Date().getTime());
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                dialog.getDatePicker().setMaxDate(new Date().getTime());
+
+
+                dialog.show();
+//                new DatePickerDialog(VaccinationActivity.this, date, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).
+//                        getDatePicker().setMaxDate(new Date().
+//                        getTime());
+//
+//                new DatePickerDialog(VaccinationActivity.this, date, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
             }
         });
@@ -723,11 +738,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-
-
-
-
-
                 String myFormat = "MM/dd/yyyy"; //In which you need put here
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                 txtxDateVacc.setText(sdf.format(myCalendar.getTime()));
@@ -740,9 +750,19 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
         dateVacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(VaccinationActivity.this, date2, myCalendar
+//                new DatePickerDialog(VaccinationActivity.this, date2, myCalendar
+//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+
+                DatePickerDialog dialog = new DatePickerDialog(VaccinationActivity.this, date2, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                dialog.getDatePicker().setMaxDate(new Date().getTime());
+//                dialog.getDatePicker().setMinDate(new Date(dateSurvey).getTime());
+
+                dialog.show();
+
             }
         });
 

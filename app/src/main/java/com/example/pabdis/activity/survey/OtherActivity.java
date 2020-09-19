@@ -222,11 +222,12 @@ public class OtherActivity extends AppCompatActivity implements NavigationView.O
         skip_vacc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                add = "add";
                 Intent intent = new Intent(getApplicationContext(), VaccinationActivity.class);
                 intent.putExtra("ownerid",ownerid);
                 intent.putExtra("petid", petid);
                 intent.putExtra("pos", pos);
+                intent.putExtra("add", add);
                 startActivity(intent);
             }
         });
