@@ -252,7 +252,7 @@ public class PetListActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet LEFT JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id  LEFT M      JOIN pvet_pet_vaccination on  " +
+        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet LEFT JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id  LEFT JOIN pvet_pet_vaccination on  " +
                 "pvet_pet_vaccination.pet_id =  pvet_pet.pet_id  WHERE pvet_pet.pet_id NOT NULL AND pvet_pet.pet_id = '"+petid+"'", null);
 
         Pet pet;
