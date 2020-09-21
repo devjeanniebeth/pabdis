@@ -26,23 +26,20 @@
       <option name="name" value="Google" />
       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
     </remote-repository>
-<<<<<<< HEAD
-=======
     <remote-repository>
-      <option name="id" value="C:\Users\Jeannie\AppData\Local\Android\Sdk\extras\google\m2repository" />
-      <option name="name" value="C:\Users\Jeannie\AppData\Local\Android\Sdk\extras\google\m2repository" />
-      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/google/m2repository/" />
+      <option name="id" value="C:\Users\PGO-IT-02\AppData\Local\Android\Sdk\extras\google\m2repository" />
+      <option name="name" value="C:\Users\PGO-IT-02\AppData\Local\Android\Sdk\extras\google\m2repository" />
+      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/google/m2repository" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="C:\Users\Jeannie\AppData\Local\Android\Sdk\extras\android\m2repository" />
-      <option name="name" value="C:\Users\Jeannie\AppData\Local\Android\Sdk\extras\android\m2repository" />
-      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/android/m2repository/" />
+      <option name="id" value="C:\Users\PGO-IT-02\AppData\Local\Android\Sdk\extras\android\m2repository" />
+      <option name="name" value="C:\Users\PGO-IT-02\AppData\Local\Android\Sdk\extras\android\m2repository" />
+      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/android/m2repository" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="C:\Users\Jeannie\AppData\Local\Android\Sdk\extras\m2repository" />
-      <option name="name" value="C:\Users\Jeannie\AppData\Local\Android\Sdk\extras\m2repository" />
-      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/m2repository/" />
+      <option name="id" value="C:\Users\PGO-IT-02\AppData\Local\Android\Sdk\extras\m2repository" />
+      <option name="name" value="C:\Users\PGO-IT-02\AppData\Local\Android\Sdk\extras\m2repository" />
+      <option name="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/extras/m2repository" />
     </remote-repository>
->>>>>>> 097f57b58163ef6d753113b32f4d0e27c2b733fe
   </component>
 </project>

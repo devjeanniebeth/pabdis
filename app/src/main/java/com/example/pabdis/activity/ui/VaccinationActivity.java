@@ -151,7 +151,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 petid = null;
                 status = null;
                 pos = null;
-                stat = null;
+                stat = 0;
             } else {
                 ownerid= extras.getString("ownerid");
                 petid= extras.getString("petid");
@@ -273,7 +273,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                             .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                             myCalendar.get(Calendar.DAY_OF_MONTH));
                     dialog.getDatePicker().setMaxDate(new Date().getTime());
-
                     dialog.show();
 
                 }
@@ -334,6 +333,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     int spinnerPosition2 = vaccinatedby.getPosition("Transferred");
                     spstatus.setSelection(spinnerPosition2);
                     txtDateStatus.setText(mylist2.get(1));
+
 
 
                 }
@@ -995,7 +995,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                             case DialogInterface.BUTTON_POSITIVE:
                                 // User clicked the Yes button
 
-                                if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
+                                if (petname.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
                                     Toast.makeText(VaccinationActivity.this, "Check your input!", Toast.LENGTH_SHORT).show();
                                 }else{
 
