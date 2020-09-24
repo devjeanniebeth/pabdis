@@ -78,6 +78,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:hint="@string/pet_name"
+                        android:textColor="@color/lbl_name"
                         android:inputType="text"
                         android:maxLines="1"
                         android:padding="10dp"
@@ -92,6 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/specie"
+                        android:textColor="@color/lbl_name"
                         android:textAlignment="center"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -117,6 +119,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/breed"
+                        android:textColor="@color/lbl_name"
                         android:textAlignment="center"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -157,6 +160,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gender"
+                        android:textColor="@color/lbl_name"
                         android:textAlignment="center"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -188,7 +192,6 @@
                     <TextView
                         android:id="@+id/txtdatesurvey"
                         android:layout_width="match_parent"
-                        android:hint="YYYY-MM-DD"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="20dp"
@@ -224,6 +227,7 @@
                         android:text="@string/source_of_pet"
                         android:textAlignment="center"
                         android:textSize="16sp"
+                        android:textColor="@color/lbl_name"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -262,6 +266,7 @@
                         android:text="@string/color_markings"
                         android:textAlignment="center"
                         android:textSize="16sp"
+                        android:textColor="@color/lbl_name"
                         android:textStyle="bold" />
 
                     <Spinner
@@ -313,7 +318,9 @@
                         android:id="@+id/txtstatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:text="Status"
                         android:textAlignment="center"
+
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -445,19 +452,6 @@
 
 
                 <Button
-                    android:id="@+id/btnVacc"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/btn_height"
-                    android:layout_marginTop="15dp"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/finish"
-                    android:textColor="@android:color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <Button
                     android:id="@+id/btnRefresh2"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -485,6 +479,19 @@
                     android:textAlignment="center"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnVacc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_height"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/finish"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/btnUpdate"

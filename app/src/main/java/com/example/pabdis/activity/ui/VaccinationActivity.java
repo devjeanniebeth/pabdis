@@ -222,9 +222,10 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             String longitude = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_18));
 
             vaccinatedby = ArrayAdapter.createFromResource(this, R.array.pet_status, R.layout.support_simple_spinner_dropdown_item);
+            mylist2 = new ArrayList<String>(Arrays.asList(status.split(",")));
 
 
-            txtstatus.setText(status);
+            txtstatus.setText(mylist2.get(1));
             tvLongitude.setText(longitude);
             tvLatitude.setText(latitude);
 
@@ -311,13 +312,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Dead");
                     spstatus.setSelection(spinnerPosition2);
-
-
                     txtDateStatus.setText(mylist2.get(1));
-
-
-
-
 
                 } else if (mylist2.contains("lost")) {
 
@@ -1001,7 +996,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
                                     try {
 
-                                        myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
+                                            myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat,
                                                         souces,pet,stat,created_at, lat, longi);
 
                                             if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
@@ -1026,7 +1021,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
                             case DialogInterface.BUTTON_NEGATIVE:
 
-                                if (petname.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
+                                if (petname.equals("")  || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
                                     Toast.makeText(VaccinationActivity.this, "Check your input!" + petid , Toast.LENGTH_SHORT).show();
                                 }else{
 
@@ -1035,19 +1030,15 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
 
                                             myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at, lat, longi);
+                                            myDB.addVaccinationDate(pet,datevacc,vacc_by.trim(),created_at);
+                                            Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
+                                            Toast.makeText(VaccinationActivity.this, "Sucess!" , Toast.LENGTH_SHORT).show();
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
+                                            intent.putExtra("add", add);
+                                            intent.putExtra("stat", stat);
+                                            startActivity(intent);
 
-                                            if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
-
-                                                myDB.addVaccinationDate(pet,datevacc,vacc_by.trim(),created_at);
-                                                Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
-                                                Toast.makeText(VaccinationActivity.this, "Sucess!" , Toast.LENGTH_SHORT).show();
-                                                intent.putExtra("ownerid", ownerid);
-                                                intent.putExtra("petid", petid);
-                                                intent.putExtra("add", add);
-                                                intent.putExtra("stat", stat);
-                                                startActivity(intent);
-
-                                            }
 
 
 
