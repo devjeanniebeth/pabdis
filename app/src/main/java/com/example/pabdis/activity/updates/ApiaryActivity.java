@@ -191,6 +191,12 @@ public class ApiaryActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                Cursor rss = myDB.getOwnerType(ownerid);
+
+
+                rss.getString(rss.getColumnIndex(DatabaseHelper.OWNERCOL_2));
+
+
 
                 final String a_col = edtColonyNum.getText().toString();
                 final String a_prod = edtProdH.getText().toString();

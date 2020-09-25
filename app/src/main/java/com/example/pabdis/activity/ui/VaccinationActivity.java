@@ -193,6 +193,13 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
         if(rs.getCount() > 0 && status.equals("update")) {
 
 
+
+
+            txtbreed.setEnabled(false);
+            txtGender.setEnabled(false);
+            txtSpecie.setEnabled(false);
+
+
             txtvaccinatedby.setVisibility(View.GONE);
             dateVacc.setVisibility(View.GONE);
             tbl1.setVisibility(View.GONE);
@@ -222,10 +229,16 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             String longitude = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_18));
 
             vaccinatedby = ArrayAdapter.createFromResource(this, R.array.pet_status, R.layout.support_simple_spinner_dropdown_item);
+            status = status.replace("[", "");
             mylist2 = new ArrayList<String>(Arrays.asList(status.split(",")));
+             if(!mylist2.isEmpty())
+             {
+                 txtstatus.setText(mylist2.get(1));
+             }else{
+                 txtstatus.setText("");
+             }
 
 
-            txtstatus.setText(mylist2.get(1));
             tvLongitude.setText(longitude);
             tvLatitude.setText(latitude);
 

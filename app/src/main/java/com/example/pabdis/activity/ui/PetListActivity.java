@@ -138,6 +138,9 @@ public class PetListActivity extends AppCompatActivity
                 AlertDialog.Builder builder = new AlertDialog.Builder(PetListActivity.this);
                 builder.setTitle("Choose option");
                 builder.setMessage("Update or delete user?");
+
+
+
                 builder.setPositiveButton("Update Pet Info", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

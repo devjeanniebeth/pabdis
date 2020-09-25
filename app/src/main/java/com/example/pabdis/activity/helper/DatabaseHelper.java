@@ -765,6 +765,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+
+
     public int getCountSwine(String ownerid) {
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT COUNT(*) from "+TABLE_SURVEY1+" WHERE "+SURVEYCOL_3+"='"+ownerid+"'";
@@ -907,6 +909,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
+    public Cursor getOwnerType(String ownerid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT owner_type from "+TABLE_OWNER+" WHERE owner_id = '"+ownerid+"'";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
+
     public Cursor getHousehold(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -914,6 +924,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor res =  db.rawQuery(query,null);
         return res;
     }
+
+
+
+
     public Cursor getVacc(String ownerid)
     {
         SQLiteDatabase db = this.getReadableDatabase();

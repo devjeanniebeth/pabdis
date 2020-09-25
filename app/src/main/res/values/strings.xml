@@ -225,7 +225,7 @@
     <string name="breed">BREED</string>
     <string name="gender">SEX</string>
     <string name="pet_image">Pet Image</string>
-    <string name="distinct_color">Distinguishing Feature</string>
+    <string name="distinct_color">Distinguishing Feature (optional)</string>
     <string name="color_markings">COLOR MARKINGS</string>
     <string name="calf_male_female_below_2_years_old">CALF (male/female, below 2 years old)</string>
     <string name="other_breed">Other Breed</string>
