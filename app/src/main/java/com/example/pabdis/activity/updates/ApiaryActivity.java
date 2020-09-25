@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import com.example.pabdis.R;
 import com.example.pabdis.activity.helper.DatabaseHelper;
+import com.example.pabdis.activity.sign.SignatureActivity;
 import com.example.pabdis.activity.survey.FisheryActivity;
 import com.example.pabdis.activity.survey.HouseholdActivity;
+import com.example.pabdis.activity.ui.OwnerActivity;
 import com.example.pabdis.activity.ui.VaccinationActivity;
 
 import java.text.SimpleDateFormat;
@@ -194,7 +196,11 @@ public class ApiaryActivity extends AppCompatActivity {
                 Cursor rss = myDB.getOwnerType(ownerid);
 
 
-                rss.getString(rss.getColumnIndex(DatabaseHelper.OWNERCOL_2));
+                final String type =  rss.getString(rss.getColumnIndex(DatabaseHelper.OWNERCOL_2));
+
+
+
+
 
 
 
@@ -232,11 +238,27 @@ public class ApiaryActivity extends AppCompatActivity {
                                     }else {
                                         myDB.addApiary(ownerid, a_col, a_prod, a_inc, created_at);
                                         Toast.makeText(ApiaryActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
-                                        intent.putExtra("ownerid", ownerid);
-                                        intent.putExtra("petid", petid);
-                                        intent.putExtra("pos", pos);
-                                        startActivity(intent);
+
+                                        if(type.toUpperCase().equals("COOPERATIVE/ ASSOCIATION"))
+                                        {
+
+                                            Toast.makeText(getApplicationContext(), "SVG Signature saved into the Gallery", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(getApplicationContext(), OwnerActivity.class);
+                                            intent.putExtra("ownerid",ownerid);
+                                            intent.putExtra("petid", petid);
+                                            intent.putExtra("pos", pos);
+                                            startActivity(intent);
+
+                                        }else{
+
+                                            Intent intent = new Intent(getApplicationContext(), HouseholdActivity.class);
+                                            intent.putExtra("ownerid", ownerid);
+                                            intent.putExtra("petid", petid);
+                                            intent.putExtra("pos", pos);
+                                            startActivity(intent);
+
+                                        }
+
                                     }
 
                                 } catch (Exception e) {
