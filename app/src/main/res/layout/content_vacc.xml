@@ -149,7 +149,8 @@
                         android:layout_marginTop="16dp"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:padding="10dp"/>
+                        android:padding="10dp"
+                        android:visibility="gone" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout

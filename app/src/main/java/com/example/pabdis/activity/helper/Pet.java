@@ -16,11 +16,14 @@ public class Pet {
     String last_vacc = null;
     String pet_latitude = null;
     String pet_longitude = null;
+    String pet_status = null;
+    String owner_number = null;
+
 
 
     public Pet( String id, String owner_id, String petid, String respondent, String petname, String species,
                String breed, String sex, String birthday, String color_marking,
-               String created_at, String last_vacc, String pet_latitude, String pet_longitude){
+               String created_at, String last_vacc, String pet_latitude, String pet_longitude, String pet_status, String owner_number){
 
         super();
 
@@ -38,6 +41,8 @@ public class Pet {
         this.last_vacc = last_vacc;
         this.pet_latitude= pet_latitude;
         this.pet_longitude = pet_longitude;
+        this.pet_status = pet_status;
+        this.owner_number = owner_number;
 
     }
 
@@ -195,6 +200,23 @@ public class Pet {
 
         this.pet_longitude = pet_longitude;
 
+    }
+
+    public String getPet_status()
+    {
+        return pet_status;
+    }
+
+    public void setPet_status(String pet_status) {
+        this.pet_status = pet_status;
+    }
+
+    public String getOwner_number() {
+        return owner_number;
+    }
+
+    public void setOwner_number(String owner_number) {
+        this.owner_number = owner_number;
     }
 
     @Override

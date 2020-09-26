@@ -57,6 +57,8 @@ public class PetAdapter extends ArrayAdapter<Pet> {
     TextView LASTVACC;
     TextView PETLATITUDE;
     TextView PETLONGITUDE;
+    TextView PETSTATUS;
+    TextView OWNERNUM;
   }
 
 
@@ -84,6 +86,8 @@ public class PetAdapter extends ArrayAdapter<Pet> {
       holder.LASTVACC = child.findViewById(R.id.txtLastVacc);
       holder.PETLATITUDE = child.findViewById(R.id.txtPetLati);
       holder.PETLONGITUDE = child.findViewById(R.id.txtPetLongi);
+      holder.PETSTATUS = child.findViewById(R.id.petstat);
+      holder.OWNERNUM = child.findViewById(R.id.ownernum);
       child.setTag(holder);
 
 
@@ -109,6 +113,8 @@ public class PetAdapter extends ArrayAdapter<Pet> {
     holder.LASTVACC.setText(pet.getLast_vacc());
     holder.PETLATITUDE.setText(pet.getPet_latitude());
     holder.PETLONGITUDE.setText(pet.getPet_longitude());
+    holder.OWNERNUM.setText(pet.getOwner_number());
+    holder.PETSTATUS.setText(pet.getPet_status());
 
     return child;
   }

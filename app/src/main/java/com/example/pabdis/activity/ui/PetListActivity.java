@@ -42,7 +42,7 @@ public class PetListActivity extends AppCompatActivity
     ListView LISTVIEW;
     PetAdapter listAdapter;
     EditText searchView;
-    Cursor cursor;
+    Cursor cursor, curser2;
     Integer pos,stat;
     String update, petid,ownerid;
     private SessionManager session;
@@ -255,8 +255,13 @@ public class PetListActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet LEFT JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id  LEFT JOIN pvet_pet_vaccination on  " +
-                "pvet_pet_vaccination.pet_id =  pvet_pet.pet_id  WHERE pvet_pet.pet_id NOT NULL AND pvet_pet.pet_id = '"+petid+"'", null);
+        cursor = sqLiteDatabase.rawQuery("SELECT pvet_pet.petname, pvet_pet.species, pvet_pet.pet_id ,pvet_pet.birthday," +
+                "pvet_pet.color_marking,pvet_pet.created_at, pvet_pet.status," +
+                "pvet_owner.r_lname, pvet_owner.r_fname, pvet_owner.contact_no, pvet_owner.owner_info, pvet_owner.owner_id" +
+                "FROM pvet_pet " +
+                "INNER JOIN pvet_owner  on pvet_pet.owner_id = pvet_owner.owner_id" +
+                "WHERE pvet_pet.pet_id NOT NULL AND pvet_pet.pet_id = '"+petid+"'", null);
+        curser2 = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet_vaccination WHERE ID = (SELECT MAX(ID) FROM pvet_pet_vaccination WHERE pet_id = '"+petid+"')", null);
 
         Pet pet;
         PetList = new ArrayList<Pet>();
@@ -276,10 +281,13 @@ public class PetListActivity extends AppCompatActivity
                 String birth = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                 String color = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
                 String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
-                String lastvacc = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3));
+                String lastvacc = curser2.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3));
                 String pet_latitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_17)));
                 String pet_longitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
-                pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude);
+
+                String owner_num = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
+                String pet_stat = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
+                pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, pet_stat, owner_num);
                 PetList.add(pet);
             } while (cursor.moveToNext());
 

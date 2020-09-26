@@ -538,13 +538,13 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final String othercolor = othercolors;
 
 
-
-                    if(breed.equals("Others"))
-                    {
-                        other_breed =  otherbreed.getText().toString();
-                    }else{
                         other_breed = breed;
-                    }
+//                    if(breed.equals("Others"))
+//                    {
+//                        other_breed =  otherbreed.getText().toString();
+//                    }else{
+//
+//                    }
 
 
                     if(source2.equals("Introduced") ) {
@@ -902,13 +902,13 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
                 final String othercolor = othercolors;
 
-
-                if(breed == "Others")
-                {
-                    other_breed =  otherbreed.getText().toString();
-                }else{
-                    other_breed = breed;
-                }
+                other_breed = breed;
+//                if(breed == "Others")
+//                {
+//                    other_breed =  otherbreed.getText().toString();
+//                }else{
+//
+//                }
 
 
                 if(source2.equals("Introduced") ) {
@@ -1185,12 +1185,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = parent.getItemAtPosition(position).toString();
-                switch (selectedItem)
-                {
-                    case "Others":
-                        otherbreed.setVisibility(View.VISIBLE);
-                        break;
-                }
+
             }
 
             @Override
