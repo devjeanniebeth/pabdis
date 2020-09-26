@@ -260,7 +260,7 @@ public class PetActivity extends AppCompatActivity
 
         Pet pet;
         PetList = new ArrayList<Pet>();
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToFirst() && cursor2.moveToFirst()) {
                 do {
                     String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                     String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
@@ -275,7 +275,7 @@ public class PetActivity extends AppCompatActivity
                     String sex = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                     String birth = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                     String color = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
-                    String lastvacc = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
+                    String lastvacc = (cursor2.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
                     String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
                     String pet_latitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_17)));
                     String pet_longitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
@@ -283,14 +283,13 @@ public class PetActivity extends AppCompatActivity
                     String owner_num = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
                     String pet_stat = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
                     pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, pet_stat, owner_num);
-
-
                     PetList.add(pet);
-                } while (cursor.moveToNext());
+                } while (cursor.moveToNext() && cursor2.moveToNext());
 
                 listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
                 LISTVIEW.setAdapter(listAdapter);
                 cursor.close();
+            cursor2.close();
         }
     }
 
