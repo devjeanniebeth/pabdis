@@ -250,20 +250,30 @@ public class PetActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT pvet_pet.petname, pvet_pet.species, pvet_pet.pet_id ,pvet_pet.birthday," +
-                "pvet_pet.color_marking,pvet_pet.created_at, pvet_pet.status," +
-                "pvet_owner.r_lname, pvet_owner.r_fname, pvet_owner.contact_no, pvet_owner.owner_info, pvet_owner.owner_id " +
-                "FROM pvet_pet " +
-                "INNER JOIN pvet_owner  on pvet_pet.owner_id = pvet_owner.owner_id " +
-                "WHERE pvet_pet.pet_id NOT NULL AND pvet_pet.pet_id = '"+petid+"'", null);
-        cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet_vaccination WHERE ID = (SELECT MAX(ID) FROM pvet_pet_vaccination WHERE pet_id = '"+petid+"')", null);
-
+        cursor = sqLiteDatabase.rawQuery("SELECT * " +
+                " FROM pvet_pet " +
+                " INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id " +
+                " WHERE pvet_pet.pet_id NOT NULL ", null);
         Pet pet;
         PetList = new ArrayList<Pet>();
-        if (cursor.moveToFirst() && cursor2.moveToFirst()) {
+        if (cursor.moveToFirst()) {
                 do {
+
+
+                    String lastvacc = "";
                     String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
-                    String petid = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+                    String pet_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
+                    cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet_vaccination WHERE pet_id = '"+ pet_id +"'ORDER BY date_vaccination LIMIT 1 ", null);
+
+                    Toast.makeText(PetActivity.this, "Check your input!"+ pet_id, Toast.LENGTH_SHORT).show();
+//                    if (cursor2.moveToFirst()) {
+//                        do{
+//                            lastvacc = (cursor2.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
+//
+//                        }while(cursor2.moveToNext());
+//                    }
+//                    cursor2.close();
+
                     String id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
                     String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
                     if (owner_id.equals(null)) {
@@ -275,21 +285,19 @@ public class PetActivity extends AppCompatActivity
                     String sex = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_11))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_10))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_9)));
                     String birth = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_8)));
                     String color = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_9)));
-                    String lastvacc = (cursor2.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
+
                     String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
                     String pet_latitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_17)));
                     String pet_longitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
 
-                    String owner_num = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
-                    String pet_stat = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
+                    String owner_num = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
+                    String pet_stat = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_13)));
                     pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, pet_stat, owner_num);
                     PetList.add(pet);
-                } while (cursor.moveToNext() && cursor2.moveToNext());
-
+                } while (cursor.moveToNext());
                 listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
                 LISTVIEW.setAdapter(listAdapter);
                 cursor.close();
-            cursor2.close();
         }
     }
 
