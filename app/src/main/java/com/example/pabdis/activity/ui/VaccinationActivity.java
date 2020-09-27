@@ -1043,6 +1043,12 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
 
                                             myDB.addVaccination(imgv,ownerid,petname,specie,other_breed,gender,birthdate,othercolor, feat, souces,pet,stat,created_at, lat, longi);
+
+
+
+
+                                        if(!petid.equals("") && !datevacc.equals("") && !vacc_by.equals("") && !created_at.equals("")) {
+
                                             myDB.addVaccinationDate(pet,datevacc,vacc_by.trim(),created_at);
                                             Intent intent = new Intent(getApplicationContext(), SignatureActivity.class);
                                             Toast.makeText(VaccinationActivity.this, "Sucess!" , Toast.LENGTH_SHORT).show();
@@ -1051,6 +1057,11 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                                             intent.putExtra("add", add);
                                             intent.putExtra("stat", stat);
                                             startActivity(intent);
+
+                                        }
+
+
+
 
 
 

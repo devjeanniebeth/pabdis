@@ -252,9 +252,9 @@ public class PetActivity extends AppCompatActivity
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
         cursor = sqLiteDatabase.rawQuery("SELECT pvet_pet.petname, pvet_pet.species, pvet_pet.pet_id ,pvet_pet.birthday," +
                 "pvet_pet.color_marking,pvet_pet.created_at, pvet_pet.status," +
-                "pvet_owner.r_lname, pvet_owner.r_fname, pvet_owner.contact_no, pvet_owner.owner_info, pvet_owner.owner_id" +
+                "pvet_owner.r_lname, pvet_owner.r_fname, pvet_owner.contact_no, pvet_owner.owner_info, pvet_owner.owner_id " +
                 "FROM pvet_pet " +
-                "INNER JOIN pvet_owner  on pvet_pet.owner_id = pvet_owner.owner_id" +
+                "INNER JOIN pvet_owner  on pvet_pet.owner_id = pvet_owner.owner_id " +
                 "WHERE pvet_pet.pet_id NOT NULL AND pvet_pet.pet_id = '"+petid+"'", null);
         cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet_vaccination WHERE ID = (SELECT MAX(ID) FROM pvet_pet_vaccination WHERE pet_id = '"+petid+"')", null);
 
