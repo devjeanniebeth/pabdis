@@ -272,7 +272,8 @@ public class PetActivity extends AppCompatActivity
                     String created_at = cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_15));
                     String pet_latitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_17)));
                     String pet_longitude = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_18)));
-                    pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude);
+                    pet =
+                            new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude);
                     PetList.add(pet);
                 } while (cursor.moveToNext());
 
