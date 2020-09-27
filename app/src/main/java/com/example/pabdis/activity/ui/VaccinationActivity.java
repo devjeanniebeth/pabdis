@@ -224,19 +224,26 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             String feature = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_10));
             String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
 //            final String petid = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_12));
-            String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
+
             String latitude = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_17));
             String longitude = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_18));
 
             vaccinatedby = ArrayAdapter.createFromResource(this, R.array.pet_status, R.layout.support_simple_spinner_dropdown_item);
+
+
+            String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
             status = status.replace("[", "");
             mylist2 = new ArrayList<String>(Arrays.asList(status.split(",")));
-             if(!mylist2.isEmpty())
-             {
-                 txtstatus.setText(mylist2.get(1));
-             }else{
-                 txtstatus.setText("");
-             }
+
+            Toast.makeText(VaccinationActivity.this, "Check your input!" + mylist2, Toast.LENGTH_SHORT).show();
+
+
+//             if(!mylist2.isEmpty())
+//             {
+//                 txtstatus.setText(mylist2.get(0));
+//             }else{
+//                 txtstatus.setText("");
+//             }
 
 
             tvLongitude.setText(longitude);

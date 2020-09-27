@@ -144,7 +144,7 @@ public class PetActivity extends AppCompatActivity
                         //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
 
 
-                        Toast.makeText(PetActivity.this, "Check your input!" + code, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(PetActivity.this, "Check your input!" + code, Toast.LENGTH_SHORT).show();
 
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
