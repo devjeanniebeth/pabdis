@@ -143,13 +143,14 @@ public class PetActivity extends AppCompatActivity
                         //go to update activity
                         //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
 
-//                        Toast.makeText(PetActivity.this, "Check your input!"+ code, Toast.LENGTH_SHORT).show();
+
+                        Toast.makeText(PetActivity.this, "Check your input!" + code, Toast.LENGTH_SHORT).show();
 
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
                         Intent i = new Intent(PetActivity.this, VaccinationActivity.class);
                         i.putExtra("petid", code);
-                          i.putExtra("position", position);
+                        i.putExtra("position", position);
                         i.putExtra("ownerid", ownerid);
                         i.putExtra("add", update);
                         i.putExtra("stat", stat);
@@ -291,7 +292,7 @@ public class PetActivity extends AppCompatActivity
 
                     String owner_num = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
                     String pet_stat = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_13)));
-                    pet = new Pet(id, owner_id, petid, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, pet_stat, owner_num);
+                    pet = new Pet(id, owner_id, pet_id, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, pet_stat, owner_num);
                     PetList.add(pet);
                 } while (cursor.moveToNext());
                 listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
