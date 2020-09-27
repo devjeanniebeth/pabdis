@@ -263,8 +263,7 @@ public class PetActivity extends AppCompatActivity
                     String lastvacc = "";
                     String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                     String pet_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
-                    cursor2 = sqLiteDatabase.rawQuery("SELECT * FROM pvet_pet_vaccination WHERE pet_id = '"+ pet_id +"'ORDER BY date_vaccination LIMIT 1 ", null);
-
+//                    cursor2 = sqLiteDatabase.getSyncedTables()
                     Toast.makeText(PetActivity.this, "Check your input!"+ pet_id, Toast.LENGTH_SHORT).show();
 //                    if (cursor2.moveToFirst()) {
 //                        do{
