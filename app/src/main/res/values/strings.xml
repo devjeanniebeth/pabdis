@@ -107,6 +107,7 @@
         <item>Mixed</item>
         <item>Persian</item>
         <item>Siamese</item>
+        <item>Others</item>
     </string-array>
     <string-array name="species">
         <item>Dog</item>
