@@ -235,7 +235,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             status = status.replace("[", "");
             mylist2 = new ArrayList<String>(Arrays.asList(status.split(",")));
 
-            Toast.makeText(VaccinationActivity.this, "Check your input!" + mylist2, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(VaccinationActivity.this, "Check your input!" + mylist2, Toast.LENGTH_SHORT).show();
 
 
 //             if(!mylist2.isEmpty())
