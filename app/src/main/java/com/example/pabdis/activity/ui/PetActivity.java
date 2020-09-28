@@ -265,7 +265,7 @@ public class PetActivity extends AppCompatActivity
                     String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                     String pet_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
 //                    cursor2 = sqLiteDatabase.getSyncedTables()
-                    Toast.makeText(PetActivity.this, "Check your input!"+ pet_id, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(PetActivity.this, "Check your input!"+ pet_id, Toast.LENGTH_SHORT).show();
 //                    if (cursor2.moveToFirst()) {
 //                        do{
 //                            lastvacc = (cursor2.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
