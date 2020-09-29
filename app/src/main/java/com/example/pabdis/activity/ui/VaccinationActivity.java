@@ -300,11 +300,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
             });
 
-
-
-
-
-
             if(status.equals("alive") && spstatus.getSelectedItem().toString().equals("Alive")) {
 
 

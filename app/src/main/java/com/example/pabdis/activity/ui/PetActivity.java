@@ -35,6 +35,7 @@ import com.example.pabdis.activity.updates.ListUpdateActivity;
 import com.example.pabdis.activity.updates.PetVaccination;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PetActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,6 +48,7 @@ public class PetActivity extends AppCompatActivity
     String update, petid;
     private SessionManager session;
     ArrayList<Pet> PetList = new ArrayList<Pet>();
+    ArrayList<String> mylist2 = new ArrayList<String>();
 
 
     @Override
@@ -292,7 +294,19 @@ public class PetActivity extends AppCompatActivity
 
                     String owner_num = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
                     String pet_stat = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_13)));
-                    pet = new Pet(id, owner_id, pet_id, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, pet_stat, owner_num);
+                    String stat = "";
+
+
+                    pet_stat = pet_stat.replace("[", "");
+                    pet_stat = pet_stat.replace("]", "");
+                    pet_stat = pet_stat.replace(", ", ",");
+                    mylist2 = new ArrayList<String>(Arrays.asList(pet_stat.split(",")));
+                    stat = mylist2.get(0);
+
+
+
+
+                    pet = new Pet(id, owner_id, pet_id, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, stat, owner_num);
                     PetList.add(pet);
                 } while (cursor.moveToNext());
                 listAdapter = new PetAdapter(PetActivity.this, R.layout.items_pet, PetList);
