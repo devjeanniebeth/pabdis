@@ -266,15 +266,21 @@ public class PetActivity extends AppCompatActivity
                     String lastvacc = "";
                     String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                     String pet_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
-//                    cursor2 = sqLiteDatabase.getSyncedTables()
-//                    Toast.makeText(PetActivity.this, "Check your input!"+ pet_id, Toast.LENGTH_SHORT).show();
-//                    if (cursor2.moveToFirst()) {
-//                        do{
-//                            lastvacc = (cursor2.getString(cursor.getColumnIndex(DatabaseHelper.VACC_DATE_3)));
-//
-//                        }while(cursor2.moveToNext());
-//                    }
-//                    cursor2.close();
+
+                    Toast.makeText(PetActivity.this, "Check your input!"+ cursor2, Toast.LENGTH_SHORT).show();
+
+                     cursor2 = myDB.getVaccDate(pet_id);
+
+                    if (cursor2 == null)
+                        return;
+
+                    try{
+                        if (cursor2.moveToFirst()) // Here we try to move to the first record
+
+                            lastvacc = (cursor2.getString(cursor2.getColumnIndex(DatabaseHelper.VACC_DATE_3))); // Only assign string value if we moved to first record
+                    }finally {
+                        cursor2.close();
+                    }
 
                     String id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
                     String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
@@ -295,8 +301,6 @@ public class PetActivity extends AppCompatActivity
                     String owner_num = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_8)));
                     String pet_stat = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_13)));
                     String stat = "";
-
-
                     pet_stat = pet_stat.replace("[", "");
                     pet_stat = pet_stat.replace("]", "");
                     pet_stat = pet_stat.replace(", ", ",");

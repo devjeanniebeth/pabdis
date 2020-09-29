@@ -925,7 +925,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-
+    public Cursor getVaccDate(String petid)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT date_vaccination from "+TABLE_VACC_DATE+" WHERE pet_id = '"+petid+"' ORDER BY id DESC LIMIT 1";
+        Cursor res =  db.rawQuery(query,null);
+        return res;
+    }
 
 
     public Cursor getVacc(String ownerid)
