@@ -923,8 +923,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String query = "SELECT * from "+TABLE_SURVEY9+" WHERE owner_id = '"+ownerid+"'";
         Cursor res =  db.rawQuery(query,null);
         return res;
-    }
-
+    }  
     public Cursor getVaccDate(String petid)
     {
         SQLiteDatabase db = this.getReadableDatabase();
