@@ -267,7 +267,7 @@ public class PetActivity extends AppCompatActivity
                     String owner_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_3)));
                     String pet_id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_12)));
 
-                    Toast.makeText(PetActivity.this, "Check your input!"+ cursor2, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(PetActivity.this, "Check your input!"+ cursor2, Toast.LENGTH_SHORT).show();
 
                      cursor2 = myDB.getVaccDate(pet_id);
 
