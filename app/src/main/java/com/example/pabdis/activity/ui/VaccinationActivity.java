@@ -583,14 +583,15 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final String lat;
                     final String longi;
 
-                    if(tvLati == null){
+                    if(tvLati.equals(""))
+                    {
 
                         lat = "N/A";
                     }else{
                         lat = tvLati;
                     }
 
-                    if(tvLongi == null)
+                    if(tvLongi.equals(""))
                     {
                         longi = "N/A";
 
