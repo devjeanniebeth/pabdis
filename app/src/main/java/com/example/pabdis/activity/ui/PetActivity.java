@@ -79,7 +79,7 @@ public class PetActivity extends AppCompatActivity
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 pos = null;
-                stat = null;
+                stat = 0;
             } else {
                 pos= extras.getInt("pos");
                 stat= extras.getInt("stat");
