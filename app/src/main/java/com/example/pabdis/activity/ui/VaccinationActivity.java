@@ -194,30 +194,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
 
 
-            txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedItem = parent.getItemAtPosition(position).toString();
-                    String src = txtsourceplace.getText().toString();
 
-
-                    switch (selectedItem)
-                    {
-                        case "Indigenous":
-                            txtsourceplace.setVisibility(View.GONE);
-                            break;
-                        case "Introduced":
-                            txtsourceplace.setVisibility(View.VISIBLE);
-                            break;
-
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
 
 
 
@@ -274,6 +251,32 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
             tvLongitude.setText(longitude);
             tvLatitude.setText(latitude);
+
+
+            txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedItem = parent.getItemAtPosition(position).toString();
+                    String src = txtsourceplace.getText().toString();
+
+
+                    switch (selectedItem)
+                    {
+                        case "Indigenous":
+                            txtsourceplace.setVisibility(View.GONE);
+                            break;
+                        case "Introduced":
+                            txtsourceplace.setVisibility(View.VISIBLE);
+                            break;
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
 
 
@@ -439,6 +442,35 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 txtsourceplace.setVisibility(View.VISIBLE);
                 txtsourceplace.setText(srcs);
             }
+
+
+
+            txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedItem = parent.getItemAtPosition(position).toString();
+                    String src = txtsourceplace.getText().toString();
+
+
+                    switch (selectedItem)
+                    {
+                        case "Indigenous":
+                            txtsourceplace.setVisibility(View.GONE);
+                            break;
+                        case "Introduced":
+                            txtsourceplace.setVisibility(View.VISIBLE);
+                            break;
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
             colormarkings = ArrayAdapter.createFromResource(this, R.array.color_mark, R.layout.support_simple_spinner_dropdown_item);
             if(color.equals("White"))
             {
