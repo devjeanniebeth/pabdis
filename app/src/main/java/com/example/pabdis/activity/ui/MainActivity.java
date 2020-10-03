@@ -405,7 +405,7 @@ public class MainActivity extends AppCompatActivity
 
                         lati = "N/A";
                     }else{
-                        lati = String.valueOf(tvLatitude.getText());
+                        lati = String.valueOf(tvLati);
                     }
 
                     if(tvLongitude == null)
@@ -414,7 +414,7 @@ public class MainActivity extends AppCompatActivity
 
                     }else{
 
-                        longit = String.valueOf(tvLatitude.getText());
+                        longit = String.valueOf(tvLongi);
                     }
 
 

@@ -641,7 +641,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final String lat;
                     final String longi;
 
-                     if(tvLati.equals(null))
+                     if(tvLati == null)
                     {
 
                         lat = "N/A";
@@ -649,7 +649,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                         lat = tvLati;
                     }
 
-                    if(tvLongi.equals(null))
+                    if(tvLongi == null)
                     {
                         longi = "N/A";
 
@@ -1282,7 +1282,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
                         mylistup.clear();
                         mylistup.add("alive");
-                        Toast.makeText(VaccinationActivity.this, "Check your input!" + selectedItem, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(VaccinationActivity.this, "Check your input!" + selectedItem, Toast.LENGTH_SHORT).show();
                         break;
                     case "Dead":
                         btnDateStatus.setVisibility(View.VISIBLE);
@@ -1304,7 +1304,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                         txtDateStatus.setVisibility(View.VISIBLE);
                         mylistup.clear();
                         mylistup.add("lost");
-                        Toast.makeText(VaccinationActivity.this, "Check your input!" + selectedItem, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(VaccinationActivity.this, "Check your input!" + selectedItem, Toast.LENGTH_SHORT).show();
 
                         break;
 
