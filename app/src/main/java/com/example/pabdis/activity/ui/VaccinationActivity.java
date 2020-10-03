@@ -992,6 +992,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                 AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
 
                 // Set a title for alert dialog
+
                 builder.setTitle("There's no going back.");
 
                 // Ask the final question
