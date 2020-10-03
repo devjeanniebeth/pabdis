@@ -652,7 +652,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                                 case DialogInterface.BUTTON_POSITIVE:
                                     // User clicked the Yes button
 
-                                    if (petname.equals("") || feat.equals("") || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
+                                    if (petname.equals("")  || specie.equals("") || breed.equals("") || gender.equals("") || birthdate.equals("") ) {
                                         Toast.makeText(VaccinationActivity.this, "Check your input!"  , Toast.LENGTH_SHORT).show();
                                     }else{
 
