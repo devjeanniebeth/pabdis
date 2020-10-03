@@ -167,7 +167,7 @@ public class PetActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
 
 
-                        Cursor rs = myDB.getVacc(petid);
+                        Cursor rs = myDB.getVacc(code);
                         rs.moveToFirst();
 
                         String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
