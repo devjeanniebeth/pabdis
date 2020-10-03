@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, LocationListener {
 
     EditText lastname, lastname2, firstname2, firstname, dateSurvey, houseno, contact, edtEstab, edtCoop,edtTotalHousehold;
-    TextView tvLatitude, tvLongitude;
+    EditText tvLatitude, tvLongitude;
     ArrayList<String> mylist2 = new ArrayList<String>();
     Double lang, longi;
     private SessionManager session;

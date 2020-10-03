@@ -66,7 +66,8 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
     TableRow tbl1;
     Double lang, longi;
     Double latitude, longitude;
-    TextView tvLatitude, tvLongitude;
+    EditText tvLatitude, tvLongitude;
+
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
