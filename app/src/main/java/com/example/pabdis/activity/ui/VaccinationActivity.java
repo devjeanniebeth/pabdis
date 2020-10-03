@@ -68,6 +68,8 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
     Double latitude, longitude;
     EditText tvLatitude, tvLongitude;
 
+    String lat;
+    String longit;
     ImageView imgView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public  static final int RequestPermissionCode  = 1 ;
@@ -633,8 +635,6 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final byte imgv2[] = imgv;
                     final String stats  = mylistup.toString();
 
-                    final String lat;
-                    final String longi;
 
                      if(tvLati == null)
                     {
@@ -646,11 +646,11 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
                     if(tvLongi == null)
                     {
-                        longi = "N/A";
+                        longit = "N/A";
 
                     }else{
 
-                        longi = tvLongi;
+                        longit = tvLongi;
                     }
 
                     // Build an AlertDialog
@@ -683,7 +683,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                                                 Toast.makeText(VaccinationActivity.this, "TRYING 1!" , Toast.LENGTH_SHORT).show();
 
                                                 myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                        souces,petid,mylistup.get(0), lat, longi);
+                                                        souces,petid,mylistup.get(0), lat, longit);
                                                 Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                                 intent.putExtra("ownerid", ownerid);
@@ -698,7 +698,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                                                 Toast.makeText(VaccinationActivity.this, "TRYING 2!" , Toast.LENGTH_SHORT).show();
 
                                                 myDB.updateVaccination(petname,specie,other_breed,gender,birthdate,othercolor, feat,
-                                                        souces,petid,stats, lat, longi);
+                                                        souces,petid,stats, lat, longit);
                                                 Toast.makeText(VaccinationActivity.this, "Success!" , Toast.LENGTH_SHORT).show();
                                                 Intent intent = new Intent(getApplicationContext(), PetActivity.class);
                                                 intent.putExtra("ownerid", ownerid);

@@ -280,7 +280,9 @@ public class PetActivity extends AppCompatActivity
     private void ShowSQLiteDBdata() {
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
-        cursor = sqLiteDatabase.rawQuery("SELECT * " +
+        cursor = sqLiteDatabase.rawQuery("SELECT pvet_owner.owner_id, pvet_owner.r_lname, pvet_owner.r_fname, " +
+                " pvet_owner.owner_info, pvet_owner.contact_no, " +
+                " pvet_pet.* "+
                 " FROM pvet_pet " +
                 " INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id " +
                 " WHERE pvet_pet.pet_id NOT NULL ", null);
@@ -333,9 +335,6 @@ public class PetActivity extends AppCompatActivity
                     pet_stat = pet_stat.replace(", ", ",");
                     mylist2 = new ArrayList<String>(Arrays.asList(pet_stat.split(",")));
                     stat = mylist2.get(0);
-
-
-
 
                     pet = new Pet(id, owner_id, pet_id, respondent, petname, specie, breed, sex, birth, color, created_at,lastvacc, pet_latitude, pet_longitude, stat, owner_num);
                     PetList.add(pet);
