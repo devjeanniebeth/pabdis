@@ -194,6 +194,32 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
 
 
 
+            txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String selectedItem = parent.getItemAtPosition(position).toString();
+                    String src = txtsourceplace.getText().toString();
+
+
+                    switch (selectedItem)
+                    {
+                        case "Indigenous":
+                            txtsourceplace.setVisibility(View.GONE);
+                            break;
+                        case "Introduced":
+                            txtsourceplace.setVisibility(View.VISIBLE);
+                            break;
+
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+
 
             txtbreed.setEnabled(false);
             txtGender.setEnabled(false);

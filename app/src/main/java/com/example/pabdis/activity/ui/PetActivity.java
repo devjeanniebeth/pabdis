@@ -146,7 +146,7 @@ public class PetActivity extends AppCompatActivity
                         //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
 
 
-//                        Toast.makeText(PetActivity.this, "Check your input!" + code, Toast.LENGTH_SHORT).show();
+
 
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
@@ -166,13 +166,27 @@ public class PetActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Intent i = new Intent(PetActivity.this, PetVaccination.class);
-                        i.putExtra("petid", code);
-                        i.putExtra("position", position);
-                        i.putExtra("ownerid", ownerid);
-                        i.putExtra("add", update);
-                        i.putExtra("stat", stat);
-                        startActivity(i);
+
+                        Cursor rs = myDB.getVacc(petid);
+                        rs.moveToFirst();
+
+                        String status = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_13));
+                        status = status.replace("[", "");
+                        mylist2 = new ArrayList<String>(Arrays.asList(status.split(",")));
+
+                        if (mylist2.contains("dead") || mylist2.contains("lost") || mylist2.contains("transferred") ) {
+                           Toast.makeText(PetActivity.this, "Invalid! Status should be alive to update.", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Intent i = new Intent(PetActivity.this, PetVaccination.class);
+                            i.putExtra("petid", code);
+                            i.putExtra("position", position);
+                            i.putExtra("ownerid", ownerid);
+                            i.putExtra("add", update);
+                            i.putExtra("stat", stat);
+                            startActivity(i);
+                        }
+
+
 
                     }
                 });

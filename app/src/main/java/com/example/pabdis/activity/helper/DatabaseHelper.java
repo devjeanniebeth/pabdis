@@ -950,12 +950,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-
-
-
-
-
-
     public boolean updateSwine(String owner_id, String boar_n, String boar_u, String sow_n, String sow_u, String grow_n,
                               String grow_u, String wean_n, String wean_u, String total, String sl_f_kg,String sl_f_hd, String sl_a_kg,String sl_a_hd,
                               String total_area, String totl_inc,String vaccstatus,String vacctype,String deworm) {
