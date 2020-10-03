@@ -225,7 +225,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             String birth = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_8));
             String color = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_9));
             String feature = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_10));
-            String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
+            final String srcs = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_11));
 //            final String petid = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_12));
 
             String latitude = rs.getString(rs.getColumnIndex(DatabaseHelper.VACCCOL_17));
@@ -253,30 +253,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
             tvLatitude.setText(latitude);
 
 
-            txtsource.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    String selectedItem = parent.getItemAtPosition(position).toString();
-                    String src = txtsourceplace.getText().toString();
 
-
-                    switch (selectedItem)
-                    {
-                        case "Indigenous":
-                            txtsourceplace.setVisibility(View.GONE);
-                            break;
-                        case "Introduced":
-                            txtsourceplace.setVisibility(View.VISIBLE);
-                            break;
-
-                    }
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
 
 
 
@@ -356,14 +333,16 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Dead");
                     spstatus.setSelection(spinnerPosition2);
-                    txtDateStatus.setText(mylist2.get(1));
+//                    txtDateStatus.setText(mylist2.get(1));
+                    Toast.makeText(getApplicationContext(), "" + mylist2 , Toast.LENGTH_SHORT).show();
 
                 } else if (mylist2.contains("lost")) {
 
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Lost");
                     spstatus.setSelection(spinnerPosition2);
-                    txtDateStatus.setText(mylist2.get(1));
+//                    txtDateStatus.setText(mylist2.get(1));
+                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
 
 
                 } else if (mylist2.contains("transferred")) {
@@ -371,7 +350,8 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Transferred");
                     spstatus.setSelection(spinnerPosition2);
-                    txtDateStatus.setText(mylist2.get(1));
+//                    txtDateStatus.setText(mylist2.get(1));
+                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
 
 
 
@@ -431,16 +411,11 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     int spinnerPosition4 = sources.getPosition(srcs);
                     txtsource.setSelection(spinnerPosition4);
                 }
-
-                txtsourceplace.setVisibility(View.GONE);
             }else{
-
                 String sr = "Introduced";
-
                 int spinnerPosition5 = sources.getPosition(sr);
                 txtsource.setSelection(spinnerPosition5);
-                txtsourceplace.setVisibility(View.VISIBLE);
-                txtsourceplace.setText(srcs);
+
             }
 
 
@@ -459,6 +434,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                             break;
                         case "Introduced":
                             txtsourceplace.setVisibility(View.VISIBLE);
+                            txtsourceplace.setText(srcs);
                             break;
 
                     }
@@ -641,7 +617,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final String lat;
                     final String longi;
 
-                     if(tvLati.equals(null))
+                     if(tvLati == null)
                     {
 
                         lat = "N/A";
@@ -649,7 +625,7 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                         lat = tvLati;
                     }
 
-                    if(tvLongi.equals(null))
+                    if(tvLongi == null)
                     {
                         longi = "N/A";
 
