@@ -98,7 +98,18 @@ public class PetActivity extends AppCompatActivity
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                listAdapter.getFilter().filter(s.toString());
+                if(listAdapter.isEmpty())
+                {     Toast.makeText(getApplicationContext(), "Current list is empty! Refresh the list.!", Toast.LENGTH_SHORT).show();
+
+
+                }else{
+                    listAdapter.getFilter().filter(s.toString());
+                }
+
+
+
+
+
             }
 
             @Override
@@ -131,8 +142,7 @@ public class PetActivity extends AppCompatActivity
             @Override
             public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, long l) {
 
-                final String code = listAdapter.getItem(position).getPetid();
-                final String ownerid = listAdapter.getItem(position).getOwner_id();
+
 
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(PetActivity.this);
@@ -146,7 +156,8 @@ public class PetActivity extends AppCompatActivity
                         //  String code = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COL_2));
 
 
-
+                        String code = listAdapter.getItem(position).getPetid();
+                        String ownerid = listAdapter.getItem(position).getOwner_id();
 
                         LISTVIEW.setSelection(position);
                         view.setBackgroundColor(Color.BLUE);
@@ -166,7 +177,8 @@ public class PetActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-
+                        String code = listAdapter.getItem(position).getPetid();
+                        String ownerid = listAdapter.getItem(position).getOwner_id();
                         Cursor rs = myDB.getVacc(code);
                         rs.moveToFirst();
 
@@ -212,6 +224,7 @@ public class PetActivity extends AppCompatActivity
                                     case DialogInterface.BUTTON_POSITIVE:
                                         // User clicked the Yes button
 
+                                        String code = listAdapter.getItem(position).getPetid();
 
                                         myDB.deletePet(code);
                                         Toast.makeText(getApplicationContext(), "Successfully deleted!", Toast.LENGTH_SHORT).show();
