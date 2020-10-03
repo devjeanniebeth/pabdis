@@ -334,7 +334,13 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Dead");
                     spstatus.setSelection(spinnerPosition2);
-                    txtDateStatus.setText(mylist2.get(1));
+
+                    if(mylist2.size() > 1){
+                        txtDateStatus.setText(mylist2.get(1));
+                    }else{
+                        txtDateStatus.setText("");
+                    }
+
 //                    Toast.makeText(getApplicationContext(), "" + mylist2 , Toast.LENGTH_SHORT).show();
 
                 } else if (mylist2.contains("lost")) {
@@ -342,7 +348,13 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Lost");
                     spstatus.setSelection(spinnerPosition2);
-                    txtDateStatus.setText(mylist2.get(1));
+
+                    if(mylist2.size() > 1){
+                        txtDateStatus.setText(mylist2.get(1));
+                    }else{
+                        txtDateStatus.setText("");
+                    }
+
 //                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
 
 
@@ -351,7 +363,13 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Transferred");
                     spstatus.setSelection(spinnerPosition2);
-                    txtDateStatus.setText(mylist2.get(1));
+
+                    if(mylist2.size() > 1){
+                        txtDateStatus.setText(mylist2.get(1));
+                    }else{
+                        txtDateStatus.setText("");
+                    }
+
 //                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
 
 
