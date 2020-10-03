@@ -333,16 +333,16 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Dead");
                     spstatus.setSelection(spinnerPosition2);
-//                    txtDateStatus.setText(mylist2.get(1));
-                    Toast.makeText(getApplicationContext(), "" + mylist2 , Toast.LENGTH_SHORT).show();
+                    txtDateStatus.setText(mylist2.get(1));
+//                    Toast.makeText(getApplicationContext(), "" + mylist2 , Toast.LENGTH_SHORT).show();
 
                 } else if (mylist2.contains("lost")) {
 
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Lost");
                     spstatus.setSelection(spinnerPosition2);
-//                    txtDateStatus.setText(mylist2.get(1));
-                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
+                    txtDateStatus.setText(mylist2.get(1));
+//                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
 
 
                 } else if (mylist2.contains("transferred")) {
@@ -350,8 +350,8 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     spstatus.setAdapter(vaccinatedby);
                     int spinnerPosition2 = vaccinatedby.getPosition("Transferred");
                     spstatus.setSelection(spinnerPosition2);
-//                    txtDateStatus.setText(mylist2.get(1));
-                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
+                    txtDateStatus.setText(mylist2.get(1));
+//                    Toast.makeText(getApplicationContext(), "" + mylist2, Toast.LENGTH_SHORT).show();
 
 
 
