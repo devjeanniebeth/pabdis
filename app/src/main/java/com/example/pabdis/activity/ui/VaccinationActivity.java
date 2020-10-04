@@ -636,22 +636,10 @@ public class VaccinationActivity extends AppCompatActivity implements LocationLi
                     final String stats  = mylistup.toString();
 
 
-                     if(tvLati == null)
-                    {
 
-                        lat = "N/A";
-                    }else{
-                        lat = tvLati;
-                    }
+                    lat = tvLatitude.getText().toString();
 
-                    if(tvLongi == null)
-                    {
-                        longit = "N/A";
-
-                    }else{
-
-                        longit = tvLongi;
-                    }
+                    longit = tvLongitude.getText().toString();
 
                     // Build an AlertDialog
                     AlertDialog.Builder builder = new AlertDialog.Builder(VaccinationActivity.this);
