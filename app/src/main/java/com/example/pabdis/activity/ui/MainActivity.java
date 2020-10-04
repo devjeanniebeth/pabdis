@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity
     EditText tvLatitude, tvLongitude;
     ArrayList<String> mylist2 = new ArrayList<String>();
     Double lang, longi;
+     String lati;
+     String longit;
     private SessionManager session;
     Spinner muni, brgy, ownertype;
     public static String tvLongi;
@@ -397,18 +399,17 @@ public class MainActivity extends AppCompatActivity
                     final String brg = brgy.getSelectedItem().toString();
                     final String ownert = ownertype.getSelectedItem().toString();
 
-                    final String lati;
-                    final String longit;
+
                     final String contact;
 
-                    if(tvLatitude == null){
+                    if(tvLongi == null){
 
                         lati = "N/A";
                     }else{
                         lati = String.valueOf(tvLati);
                     }
 
-                    if(tvLongitude == null)
+                    if(tvLongi == null)
                     {
                         longit = "N/A";
 

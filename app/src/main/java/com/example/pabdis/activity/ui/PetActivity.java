@@ -281,7 +281,7 @@ public class PetActivity extends AppCompatActivity
 
         SQLiteDatabase sqLiteDatabase = myDB.getWritableDatabase();
         cursor = sqLiteDatabase.rawQuery("SELECT pvet_owner.owner_id, pvet_owner.r_lname, pvet_owner.r_fname, " +
-                " pvet_owner.owner_info, pvet_owner.contact_no, " +
+                " pvet_owner.owner_info, pvet_owner.contact_no, pvet_owner.municipality, pvet_owner.barangay, pvet_owner.house, " +
                 " pvet_pet.* "+
                 " FROM pvet_pet " +
                 " INNER JOIN pvet_owner on pvet_pet.owner_id = pvet_owner.owner_id " +
