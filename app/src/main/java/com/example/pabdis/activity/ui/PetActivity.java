@@ -313,7 +313,7 @@ public class PetActivity extends AppCompatActivity
 
                     String id = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.VACCCOL_1)));
                     String petname = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_4)));
-                    if (owner_id.equals(null)) {
+                    if (owner_id == null) {
                         owner_id = "";
                     }
                     String respondent = (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_5))) + ", " + (cursor.getString(cursor.getColumnIndex(DatabaseHelper.OWNERCOL_6)));
