@@ -226,7 +226,7 @@ public class ViewInfoActivity extends AppCompatActivity implements NavigationVie
             String rfname = "Respondent Last Name: " + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_6));
             String members = "Members: " + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_7));
             String contact = "Contact No. : " + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_8));
-            String fulladd = " Address: " + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_11)) + "," + rs.getColumnIndex(DatabaseHelper.OWNERCOL_10) + "," + rs.getColumnIndex(DatabaseHelper.OWNERCOL_9);
+            String fulladd = " Address: " + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_11)) + "," + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_10)) + "," + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_9 ));
             String geotagged = "Geolocation: " + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_12)) + "," + rs.getString(rs.getColumnIndex(DatabaseHelper.OWNERCOL_13));
             txt_contact_no.setText(contact);
             txt_owner_info.setText(ownerinfo);
