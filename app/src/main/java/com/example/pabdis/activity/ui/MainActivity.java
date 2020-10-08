@@ -402,21 +402,9 @@ public class MainActivity extends AppCompatActivity
 
                     final String contact;
 
-                    if(tvLongi == null){
+                    lati = tvLatitude.getText().toString();
 
-                        lati = "N/A";
-                    }else{
-                        lati = String.valueOf(tvLati);
-                    }
-
-                    if(tvLongi == null)
-                    {
-                        longit = "N/A";
-
-                    }else{
-
-                        longit = String.valueOf(tvLongi);
-                    }
+                    longit = tvLongitude.getText().toString();
 
 
 
