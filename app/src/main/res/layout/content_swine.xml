@@ -141,7 +141,7 @@
                             android:hint="@string/git_native">
 
                             <EditText
-                                android:id="@+id/edtGrowN"
+                                android:id="@+id/edtSowN"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_column="0"
@@ -158,7 +158,7 @@
                             android:hint="@string/git_upgrade">
 
                             <EditText
-                                android:id="@+id/edtGrowU"
+                                android:id="@+id/edtSowU"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_column="1"
@@ -205,7 +205,7 @@
                             android:hint="@string/grower_native">
 
                             <EditText
-                                android:id="@+id/edtSowN"
+                                android:id="@+id/edtGrowN"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_column="0"
@@ -222,7 +222,7 @@
                             android:hint="@string/grower_upgrade">
 
                             <EditText
-                                android:id="@+id/edtSowU"
+                                android:id="@+id/edtGrowU"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_column="1"

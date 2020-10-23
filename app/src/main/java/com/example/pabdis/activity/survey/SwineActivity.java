@@ -327,17 +327,19 @@ public class SwineActivity extends AppCompatActivity  implements NavigationView.
 
                                     }else {
                                         try {
-                                            myDB.updateSwine(ownerid, boarn.trim(), boaru.trim(), sown.trim(),
-                                                    sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
-                                                    swntotal.trim(), swn_sf_kg.trim(), swn_sf_hd.trim(),swn_sa_kg.trim(), swn_sa_hd.trim(), swn_totala.trim(),
-                                                    swn_totali.trim(),vacc.trim(), vacct.trim(), dewormed.trim());
-                                            Toast.makeText(SwineActivity.this, "Success!" , Toast.LENGTH_LONG).show();
-                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
-                                            intent.putExtra("ownerid", ownerid);
-                                            intent.putExtra("petid", petid);
-                                            intent.putExtra("position", pos);
 
-                                            startActivity(intent);
+                                            Toast.makeText(SwineActivity.this, "Check your input!" + sown + grown, Toast.LENGTH_SHORT).show();
+//                                            myDB.updateSwine(ownerid, boarn.trim(), boaru.trim(), sown.trim(),
+//                                                    sowu.trim(), grown.trim(), growu.trim(), pign.trim(), pigu.trim(),
+//                                                    swntotal.trim(), swn_sf_kg.trim(), swn_sf_hd.trim(),swn_sa_kg.trim(), swn_sa_hd.trim(), swn_totala.trim(),
+//                                                    swn_totali.trim(),vacc.trim(), vacct.trim(), dewormed.trim());
+//                                            Toast.makeText(SwineActivity.this, "Success!" , Toast.LENGTH_LONG).show();
+//                                            Intent intent = new Intent(getApplicationContext(), ListUpdateActivity.class);
+//                                            intent.putExtra("ownerid", ownerid);
+//                                            intent.putExtra("petid", petid);
+//                                            intent.putExtra("position", pos);
+
+//                                            startActivity(intent);
                                         } catch (Exception e) {
                                             e.printStackTrace();
 
